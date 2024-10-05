@@ -1,5 +1,6 @@
 vim.g.mapleader = " ";
 local map = vim.keymap.set;
+local nv_map = vim.api.nvim_set_keymap;
 
 -- Personal
 map("n", "<leader>e" ,vim.cmd.Ex);
@@ -15,3 +16,5 @@ vim.api.nvim_set_keymap("i", "<C-H>", "<C-W>", { noremap = true })
 vim.api.nvim_set_keymap("c", "<C-H>", "<C-W>", { noremap = true })
 vim.api.nvim_set_keymap("i", "<C-Del>", "<C-o>dw", { noremap = true })
 vim.api.nvim_set_keymap("c", "<C-Del>", "<C-W>", { noremap = true })
+
+nv_map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", {desc = "Toggle Nvim Tree"});
