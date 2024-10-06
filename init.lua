@@ -1,8 +1,6 @@
 require("configs")
 require("mappings")
 
-vim.g.vscode_snippets_path = vim.fn.stdpath("config") .. "/lua/snippets/vscode"
-
 vim.cmd("highlight CustomVBool guifg=#4d98d6")
 vim.cmd("highlight CustomVHTML guifg=#808080")
 vim.cmd("highlight CustomVVariable guifg=#4fc1ff")
@@ -11,6 +9,26 @@ vim.cmd("highlight CustomVType guifg=#4ebd90")
 vim.cmd("highlight CustomVProperty guifg=#8dc5e3")
 vim.cmd("highlight CustomVPurple guifg=#bfa7f2")
 vim.cmd("highlight Constant guifg=#4d98d6")
+
+vim.api.nvim_set_hl(0, "Include", { link = "@keyword.repeat" })
+vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = "white" })
+vim.api.nvim_set_hl(0, "@property", { link = "CustomVVariable" })
+vim.api.nvim_set_hl(0, "Label", { link = "CustomVVariable" })
+vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "CustomVPurple" })
+vim.api.nvim_set_hl(0, "Delimiter", { link = "CustomVPurple" })
+vim.api.nvim_set_hl(0, "Boolean", { link = "CustomVBool" })
+vim.api.nvim_set_hl(0, "@constant.builtin", { link = "CustomVBool" })
+vim.api.nvim_set_hl(0, "@constant", { link = "CustomVBool" })
+vim.api.nvim_set_hl(0, "@keyword.storage", { link = "CustomVBool" })
+vim.api.nvim_set_hl(0, "Type", { link = "CustomVType" })
+vim.api.nvim_set_hl(0, "@type.builtin", { link = "CustomVType" })
+vim.api.nvim_set_hl(0, "Function", { link = "CustomVFunction" })
+vim.api.nvim_set_hl(0, "@function", { link = "CustomVFunction" })
+vim.api.nvim_set_hl(0, "@function.builtin", { link = "CustomVFunction" })
+vim.api.nvim_set_hl(0, "@variable", { link = "CustomVVariable" })
+vim.api.nvim_set_hl(0, "@variable.member", { link = "CustomVProperty" })
+vim.api.nvim_set_hl(0, "@function.call", { link = "CustomVFunction" })
+vim.api.nvim_set_hl(0, "@lsp.type.method.rust", { link = "CustomVFunction" })
 
 vim.api.nvim_set_hl(0, "@punctuation.bracket.tsx", { link = "CustomVPurple" })
 vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "CustomVPurple" })
@@ -22,6 +40,7 @@ vim.api.nvim_set_hl(0, "@punctuation.delimiter.typescript", { link = "@none" })
 vim.api.nvim_set_hl(0, "@tag.delimiter.tsx", { link = "CustomVHTML" })
 -- <tagName></tagName>
 vim.api.nvim_set_hl(0, "@tag.builtin.tsx", { link = "CustomVBool" })
+vim.api.nvim_set_hl(0, "@constant.builtin", { link = "CustomVBool" })
 -- let var: Type;
 vim.api.nvim_set_hl(0, "@type.builtin.tsx", { link = "CustomVType" })
 vim.api.nvim_set_hl(0, "@type.builtin.typescript", { link = "CustomVType" })

@@ -77,3 +77,8 @@ map("n", "<leader>fm", function()
 	print("Conform formatting...")
 	require("conform").format({ lsp_fallback = true })
 end, { desc = "General Format file" })
+
+map("n", "<leader>mm", function()
+	print("Conform formatting...")
+	require("conform").format({ lsp_fallback = true })
+end, { desc = "General Format file" })

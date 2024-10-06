@@ -11,3 +11,4 @@ require("configs.undotree");
 require("configs.lspconfig")
 require("configs.cmp")
 require("configs.gitsigns")
+require("configs.luasnip")
