@@ -1,0 +1,18 @@
+{
+    "std::cout": {
+        "prefix": "co",
+        "body": "std::cout << $1 << std::endl;"
+    },
+    "std::endl": {
+        "prefix": "endl",
+        "body": "std::endl"
+    },
+    "include": {
+        "prefix": "in",
+        "body": "#include <$1>"
+    },
+    "include local": {
+        "prefix": "inl",
+        "body": "#include \"$1\""
+    }
+}

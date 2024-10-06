@@ -1,5 +1,15 @@
 local map = vim.keymap.set
 
+---
+-- this config is not responsible for installing the formatters and LSPs to keep compatibility with NixOS
+--
+-- stylua
+-- prettierd
+-- clang_format == clang tools
+-- alejandra
+--
+---
+
 require("conform").setup({
 	lsp_fallback = true,
 	formatters_by_ft = {
@@ -38,6 +48,9 @@ require("conform").setup({
 		},
 		sass = {
 			"prettierd",
+		},
+		nix = {
+			"alejandra",
 		},
 		-- rust is handled by rust.vim and rustaceanvim
 	},

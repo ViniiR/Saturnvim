@@ -1,4 +1,5 @@
 local telescope = require("telescope");
+
 local builtin = require("telescope.builtin");
 
 local map = vim.keymap.set;

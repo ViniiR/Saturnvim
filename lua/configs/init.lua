@@ -7,3 +7,7 @@ require("configs.treesitter")
 require("configs.conform");
 require("configs.oil");
 require("configs.harpoon");
+require("configs.undotree");
+require("configs.lspconfig")
+require("configs.cmp")
+require("configs.gitsigns")
