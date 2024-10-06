@@ -1,5 +1,3 @@
-local map = vim.keymap.set
-
 return {
     {
         "nvim-telescope/telescope.nvim",
@@ -7,6 +5,10 @@ return {
         dependencies = { "nvim-lua/plenary.nvim" },
         cmd = "Telescope",
         module = "telescope",
+    },
+    { "brenoprata10/nvim-highlight-colors" },
+    {
+        "nvim-tree/nvim-web-devicons",
     },
     {
         "nvim-treesitter/nvim-treesitter",
@@ -31,10 +33,6 @@ return {
         opts = {
             git = { enable = true },
         },
-    },
-    {
-        "nvim-tree/nvim-web-devicons",
-        opts = function() end,
     },
     {
         "neovim/nvim-lspconfig",

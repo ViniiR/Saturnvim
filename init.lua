@@ -9,6 +9,16 @@ vim.cmd("highlight CustomVType guifg=#4ebd90")
 vim.cmd("highlight CustomVProperty guifg=#8dc5e3")
 vim.cmd("highlight CustomVPurple guifg=#bfa7f2")
 vim.cmd("highlight Constant guifg=#4d98d6")
+vim.cmd("highlight VFixme guibg=pink guifg=black")
+vim.cmd("highlight VTodo guibg=yellow guifg=black")
+-- TODO
+-- FIXME:
+
+-- comments
+vim.api.nvim_set_hl(0, "@comment.error.comment", { link = "VFixme" })
+vim.api.nvim_set_hl(0, "@comment.todo.comment", { link = "VTodo" })
+
+--
 
 vim.api.nvim_set_hl(0, "Include", { link = "@keyword.repeat" })
 vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = "white" })

@@ -198,7 +198,17 @@ require("lualine").setup({
             function() return "Ln " .. vim.fn.line(".") .. ", " .. "Col " .. vim.fn.charcol(".") end,
         },
         lualine_y = {},
-        lualine_z = { function() return "󰉖 " .. vim.loop.cwd() end },
+        lualine_z = {
+            function()
+                if vim.api.nvim_buf_get_name(0) ~= "NvimTree_1" then
+                    return "󰉖 " .. vim.loop.cwd()
+					-- fix this TODO
+                    --            else
+                    -- print("ran")
+                    --                return "NvimTree"
+                end
+            end,
+        },
     },
     inactive_sections = {
         lualine_a = {},

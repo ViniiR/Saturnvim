@@ -22,8 +22,6 @@ local servers = {
     "nixd",
 }
 
-vim.lsp.inlay_hint.enable(true)
-
 vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
@@ -63,6 +61,8 @@ M.on_attach = function(_, bufnr)
         vim.diagnostic.open_float()
     end)
     vim.keymap.set("n", "<C-w>d", function() vim.diagnostic.open_float() end)
+    vim.lsp.inlay_hint.enable(true)
+    vim.diagnostic.config({ virtual_text = true })
 end
 
 M.on_init = function(client, _)
