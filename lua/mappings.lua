@@ -39,6 +39,7 @@ map("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
 map("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
 map("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
 map("n", "]d", "]d<C-w>d")
+map("n", "<leader>tr", ":NvimTreeRefresh<CR>", { noremap = true, desc = "Nvim Tree Refresh" })
 
 -- Insert mode
 map("i", "<C-H>", "<C-W>", { noremap = true })

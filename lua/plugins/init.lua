@@ -82,7 +82,10 @@ return {
         "lewis6991/gitsigns.nvim",
         event = "User FilePost",
     },
-    -- { "rafamadriz/friendly-snippets" },
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
     {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
