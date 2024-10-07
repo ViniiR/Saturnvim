@@ -14,6 +14,13 @@ local options = {
             scrollbar = false,
             scrolloff = 0,
         },
+        documentation = {
+            border = "rounded",
+            winhighlight = "Normal:CmpNormal,FloatBorder:CmpFloatBorder,CursorLine:CmpVisual",
+            side_padding = 0,
+            scrollbar = false,
+            scrolloff = 0,
+        },
     },
 
     snippet = {
