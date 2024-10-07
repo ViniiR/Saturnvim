@@ -1,3 +1,6 @@
+-- grey= "#5c6370",
+-- 		light_grey = "#848b98",
+--black = "#181a1f"
 require("onedark").setup({
     -- Main options --
     style = "dark", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'

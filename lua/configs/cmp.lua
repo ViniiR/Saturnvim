@@ -6,6 +6,16 @@ local options = {
         format = require("nvim-highlight-colors").format,
     },
 
+    window = {
+        completion = {
+            border = "rounded",
+            winhighlight = "Normal:CmpNormal,FloatBorder:CmpFloatBorder,CursorLine:CmpVisual",
+            side_padding = 0,
+            scrollbar = false,
+            scrolloff = 0,
+        },
+    },
+
     snippet = {
         expand = function(args) require("luasnip").lsp_expand(args.body) end,
     },

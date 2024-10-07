@@ -11,15 +11,21 @@ vim.cmd("highlight CustomVPurple guifg=#bfa7f2")
 vim.cmd("highlight Constant guifg=#4d98d6")
 vim.cmd("highlight VFixme guibg=pink guifg=black")
 vim.cmd("highlight VTodo guibg=yellow guifg=black")
--- TODO
--- FIXME:
-
+-- onedark themes
+local bg0 = "#282c34"
+local bg1 = "#31353f"
+local bg2 = "#393f4a"
+local bg3 = "#3b3f4c"
 -- comments
 vim.api.nvim_set_hl(0, "@comment.error.comment", { link = "VFixme" })
 vim.api.nvim_set_hl(0, "@comment.todo.comment", { link = "VTodo" })
 
+-- cmp
+vim.api.nvim_set_hl(0, "CmpNormal", { bg = bg0 })
+vim.api.nvim_set_hl(0, "CmpFloatBorder", { bg = "none" })
+vim.api.nvim_set_hl(0, "CmpVisual", { bg = bg1, fg = "white" })
+-- 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None'
 --
-
 vim.api.nvim_set_hl(0, "Include", { link = "@keyword.repeat" })
 vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = "white" })
 vim.api.nvim_set_hl(0, "@property", { link = "CustomVVariable" })
