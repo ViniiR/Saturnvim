@@ -1,5 +1,13 @@
 return {
     {
+
+        "nvim-lua/plenary.nvim",
+    },
+    {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+    },
+    {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.8",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -71,7 +79,7 @@ return {
         "folke/which-key.nvim",
         keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g", "[", "]" },
         cmd = "WhichKey",
-        opts = function() return {} end,
+        event = "VeryLazy",
     },
     {
         "mbbill/undotree",

@@ -6,6 +6,8 @@ local main_fg_color = "#2095f7"
 local secondary_bg_color = "#323942"
 local secondary_fg_color = "#8f8d8d"
 
+local lsp_fg_color = "#51db44"
+
 v_one_dark.normal = {
     a = {
         fg = main_fg_color,
@@ -20,7 +22,7 @@ v_one_dark.normal = {
         bg = secondary_bg_color,
     },
     x = {
-        fg = secondary_fg_color,
+        fg = lsp_fg_color,
         bg = secondary_bg_color,
     },
     y = {
@@ -49,7 +51,7 @@ v_one_dark.visual = {
         bg = secondary_bg_color,
     },
     x = {
-        fg = secondary_fg_color,
+        fg = lsp_fg_color,
         bg = secondary_bg_color,
     },
     y = {
@@ -79,7 +81,7 @@ v_one_dark.insert = {
         bg = secondary_bg_color,
     },
     x = {
-        fg = secondary_fg_color,
+        fg = lsp_fg_color,
         bg = secondary_bg_color,
     },
     y = {
@@ -109,7 +111,7 @@ v_one_dark.command = {
         bg = secondary_bg_color,
     },
     x = {
-        fg = secondary_fg_color,
+        fg = lsp_fg_color,
         bg = secondary_bg_color,
     },
     y = {
@@ -171,8 +173,9 @@ require("lualine").setup({
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = {
-            statusline = {},
-            winbar = {},
+            "NvimTree",
+            -- statusline = {},
+            -- winbar = {},
         },
         ignore_focus = {},
         always_divide_middle = true,
@@ -188,6 +191,9 @@ require("lualine").setup({
         lualine_b = { "branch", "diff", "diagnostics" },
         lualine_c = { "filename", { "filetype", icon_only = true } },
         lualine_x = {
+            function() return "󰒋 " .. vim.g.current_attached_lsp end,
+        },
+        lualine_y = {
             "encoding",
             "fileformat",
             function()
@@ -197,17 +203,8 @@ require("lualine").setup({
             end,
             function() return "Ln " .. vim.fn.line(".") .. ", " .. "Col " .. vim.fn.charcol(".") end,
         },
-        lualine_y = {},
         lualine_z = {
-            function()
-                if vim.api.nvim_buf_get_name(0) ~= "NvimTree_1" then
-                    return "󰉖 " .. vim.loop.cwd()
-					-- fix this TODO
-                    --            else
-                    -- print("ran")
-                    --                return "NvimTree"
-                end
-            end,
+            function() return "󰉖 " .. vim.loop.cwd() end,
         },
     },
     inactive_sections = {

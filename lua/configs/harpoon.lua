@@ -33,7 +33,12 @@ map("n", "<M-h>", function() harpoon:list():select(1) end)
 map("n", "<M-j>", function() harpoon:list():select(2) end)
 map("n", "<M-k>", function() harpoon:list():select(3) end)
 map("n", "<M-l>", function() harpoon:list():select(4) end)
-map("n", "<M-ç>", function() harpoon:list():select(4) end)
+map("n", "<M-ç>", function() harpoon:list():select(5) end)
+map("n", "<M-;>", function() harpoon:list():select(5) end)
+map("n", "<M-u>", function() harpoon:list():select(6) end)
+map("n", "<M-i>", function() harpoon:list():select(7) end)
+map("n", "<M-o>", function() harpoon:list():select(8) end)
+map("n", "<M-p>", function() harpoon:list():select(9) end)
 
 -- Toggle previous & next buffers stored within Harpoon list
 -- map("n", "<C-p>", function() harpoon:list():prev() end)

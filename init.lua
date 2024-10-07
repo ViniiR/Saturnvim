@@ -16,14 +16,19 @@ local bg0 = "#282c34"
 local bg1 = "#31353f"
 local bg2 = "#393f4a"
 local bg3 = "#3b3f4c"
+
 -- comments
 vim.api.nvim_set_hl(0, "@comment.error.comment", { link = "VFixme" })
 vim.api.nvim_set_hl(0, "@comment.todo.comment", { link = "VTodo" })
 
+--lsp hover
+vim.api.nvim_set_hl(0, "FloatBorder", { link = "CmpFloatBorder", bg = bg0 })
+vim.api.nvim_set_hl(0, "NormalFloat", { link = "CmpNormal" })
+
 -- cmp
 vim.api.nvim_set_hl(0, "CmpNormal", { bg = bg0 })
-vim.api.nvim_set_hl(0, "CmpFloatBorder", { bg = "none" })
-vim.api.nvim_set_hl(0, "CmpVisual", { bg = bg1, fg = "white" })
+vim.api.nvim_set_hl(0, "CmpFloatBorder", { bg = bg0 })
+vim.api.nvim_set_hl(0, "CmpVisual", { bg = bg1, fg = "#bbbbbb" })
 -- 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None'
 --
 vim.api.nvim_set_hl(0, "Include", { link = "@keyword.repeat" })
@@ -107,3 +112,5 @@ vim.api.nvim_set_hl(0, "@tag.tsx", { link = "CustomVType" })
 --rust
 vim.api.nvim_set_hl(0, "@lsp.type.method.rust", { link = "CustomVFunction" })
 vim.api.nvim_set_hl(0, "@lsp.type.method", { link = "CustomVFunction" })
+vim.api.nvim_set_hl(0, "@function.macro.rust", { link = "@variable.parameter" })
+vim.api.nvim_set_hl(0, "@lsp.type.macro", { link = "@variable.parameter" })

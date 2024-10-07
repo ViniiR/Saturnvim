@@ -3,6 +3,8 @@ local map = vim.keymap.set
 
 local lspconfig = require("lspconfig")
 
+vim.g.current_attached_lsp = "No LSP"
+
 local servers = {
     "emmet_language_server",
     "ts_ls",
@@ -28,6 +30,13 @@ vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSig
 vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
 vim.opt.signcolumn = "yes"
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "single",
+    max_width = nil,
+    max_height = nil,
+    title = " Info ",
+})
 
 M.on_attach = function(_, bufnr)
     local function opts(desc) return { buffer = bufnr, desc = "LSP " .. desc } end
@@ -69,6 +78,10 @@ M.on_init = function(client, _)
     if client.supports_method("textDocument/semanticTokens") then
         client.server_capabilities.semanticTokensProvider = nil
     end
+
+    vim.g.current_attached_lsp = vim.lsp.get_clients({
+        bufnr = 0,
+    })[1].name
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
