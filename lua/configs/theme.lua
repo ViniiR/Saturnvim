@@ -38,7 +38,8 @@ require("onedark").setup({
         TelescopePromptBorder = { fg = "#636363" },
         TelescopePreviewBorder = { fg = "#636363" },
         TelescopeResultsBorder = { fg = "#636363" },
-        TelescopePromptPrefix = { fg = "#FFFFFF" },
+        TelescopePromptPrefix = { fg = "#636363" },
+        TelescopeMatching = { fg = "#5acc37" },
 
         -- LSP diagnostics
         DiagnosticVirtualTextHint = { fg = "#b151cf", bg = "none" },

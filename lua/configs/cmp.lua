@@ -1,10 +1,32 @@
 local cmp = require("cmp")
 
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ "/", "?" }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = "buffer" },
+    },
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = "path" },
+    }, {
+        { name = "cmdline" },
+    }),
+    matching = { disallow_symbol_nonprefix_matching = false },
+})
+
+-- original
+
 local options = {
     completion = { completeopt = "menu,menuone" },
-    formatting = {
-        format = require("nvim-highlight-colors").format,
-    },
+	-- breaking formatting fix
+    -- formatting = {
+    --     format = require("nvim-highlight-colors").format,
+    -- },
 
     window = {
         completion = {
@@ -61,12 +83,16 @@ local options = {
         end, { "i", "s" }),
     },
 
+    matching = { disallow_symbol_nonprefix_matching = false },
     sources = {
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "nvim_lua" },
         { name = "path" },
+    },
+    experimental = {
+        ghost_text = false,
     },
 }
 

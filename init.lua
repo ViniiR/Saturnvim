@@ -1,3 +1,5 @@
+vim.opt.shortmess:append("I")
+
 require("configs")
 require("mappings")
 

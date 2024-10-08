@@ -56,7 +56,6 @@ M.on_attach = function(_, bufnr)
     )
 
     map("n", "<leader>D", vim.lsp.buf.type_definition, opts("Go to type definition"))
-    -- map("n", "<leader>ra", require("nvchad.lsp.renamer"), opts("NvRenamer"))
 
     map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
     map("n", "gr", vim.lsp.buf.references, opts("Show references"))
@@ -118,7 +117,6 @@ M.defaults = function()
                     library = {
                         vim.fn.expand("$VIMRUNTIME/lua"),
                         vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
-                        -- 	vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types",
                         vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
                         "${3rd}/luv/library",
                     },

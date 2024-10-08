@@ -4,8 +4,40 @@ return {
         "nvim-lua/plenary.nvim",
     },
     {
+        "neovim/nvim-lspconfig",
+		lazy = true,
+        config = function() require("configs.lspconfig") end,
+    },
+    {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
+        lazy = true,
+        dependencies = {
+            {
+                "neovim/nvim-lspconfig",
+            },
+            {
+                "hrsh7th/cmp-nvim-lsp",
+            },
+            {
+                "hrsh7th/cmp-buffer",
+            },
+            {
+                "hrsh7th/cmp-path",
+            },
+            {
+                "hrsh7th/cmp-cmdline",
+            },
+            {
+                "hrsh7th/nvim-cmp",
+            },
+            {
+                "L3MON4D3/LuaSnip",
+            },
+            {
+                "saadparwaiz1/cmp_luasnip",
+            },
+        },
     },
     {
         "nvim-telescope/telescope.nvim",
@@ -21,16 +53,19 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
+        lazy = true,
     },
     {
         "navarasu/onedark.nvim",
     },
     {
         "stevearc/conform.nvim",
+        lazy = true,
     },
     {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
+        lazy = true,
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim",
@@ -38,18 +73,16 @@ return {
     },
     {
         "nvim-tree/nvim-tree.lua",
+        lazy = true,
         opts = {
             git = { enable = true },
         },
     },
     {
-        "neovim/nvim-lspconfig",
-        config = function() require("configs.lspconfig") end,
-    },
-    {
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
         event = "VeryLazy",
+        lazy = true,
         config = function()
             require("nvim-surround").setup({
                 -- Configuration here, or leave empty to use defaults
@@ -59,17 +92,18 @@ return {
     {
         "stevearc/oil.nvim",
         opts = {},
+        lazy = true,
         dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
     },
     {
         "lukas-reineke/indent-blankline.nvim",
         event = "User FilePost",
+        lazy = true,
         opts = {
             indent = { char = "│", highlight = "IblChar" },
             scope = { char = "│", highlight = "IblScopeChar" },
         },
         config = function(_, opts)
-            dofile(vim.g.base46_cache .. "blankline")
             local hooks = require("ibl.hooks")
             hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
             require("ibl").setup(opts)
@@ -85,7 +119,13 @@ return {
         "mbbill/undotree",
     },
     {
+        "nvimdev/dashboard-nvim",
+        event = "VimEnter",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
+    {
         "lewis6991/gitsigns.nvim",
+        lazy = true,
         event = "User FilePost",
     },
     {
@@ -95,15 +135,14 @@ return {
     {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
+        lazy = true,
         dependencies = {
             { "brenoprata10/nvim-highlight-colors" },
             {
                 "L3MON4D3/LuaSnip",
                 dependencies = "rafamadriz/friendly-snippets",
                 opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-                --            config = function(_, opts)
-                -- require("configs.luasnip")
-                --            end,
+                lazy = true,
             },
             {
                 "windwp/nvim-autopairs",
@@ -111,6 +150,7 @@ return {
                     fast_wrap = {},
                     disable_filetype = { "TelescopePrompt", "vim" },
                 },
+                lazy = true,
                 config = function(_, opts)
                     require("nvim-autopairs").setup(opts)
                     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
@@ -157,6 +197,7 @@ return {
     {
         "rust-lang/rust.vim",
         ft = "rust",
+        lazy = true,
         init = function() vim.g.rustfmt_autosave = 1 end,
     },
 }
