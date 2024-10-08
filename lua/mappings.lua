@@ -20,13 +20,20 @@ opt.ignorecase = true
 opt.smartcase = true
 
 vim.diagnostic.config({
-	virtual_text = false,
-	float = {
-		header = "false",
-		border = "rounded",
-		focusable = true,
-	},
+    virtual_text = false,
+    float = {
+        header = "false",
+        border = "rounded",
+        focusable = true,
+    },
 })
+
+map("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "Toggle Debugger Breakpoint" })
+map("n", "<leader>du", function()
+    local widgets = require("dap.ui.widgets")
+    local sidebar = widgets.sidebar(widgets.scopes)
+    sidebar.open()
+end)
 
 -- Normal mode
 map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle Nvim Tree" })

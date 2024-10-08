@@ -5,13 +5,11 @@ return {
     },
     {
         "neovim/nvim-lspconfig",
-		lazy = true,
         config = function() require("configs.lspconfig") end,
     },
     {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
-        lazy = true,
         dependencies = {
             {
                 "neovim/nvim-lspconfig",
@@ -53,7 +51,6 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        lazy = true,
     },
     {
         "navarasu/onedark.nvim",
@@ -97,7 +94,6 @@ return {
     {
         "lukas-reineke/indent-blankline.nvim",
         event = "User FilePost",
-        lazy = true,
         opts = {
             indent = { char = "│", highlight = "IblChar" },
             scope = { char = "│", highlight = "IblScopeChar" },
@@ -134,7 +130,6 @@ return {
     {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
-        lazy = true,
         dependencies = {
             { "brenoprata10/nvim-highlight-colors" },
             {
@@ -149,7 +144,6 @@ return {
                     fast_wrap = {},
                     disable_filetype = { "TelescopePrompt", "vim" },
                 },
-                lazy = true,
                 config = function(_, opts)
                     require("nvim-autopairs").setup(opts)
                     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
@@ -198,5 +192,8 @@ return {
         ft = "rust",
         lazy = true,
         init = function() vim.g.rustfmt_autosave = 1 end,
+    },
+    {
+        "mfussenegger/nvim-dap",
     },
 }

@@ -31,6 +31,7 @@ vim.api.nvim_set_hl(0, "NormalFloat", { link = "CmpNormal" })
 vim.api.nvim_set_hl(0, "CmpNormal", { bg = bg0 })
 vim.api.nvim_set_hl(0, "CmpFloatBorder", { bg = bg0 })
 vim.api.nvim_set_hl(0, "CmpVisual", { bg = bg1, fg = "#ffffff" })
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#56b6c2" })
 -- 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None'
 --
 vim.api.nvim_set_hl(0, "Include", { link = "@keyword.repeat" })
