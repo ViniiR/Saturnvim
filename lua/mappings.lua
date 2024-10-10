@@ -10,6 +10,7 @@ opt.spell = true
 vim.o.number = true
 vim.o.relativenumber = true
 opt.termguicolors = true
+vim.opt.wrap = true
 
 opt.cursorline = true
 opt.cursorlineopt = "number"

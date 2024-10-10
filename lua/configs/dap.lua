@@ -1,0 +1,21 @@
+-- dap should work by default with rustaceanvim
+-- vscode-extensions.vadimcn.vscode-lldb.adapter
+-- local dap = require("dap")
+-- dap.adapters.lldb = {
+--   type = 'executable',
+--   command = '/etc/profiles/per-user/vinii/bin/rust-lldb', -- adjust as needed, must be absolute path
+--   name = 'rust-lldb'
+-- }
+-- dap.configurations.rust = {
+--   {
+--     name = 'Launch',
+--     type = 'lldb',
+--     request = 'launch',
+--     program = function()
+--       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+--     end,
+--     cwd = '${workspaceFolder}',
+--     stopOnEntry = false,
+--     args = {},
+--   },
+-- }

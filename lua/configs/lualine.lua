@@ -188,9 +188,10 @@ require("lualine").setup({
     },
     sections = {
         lualine_a = { function() return mode_map[vim.api.nvim_get_mode().mode] or "__" end },
-        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_b = { "branch", "diff" },
         lualine_c = { "filename", { "filetype", icon_only = true } },
         lualine_x = {
+            "diagnostics",
             function() return "󰒋 " .. vim.g.current_attached_lsp end,
         },
         lualine_y = {
@@ -204,7 +205,7 @@ require("lualine").setup({
             function() return "Ln " .. vim.fn.line(".") .. ", " .. "Col " .. vim.fn.charcol(".") end,
         },
         lualine_z = {
-            function() return "󰉖 " .. vim.loop.cwd() end,
+            function() return "󰉖 " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") end,
         },
     },
     inactive_sections = {

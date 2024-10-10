@@ -1,25 +1,28 @@
 local cmp = require("cmp")
 
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline({ "/", "?" }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-        { name = "buffer" },
-    },
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
--- kinda broken fix
--- cmp.setup.cmdline(":", {
---     mapping = {
---         -- cmp.mapping.preset.cmdline(),
---         ["<Tab>"] = cmp.mapping.confirm({
---             behavior = cmp.ConfirmBehavior.Insert,
---             select = true,
---         }),
---         ["<C-p>"] = cmp.mapping.select_prev_item(),
---         ["<C-n>"] = cmp.mapping.select_next_item(),
+-- cmp.setup.cmdline({ "/", "?" }, {
+--     mapping = cmp.mapping.preset.cmdline(),
+--     sources = {
+--         { name = "buffer" },
 --     },
+-- })
+
+-- cmp.setup.cmdline(":", {
+--     mapping = cmp.mapping.preset.cmdline({
+--         ["<C-p>"] = { c = cmp.mapping.select_prev_item() },
+--         ["<C-n>"] = { c = cmp.mapping.select_next_item() },
+-- 					--    ["<Tab>"] = {
+-- 					--        c = function()
+-- 					--            local entry = cmp.get_selected_entry()
+-- 					--            if entry then
+-- 					--                local items = cmp.get_entries()
+-- 					-- print(items[1])
+-- 					--                if #items > 0 and entry == items[1] then cmp.mapping.confirm() end
+-- 					--            end
+-- 					--            cmp.mapping.select_next_item()
+-- 					--        end,
+-- 					--    },
+--     }),
 --     sources = cmp.config.sources({
 --         { name = "path" },
 --     }, {
