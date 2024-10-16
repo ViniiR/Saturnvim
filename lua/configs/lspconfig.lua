@@ -5,6 +5,18 @@ local lspconfig = require("lspconfig")
 
 vim.g.current_attached_lsp = "No LSP"
 
+vim.diagnostic.config({
+    virtual_text = {
+        prefix = "",
+        virt_text_hide = false,
+    },
+    float = {
+        header = "false",
+        border = "rounded",
+        focusable = true,
+    },
+})
+
 local servers = {
     "emmet_language_server",
     "ts_ls",

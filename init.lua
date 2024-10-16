@@ -1,6 +1,7 @@
 vim.opt.shortmess:append("I")
 
 require("configs")
+require("options")
 require("mappings")
 
 vim.cmd("highlight CustomVBool guifg=#4d98d6")

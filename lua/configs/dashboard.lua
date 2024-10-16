@@ -80,7 +80,7 @@ require("dashboard").setup({
         -- TODO fork dashboard-nvim and fix the no-icon error at 367 & allow number keys for mru
         packages = { enable = true },
         project = { enable = false },
-        mru = { label = "", icon = "⠀", icon_hl = "" },
+        mru = { label = "", icon = "", icon_hl = "" },
         -- center = {},
         footer = {
             "",
