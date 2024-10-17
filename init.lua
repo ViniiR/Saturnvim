@@ -3,6 +3,7 @@ vim.opt.shortmess:append("I")
 require("configs")
 require("options")
 require("mappings")
+require("commands")
 
 vim.cmd("highlight CustomVBool guifg=#4d98d6")
 vim.cmd("highlight CustomVHTML guifg=#808080")

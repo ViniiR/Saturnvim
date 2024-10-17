@@ -4,12 +4,15 @@ local map = vim.keymap.set
 local lspconfig = require("lspconfig")
 
 vim.g.current_attached_lsp = "No LSP"
+local x = vim.diagnostic.severity
 
 vim.diagnostic.config({
     virtual_text = {
         prefix = "",
         virt_text_hide = false,
     },
+    signs = { text = { [x.ERROR] = "", [x.WARN] = "", [x.INFO] = "", [x.HINT] = "" } },
+    underline = true,
     float = {
         header = "false",
         border = "rounded",
