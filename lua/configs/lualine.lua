@@ -163,8 +163,6 @@ local mode_map = {
     ["t"] = " TERMINAL",
 }
 
-vim.opt.showmode = false
-
 require("lualine").setup({
     options = {
         icons_enabled = true,
