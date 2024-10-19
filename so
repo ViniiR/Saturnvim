@@ -37,8 +37,8 @@ map("c", "<C-Del>", "<C-W>", { noremap = true })
 map("c", "<C-c>", "<C-c>", { noremap = true })
 
 -- Delete
--- demap("n", "<Insert>")
--- demap("i", "<Insert>")
--- demap("c", "<Insert>")
--- demap("v", "<Insert>")
--- demap("t", "<Insert>")
+demap("n", "<Insert>", { noremap = true })
+-- demap("i", "<Insert>", { noremap = true })
+-- demap("c", "<Insert>", { noremap = true })
+-- demap("v", "<Insert>", { noremap = true })
+-- demap("t", "<Insert>", { noremap = true })
