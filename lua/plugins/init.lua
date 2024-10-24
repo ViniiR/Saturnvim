@@ -79,30 +79,18 @@ return {
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
         event = "VeryLazy",
         lazy = true,
-        config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
-        end,
+        config = function() require("nvim-surround").setup({}) end,
     },
     {
         "stevearc/oil.nvim",
         opts = {},
         lazy = true,
-        dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+        dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     {
         "lukas-reineke/indent-blankline.nvim",
         event = "User FilePost",
-        opts = {
-            indent = { char = "│", highlight = "IblChar" },
-            scope = { char = "│", highlight = "IblScopeChar" },
-        },
-        config = function(_, opts)
-            local hooks = require("ibl.hooks")
-            hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
-            require("ibl").setup(opts)
-        end,
+        main = "ibl",
     },
     {
         "folke/which-key.nvim",
@@ -114,7 +102,7 @@ return {
         "mbbill/undotree",
     },
     {
-        "ViniiR/dashboard-nvim",
+        "nvimdev/dashboard-nvim",
         event = "VimEnter",
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
@@ -164,27 +152,6 @@ return {
         version = "^5", -- Recommended
         lazy = false, -- This plugin is already lazy
         dependencies = "neovim/nvim-lspconfig",
-        config = function()
-            local lspconfig = require("configs.lspconfig")
-            vim.g.rustaceanvim = {
-                server = {
-                    on_attach = lspconfig.on_attach,
-                    default_settings = {
-                        ["rust-analyzer"] = {
-                            capabilities = lspconfig.capabilities,
-                            cargo = {
-                                allFeatures = true,
-                            },
-                            -- checkOnSave = true,
-                            -- check = {
-                            -- 	enable = true,
-                            -- 	command = "check",
-                            -- },
-                        },
-                    },
-                },
-            }
-        end,
         ft = { "rust" },
     },
     {

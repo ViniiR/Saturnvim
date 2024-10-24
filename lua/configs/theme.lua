@@ -109,6 +109,17 @@ require("onedark").setup({
         DiagnosticWarn = { fg = colors.yellow },
         DiagnosticInfo = { fg = colors.green },
         LspSignatureActiveParameter = { fg = colors.black, bg = colors.green },
+
+        -- Indent blank line
+        -- IblChar = { fg = colors.line },
+        -- IblScopeChar = { fg = colors.grey },
+        -- ["@ibl.scope.underline.1"] = { guifg = "none" },
+        -- ["@ibl.scope.underline.2"] = { bg = colors.black2 },
+        -- ["@ibl.scope.underline.3"] = { bg = colors.black2 },
+        -- ["@ibl.scope.underline.4"] = { bg = colors.black2 },
+        -- ["@ibl.scope.underline.5"] = { bg = colors.black2 },
+        -- ["@ibl.scope.underline.6"] = { bg = colors.black2 },
+        -- ["@ibl.scope.underline.7"] = { bg = colors.black2 },
     },
 
     -- Plugins Config --

@@ -1,6 +1,8 @@
 local opt = vim.opt
 local o = vim.o
 
+opt.list = true
+
 -- idk but required
 vim.opt.showmode = false
 
@@ -22,10 +24,9 @@ opt.shortmess:append("sI")
 opt.spelllang = { "en_us" }
 opt.spell = true
 
--- terminal 
+-- terminal
 
 opt.termguicolors = true
-
 
 -- clipboard
 
