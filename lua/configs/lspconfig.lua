@@ -144,11 +144,38 @@ end
 M.defaults()
 
 for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup({
-        on_init = M.on_init,
-        on_attach = M.on_attach,
-        capabilities = M.capabilities,
-    })
+    if lsp ~= "nixd" then
+        lspconfig[lsp].setup({
+            on_init = M.on_init,
+            on_attach = M.on_attach,
+            capabilities = M.capabilities,
+        })
+    elseif lsp == "nixd" then
+        lspconfig[lsp].setup({
+            on_init = M.on_init,
+            on_attach = M.on_attach,
+            capabilities = M.capabilities,
+            cmd = { "nixd" },
+            settings = {
+                nixd = {
+                    nixpkgs = {
+                        expr = "import <nixpkgs> { }",
+                    },
+                    formatting = {
+                        command = { "alejandra" },
+                    },
+                    options = {
+                        nixos = {
+                            expr = '(bultins.getFlake) "/etc/nixos/").nixosConfigurations.nixos.options',
+                        },
+                        -- home_manager = {
+                        --     expr = '(bultins.getFlake) "/etc/nixos/").nixosConfigurations.nixos.options',
+                        -- },
+                    },
+                },
+            },
+        })
+    end
 end
 
 return M

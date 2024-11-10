@@ -16,3 +16,8 @@ userpkgs
 pkgs
 nvim
 NonText
+firefox
+addons
+NOOP
+keybinds
+configuration

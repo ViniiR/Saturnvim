@@ -31,7 +31,53 @@ local cmp = require("cmp")
 --     matching = { disallow_symbol_nonprefix_matching = false },
 -- })
 
--- original
+local icons = {
+    Text = "󰉿",
+    Function = "󰆧",
+    Constructor = "",
+    Field = "󰜢",
+    Variable = "󰀫",
+    Class = "󰠱",
+    Interface = "",
+    Module = "",
+    Method = "󰆧",
+    Property = "󰜢",
+    Value = "󰎠",
+    Enum = "",
+    Keyword = "󰌋",
+    Snippet = "",
+    Color = "󰏘",
+    Constant = "󰏿",
+    Struct = "󰙅",
+    String = "󰉿",
+    Operator = "󰆕",
+    Table = "",
+    Object = "󰅩",
+    Tag = "",
+    Array = "[]",
+    Boolean = "",
+    Number = "",
+    Null = "󰟢",
+    File = "󰈚",
+
+    --
+
+    Namespace = "󰌗",
+    Unit = "󰑭",
+    Reference = "󰈇",
+    Directory = "󰉋",
+    EnumMember = "",
+    Event = "",
+    TypeParameter = "󰊄",
+    Supermaven = "",
+    Calendar = "",
+    Watch = "󰥔",
+    Package = "",
+    Copilot = "",
+    Codeium = "",
+    TabNine = "",
+    BladeNav = "",
+}
 
 local options = {
     completion = { completeopt = "menu,menuone" },
@@ -40,7 +86,12 @@ local options = {
     -- second issue: when hovering on the selected option if it's a color it will show as white, despite being shown correctly if not hovered on
     formatting = {
         format = function(entry, item)
-            item = require("nvim-highlight-colors").format(entry, item)
+            item.kind = icons[item.kind] .. " " .. item.kind or icons.Text
+
+            if item.menu ~= nil and item.menu ~= "" then item.menu = "-> " .. item.menu end
+
+            if item.menu ~= nil and #item.menu >= 60 then item.menu = string.sub(item.menu or "", 1, 60) .. "..." end
+            -- item = require("nvim-highlight-colors").format(entry, item)
             return item
         end,
     },
@@ -48,14 +99,15 @@ local options = {
         completion = {
             border = "rounded",
             winhighlight = "Normal:CmpNormal,FloatBorder:CmpFloatBorder,CursorLine:CmpVisual",
-            side_padding = 0,
+            side_padding = 1,
             scrollbar = false,
             scrolloff = 0,
+            -- max_width = math.floor(vim.o.columns * 0.5),
         },
         documentation = {
             border = "rounded",
             winhighlight = "Normal:CmpNormal,FloatBorder:CmpFloatBorder,CursorLine:CmpVisual",
-            side_padding = 0,
+            side_padding = 1,
             scrollbar = false,
             scrolloff = 0,
         },
@@ -100,6 +152,14 @@ local options = {
     },
 
     matching = { disallow_symbol_nonprefix_matching = false },
+    sorting = {
+        comparators = {
+            cmp.config.compare.exact,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            cmp.config.compare.offset,
+        },
+    },
     sources = {
         { name = "nvim_lsp" },
         { name = "luasnip" },

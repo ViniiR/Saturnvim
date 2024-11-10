@@ -18,6 +18,10 @@
       {
         "language": "cpp",
         "path": "./cpp.json"
+      },
+      {
+        "language": "nix",
+        "path": "./nix.json"
       }
     ]
   }
