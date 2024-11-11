@@ -60,20 +60,20 @@ local icons = {
     Number = "",
     Null = "󰟢",
     File = "󰈚",
+    Folder = "󰉋", -- Directory
+    Namespace = "󰌗",
+    TypeParameter = "󰊄",
+    Package = "",
+    EnumMember = "",
 
     --
 
-    Namespace = "󰌗",
     Unit = "󰑭",
     Reference = "󰈇",
-    Directory = "󰉋",
-    EnumMember = "",
     Event = "",
-    TypeParameter = "󰊄",
     Supermaven = "",
     Calendar = "",
     Watch = "󰥔",
-    Package = "",
     Copilot = "",
     Codeium = "",
     TabNine = "",
@@ -163,7 +163,7 @@ local options = {
     -- second issue: when hovering on the selected option if it's a color it will show as white, despite being shown correctly if not hovered on
     formatting = {
         format = function(entry, item)
-            item.kind = icons[item.kind] .. " " .. item.kind or icons.Text
+            item.kind = tostring(icons[item.kind]) .. " " .. item.kind or icons.Text
 
             if item.menu ~= nil and item.menu ~= "" then item.menu = "-> " .. item.menu end
 
@@ -245,11 +245,16 @@ local options = {
         },
     },
     sources = {
-        { name = "nvim_lsp", priority = 10 },
-        { name = "path", priority = 9 },
-        { name = "luasnip", priority = 8 },
-        { name = "nvim_lua", priority = 7 },
-        { name = "buffer", priority = 6 },
+        -- { name = "nvim_lsp", priority = 10 },
+        -- { name = "path", priority = 9 },
+        -- { name = "luasnip", priority = 8 },
+        -- { name = "nvim_lua", priority = 7 },
+        -- { name = "buffer", priority = 6 },
+        { name = "nvim_lsp" },
+        { name = "path" },
+        { name = "luasnip" },
+        { name = "nvim_lua" },
+        { name = "buffer" },
     },
     experimental = {
         ghost_text = false,

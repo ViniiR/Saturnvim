@@ -1,4 +1,5 @@
 local telescope = require("telescope")
+local actions = require("telescope.actions")
 
 local builtin = require("telescope.builtin")
 
@@ -33,13 +34,14 @@ telescope.setup({
         sorting_strategy = "ascending",
         mappings = {
             n = {
-                ["q"] = require("telescope.actions").close,
+                ["q"] = actions.close,
             },
             i = {
                 ["<C-H>"] = function() vim.api.nvim_input("<C-W>") end,
                 ["<C-Del>"] = function() vim.api.nvim_input("<C-o>dw") end,
                 ["<Tab>"] = function() vim.api.nvim_input("<C-n>") end,
                 ["<S-Tab>"] = function() vim.api.nvim_input("<C-p>") end,
+                ["<Esc>"] = actions.close,
             },
         },
         pickers = {},
