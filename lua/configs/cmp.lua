@@ -31,16 +31,17 @@ local cmp = require("cmp")
 --     matching = { disallow_symbol_nonprefix_matching = false },
 -- })
 
+-- 󰆧
 local icons = {
     Text = "󰉿",
-    Function = "󰆧",
+    Function = "󰊕",
+    Method = "󰊕",
     Constructor = "",
     Field = "󰜢",
     Variable = "󰀫",
     Class = "󰠱",
     Interface = "",
     Module = "",
-    Method = "󰆧",
     Property = "󰜢",
     Value = "󰎠",
     Enum = "",
@@ -78,6 +79,82 @@ local icons = {
     TabNine = "",
     BladeNav = "",
 }
+
+-- Moves CompletionItemKind to the bottom of priority
+-- @param kind CompletionItemKind
+-- @return nil
+local function set_bottom_priority(kind) -- unnecessary as long as the function below works
+    return function(e1, e2)
+        if e1:get_kind() == kind then return false end
+        if e2:get_kind() == kind then return true end
+    end
+end
+
+local kind_mapper = require("cmp.types").lsp.CompletionItemKind
+-- Defaults
+-- 	Text = 1;
+-- 	Method = 2;
+-- 	Function = 3;
+-- 	Constructor = 4;
+-- 	Field = 5;
+-- 	Variable = 6;
+-- 	Class = 7;
+-- 	Interface = 8;
+-- 	Module = 9;
+-- 	Property = 10;
+-- 	Unit = 11;
+-- 	Value = 12;
+-- 	Enum = 13;
+-- 	Keyword = 14;
+-- 	Snippet = 15;
+-- 	Color = 16;
+-- 	File = 17;
+-- 	Reference = 18;
+-- 	Folder = 19;
+-- 	EnumMember = 20;
+-- 	Constant = 21;
+-- 	Struct = 22;
+-- 	Event = 23;
+-- 	Operator = 24;
+-- 	TypeParameter = 25;
+local kind_score = {
+    Variable = 1,
+    Color = 2,
+    Method = 3,
+    Function = 4,
+    Constructor = 5,
+    Field = 6,
+    Class = 7,
+    Interface = 8,
+    Module = 9,
+    Property = 10,
+    Unit = 11,
+    Value = 12,
+    Enum = 13,
+    Keyword = 14,
+    Snippet = 15,
+    EnumMember = 16,
+    Constant = 17,
+    Struct = 18,
+    Text = 19,
+    File = 20,
+    Reference = 21,
+    Folder = 22,
+    Event = 23,
+    Operator = 24,
+    TypeParameter = 25,
+}
+
+local function sort_by_completion_item_kind(entry1, entry2)
+    local kind1 = kind_score[kind_mapper[entry1:get_kind()]] or 100
+    local kind2 = kind_score[kind_mapper[entry2:get_kind()]] or 100
+
+    if kind1 < kind2 then
+        return true
+    elseif kind1 > kind2 then
+        return false
+    end
+end
 
 local options = {
     completion = { completeopt = "menu,menuone" },
@@ -154,18 +231,25 @@ local options = {
     matching = { disallow_symbol_nonprefix_matching = false },
     sorting = {
         comparators = {
+            -- set_bottom_priority(require("cmp.types").lsp.CompletionItemKind.Text),
+            cmp.config.compare.offset,
             cmp.config.compare.exact,
+            cmp.config.compare.score,
             cmp.config.compare.recently_used,
             cmp.config.compare.locality,
-            cmp.config.compare.offset,
+            function(entry1, entry2) sort_by_completion_item_kind(entry1, entry2) end,
+            cmp.config.compare.kind,
+            cmp.config.compare.length,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.order,
         },
     },
     sources = {
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "nvim_lua" },
-        { name = "path" },
+        { name = "nvim_lsp", priority = 10 },
+        { name = "path", priority = 9 },
+        { name = "luasnip", priority = 8 },
+        { name = "nvim_lua", priority = 7 },
+        { name = "buffer", priority = 6 },
     },
     experimental = {
         ghost_text = false,

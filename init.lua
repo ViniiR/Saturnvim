@@ -2,6 +2,7 @@ require("configs")
 require("options")
 require("mappings")
 require("commands")
+require("terminal")
 
 vim.cmd("highlight CustomVBool guifg=#4d98d6")
 vim.cmd("highlight CustomVHTML guifg=#808080")
@@ -30,9 +31,9 @@ vim.api.nvim_set_hl(0, "NormalFloat", { link = "CmpNormal" })
 -- cmp
 vim.api.nvim_set_hl(0, "CmpNormal", { bg = bg0 })
 vim.api.nvim_set_hl(0, "CmpFloatBorder", { bg = bg0 })
-vim.api.nvim_set_hl(0, "CmpVisual", { bg = bg3, fg = "#ffffff" })
+vim.api.nvim_set_hl(0, "CmpVisual", { bg = "#56b6c2", fg = bg0, bold = false })
 vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#56b6c2" })
-vim.api.nvim_set_hl(0, "CmpItemMenu", {link = "CustomVType"})
+vim.api.nvim_set_hl(0, "CmpItemMenu", { link = "CustomVType" })
 -- 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None'
 --
 vim.api.nvim_set_hl(0, "Include", { link = "@keyword.repeat" })

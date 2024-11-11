@@ -36,6 +36,9 @@ map("c", "<C-h>", "<C-w>", { noremap = true })
 map("c", "<C-Del>", "<C-W>", { noremap = true })
 map("c", "<C-c>", "<C-c>", { noremap = true })
 
+-- Terminal mode
+map("t", "<C-\\><C-\\>", "<C-\\><C-N>", { noremap = true })
+
 -- Delete
 -- demap("n", "<Insert>")
 -- demap("i", "<Insert>")
