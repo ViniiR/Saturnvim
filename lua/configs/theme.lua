@@ -120,6 +120,10 @@ require("onedark").setup({
         -- ["@ibl.scope.underline.5"] = { bg = colors.black2 },
         -- ["@ibl.scope.underline.6"] = { bg = colors.black2 },
         -- ["@ibl.scope.underline.7"] = { bg = colors.black2 },
+
+        -- ["@lsp.type.generic.rust"] = { priority = 0 },
+        -- ["@lsp.mod.macro.rust"] = { priority = 0 },
+        -- ["@lsp.typemod.generic.macro.rust"] = { priority = 0 },
     },
 
     -- Plugins Config --

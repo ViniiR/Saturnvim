@@ -14,6 +14,18 @@ vim.cmd("highlight CustomVPurple guifg=#bfa7f2")
 vim.cmd("highlight Constant guifg=#4d98d6")
 vim.cmd("highlight VFixme guibg=pink guifg=black")
 vim.cmd("highlight VTodo guibg=yellow guifg=black")
+-- change these 3
+vim.cmd("highlight CustomVEnum guifg=#2cac99") --#f74871
+vim.cmd("highlight CustomVEnumMember guifg=#81ded9") --c96586
+vim.cmd("highlight CustomVStruct guifg=#609fe0") --#9a73ff
+-- vim.cmd("highlight CustomVEnum guifg=#c46496") --#f74871
+-- vim.cmd("highlight CustomVEnumMember guifg=#bd2f4b") --c96586
+-- vim.cmd("highlight CustomVStruct guifg=#8977b5") --#9a73ff
+--
+vim.cmd("highlight CustomVChar guifg=#ed4a57")
+vim.cmd("highlight CustomVInterface guifg=#78e382")
+-- vim.cmd("highlight CustomVInterface guifg=#53db5f")
+
 -- onedark themes
 local bg0 = "#282c34"
 local bg1 = "#31353f"
@@ -37,30 +49,34 @@ vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#56b6c2" })
 -- item kinds for completions
 -- Commented outs are using defaults
 vim.api.nvim_set_hl(0, "CmpItemKindVariable", { link = "CustomVVariable" })
--- vim.api.nvim_set_hl(0, "CmpItemKindColor", { link = "" })
 vim.api.nvim_set_hl(0, "CmpItemKindMethod", { link = "CustomVFunction" })
 vim.api.nvim_set_hl(0, "CmpItemKindFunction", { link = "CustomVFunction" })
 vim.api.nvim_set_hl(0, "CmpItemKindConstructor", { link = "CustomVFunction" })
 vim.api.nvim_set_hl(0, "CmpItemKindField", { link = "CustomVProperty" })
 vim.api.nvim_set_hl(0, "CmpItemKindClass", { link = "CustomVType" })
-vim.api.nvim_set_hl(0, "CmpItemKindInterface", { link = "CustomVType" })
--- vim.api.nvim_set_hl(0, "CmpItemKindModule", { link = "" })
 vim.api.nvim_set_hl(0, "CmpItemKindProperty", { link = "CustomVProperty" })
--- vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "" })
 vim.api.nvim_set_hl(0, "CmpItemKindValue", { link = "Number" })
-vim.api.nvim_set_hl(0, "CmpItemKindEnum", { link = "CustomVType" })
 vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { link = "@keyword" })
--- vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { link = "" })
-vim.api.nvim_set_hl(0, "CmpItemKindEnumMember", { link = "CustomVPurple" })
 vim.api.nvim_set_hl(0, "CmpItemKindConstant", { link = "CustomVBool" })
-vim.api.nvim_set_hl(0, "CmpItemKindStruct", { link = "CustomVType" })
 vim.api.nvim_set_hl(0, "CmpItemKindText", { link = "TelescopeMatching" })
+vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { link = "@variable.parameter" })
+-- vim.api.nvim_set_hl(0, "CmpItemKindStruct", { link = "CustomVType" })
+-- vim.api.nvim_set_hl(0, "CmpItemKindEnumMember", { link = "CustomVPurple" })
+-- vim.api.nvim_set_hl(0, "CmpItemKindEnum", { link = "CustomVType" })
+-- vim.api.nvim_set_hl(0, "CmpItemKindInterface", { link = "CustomVType" })
+vim.api.nvim_set_hl(0, "CmpItemKindStruct", { link = "CustomVStruct" })
+vim.api.nvim_set_hl(0, "CmpItemKindEnumMember", { link = "CustomVEnumMember" })
+vim.api.nvim_set_hl(0, "CmpItemKindEnum", { link = "CustomVEnum" })
+vim.api.nvim_set_hl(0, "CmpItemKindInterface", { link = "CustomVInterface" })
+-- vim.api.nvim_set_hl(0, "CmpItemKindColor", { link = "" })
+-- vim.api.nvim_set_hl(0, "CmpItemKindModule", { link = "" })
+-- vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "" })
+-- vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { link = "" })
 -- vim.api.nvim_set_hl(0, "CmpItemKindFile", { link = "" })
 -- vim.api.nvim_set_hl(0, "CmpItemKindReference", { link = "" })
 -- vim.api.nvim_set_hl(0, "CmpItemKindFolder", { link = "" })
 -- vim.api.nvim_set_hl(0, "CmpItemKindEvent", { link = "" })
 -- vim.api.nvim_set_hl(0, "CmpItemKindOperator", { link = "" })
-vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { link = "@variable.parameter" })
 --
 -- 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None'
 --
@@ -82,7 +98,6 @@ vim.api.nvim_set_hl(0, "@function.builtin", { link = "CustomVFunction" })
 vim.api.nvim_set_hl(0, "@variable", { link = "CustomVVariable" })
 vim.api.nvim_set_hl(0, "@variable.member", { link = "CustomVProperty" })
 vim.api.nvim_set_hl(0, "@function.call", { link = "CustomVFunction" })
-vim.api.nvim_set_hl(0, "@lsp.type.method.rust", { link = "CustomVFunction" })
 
 vim.api.nvim_set_hl(0, "@punctuation.bracket.tsx", { link = "CustomVPurple" })
 vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "CustomVPurple" })
@@ -142,8 +157,58 @@ vim.api.nvim_set_hl(0, "@tag.attribute.tsx", { link = "CustomVProperty" })
 -- tsx tag
 vim.api.nvim_set_hl(0, "@tag.tsx", { link = "CustomVType" })
 
---rust
+--
+--
+-- Semantic tokens override
+--
+--
 vim.api.nvim_set_hl(0, "@lsp.type.method.rust", { link = "CustomVFunction" })
 vim.api.nvim_set_hl(0, "@lsp.type.method", { link = "CustomVFunction" })
+vim.api.nvim_set_hl(0, "@lsp.typemod.method.defaultLibrary", { link = "CustomVFunction" })
+vim.api.nvim_set_hl(0, "@lsp.typemod.function.defaultLibrary", { link = "CustomVFunction" })
 vim.api.nvim_set_hl(0, "@function.macro.rust", { link = "@variable.parameter" })
 vim.api.nvim_set_hl(0, "@lsp.type.macro", { link = "@variable.parameter" })
+vim.api.nvim_set_hl(0, "@type", { link = "CustomVType" })
+
+-- vim.api.nvim_set_hl(0, "@lsp.type.attributeBracket", { link = "" })
+-- vim.api.nvim_set_hl(0, "@lsp.type.builtinAttribute", { link = "" })
+vim.api.nvim_set_hl(0, "@lsp.type.builtinType", { link = "CustomVType" })
+vim.api.nvim_set_hl(0, "@lsp.type.class", { link = "CustomVType" })
+-- vim.api.nvim_set_hl(0, "@lsp.type.comment", { link = "" })
+-- vim.api.nvim_set_hl(0, "@lsp.type.decorator", { link = "" })
+-- vim.api.nvim_set_hl(0, "@lsp.type.derive", { link = "" })
+vim.api.nvim_set_hl(0, "@lsp.type.enum", { link = "CustomVEnum" })
+vim.api.nvim_set_hl(0, "@lsp.type.enumMember", { link = "CustomVEnumMember" })
+-- vim.api.nvim_set_hl(0, "@lsp.type.formatSpecifier", { link = "" })
+vim.api.nvim_set_hl(0, "@lsp.type.function", { link = "CustomVFunction" })
+-- vim.api.nvim_set_hl(0, "@lsp.type.generic", { link = "" })
+vim.api.nvim_set_hl(0, "@lsp.type.interface", { link = "CustomVInterface" })
+vim.api.nvim_set_hl(0, "@lsp.type.keyword", { link = "@keyword" })
+vim.api.nvim_set_hl(0, "@lsp.type.macro", { link = "@function.macro.rust" })
+vim.api.nvim_set_hl(0, "@lsp.type.method", { link = "CustomVFunction" })
+-- vim.api.nvim_set_hl(0, "@lsp.type.namespace", { link = "" })
+vim.api.nvim_set_hl(0, "@lsp.type.parameter", { link = "@function.macro.rust" })
+vim.api.nvim_set_hl(0, "@lsp.type.property", { link = "CustomVProperty" })
+vim.api.nvim_set_hl(0, "@lsp.type.selfKeyword", { fg = "#f72058" })
+vim.api.nvim_set_hl(0, "@lsp.type.selfTypeKeyword", { fg = "#e03d68" })
+vim.api.nvim_set_hl(0, "@lsp.type.string", { link = "@string" })
+vim.api.nvim_set_hl(0, "@lsp.type.struct", { link = "CustomVStruct" })
+vim.api.nvim_set_hl(0, "@lsp.type.type", { link = "CustomVType" })
+vim.api.nvim_set_hl(0, "@lsp.type.typeAlias", { link = "CustomVType" }) -- change ?
+vim.api.nvim_set_hl(0, "@lsp.type.typeParameter", { link = "CustomVType" })
+vim.api.nvim_set_hl(0, "@lsp.type.variable", { link = "CustomVVariable" })
+vim.api.nvim_set_hl(0, "@lsp.typemod.variable.reference.rust", { link = "@lsp.type.parameter" })
+vim.api.nvim_set_hl(0, "@lsp.typemod.variable.declaration.rust", { link = "CustomVVariable" })
+vim.api.nvim_set_hl(0, "@lsp.typemod.variable.mutable.rust", { link = "CustomVVariable" })
+
+vim.api.nvim_set_hl(0, "@module", { link = "CmpItemKindModule" })
+
+-- Char
+-- vim.api.nvim_set_hl(0, "@character", { link = "CustomVChar" })
+
+vim.api.nvim_set_hl(0, "@lsp.type.generic.rust", {})
+vim.api.nvim_set_hl(0, "@lsp.mod.macro.rust", {})
+vim.api.nvim_set_hl(0, "@lsp.typemod.generic.macro.rust", {})
+vim.api.nvim_set_hl(0, "@lsp.type.decorator.rust", {})
+vim.api.nvim_set_hl(0, "@lsp.type.lifetime", { link = "@module" })
+vim.api.nvim_set_hl(0, "@lsp.type.lifetime.rust", { link = "@lsp.type.lifetime" })

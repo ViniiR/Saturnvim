@@ -4,6 +4,10 @@ local map = vim.keymap.set
 local lspconfig = require("lspconfig")
 
 vim.g.current_attached_lsp = "No LSP"
+
+-- disable semantic tokens completely
+-- vim.highlight.priorities.semantic_tokens = 0
+
 local x = vim.diagnostic.severity
 
 vim.diagnostic.config({
