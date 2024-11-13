@@ -163,9 +163,9 @@ local options = {
     -- second issue: when hovering on the selected option if it's a color it will show as white, despite being shown correctly if not hovered on
     formatting = {
         format = function(entry, item)
-            item.kind = tostring(icons[item.kind]) .. " " .. item.kind or icons.Text
-
-            if item.menu ~= nil and item.menu ~= "" then item.menu = "-> " .. item.menu end
+            -- item.kind = tostring(icons[item.kind]) .. " " .. item.kind or icons.Text
+            --
+            -- if item.menu ~= nil and item.menu ~= "" then item.menu = "-> " .. item.menu end
 
             if item.menu ~= nil and #item.menu >= 60 then item.menu = string.sub(item.menu or "", 1, 60) .. "..." end
             -- item = require("nvim-highlight-colors").format(entry, item)

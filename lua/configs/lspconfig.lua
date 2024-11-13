@@ -33,7 +33,7 @@ local servers = {
     "eslint",
     "jsonls",
     "cssls",
-    "cssmodules_ls",
+    -- "cssmodules_ls",
     "bashls",
     "prismals",
     "nixd",

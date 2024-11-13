@@ -92,7 +92,7 @@ require("onedark").setup({
         TelescopeResultsDiffChange = { fg = colors.yellow },
         TelescopeResultsDiffDelete = { fg = colors.red },
 
-        TelescopeMatching = { bg = "none", fg = colors.blue },
+        TelescopeMatching = { bg = "none", fg = "#61afee" },
         TelescopeResultsTitle = { fg = colors.black, bg = colors.green },
         TelescopePreviewTitle = { fg = colors.black, bg = colors.blue },
         TelescopePromptPrefix = { fg = colors.red, bg = "none" },
