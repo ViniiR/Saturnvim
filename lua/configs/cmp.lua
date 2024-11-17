@@ -184,7 +184,7 @@ local function format(entry, item)
     -- item.abbr = ""
 
     if kind_text ~= "Color" then
-        item.abbr = "  " .. item.abbr
+        -- item.abbr = "  " .. item.abbr
         return item
     end
 
@@ -203,8 +203,19 @@ local function format(entry, item)
     end
     if cached then
         vim.api.nvim_set_hl(0, cached.hl_group, { fg = cached.color_hex, default = true })
-        item.abbr_hl_group = cached.hl_group
-        item.abbr = options_hlc.virtual_symbol .. " " .. item.abbr
+        -- IMPORTANT: for those who came here from the nvim-highlight-colors nvim-cmp integration issue, the commented lines are what i show on the issue
+        -- item.abbr_hl_group = cached.hl_group
+        -- item.abbr = options_hlc.virtual_symbol .. " " .. item.abbr
+        --
+        -- + these lines up above:
+        -- if kind_text ~= "Color" then
+        --     item.abbr = "  " .. item.abbr
+        --     return item
+        -- end
+        --
+        -- these two lines here -(minus) the if statement up above are what i settled on after some more testing (it's been like 10 mins since i closed the issue and i'm shy to comment on it again)
+        item.kind_hl_group = cached.hl_group
+        item.kind = options_hlc.virtual_symbol .. " " .. item.kind
     end
     return item
 end
