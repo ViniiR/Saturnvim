@@ -186,10 +186,21 @@ require("lualine").setup({
     },
     sections = {
         lualine_a = { function() return mode_map[vim.api.nvim_get_mode().mode] or "__" end },
-        lualine_b = { "branch", "diff" },
+        lualine_b = {
+            { "branch", icon = "󰘬" },
+            { "diff", symbols = { added = " ", modified = " ", removed = " " } },
+        },
         lualine_c = { "filename", { "filetype", icon_only = true } },
         lualine_x = {
-            "diagnostics",
+            {
+                "diagnostics",
+                symbols = {
+                    error = LSP_SYMBOLS.ERROR .. " ",
+                    warn = LSP_SYMBOLS.WARN .. " ",
+                    info = LSP_SYMBOLS.INFO .. " ",
+                    hint = LSP_SYMBOLS.HINT .. " ",
+                },
+            },
             function() return "󰒋 " .. vim.g.current_attached_lsp end,
         },
         lualine_y = {

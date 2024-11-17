@@ -10,12 +10,31 @@ vim.g.current_attached_lsp = "No LSP"
 
 local x = vim.diagnostic.severity
 
+LSP_SYMBOLS = {
+    -- ERROR = "",
+    -- WARN = "",
+    -- INFO = "",
+    -- HINT = "",
+    ERROR = "",
+    WARN = "",
+    INFO = "",
+    HINT = "",
+}
+
+-- signs = { text = { [x.ERROR] = "", [x.WARN] = "", [x.INFO] = "", [x.HINT] = "" } },
 vim.diagnostic.config({
     virtual_text = {
         prefix = "",
         virt_text_hide = false,
     },
-    signs = { text = { [x.ERROR] = "", [x.WARN] = "", [x.INFO] = "", [x.HINT] = "" } },
+    signs = {
+        text = {
+            [x.ERROR] = LSP_SYMBOLS.ERROR,
+            [x.WARN] = LSP_SYMBOLS.WARN,
+            [x.INFO] = LSP_SYMBOLS.INFO,
+            [x.HINT] = LSP_SYMBOLS.HINT,
+        },
+    },
     underline = true,
     float = {
         header = "false",
@@ -43,10 +62,10 @@ local servers = {
     "nixd",
 }
 
-vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
-vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
-vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+vim.fn.sign_define("DiagnosticSignError", { text = LSP_SYMBOLS.ERROR, texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = LSP_SYMBOLS.WARN, texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInfo", { text = LSP_SYMBOLS.INFO, texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint", { text = LSP_SYMBOLS.HINT, texthl = "DiagnosticSignHint" })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "single",
