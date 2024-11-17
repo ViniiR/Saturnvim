@@ -156,18 +156,74 @@ local function sort_by_completion_item_kind(entry1, entry2)
     end
 end
 
+local format_cache = {}
+local colors = require("nvim-highlight-colors.color.utils")
+local utils = require("nvim-highlight-colors.utils")
+local options_hlc = {
+    render = utils.render_options.background,
+    enable_hex = true,
+    enable_rgb = true,
+    enable_hsl = true,
+    enable_var_usage = true,
+    enable_named_colors = true,
+    enable_short_hex = true,
+    enable_tailwind = false,
+    custom_colors = nil,
+    virtual_symbol = "■",
+    virtual_symbol_prefix = "",
+    virtual_symbol_suffix = " ",
+    virtual_symbol_position = "inline",
+    exclude_filetypes = {},
+    exclude_buftypes = {},
+}
+local function format(entry, item)
+    local kind_text = string.sub(item.kind, item.kind:find("%s") + 1 or 1, #item.kind)
+    -- item.menu = item.kind
+    -- item.kind = item.abbr
+    -- item.kind_hl_group = ""
+    -- item.abbr = ""
+
+    if kind_text ~= "Color" then
+        item.abbr = "  " .. item.abbr
+        return item
+    end
+
+    local entryItem = entry:get_completion_item()
+    if entryItem == nil then return item end
+
+    local entryDoc = entryItem.documentation
+    if entryDoc == nil or type(entryDoc) ~= "string" then return item end
+
+    local cached = format_cache[entryDoc]
+    if cached == nil then
+        local color_hex = colors.get_color_value(entryDoc)
+        cached = color_hex and { hl_group = utils.create_highlight_name("fg-" .. color_hex), color_hex = color_hex }
+            or false
+        format_cache[entryDoc] = cached
+    end
+    if cached then
+        vim.api.nvim_set_hl(0, cached.hl_group, { fg = cached.color_hex, default = true })
+        item.abbr_hl_group = cached.hl_group
+        item.abbr = options_hlc.virtual_symbol .. " " .. item.abbr
+    end
+    return item
+end
+
 local options = {
     completion = { completeopt = "menu,menuone" },
-    -- breaking formatting fix
-    -- issue: when using nvim highlight colors the CmpItemAbbrMatch does not work, the colors are the same for all letters even the matched ones
-    -- second issue: when hovering on the selected option if it's a color it will show as white, despite being shown correctly if not hovered on
     formatting = {
         format = function(entry, item)
-            -- item.kind = tostring(icons[item.kind]) .. " " .. item.kind or icons.Text
-            --
-            -- if item.menu ~= nil and item.menu ~= "" then item.menu = "-> " .. item.menu end
-
             if item.menu ~= nil and #item.menu >= 60 then item.menu = string.sub(item.menu or "", 1, 60) .. "..." end
+
+            local icon = icons[item.kind]
+            if icon == nil then
+                item.kind = icons.Text .. " Text"
+            else
+                item.kind = tostring(icon) .. " " .. item.kind
+            end
+
+            item = format(entry, item)
+
             -- item = require("nvim-highlight-colors").format(entry, item)
             return item
         end,
@@ -231,7 +287,7 @@ local options = {
     matching = { disallow_symbol_nonprefix_matching = false },
     sorting = {
         comparators = {
-            -- set_bottom_priority(require("cmp.types").lsp.CompletionItemKind.Text),
+            set_bottom_priority(require("cmp.types").lsp.CompletionItemKind.Text),
             cmp.config.compare.offset,
             cmp.config.compare.exact,
             cmp.config.compare.score,
