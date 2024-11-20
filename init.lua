@@ -37,6 +37,10 @@ vim.api.nvim_set_hl(0, "@comment.todo.comment", { link = "VTodo" })
 vim.api.nvim_set_hl(0, "FloatBorder", { link = "CmpFloatBorder", bg = bg0 })
 vim.api.nvim_set_hl(0, "NormalFloat", { link = "CmpNormal" })
 
+-- left editor column in general
+vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { link = "comment" })
+vim.api.nvim_set_hl(0, "FoldColumn", { bg = bg0 })
+
 -- cmp
 vim.api.nvim_set_hl(0, "CmpNormal", { bg = bg0 })
 vim.api.nvim_set_hl(0, "CmpFloatBorder", { bg = bg0 })

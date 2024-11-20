@@ -1,9 +1,6 @@
 local ibl = require("ibl")
 local hooks = require("ibl.hooks")
 
-vim.opt.listchars:append("space:⋅")
-vim.opt.listchars:append("eol:↴")
-
 local highlight = {
     "RainbowRed",
     "RainbowYellow",

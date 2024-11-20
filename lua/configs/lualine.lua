@@ -188,7 +188,8 @@ require("lualine").setup({
         lualine_a = { function() return mode_map[vim.api.nvim_get_mode().mode] or "__" end },
         lualine_b = {
             { "branch", icon = "󰘬" },
-            { "diff", symbols = { added = " ", modified = " ", removed = " " } },
+            { "diff", symbols = { added = "󰐖 ", modified = "󰦓 ", removed = "󰍵 " } },
+            -- { "diff", symbols = { added = " ", modified = " ", removed = " " } },
         },
         lualine_c = { "filename", { "filetype", icon_only = true } },
         lualine_x = {

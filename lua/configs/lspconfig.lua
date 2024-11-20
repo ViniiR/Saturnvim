@@ -51,6 +51,7 @@ local servers = {
     "tailwindcss",
     "eslint",
     "jsonls",
+    "yamlls",
     "cssls",
     -- "cssmodules_ls",
     "bashls",

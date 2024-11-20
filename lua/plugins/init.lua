@@ -160,6 +160,7 @@ return {
         lazy = true,
         init = function() vim.g.rustfmt_autosave = 1 end,
     },
+    { "lukas-reineke/virt-column.nvim", opts = {} },
     {
         "mfussenegger/nvim-dap",
     },

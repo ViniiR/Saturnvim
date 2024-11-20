@@ -215,7 +215,8 @@ local function format(entry, item)
         --
         -- these two lines here -(minus) the if statement up above are what i settled on after some more testing (it's been like 10 mins since i closed the issue and i'm shy to comment on it again)
         item.kind_hl_group = cached.hl_group
-        item.kind = options_hlc.virtual_symbol .. " " .. item.kind
+        local symbol = options_hlc.virtual_symbol
+        item.kind = item.kind .. " " .. symbol
     end
     return item
 end
