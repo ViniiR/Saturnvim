@@ -45,10 +45,10 @@ function Toggle_terminal()
     end
 end
 
-vim.api.nvim_set_keymap(
-    "n",
-    "<leader>h",
-    ":lua Toggle_terminal()<CR>",
-    { noremap = true, silent = true, desc = "horitontal terminal" }
-)
-
+-- vim.api.nvim_set_keymap(
+--     "n",
+--     "<leader>h",
+--     ":lua Toggle_terminal()<CR>",
+--     { noremap = true, silent = true, desc = "horitontal terminal" }
+-- )
+--

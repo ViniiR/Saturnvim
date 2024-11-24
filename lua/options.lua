@@ -15,7 +15,6 @@ opt.listchars:append("eol:↴")
 -- commandline bar
 opt.showmode = false
 o.ruler = false
--- opt.fillchars = { eob = "" } learn
 
 -- editor in general
 opt.wrap = true

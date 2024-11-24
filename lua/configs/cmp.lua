@@ -80,9 +80,9 @@ local icons = {
     BladeNav = "",
 }
 
--- Moves CompletionItemKind to the bottom of priority
--- @param kind CompletionItemKind
--- @return nil
+--- Moves CompletionItemKind to the bottom of priority
+--- @param kind any CompletionItemKind
+--- @return nil
 local function set_bottom_priority(kind) -- unnecessary as long as the function below works
     return function(e1, e2)
         if e1:get_kind() == kind then return false end

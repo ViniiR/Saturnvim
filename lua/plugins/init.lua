@@ -161,6 +161,7 @@ return {
         init = function() vim.g.rustfmt_autosave = 1 end,
     },
     { "lukas-reineke/virt-column.nvim", opts = {} },
+    { "akinsho/toggleterm.nvim", version = "*", config = true },
     {
         "mfussenegger/nvim-dap",
     },

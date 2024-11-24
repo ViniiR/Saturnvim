@@ -25,7 +25,12 @@ map("n", "[d", "[d<C-w>d", { noremap = true })
 map("n", "<leader>tr", ":NvimTreeRefresh<CR>", { noremap = true, desc = "Nvim Tree Refresh" })
 -- map("n", "<Tab>", ":bnext <CR>")
 -- map("n", "<S-Tab>", ":bprevious <CR>", { noremap = true, silent = true })
-
+-- map(
+--     "n",
+--     "<leader>h",
+--     "<Cmd>:ToggleTerm direction=horizontal size=20 name=term dir=.<CR>",
+--     { noremap = true, silent = true }
+-- )
 -- The primeagen bindings
 -- map("n", "Y", "yg$", { noremap = true })
 map("n", "J", "mzJ`z", { noremap = true })
@@ -33,6 +38,7 @@ map("n", "<C-d>", "<C-d>zz", { noremap = true })
 map("n", "<C-u>", "<C-u>zz", { noremap = true })
 map("n", "n", "nzzzv", { noremap = true })
 map("n", "N", "Nzzzv", { noremap = true })
+map("n", "<C-z>", function() end, { noremap = true, silent = true })
 
 -- Insert mode
 map("i", "<C-H>", "<C-W>", { noremap = true })
