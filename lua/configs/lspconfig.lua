@@ -115,9 +115,9 @@ M.on_init = function(client, _)
         client.server_capabilities.semanticTokensProvider = nil
     end
 
-    vim.g.current_attached_lsp = vim.lsp.get_clients({
-        bufnr = 0,
-    })[1].name
+    -- vim.g.current_attached_lsp = vim.lsp.get_clients({
+    --     bufnr = 0,
+    -- })[1].name
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()

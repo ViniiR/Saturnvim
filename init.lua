@@ -3,6 +3,7 @@ require("options")
 require("mappings")
 require("commands")
 require("terminal")
+require("autocmds")
 
 vim.cmd("highlight CustomVBool guifg=#4d98d6")
 vim.cmd("highlight CustomVHTML guifg=#808080")
@@ -28,6 +29,13 @@ local bg0 = "#282c34"
 local bg1 = "#31353f"
 local bg2 = "#393f4a"
 local bg3 = "#3b3f4c"
+
+-- vim illuminate
+vim.api.nvim_set_hl(0, "IlluminatedWord", { bold = false, bg = bg1 })
+vim.api.nvim_set_hl(0, "IlluminatedCurWord", { bold = false, bg = bg1 })
+vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bold = false, bg = bg1 })
+vim.api.nvim_set_hl(0, "IlluminatedWordText", { bold = false, bg = bg1 })
+vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bold = false, bg = bg1 })
 
 -- comments
 vim.api.nvim_set_hl(0, "@comment.error.comment", { link = "VFixme" })
