@@ -4,11 +4,11 @@ local map = vim.keymap.set
 local demap = vim.keymap.del
 
 map("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "Toggle Debugger Breakpoint" })
-map("n", "<leader>du", function()
-    local widgets = require("dap.ui.widgets")
-    local sidebar = widgets.sidebar(widgets.scopes)
-    sidebar.open()
-end)
+-- map("n", "<leader>du", function()
+--     local widgets = require("dap.ui.widgets")
+--     local sidebar = widgets.sidebar(widgets.scopes)
+--     sidebar.open()
+-- end)
 
 -- Normal mode
 map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle Nvim Tree" })
@@ -25,14 +25,8 @@ map("n", "[d", "[d<C-w>d", { noremap = true })
 map("n", "<leader>tr", ":NvimTreeRefresh<CR>", { noremap = true, desc = "Nvim Tree Refresh" })
 -- map("n", "<Tab>", ":bnext <CR>")
 -- map("n", "<S-Tab>", ":bprevious <CR>", { noremap = true, silent = true })
--- map(
---     "n",
---     "<leader>h",
---     "<Cmd>:ToggleTerm direction=horizontal size=20 name=term dir=.<CR>",
---     { noremap = true, silent = true }
--- )
 -- The primeagen bindings
--- map("n", "Y", "yg$", { noremap = true })
+map("n", "Y", "yg$", { noremap = true }) -- change this
 map("n", "J", "mzJ`z", { noremap = true })
 map("n", "<C-d>", "<C-d>zz", { noremap = true })
 map("n", "<C-u>", "<C-u>zz", { noremap = true })

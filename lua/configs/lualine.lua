@@ -124,14 +124,54 @@ v_one_dark.command = {
     },
 }
 
+--["n"] = { "NORMAL", "Normal" },
+--["no"] = { "NORMAL (no)", "Normal" },
+--["nov"] = { "NORMAL (nov)", "Normal" },
+--["noV"] = { "NORMAL (noV)", "Normal" },
+--["noCTRL-V"] = { "NORMAL", "Normal" },
+--["niI"] = { "NORMAL i", "Normal" },
+--["niR"] = { "NORMAL r", "Normal" },
+--["niV"] = { "NORMAL v", "Normal" },
+--["nt"] = { "NTERMINAL", "NTerminal" },
+--["ntT"] = { "NTERMINAL (ntT)", "NTerminal" },
+--
+--["v"] = { "VISUAL", "Visual" },
+--["vs"] = { "V-CHAR (Ctrl O)", "Visual" },
+--["V"] = { "V-LINE", "Visual" },
+--["Vs"] = { "V-LINE", "Visual" },
+--[""] = { "V-BLOCK", "Visual" },
+--
+--["i"] = { "INSERT", "Insert" },
+--["ic"] = { "INSERT (completion)", "Insert" },
+--["ix"] = { "INSERT completion", "Insert" },
+--
+--["t"] = { "TERMINAL", "Terminal" },
+--
+--["R"] = { "REPLACE", "Replace" },
+--["Rc"] = { "REPLACE (Rc)", "Replace" },
+--["Rx"] = { "REPLACEa (Rx)", "Replace" },
+--["Rv"] = { "V-REPLACE", "Replace" },
+--["Rvc"] = { "V-REPLACE (Rvc)", "Replace" },
+--["Rvx"] = { "V-REPLACE (Rvx)", "Replace" },
+--
+--["s"] = { "SELECT", "Select" },
+--["S"] = { "S-LINE", "Select" },
+--[""] = { "S-BLOCK", "Select" },
+--["c"] = { "COMMAND", "Command" },
+--["cv"] = { "COMMAND", "Command" },
+--["ce"] = { "COMMAND", "Command" },
+--["cr"] = { "COMMAND", "Command" },
+--["r"] = { "PROMPT", "Confirm" },
+--["rm"] = { "MORE", "Confirm" },
+--["r?"] = { "CONFIRM", "Confirm" },
+--["x"] = { "CONFIRM", "Confirm" },
+--["!"] = { "SHELL", "Terminal" },
 local mode_map = {
-    --  
-    --  󰉖
     ["n"] = " NORMAL",
     ["no"] = " O-PENDING",
     ["nov"] = " O-PENDING",
     ["noV"] = " O-PENDING",
-    ["no�"] = " O-PENDING",
+    ["no"] = " O-PENDING",
     ["niI"] = " NORMAL",
     ["niR"] = " NORMAL",
     ["niV"] = " NORMAL",
@@ -140,10 +180,10 @@ local mode_map = {
     ["vs"] = " VISUAL",
     ["V"] = " V-LINE",
     ["Vs"] = " V-LINE",
-    ["�s"] = " V-BLOCK",
+    [""] = " V-BLOCK",
     ["s"] = " SELECT",
     ["S"] = " S-LINE",
-    ["�"] = " S-BLOCK",
+    [""] = " S-BLOCK",
     ["i"] = " INSERT",
     ["ic"] = " INSERT",
     ["ix"] = " INSERT",
@@ -162,6 +202,44 @@ local mode_map = {
     ["!"] = " SHELL",
     ["t"] = " TERMINAL",
 }
+-- local mode_map = {
+--     --  
+--     --  󰉖
+--     ["n"] = " NORMAL",
+--     ["no"] = " O-PENDING",
+--     ["nov"] = " O-PENDING",
+--     ["noV"] = " O-PENDING",
+--     ["no�"] = " O-PENDING",
+--     ["niI"] = " NORMAL",
+--     ["niR"] = " NORMAL",
+--     ["niV"] = " NORMAL",
+--     ["nt"] = " NORMAL",
+--     ["v"] = " VISUAL",
+--     ["vs"] = " VISUAL",
+--     ["V"] = " V-LINE",
+--     ["Vs"] = " V-LINE",
+--     ["�s"] = " V-BLOCK",
+--     ["s"] = " SELECT",
+--     ["S"] = " S-LINE",
+--     ["�"] = " S-BLOCK",
+--     ["i"] = " INSERT",
+--     ["ic"] = " INSERT",
+--     ["ix"] = " INSERT",
+--     ["R"] = " REPLACE",
+--     ["Rc"] = " REPLACE",
+--     ["Rx"] = " REPLACE",
+--     ["Rv"] = " V-REPLACE",
+--     ["Rvc"] = " V-REPLACE",
+--     ["Rvx"] = " V-REPLACE",
+--     ["c"] = " COMMAND",
+--     ["cv"] = " EX",
+--     ["ce"] = " EX",
+--     ["r"] = " REPLACE",
+--     ["rm"] = " MORE",
+--     ["r?"] = " CONFIRM",
+--     ["!"] = " SHELL",
+--     ["t"] = " TERMINAL",
+-- }
 
 require("lualine").setup({
     options = {
@@ -185,13 +263,26 @@ require("lualine").setup({
         },
     },
     sections = {
-        lualine_a = { function() return mode_map[vim.api.nvim_get_mode().mode] or "__" end },
+        lualine_a = { function() return mode_map[vim.api.nvim_get_mode().mode] or "_?" end },
         lualine_b = {
             { "branch", icon = "󰘬" },
             { "diff", symbols = { added = "󰐖 ", modified = "󰦓 ", removed = "󰍵 " } },
             -- { "diff", symbols = { added = " ", modified = " ", removed = " " } },
         },
-        lualine_c = { "filename", { "filetype", icon_only = true } },
+        lualine_c = {
+            { "filename", file_status = false },
+            function()
+                if vim.bo.modified then
+                    return "%#CustomVLualineGreen#[󱗜]~";
+                elseif vim.bo.modifiable == false or vim.bo.readonly == true then
+                    return "%#CustomVLualineYellow#[󰐀]-"
+                else
+                    return ""
+                end
+            end,
+            { "filetype", icon_only = true },
+            -- "searchcount",
+        },
         lualine_x = {
             {
                 "diagnostics",
@@ -205,7 +296,7 @@ require("lualine").setup({
             function() return "󰒋 " .. vim.g.current_attached_lsp end,
         },
         lualine_y = {
-            "encoding",
+            -- "encoding",
             "fileformat",
             function()
                 local tablen = vim.bo.tabstop
