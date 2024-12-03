@@ -20,8 +20,6 @@ map("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
 map("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
 map("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
 map("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
-map("n", "]d", "]d<C-w>d", { noremap = true })
-map("n", "[d", "[d<C-w>d", { noremap = true })
 map("n", "<leader>tr", ":NvimTreeRefresh<CR>", { noremap = true, desc = "Nvim Tree Refresh" })
 -- map("n", "<Tab>", ":bnext <CR>")
 -- map("n", "<S-Tab>", ":bprevious <CR>", { noremap = true, silent = true })
@@ -52,6 +50,8 @@ map("c", "<C-Del>", "<C-W>", { noremap = true })
 map("c", "<C-c>", "<C-c>", { noremap = true })
 map("c", "<C-j>", "<Down>", { noremap = true })
 map("c", "<C-k>", "<Up>", { noremap = true })
+-- noop ; to prevent ;w file
+map("c", ";", "<Nop>", { noremap = true, silent = true })
 
 -- Terminal mode
 map("t", "<C-\\><C-\\>", "<C-\\><C-N>", { noremap = true })

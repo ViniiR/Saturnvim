@@ -273,7 +273,7 @@ require("lualine").setup({
             { "filename", file_status = false },
             function()
                 if vim.bo.modified then
-                    return "%#CustomVLualineGreen#[󱗜]~";
+                    return "%#CustomVLualineGreen#[󱗜]~"
                 elseif vim.bo.modifiable == false or vim.bo.readonly == true then
                     return "%#CustomVLualineYellow#[󰐀]-"
                 else

@@ -74,6 +74,25 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     max_height = nil,
     title = " Info ",
 })
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = {
+        prefix = function(diagnostic)
+            local vim_diagnostic = vim.diagnostic.severity
+            local severity = diagnostic.severity
+            if severity == vim_diagnostic.ERROR then
+                return LSP_SYMBOLS.ERROR
+            elseif severity == vim_diagnostic.WARN then
+                return LSP_SYMBOLS.WARN
+            elseif severity == vim_diagnostic.INFO then
+                return LSP_SYMBOLS.INFO
+            elseif severity == vim_diagnostic.HINT then
+                return LSP_SYMBOLS.HINT
+            else
+                return "■"
+            end
+        end,
+    },
+})
 
 M.on_attach = function(_, bufnr)
     local function opts(desc) return { buffer = bufnr, desc = "LSP " .. desc } end
