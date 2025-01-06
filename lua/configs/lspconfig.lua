@@ -80,13 +80,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
             local vim_diagnostic = vim.diagnostic.severity
             local severity = diagnostic.severity
             if severity == vim_diagnostic.ERROR then
-                return LSP_SYMBOLS.ERROR
+                return " "..LSP_SYMBOLS.ERROR
             elseif severity == vim_diagnostic.WARN then
-                return LSP_SYMBOLS.WARN
+                return " "..LSP_SYMBOLS.WARN
             elseif severity == vim_diagnostic.INFO then
-                return LSP_SYMBOLS.INFO
+                return " "..LSP_SYMBOLS.INFO
             elseif severity == vim_diagnostic.HINT then
-                return LSP_SYMBOLS.HINT
+                return " "..LSP_SYMBOLS.HINT
             else
                 return "■"
             end
