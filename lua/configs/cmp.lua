@@ -242,6 +242,7 @@ local options = {
     },
     window = {
         completion = {
+            -- { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
             border = "rounded",
             winhighlight = "Normal:CmpNormal,FloatBorder:CmpFloatBorder,CursorLine:CmpVisual",
             side_padding = 1,

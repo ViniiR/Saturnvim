@@ -6,5 +6,9 @@
   "todo macro!": {
     "prefix": "td",
     "body": ["todo!($1);"]
+  },
+  "async fn": {
+    "prefix": "asf",
+    "body": ["async fn $1($2)$3 {", "\t$4", "}"]
   }
 }

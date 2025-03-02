@@ -27,7 +27,7 @@ vim.cmd("highlight CustomVLualineYellow guifg=yellow guibg=#323942")
 -- vim.cmd("highlight CustomVInterface guifg=#af6c92")
 -- vim.cmd("highlight CustomVInterface guifg=#53db5f")
 -- onedark themes
-local bg0 = "#282c34"
+local bg0 = "#363a43"
 local bg1 = "#31353f"
 local bg2 = "#393f4a"
 local bg3 = "#3b3f4c"
@@ -44,7 +44,7 @@ vim.api.nvim_set_hl(0, "@comment.error.comment", { link = "VFixme" })
 vim.api.nvim_set_hl(0, "@comment.todo.comment", { link = "VTodo" })
 
 --lsp hover
-vim.api.nvim_set_hl(0, "FloatBorder", { link = "CmpFloatBorder", bg = bg0 })
+vim.api.nvim_set_hl(0, "FloatBorder", { link = "CmpFloatBorder" })
 vim.api.nvim_set_hl(0, "NormalFloat", { link = "CmpNormal" })
 
 -- left editor column in general
@@ -52,6 +52,7 @@ vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { link = "comment" })
 vim.api.nvim_set_hl(0, "FoldColumn", { bg = bg0 })
 
 -- cmp
+vim.api.nvim_set_hl(0, "Title", { bg = bg0, fg = "#65b6c2" })
 vim.api.nvim_set_hl(0, "CmpNormal", { bg = bg0 })
 vim.api.nvim_set_hl(0, "CmpFloatBorder", { bg = bg0 })
 vim.api.nvim_set_hl(0, "CmpVisual", { bg = "#61afee", fg = bg0, bold = false })
@@ -99,7 +100,7 @@ vim.api.nvim_set_hl(0, "CmpItemKindEnum", { link = "CustomVEnum" })
 -- 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None'
 --
 vim.api.nvim_set_hl(0, "Include", { link = "@keyword.repeat" })
-vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = "white" })
+vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = "#abb2bf" })
 vim.api.nvim_set_hl(0, "@property", { link = "CustomVVariable" })
 vim.api.nvim_set_hl(0, "Label", { link = "CustomVVariable" })
 vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "CustomVPurple" })
