@@ -32,6 +32,10 @@ local bg1 = "#31353f"
 local bg2 = "#393f4a"
 local bg3 = "#3b3f4c"
 
+-- diagnostics
+vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#388c96" })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = "#388c96", bg = "none" })
+
 -- vim illuminate
 vim.api.nvim_set_hl(0, "IlluminatedWord", { bold = false, bg = bg1 })
 vim.api.nvim_set_hl(0, "IlluminatedCurWord", { bold = false, bg = bg1 })
@@ -49,7 +53,7 @@ vim.api.nvim_set_hl(0, "NormalFloat", { link = "CmpNormal" })
 
 -- left editor column in general
 vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { link = "comment" })
-vim.api.nvim_set_hl(0, "FoldColumn", { bg = bg0 })
+vim.api.nvim_set_hl(0, "FoldColumn", { link = "Normal" })
 
 -- cmp
 vim.api.nvim_set_hl(0, "Title", { bg = bg0, fg = "#65b6c2" })
