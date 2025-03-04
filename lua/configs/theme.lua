@@ -1,7 +1,13 @@
 -- grey= "#5c6370",
 -- 		light_grey = "#848b98",
 --black = "#181a1f"
-local colors = {
+COLORS = {
+    info_diagnostic_fg = "#388c96",
+    cmp_selected_text_fg = "#363a43",
+    illuminate_bg = "#31353f",
+    matching_bg = "#61afee",
+    title_fg = "#65b6c2",
+
     white = "#abb2bf",
     darker_black = "#1b1f27",
     black = "#1e222a", --  nvim bg
@@ -77,49 +83,49 @@ require("onedark").setup({
         -- Telescope
         --
         -- borders
-        TelescopeBorder = { fg = colors.one_bg3 },
-        TelescopePromptBorder = { fg = colors.one_bg3 },
-        TelescopePreviewBorder = { fg = colors.one_bg3 },
-        TelescopeResultsBorder = { fg = colors.one_bg3 },
+        TelescopeBorder = { fg = COLORS.one_bg3 },
+        TelescopePromptBorder = { fg = COLORS.one_bg3 },
+        TelescopePreviewBorder = { fg = COLORS.one_bg3 },
+        TelescopeResultsBorder = { fg = COLORS.one_bg3 },
 
         TelescopePromptTitle = {
-            fg = colors.black,
-            bg = colors.red,
+            fg = COLORS.black,
+            bg = COLORS.red,
         },
 
-        TelescopeSelection = { bg = colors.grey, fg = colors.white },
-        TelescopeResultsDiffAdd = { fg = colors.green },
-        TelescopeResultsDiffChange = { fg = colors.yellow },
-        TelescopeResultsDiffDelete = { fg = colors.red },
+        TelescopeSelection = { bg = COLORS.grey, fg = COLORS.white },
+        TelescopeResultsDiffAdd = { fg = COLORS.green },
+        TelescopeResultsDiffChange = { fg = COLORS.yellow },
+        TelescopeResultsDiffDelete = { fg = COLORS.red },
 
-        TelescopeMatching = { bg = "none", fg = "#61afee" },
-        TelescopeResultsTitle = { fg = colors.black, bg = colors.green },
-        TelescopePreviewTitle = { fg = colors.black, bg = colors.blue },
-        TelescopePromptPrefix = { fg = colors.red, bg = "none" },
+        TelescopeMatching = { bg = "none", fg = COLORS.matching_bg },
+        TelescopeResultsTitle = { fg = COLORS.black, bg = COLORS.green },
+        TelescopePreviewTitle = { fg = COLORS.black, bg = COLORS.blue },
+        TelescopePromptPrefix = { fg = COLORS.red, bg = "none" },
         TelescopeNormal = { bg = "none" },
         TelescopePromptNormal = { bg = "none" },
 
         -- LSP diagnostics
-        DiagnosticVirtualTextHint = { fg = colors.purple, bg = "none" },
-        DiagnosticVirtualTextWarn = { fg = colors.yellow, bg = "none" },
-        DiagnosticVirtualTextError = { fg = colors.red, bg = "none" },
+        DiagnosticVirtualTextHint = { fg = COLORS.purple, bg = "none" },
+        DiagnosticVirtualTextWarn = { fg = COLORS.yellow, bg = "none" },
+        DiagnosticVirtualTextError = { fg = COLORS.red, bg = "none" },
 
-        DiagnosticHint = { fg = colors.purple },
-        DiagnosticError = { fg = colors.red },
-        DiagnosticWarn = { fg = colors.yellow },
-        DiagnosticInfo = { fg = colors.green },
-        LspSignatureActiveParameter = { fg = colors.black, bg = colors.green },
+        DiagnosticHint = { fg = COLORS.purple },
+        DiagnosticError = { fg = COLORS.red },
+        DiagnosticWarn = { fg = COLORS.yellow },
+        DiagnosticInfo = { fg = COLORS.green },
+        LspSignatureActiveParameter = { fg = COLORS.black, bg = COLORS.green },
 
         -- Indent blank line
-        -- IblChar = { fg = colors.line },
-        -- IblScopeChar = { fg = colors.grey },
+        -- IblChar = { fg = COLORS.line },
+        -- IblScopeChar = { fg = COLORS.grey },
         -- ["@ibl.scope.underline.1"] = { guifg = "none" },
-        -- ["@ibl.scope.underline.2"] = { bg = colors.black2 },
-        -- ["@ibl.scope.underline.3"] = { bg = colors.black2 },
-        -- ["@ibl.scope.underline.4"] = { bg = colors.black2 },
-        -- ["@ibl.scope.underline.5"] = { bg = colors.black2 },
-        -- ["@ibl.scope.underline.6"] = { bg = colors.black2 },
-        -- ["@ibl.scope.underline.7"] = { bg = colors.black2 },
+        -- ["@ibl.scope.underline.2"] = { bg = COLORS.black2 },
+        -- ["@ibl.scope.underline.3"] = { bg = COLORS.black2 },
+        -- ["@ibl.scope.underline.4"] = { bg = COLORS.black2 },
+        -- ["@ibl.scope.underline.5"] = { bg = COLORS.black2 },
+        -- ["@ibl.scope.underline.6"] = { bg = COLORS.black2 },
+        -- ["@ibl.scope.underline.7"] = { bg = COLORS.black2 },
 
         -- ["@lsp.type.generic.rust"] = { priority = 0 },
         -- ["@lsp.mod.macro.rust"] = { priority = 0 },
@@ -128,7 +134,7 @@ require("onedark").setup({
 
     -- Plugins Config --
     diagnostics = {
-        darker = true, -- darker colors for diagnostic
+        darker = true, -- darker COLORS for diagnostic
         undercurl = true, -- use undercurl instead of underline for diagnostics
         background = true, -- use background color for virtual text
     },

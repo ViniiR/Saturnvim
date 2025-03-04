@@ -27,21 +27,21 @@ vim.cmd("highlight CustomVLualineYellow guifg=yellow guibg=#323942")
 -- vim.cmd("highlight CustomVInterface guifg=#af6c92")
 -- vim.cmd("highlight CustomVInterface guifg=#53db5f")
 -- onedark themes
-local bg0 = "#363a43"
-local bg1 = "#31353f"
-local bg2 = "#393f4a"
-local bg3 = "#3b3f4c"
+-- local bg0 = "#363a43"
+-- local COLORS.illuminate = "#31353f"
+-- local bg2 = "#393f4a"
+-- local bg3 = "#3b3f4c"
 
 -- diagnostics
-vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#388c96" })
-vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = "#388c96", bg = "none" })
+vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = COLORS.info_diagnostic_fg })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = COLORS.info_diagnostic_fg, bg = "none" })
 
 -- vim illuminate
-vim.api.nvim_set_hl(0, "IlluminatedWord", { bold = false, bg = bg1 })
-vim.api.nvim_set_hl(0, "IlluminatedCurWord", { bold = false, bg = bg1 })
-vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bold = false, bg = bg1 })
-vim.api.nvim_set_hl(0, "IlluminatedWordText", { bold = false, bg = bg1 })
-vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bold = false, bg = bg1 })
+vim.api.nvim_set_hl(0, "IlluminatedWord", { bold = false, bg = COLORS.illuminate_bg })
+vim.api.nvim_set_hl(0, "IlluminatedCurWord", { bold = false, bg = COLORS.illuminate_bg })
+vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bold = false, bg = COLORS.illuminate_bg })
+vim.api.nvim_set_hl(0, "IlluminatedWordText", { bold = false, bg = COLORS.illuminate_bg })
+vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bold = false, bg = COLORS.illuminate_bg })
 
 -- comments
 vim.api.nvim_set_hl(0, "@comment.error.comment", { link = "VFixme" })
@@ -56,12 +56,15 @@ vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { link = "comment" })
 vim.api.nvim_set_hl(0, "FoldColumn", { link = "Normal" })
 
 -- cmp
-vim.api.nvim_set_hl(0, "Title", { bg = bg0, fg = "#65b6c2" })
-vim.api.nvim_set_hl(0, "CmpNormal", { bg = bg0 })
-vim.api.nvim_set_hl(0, "CmpFloatBorder", { bg = bg0 })
-vim.api.nvim_set_hl(0, "CmpVisual", { bg = "#61afee", fg = bg0, bold = false })
--- vim.api.nvim_set_hl(0, "CmpVisual", { bg = "#56b6c2", fg = bg0, bold = false })
-vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#61afee", bold = true })
+vim.api.nvim_set_hl(0, "Title", { bg = COLORS.one_bg, fg = COLORS.title_fg })
+vim.api.nvim_set_hl(0, "CmpNormal", { bg = COLORS.one_bg })
+vim.api.nvim_set_hl(0, "CmpFloatBorder", { bg = COLORS.one_bg })
+-- selection
+-- CmpItemAbbrMatchFuzzy fg=#56b6c2
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = COLORS.matching_bg, underline = false, bold = true })
+vim.api.nvim_set_hl(0, "CmpVisual", { bg = COLORS.matching_bg, fg = COLORS.cmp_selected_text_fg, bold = false })
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = COLORS.matching_bg, bold = true })
+-- vim.api.nvim_set_hl(0, "CmpVisual", { bg = "#56b6c2", fg = COLORS.cmp_selected_text_fg, bold = false })
 -- vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#56b6c2", bold = true })
 -- --
 -- vim.api.nvim_set_hl(0, "CmpItemMenu", { link = "CustomVType" })
