@@ -1,6 +1,26 @@
 -- grey= "#5c6370",
 -- 		light_grey = "#848b98",
 --black = "#181a1f"
+
+THEME = {
+    base00 = "#1e222a",
+    base01 = "#353b45",
+    base02 = "#3e4451",
+    base03 = "#545862",
+    base04 = "#565c64",
+    base05 = "#abb2bf",
+    base06 = "#b6bdca",
+    base07 = "#c8ccd4",
+    base08 = "#e06c75",
+    base09 = "#d19a66",
+    base0A = "#e5c07b",
+    base0B = "#98c379",
+    base0C = "#56b6c2",
+    base0D = "#61afef",
+    base0E = "#c678dd",
+    base0F = "#be5046",
+}
+
 COLORS = {
     info_diagnostic_fg = "#388c96",
     cmp_selected_text_fg = "#363a43",
@@ -71,6 +91,23 @@ require("onedark").setup({
     colors = {}, -- Override default colors
 
     highlights = {
+        diffNewFile = { fg = COLORS.blue },
+        DiffText = { fg = COLORS.white, bg = COLORS.black2 },
+        gitcommitOverflow = { fg = THEME.base08 },
+        gitcommitSummary = { fg = THEME.base0B },
+        gitcommitComment = { fg = THEME.base03 },
+        gitcommitUntracked = { fg = THEME.base03 },
+        gitcommitDiscarded = { fg = THEME.base03 },
+        gitcommitSelected = { fg = THEME.base03 },
+        gitcommitHeader = { fg = THEME.base0E },
+        gitcommitSelectedType = { fg = THEME.base0D },
+        gitcommitUnmergedType = { fg = THEME.base0D },
+        gitcommitDiscardedType = { fg = THEME.base0D },
+        gitcommitBranch = { fg = THEME.base09, bold = true },
+        gitcommitUntrackedFile = { fg = THEME.base0A },
+        gitcommitUnmergedFile = { fg = THEME.base08, bold = true },
+        gitcommitDiscardedFile = { fg = THEME.base08, bold = true },
+        gitcommitSelectedFile = { fg = THEME.base0B, bold = true },
         -- Telescope
         -- TelescopeBorder = { fg = colors.white },
         -- TelescopePromptBorder = { fg = "#373b43" },

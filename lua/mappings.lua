@@ -26,8 +26,8 @@ map("n", "<leader>tr", ":NvimTreeRefresh<CR>", { noremap = true, desc = "Nvim Tr
 -- The primeagen bindings
 map("n", "Y", "yg$", { noremap = true }) -- change this
 map("n", "J", "mzJ`z", { noremap = true })
-map("n", "<C-d>", "<C-d>zz", { noremap = true })
-map("n", "<C-u>", "<C-u>zz", { noremap = true })
+-- map("n", "<C-d>", "<C-d>zz", { noremap = true })
+-- map("n", "<C-u>", "<C-u>zz", { noremap = true })
 map("n", "n", "nzzzv", { noremap = true })
 map("n", "N", "Nzzzv", { noremap = true })
 map("n", "<C-z>", function() end, { noremap = true, silent = true })

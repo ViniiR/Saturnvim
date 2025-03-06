@@ -1,6 +1,23 @@
+local use_only_native_syntax_filenames = {
+    gitcommit = true,
+}
+
+local function set_contains(set, key) return set[key] ~= nil end
+
 require("nvim-treesitter.configs").setup({
     -- A list of parser names, or "all" (the listed parsers MUST always be installed)
-    ensure_installed = { "c", "lua", "vim", "vimdoc", "cpp", "rust", "javascript", "typescript", "tsx", "comment" },
+    ensure_installed = {
+        "c",
+        "lua",
+        "vim",
+        "vimdoc",
+        "cpp",
+        "rust",
+        "javascript",
+        "typescript",
+        "tsx",
+        "comment",
+    },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -26,6 +43,7 @@ require("nvim-treesitter.configs").setup({
         -- disable = { "c", "rust" },
         -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
         disable = function(lang, buf)
+            if set_contains(use_only_native_syntax_filenames, lang) then return true end
             local max_filesize = 100 * 1024 -- 100 KB
             local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
             if ok and stats and stats.size > max_filesize then return true end
@@ -35,6 +53,6 @@ require("nvim-treesitter.configs").setup({
         -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
         -- Using this option may slow down your editor, and you may see some duplicate highlights.
         -- Instead of true it can also be a list of languages
-        additional_vim_regex_highlighting = false,
+        additional_vim_regex_highlighting = use_only_native_syntax_filenames,
     },
 })

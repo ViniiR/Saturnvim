@@ -32,6 +32,60 @@ vim.cmd("highlight CustomVLualineYellow guifg=yellow guibg=#323942")
 -- local bg2 = "#393f4a"
 -- local bg3 = "#3b3f4c"
 
+-- git
+
+-- vim.api.nvim_set_hl(0, "diffNewFile", { fg = COLORS.blue })
+-- vim.api.nvim_set_hl(0, "DiffText", { fg = COLORS.white, bg = COLORS.black2 })
+-- vim.api.nvim_set_hl(0, "gitcommitOverflow", { fg = THEME.base08 })
+-- vim.api.nvim_set_hl(0, "gitcommitSummary", { fg = THEME.base0B })
+-- vim.api.nvim_set_hl(0, "gitcommitComment", { fg = THEME.base03 })
+-- vim.api.nvim_set_hl(0, "gitcommitUntracked", { fg = THEME.base03 })
+-- vim.api.nvim_set_hl(0, "gitcommitDiscarded", { fg = THEME.base03 })
+-- vim.api.nvim_set_hl(0, "gitcommitSelected", { fg = THEME.base03 })
+-- vim.api.nvim_set_hl(0, "gitcommitHeader", { fg = THEME.base0E })
+-- vim.api.nvim_set_hl(0, "gitcommitSelectedType", { fg = THEME.base0D })
+-- vim.api.nvim_set_hl(0, "gitcommitUnmergedType", { fg = THEME.base0D })
+-- vim.api.nvim_set_hl(0, "gitcommitDiscardedType", { fg = THEME.base0D })
+-- vim.api.nvim_set_hl(0, "gitcommitBranch", { fg = THEME.base09, bold = true })
+-- vim.api.nvim_set_hl(0, "gitcommitUntrackedFile", { fg = THEME.base0A })
+-- vim.api.nvim_set_hl(0, "gitcommitUnmergedFile", { fg = THEME.base08, bold = true })
+-- vim.api.nvim_set_hl(0, "gitcommitDiscardedFile", { fg = THEME.base08, bold = true })
+-- vim.api.nvim_set_hl(0, "gitcommitSelectedFile", { fg = THEME.base0B, bold = true })
+-- DiffAdd = {
+--   bg = mix(colors.green, colors.black, 90),
+--   fg = colors.green,
+-- },
+--
+-- DiffAdded = {
+--   bg = mix(colors.green, colors.black, 90),
+--   fg = colors.green,
+-- },
+--
+-- DiffChange = {
+--   bg = mix(colors.light_grey, colors.black, 90),
+--   fg = colors.light_grey,
+-- },
+--
+-- DiffChangeDelete = {
+--   bg = mix(colors.red, colors.black, 90),
+--   fg = colors.red,
+-- },
+--
+-- DiffModified = {
+--   bg = mix(colors.orange, colors.black, 90),
+--   fg = colors.orange,
+-- },
+--
+-- DiffDelete = {
+--   bg = mix(colors.red, colors.black, 90),
+--   fg = colors.red,
+-- },
+--
+-- DiffRemoved = {
+--   bg = mix(colors.red, colors.black, 90),
+--   fg = colors.red,
+-- },
+
 -- diagnostics
 vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = COLORS.info_diagnostic_fg })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = COLORS.info_diagnostic_fg, bg = "none" })
