@@ -10,6 +10,6 @@ devicons.set_icon({
     ts = {
         icon = "",
         name = "ts",
-		color = "#2d79c7"
+        color = COLORS.ts_fg,
     },
 })

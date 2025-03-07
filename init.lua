@@ -136,6 +136,7 @@ vim.api.nvim_set_hl(0, "CmpItemKindValue", { link = "Number" })
 vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { link = "@keyword" })
 vim.api.nvim_set_hl(0, "CmpItemKindConstant", { link = "CustomVBool" })
 vim.api.nvim_set_hl(0, "CmpItemKindText", { link = "TelescopeMatching" })
+-- try changing to CustomVType
 vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { link = "@variable.parameter" })
 
 -- vim.api.nvim_set_hl(0, "CmpItemKindStruct", { link = "CustomVType" })
