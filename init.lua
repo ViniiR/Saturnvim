@@ -1,3 +1,4 @@
+require("GLOBALS")
 require("configs")
 require("options")
 require("mappings")

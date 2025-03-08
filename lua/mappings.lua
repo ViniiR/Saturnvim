@@ -51,7 +51,7 @@ map("c", "<C-c>", "<C-c>", { noremap = true })
 map("c", "<C-j>", "<Down>", { noremap = true })
 map("c", "<C-k>", "<Up>", { noremap = true })
 -- noop ; to prevent ;w file
-map("c", ";", "<Nop>", { noremap = true, silent = true })
+-- map("c", ";", "<Nop>", { noremap = true, silent = true })
 
 -- Terminal mode
 map("t", "<C-\\><C-\\>", "<C-\\><C-N>", { noremap = true })

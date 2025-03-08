@@ -1,36 +1,5 @@
 local cmp = require("cmp")
 
--- cmp.setup.cmdline({ "/", "?" }, {
---     mapping = cmp.mapping.preset.cmdline(),
---     sources = {
---         { name = "buffer" },
---     },
--- })
-
--- cmp.setup.cmdline(":", {
---     mapping = cmp.mapping.preset.cmdline({
---         ["<C-p>"] = { c = cmp.mapping.select_prev_item() },
---         ["<C-n>"] = { c = cmp.mapping.select_next_item() },
--- 					--    ["<Tab>"] = {
--- 					--        c = function()
--- 					--            local entry = cmp.get_selected_entry()
--- 					--            if entry then
--- 					--                local items = cmp.get_entries()
--- 					-- print(items[1])
--- 					--                if #items > 0 and entry == items[1] then cmp.mapping.confirm() end
--- 					--            end
--- 					--            cmp.mapping.select_next_item()
--- 					--        end,
--- 					--    },
---     }),
---     sources = cmp.config.sources({
---         { name = "path" },
---     }, {
---         { name = "cmdline" },
---     }),
---     matching = { disallow_symbol_nonprefix_matching = false },
--- })
-
 -- 󰆧
 local icons = {
     Text = "󰉿",
@@ -45,7 +14,7 @@ local icons = {
     Property = "󰜢",
     Value = "󰎠",
     Enum = "",
-    Keyword = "󰌋",
+    Keyword = "󰌋", --
     Snippet = "",
     Color = "󰏘",
     Constant = "󰏿",
@@ -56,9 +25,9 @@ local icons = {
     Object = "󰅩",
     Tag = "",
     Array = "[]",
-    Boolean = "",
-    Number = "",
-    Null = "󰟢",
+    Boolean = "", --
+    Number = "", --
+    Null = "󰟢", --
     File = "󰈚",
     Folder = "󰉋", -- Directory
     Namespace = "󰌗",
@@ -207,7 +176,7 @@ local function format(entry, item)
         -- item.abbr_hl_group = cached.hl_group
         -- item.abbr = options_hlc.virtual_symbol .. " " .. item.abbr
         --
-        -- + these lines up above:
+        -- +(plus) these lines up above:
         -- if kind_text ~= "Color" then
         --     item.abbr = "  " .. item.abbr
         --     return item
@@ -224,6 +193,8 @@ end
 local options = {
     completion = { completeopt = "menu,menuone" },
     formatting = {
+        ---@param entry {}
+        ---@param item {abbr: string, word: string, dup: number, kind: string, menu: string }
         format = function(entry, item)
             if item.menu ~= nil and #item.menu >= 60 then item.menu = string.sub(item.menu or "", 1, 60) .. "..." end
 
@@ -231,10 +202,13 @@ local options = {
             if icon == nil then
                 item.kind = icons.Text .. " Text"
             else
+                -- item.kind = " " .. item.kind
+                -- item.abbr = tostring(icon) .. " " .. item.abbr
                 item.kind = tostring(icon) .. " " .. item.kind
             end
 
             item = format(entry, item)
+            -- vim.notify(vim.inspect(item))
 
             -- item = require("nvim-highlight-colors").format(entry, item)
             return item
@@ -243,7 +217,7 @@ local options = {
     window = {
         completion = {
             -- { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-            border = "rounded",
+            border = BORDER_KIND or "single",
             winhighlight = "Normal:CmpNormal,FloatBorder:CmpFloatBorder,CursorLine:CmpVisual",
             side_padding = 1,
             scrollbar = false,
@@ -251,7 +225,7 @@ local options = {
             -- max_width = math.floor(vim.o.columns * 0.5),
         },
         documentation = {
-            border = "rounded",
+            border = BORDER_KIND or "single",
             winhighlight = "Normal:CmpNormal,FloatBorder:CmpFloatBorder,CursorLine:CmpVisual",
             side_padding = 1,
             scrollbar = false,
@@ -331,3 +305,34 @@ local options = {
 }
 
 cmp.setup(options)
+
+-- cmp.setup.cmdline({ "/", "?" }, {
+--     mapping = cmp.mapping.preset.cmdline(),
+--     sources = {
+--         { name = "buffer" },
+--     },
+-- })
+
+-- cmp.setup.cmdline(":", {
+--     mapping = cmp.mapping.preset.cmdline({
+--         ["<C-p>"] = { c = cmp.mapping.select_prev_item() },
+--         ["<C-n>"] = { c = cmp.mapping.select_next_item() },
+-- 					--    ["<Tab>"] = {
+-- 					--        c = function()
+-- 					--            local entry = cmp.get_selected_entry()
+-- 					--            if entry then
+-- 					--                local items = cmp.get_entries()
+-- 					-- print(items[1])
+-- 					--                if #items > 0 and entry == items[1] then cmp.mapping.confirm() end
+-- 					--            end
+-- 					--            cmp.mapping.select_next_item()
+-- 					--        end,
+-- 					--    },
+--     }),
+--     sources = cmp.config.sources({
+--         { name = "path" },
+--     }, {
+--         { name = "cmdline" },
+--     }),
+--     matching = { disallow_symbol_nonprefix_matching = false },
+-- })

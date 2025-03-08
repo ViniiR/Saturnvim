@@ -6,7 +6,7 @@ local win_config = {
     style = "minimal",
     row = vim.o.lines - 20,
     col = 0,
-    border = "rounded",
+    border = BORDER_KIND or "single",
 }
 
 local terminal_buf = nil

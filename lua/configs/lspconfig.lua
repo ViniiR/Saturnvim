@@ -38,7 +38,7 @@ vim.diagnostic.config({
     underline = true,
     float = {
         header = "false",
-        border = "rounded",
+        border = BORDER_KIND or "single",
         focusable = true,
     },
 })
@@ -69,7 +69,7 @@ vim.fn.sign_define("DiagnosticSignInfo", { text = LSP_SYMBOLS.INFO, texthl = "Di
 vim.fn.sign_define("DiagnosticSignHint", { text = LSP_SYMBOLS.HINT, texthl = "DiagnosticSignHint" })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "single",
+    border = BORDER_KIND or "single",
     max_width = nil,
     max_height = nil,
     title = " Info ",
@@ -80,13 +80,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
             local vim_diagnostic = vim.diagnostic.severity
             local severity = diagnostic.severity
             if severity == vim_diagnostic.ERROR then
-                return " "..LSP_SYMBOLS.ERROR
+                return " " .. LSP_SYMBOLS.ERROR
             elseif severity == vim_diagnostic.WARN then
-                return " "..LSP_SYMBOLS.WARN
+                return " " .. LSP_SYMBOLS.WARN
             elseif severity == vim_diagnostic.INFO then
-                return " "..LSP_SYMBOLS.INFO
+                return " " .. LSP_SYMBOLS.INFO
             elseif severity == vim_diagnostic.HINT then
-                return " "..LSP_SYMBOLS.HINT
+                return " " .. LSP_SYMBOLS.HINT
             else
                 return "■"
             end
