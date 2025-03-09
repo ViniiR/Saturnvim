@@ -75,10 +75,10 @@ highlights["CmpItemKindTypeParameter"] = { link = "@variable.parameter" }
 -- highlights["CmpItemKindEnumMember"] = { link = "CustomVPurple" }
 -- highlights["CmpItemKindEnum"] = { link = "CustomVType" }
 highlights["CmpItemKindInterface"] = { link = "CustomVType" }
---
 highlights["CmpItemKindStruct"] = { link = "CustomVStruct" }
 highlights["CmpItemKindEnumMember"] = { link = "CustomVEnumMember" }
 highlights["CmpItemKindEnum"] = { link = "CustomVEnum" }
+highlights["CmpItemKindHtml"] = { link = "CmpItemKindSnippet" }
 -- highlights["CmpItemKindInterface"] = { link = "CustomVInterface" }
 --
 -- highlights["CmpItemKindColor"] = { link = "" }

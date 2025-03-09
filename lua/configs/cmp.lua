@@ -175,6 +175,7 @@ local function format(entry, item)
     if entryDoc == nil or type(entryDoc) ~= "string" then return item end
 
     local cached = format_cache[entryDoc]
+    -- possibly doesn't do anything
     if cached == nil then
         local color_hex = colors.get_color_value(entryDoc)
         cached = color_hex and { hl_group = utils.create_highlight_name("fg-" .. color_hex), color_hex = color_hex }
@@ -205,7 +206,7 @@ local options = {
     completion = { completeopt = "menu,menuone" },
     formatting = {
         ---@param entry {}
-        ---@param item {abbr: string, word: string, dup: number, kind: string, menu: string }
+        ---@param item {abbr: string, word: string, dup: number, kind: string, menu: string, kind_hl_group: string }
         format = function(entry, item)
             if item.menu ~= nil and #item.menu >= 60 then item.menu = string.sub(item.menu or "", 1, 60) .. "..." end
 
@@ -222,11 +223,14 @@ local options = {
                 local lsp_name = tostring(entry.source.source.client.name)
                 local is_html_snippet = lsp_name == "emmet_language_server" and item.kind == (icons.Text .. " Text")
 
-                if is_html_snippet then item.kind = tostring(icons.Html) .. " Html" end
+                if is_html_snippet then
+                    item.kind_hl_group = "CmpItemKindHtml"
+                    item.kind = tostring(icons.Html) .. " Html"
+                end
             end
 
+            -- Exclusively used for CompletionItemKind.Color items
             item = format(entry, item)
-            -- vim.notify(vim.inspect(item))
 
             -- item = require("nvim-highlight-colors").format(entry, item)
             return item
@@ -300,6 +304,7 @@ local options = {
             cmp.config.compare.locality,
             function(entry1, entry2) sort_by_completion_item_kind(entry1, entry2) end,
             cmp.config.compare.kind,
+            -- change length
             cmp.config.compare.length,
             cmp.config.compare.sort_text,
             cmp.config.compare.order,
