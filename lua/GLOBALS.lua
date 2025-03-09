@@ -2,6 +2,17 @@
 
 BORDER_KIND = "rounded"
 
+LSP_SYMBOLS = {
+    -- ERROR = "",
+    -- WARN = "",
+    -- INFO = "",
+    -- HINT = "",
+    ERROR = "",
+    WARN = "",
+    INFO = "",
+    HINT = "",
+}
+
 THEME = {
     base00 = "#1e222a",
     base01 = "#353b45",

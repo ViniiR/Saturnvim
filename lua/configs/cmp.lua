@@ -2,6 +2,7 @@ local cmp = require("cmp")
 
 -- 󰆧
 local icons = {
+    Html = "",
     Text = "󰉿",
     Function = "󰊕",
     Method = "󰊕",
@@ -53,7 +54,16 @@ local icons = {
 --- @param kind any CompletionItemKind
 --- @return nil
 local function set_bottom_priority(kind) -- unnecessary as long as the function below works
+    -- Magic function (unfortunately) for setting Text kind as lowest priority (unless its a emmet_language_server Html snippet)
+    -- emmet_language_server snippets are considered text before format function kick in
+
+    -- i do not know if e1 is current item entry and e2 is next one
     return function(e1, e2)
+        if kind == cmp.lsp.CompletionItemKind.Text then
+            local is_html_snippet = vim.inspect(e1.source.name)
+            -- returning false means (i hope so): it will remain the same order?
+            if is_html_snippet then return false end
+        end
         if e1:get_kind() == kind then return false end
         if e2:get_kind() == kind then return true end
     end
@@ -87,31 +97,32 @@ local kind_mapper = require("cmp.types").lsp.CompletionItemKind
 -- 	Operator = 24;
 -- 	TypeParameter = 25;
 local kind_score = {
-    Variable = 1,
-    Color = 2,
-    Method = 3,
-    Function = 4,
-    Constructor = 5,
-    Field = 6,
-    Class = 7,
-    Interface = 8,
-    Module = 9,
-    Property = 10,
-    Unit = 11,
-    Value = 12,
-    Enum = 13,
-    Keyword = 14,
-    Snippet = 15,
-    EnumMember = 16,
-    Constant = 17,
-    Struct = 18,
-    Text = 19,
-    File = 20,
-    Reference = 21,
-    Folder = 22,
-    Event = 23,
-    Operator = 24,
-    TypeParameter = 25,
+    Html = 1,
+    Variable = 2,
+    Color = 3,
+    Method = 4,
+    Function = 5,
+    Constructor = 6,
+    Field = 7,
+    Class = 8,
+    Interface = 9,
+    Module = 10,
+    Property = 11,
+    Unit = 12,
+    Value = 13,
+    Enum = 14,
+    Keyword = 15,
+    Snippet = 16,
+    EnumMember = 17,
+    Constant = 18,
+    Struct = 19,
+    Text = 20,
+    File = 21,
+    Reference = 22,
+    Folder = 23,
+    Event = 24,
+    Operator = 25,
+    TypeParameter = 26,
 }
 
 local function sort_by_completion_item_kind(entry1, entry2)
@@ -205,6 +216,13 @@ local options = {
                 -- item.kind = " " .. item.kind
                 -- item.abbr = tostring(icon) .. " " .. item.abbr
                 item.kind = tostring(icon) .. " " .. item.kind
+            end
+
+            if entry.source.name == "nvim_lsp" and entry.source.source then
+                local lsp_name = tostring(entry.source.source.client.name)
+                local is_html_snippet = lsp_name == "emmet_language_server" and item.kind == (icons.Text .. " Text")
+
+                if is_html_snippet then item.kind = tostring(icons.Html) .. " Html" end
             end
 
             item = format(entry, item)

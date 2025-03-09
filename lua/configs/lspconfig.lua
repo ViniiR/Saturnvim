@@ -10,17 +10,6 @@ vim.g.current_attached_lsp = "No LSP"
 
 local x = vim.diagnostic.severity
 
-LSP_SYMBOLS = {
-    -- ERROR = "",
-    -- WARN = "",
-    -- INFO = "",
-    -- HINT = "",
-    ERROR = "",
-    WARN = "",
-    INFO = "",
-    HINT = "",
-}
-
 -- signs = { text = { [x.ERROR] = "", [x.WARN] = "", [x.INFO] = "", [x.HINT] = "" } },
 vim.diagnostic.config({
     virtual_text = {
@@ -187,13 +176,7 @@ end
 M.defaults()
 
 for _, lsp in ipairs(servers) do
-    if lsp ~= "nixd" then
-        lspconfig[lsp].setup({
-            on_init = M.on_init,
-            on_attach = M.on_attach,
-            capabilities = M.capabilities,
-        })
-    elseif lsp == "nixd" then
+    if lsp == "nixd" then
         lspconfig[lsp].setup({
             on_init = M.on_init,
             on_attach = M.on_attach,
@@ -217,6 +200,12 @@ for _, lsp in ipairs(servers) do
                     },
                 },
             },
+        })
+    else
+        lspconfig[lsp].setup({
+            on_init = M.on_init,
+            on_attach = M.on_attach,
+            capabilities = M.capabilities,
         })
     end
 end
