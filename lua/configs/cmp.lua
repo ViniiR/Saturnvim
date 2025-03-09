@@ -175,7 +175,6 @@ local function format(entry, item)
     if entryDoc == nil or type(entryDoc) ~= "string" then return item end
 
     local cached = format_cache[entryDoc]
-    -- possibly doesn't do anything
     if cached == nil then
         local color_hex = colors.get_color_value(entryDoc)
         cached = color_hex and { hl_group = utils.create_highlight_name("fg-" .. color_hex), color_hex = color_hex }
