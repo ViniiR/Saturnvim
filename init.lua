@@ -1,4 +1,4 @@
-require("GLOBALS")
+require("globals")
 require("configs")
 require("options")
 require("mappings")
