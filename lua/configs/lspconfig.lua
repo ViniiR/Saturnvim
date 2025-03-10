@@ -5,17 +5,18 @@ local lspconfig = require("lspconfig")
 
 vim.g.current_attached_lsp = "No LSP"
 
+local enable_native_virtual_text = true
+
 -- disable semantic tokens completely
 -- vim.highlight.priorities.semantic_tokens = 0
 
 local x = vim.diagnostic.severity
 
--- signs = { text = { [x.ERROR] = "", [x.WARN] = "", [x.INFO] = "", [x.HINT] = "" } },
 vim.diagnostic.config({
-    virtual_text = {
+    virtual_text = enable_native_virtual_text and {
         prefix = "",
         virt_text_hide = false,
-    },
+    } or false,
     signs = {
         text = {
             [x.ERROR] = LSP_SYMBOLS.ERROR,
@@ -64,23 +65,25 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     title = " Info ",
 })
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = {
-        prefix = function(diagnostic)
-            local vim_diagnostic = vim.diagnostic.severity
-            local severity = diagnostic.severity
-            if severity == vim_diagnostic.ERROR then
-                return " " .. LSP_SYMBOLS.ERROR
-            elseif severity == vim_diagnostic.WARN then
-                return " " .. LSP_SYMBOLS.WARN
-            elseif severity == vim_diagnostic.INFO then
-                return " " .. LSP_SYMBOLS.INFO
-            elseif severity == vim_diagnostic.HINT then
-                return " " .. LSP_SYMBOLS.HINT
-            else
-                return "■"
-            end
-        end,
-    },
+    virtual_text = enable_native_virtual_text
+            and {
+                prefix = function(diagnostic)
+                    local vim_diagnostic = vim.diagnostic.severity
+                    local severity = diagnostic.severity
+                    if severity == vim_diagnostic.ERROR then
+                        return " " .. LSP_SYMBOLS.ERROR
+                    elseif severity == vim_diagnostic.WARN then
+                        return " " .. LSP_SYMBOLS.WARN
+                    elseif severity == vim_diagnostic.INFO then
+                        return " " .. LSP_SYMBOLS.INFO
+                    elseif severity == vim_diagnostic.HINT then
+                        return " " .. LSP_SYMBOLS.HINT
+                    else
+                        return "" --■
+                    end
+                end,
+            }
+        or false,
 })
 
 M.on_attach = function(_, bufnr)
@@ -115,7 +118,7 @@ M.on_attach = function(_, bufnr)
     end)
     vim.keymap.set("n", "<C-w>d", function() vim.diagnostic.open_float() end)
     vim.lsp.inlay_hint.enable(true)
-    vim.diagnostic.config({ virtual_text = true })
+    vim.diagnostic.config({ virtual_text = enable_native_virtual_text and true or false })
 end
 
 M.on_init = function(client, _)
@@ -211,3 +214,4 @@ for _, lsp in ipairs(servers) do
 end
 
 return M
+-- signs = { text = { [x.ERROR] = "", [x.WARN] = "", [x.INFO] = "", [x.HINT] = "" } },
