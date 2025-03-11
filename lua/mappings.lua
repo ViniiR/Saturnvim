@@ -4,16 +4,14 @@ local map = vim.keymap.set
 local demap = vim.keymap.del
 
 -- Normal mode
-map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle Nvim Tree" })
--- map("n", "<leader>e", vim.cmd.Ex, { desc = "Toggle netrw" })
 map("n", ";", ":", { noremap = true })
+-- map("n", "<leader>e", vim.cmd.Ex, { desc = "Toggle netrw" })
 map("n", "<C-c>", "<Esc>", { noremap = true })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "General Clear highlights" })
 map("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
 map("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
 map("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
 map("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
-map("n", "<leader>tr", ":NvimTreeRefresh<CR>", { noremap = true, desc = "Nvim Tree Refresh" })
 -- map("n", "<Tab>", ":bnext <CR>")
 -- map("n", "<S-Tab>", ":bprevious <CR>", { noremap = true, silent = true })
 -- The primeagen bindings
@@ -23,6 +21,17 @@ map("n", "J", "mzJ`z", { noremap = true })
 -- map("n", "<C-u>", "<C-u>zz", { noremap = true })
 map("n", "n", "nzzzv", { noremap = true })
 map("n", "N", "Nzzzv", { noremap = true })
+map("n", "<Tab>", function()
+    local buf = vim.fn.bufname("%")
+    local last_buf = vim.fs.basename(buf)
+
+    vim.cmd("b#")
+
+    buf = vim.fn.bufname("%")
+    local current_buf = vim.fs.basename(buf)
+
+    print("Moved from: |" .. last_buf .. "| into: |" .. current_buf .. "|")
+end, { noremap = true, silent = true })
 map("n", "<C-z>", function() end, { noremap = true, silent = true })
 
 -- Insert mode
