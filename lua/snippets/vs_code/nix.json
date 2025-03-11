@@ -2,5 +2,31 @@
   "function": {
     "prefix": "f",
     "body": ["{...}:{", "\t$1", "}"]
+  },
+  "nix-shell": {
+    "prefix": "mks",
+    "body": [
+      "let pkgs = import <nixpkgs> {}; in",
+      "pkgs.mkShell {",
+      "\tbuildInputs = with pkgs; [",
+      "\t\t$2",
+      "\t];",
+      "",
+      "\tpackages = with pkgs; [",
+      "\t\t$1",
+      "\t];",
+      "",
+      "\tenv = {",
+      "\t\tNIX_ENFORCE_PURITY = 0;",
+      "\t};",
+      "",
+      "\tnativeBuildInputs = with pkgs; [",
+      "\t\t  zsh",
+      "\t];",
+      "\tshellHook = ''",
+      "\t\t  exec zsh;",
+      "\t'';",
+      "}"
+    ]
   }
 }

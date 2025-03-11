@@ -1,3 +1,4 @@
+-- PLEASE DELETE ALL OF THE COMMENTED OUT IF IT WORKS FINE FROM NOW ON TODO
 local highlights = {}
 
 -- CustomV
@@ -9,9 +10,10 @@ highlights["CustomVType"] = { fg = "#4ebd90" }
 highlights["CustomVProperty"] = { fg = "#8dc5e3" }
 highlights["CustomVPurple"] = { fg = "#bfa7f2" }
 highlights["Constant"] = { fg = "#4d98d6" }
-highlights["VFixme"] = { fg = "black", bg = "pink" }
-highlights["VTodo"] = { fg = "black", bg = "yellow" }
--- ["CustomVChar"] = {fg="ed4a57"}
+highlights["VFixme"] = { bg = "NONE", fg = "pink", underline = true }
+highlights["VTodo"] = { bg = "NONE", fg = "yellow", underline = true }
+-- highlights["CustomVChar"] = { fg = "#ed4a57" }
+highlights["CustomVChar"] = { link = "@variable.parameter" }
 highlights["CustomVEnum"] = { fg = "#4ebd90" }
 highlights["CustomVEnumMember"] = { fg = "#4d98d6" }
 highlights["CustomVStruct"] = { fg = "#4ebd90" }
@@ -160,6 +162,9 @@ highlights["@function.call"] = { link = "CustomVFunction" }
 highlights["@function.method.call"] = { link = "CustomVFunction" }
 highlights["@function.call.tsx"] = { link = "CustomVFunction" }
 highlights["@function.call.rust"] = { link = "CustomVFunction" }
+highlights["@character.rust"] = { link = "CustomVChar" }
+highlights["@character.special.rust"] = { link = "@punctuation.delimiter" }
+highlights["@punctuation.special.rust"] = { fg = "#e5c07b" } -- lsp namespace color
 highlights["@function.call.typescript"] = { link = "CustomVFunction" }
 highlights["@function.method.call.typescript"] = { link = "CustomVFunction" }
 highlights["@function.method.call.tsx"] = { link = "CustomVFunction" }
@@ -180,6 +185,8 @@ highlights["@lsp.type.method"] = { link = "CustomVFunction" }
 highlights["@lsp.typemod.method.defaultLibrary"] = { link = "CustomVFunction" }
 highlights["@lsp.typemod.function.defaultLibrary"] = { link = "CustomVFunction" }
 highlights["@function.macro.rust"] = { link = "@variable.parameter" }
+highlights["@lsp.mod.macro.rust"] = { fg = "red", link = "@variable.parameter" }
+highlights["@lsp.typemod.macro.declaration.rust"] = { link = "CustomVFunction" }
 highlights["@lsp.type.macro"] = { link = "@variable.parameter" }
 highlights["@type"] = { link = "CustomVType" }
 
@@ -202,20 +209,41 @@ highlights["@lsp.type.method"] = { link = "CustomVFunction" }
 -- highlights["@lsp.type.namespace"] = { link = "" }
 highlights["@lsp.type.parameter"] = { link = "@function.macro.rust" }
 highlights["@lsp.type.property"] = { link = "CustomVProperty" }
-highlights["@lsp.type.selfKeyword"] = { fg = "#f72058" }
-highlights["@lsp.type.selfTypeKeyword"] = { fg = "#e03d68" }
+-- change this to better colors this is useful
+highlights["@lsp.type.selfKeyword"] = { link = "CustomVBool" }
+highlights["@lsp.type.selfTypeKeyword"] = { link = "CustomVType" }
+-- old
+-- highlights["@lsp.type.selfKeyword"] = { fg = "#f72058" }
+-- highlights["@lsp.type.selfTypeKeyword"] = { fg = "#e03d68" }
 highlights["@lsp.type.string"] = { link = "@string" }
 highlights["@lsp.type.struct"] = { link = "CustomVStruct" }
 highlights["@lsp.type.type"] = { link = "CustomVType" }
 highlights["@lsp.type.typeAlias"] = { link = "CustomVType" } -- change ?
 highlights["@lsp.type.typeParameter"] = { link = "CustomVType" }
-highlights["@lsp.type.variable"] = { link = "CustomVVariable" }
--- used for color difference between function paramenters that have been shadowed and regular variables
--- highlights["@lsp.typemod.variable.reference.rust"] = { link = "@lsp.type.parameter" }
-highlights["@lsp.typemod.variable.declaration.rust"] = { link = "CustomVVariable" }
+-- highlights["@lsp.type.variable"] = { link = "CustomVVariable" }
+highlights["@lsp.type.variable.rust"] = { link = "" }
+--
+highlights["@lsp.mod.public.rust"] = { link = "CustomVFunction" }
+highlights["@lsp.typemod.namespace.macro.rust"] = { link = "@lsp.type.namespace" }
+
+-- disables stupid variable hl on modules
+highlights["@lsp.mod.macro.rust"] = { link = "" }
+highlights["@lsp.mod.procMacro.rust"] = { link = "" }
+highlights["@lsp.typemod.variable.macro.rust"] = { link = "" }
+highlights["@lsp.typemod.variable.procMacro.rust"] = { link = "" }
+--
+
+-- used for color difference between function parameters that have been shadowed and regular variables
+highlights["@lsp.typemod.variable.reference.rust"] = { link = "@lsp.type.parameter" }
+highlights["@lsp.typemod.variable.declaration.rust"] = { link = "CustomVVariable", default = true }
 highlights["@lsp.typemod.variable.mutable.rust"] = { link = "CustomVVariable" }
 
-highlights["@module"] = { link = "CmpItemKindModule" }
+-- normal modules
+-- highlights["@module"] = { link = "CmpItemKindModule" }
+-- red modules (nvchad)
+highlights["@module"] = { link = "@variable.parameter" }
+-- yellow modules
+-- highlights["@module.rust"] = { link = "@lsp.type.namespace" }
 
 -- Char
 -- highlights["@character"] = { link = "CustomVChar" }
