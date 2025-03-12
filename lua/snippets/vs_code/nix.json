@@ -6,6 +6,7 @@
   "nix-shell": {
     "prefix": "mks",
     "body": [
+      "WARNING!: In rust development ensure neovim is open IN nix-shell(nsh) and use cargo check before after git clone (have good codings :))",
       "let pkgs = import <nixpkgs> {}; in",
       "pkgs.mkShell {",
       "\tbuildInputs = with pkgs; [",
