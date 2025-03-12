@@ -1,8 +1,11 @@
 local lspconfig = require("configs.lspconfig")
 
+
 vim.g.rustaceanvim = {
     server = {
         on_attach = lspconfig.on_attach,
+        -- capabilities = lspconfig.capabilities,
+        -- on_init = lspconfig.on_init,
         default_settings = {
             ["rust-analyzer"] = {
                 capabilities = lspconfig.capabilities,

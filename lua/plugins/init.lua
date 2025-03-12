@@ -152,6 +152,31 @@ return {
         lazy = false, -- This plugin is already lazy
         dependencies = "neovim/nvim-lspconfig",
         ft = { "rust" },
+        -- 11/03/2025 20:39 Confirmed to be working on xv-chat repo (apparently perfectly)
+        -- 11/03/2025 21:28 Does not work on overly large projects (hopefully a hardware issue since it works on different pc (same setup))
+        -- config = function()
+        --     local lspconfig = require("configs.lspconfig")
+        --     vim.g.rustaceanvim = {
+        --         server = {
+        --             on_attach = lspconfig.on_attach,
+        --             -- capabilities = lspconfig.capabilities,
+        --             -- on_init = lspconfig.on_init,
+        --             default_settings = {
+        --                 ["rust-analyzer"] = {
+        --                     capabilities = lspconfig.capabilities,
+        --                     cargo = {
+        --                         allFeatures = true,
+        --                     },
+        --                     -- checkOnSave = true,
+        --                     -- check = {
+        --                     -- 	enable = true,
+        --                     -- 	command = "check",
+        --                     -- },
+        --                 },
+        --             },
+        --         },
+        --     }
+        -- end,
     },
     {
         "rust-lang/rust.vim",

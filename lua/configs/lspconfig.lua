@@ -42,12 +42,11 @@ local servers = {
     "eslint",
     "jsonls",
     "yamlls",
-    "cssls",
     -- "cssmodules_ls",
     "bashls",
     "prismals",
     "nixd",
-    -- "rust_analyzer", handled by rustaceanvim
+    -- "rust_analyzer", --handled by rustaceanvim
     "clangd",
     "neocmake",
     "nixd",

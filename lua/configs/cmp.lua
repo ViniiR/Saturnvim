@@ -296,17 +296,17 @@ local options = {
     sorting = {
         comparators = {
             set_bottom_priority(require("cmp.types").lsp.CompletionItemKind.Text),
-            cmp.config.compare.offset,
-            cmp.config.compare.exact,
-            cmp.config.compare.score,
-            cmp.config.compare.recently_used,
-            cmp.config.compare.locality,
-            function(entry1, entry2) sort_by_completion_item_kind(entry1, entry2) end,
-            cmp.config.compare.kind,
-            -- change length
-            cmp.config.compare.length,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.order,
+            -- cmp.config.compare.offset,
+            -- cmp.config.compare.exact,
+            -- cmp.config.compare.score,
+            -- cmp.config.compare.recently_used,
+            -- cmp.config.compare.locality,
+            -- function(entry1, entry2) sort_by_completion_item_kind(entry1, entry2) end,
+            -- cmp.config.compare.kind,
+            -- -- change length
+            -- cmp.config.compare.length,
+            -- cmp.config.compare.sort_text,
+            -- cmp.config.compare.order,
         },
     },
     sources = {
