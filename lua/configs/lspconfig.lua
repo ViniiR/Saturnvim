@@ -34,22 +34,30 @@ vim.diagnostic.config({
 })
 
 local servers = {
-    "emmet_language_server",
+    -- ts, js, html, css
     "ts_ls",
+    "eslint",
+    "emmet_language_server",
     "html",
     "cssls",
     "tailwindcss",
-    "eslint",
+    -- "cssmodules_ls", -- not found
+    -- "css-variables-lsp", -- not found
+    -- "somesass_ls", -- never used, not found
+    --
+    -- prisma
+    "prismals",
+    -- json, yaml
     "jsonls",
     "yamlls",
-    -- "cssmodules_ls",
+    -- bash
     "bashls",
-    "prismals",
-    "nixd",
-    -- "rust_analyzer", --handled by rustaceanvim
+    -- c
     "clangd",
     "neocmake",
+    -- nix
     "nixd",
+    -- "rust_analyzer", --handled by rustaceanvim
 }
 
 vim.fn.sign_define("DiagnosticSignError", { text = LSP_SYMBOLS.ERROR, texthl = "DiagnosticSignError" })

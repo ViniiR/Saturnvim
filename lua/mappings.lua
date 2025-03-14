@@ -22,6 +22,11 @@ map("n", "J", "mzJ`z", { noremap = true })
 map("n", "n", "nzzzv", { noremap = true })
 map("n", "N", "Nzzzv", { noremap = true })
 map("n", "<Tab>", function()
+    local prev_buf = vim.fn.bufnr("#")
+    if prev_buf < 1 and not vim.api.nvim_buf_is_valid(prev_buf) then
+        print("No previous buffer attached")
+        return
+    end
     local buf = vim.fn.bufname("%")
     local last_buf = vim.fs.basename(buf)
 

@@ -68,12 +68,12 @@ return {
             "nvim-telescope/telescope.nvim",
         },
     },
-    {
-        "nvim-tree/nvim-tree.lua",
-        opts = {
-            git = { enable = true },
-        },
-    },
+    -- {
+    --     "nvim-tree/nvim-tree.lua",
+    --     opts = {
+    --         git = { enable = true },
+    --     },
+    -- },
     {
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to use `main` branch for the latest features

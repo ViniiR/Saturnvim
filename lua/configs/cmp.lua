@@ -98,31 +98,31 @@ local kind_mapper = require("cmp.types").lsp.CompletionItemKind
 -- 	TypeParameter = 25;
 local kind_score = {
     Html = 1,
-    Variable = 2,
-    Color = 3,
-    Method = 4,
-    Function = 5,
-    Constructor = 6,
-    Field = 7,
-    Class = 8,
-    Interface = 9,
-    Module = 10,
-    Property = 11,
-    Unit = 12,
-    Value = 13,
-    Enum = 14,
-    Keyword = 15,
-    Snippet = 16,
-    EnumMember = 17,
-    Constant = 18,
-    Struct = 19,
-    Text = 20,
-    File = 21,
-    Reference = 22,
-    Folder = 23,
-    Event = 24,
-    Operator = 25,
-    TypeParameter = 26,
+    Variable = 1,
+    Color = 2,
+    Method = 3,
+    Function = 4,
+    Constructor = 5,
+    Field = 6,
+    Class = 7,
+    Interface = 8,
+    Module = 9,
+    Property = 10,
+    Unit = 11,
+    Value = 12,
+    Enum = 13,
+    Keyword = 14,
+    Snippet = 15,
+    EnumMember = 16,
+    Constant = 17,
+    Struct = 18,
+    Text = 19,
+    File = 20,
+    Reference = 21,
+    Folder = 22,
+    Event = 23,
+    Operator = 24,
+    TypeParameter = 25,
 }
 
 local function sort_by_completion_item_kind(entry1, entry2)
@@ -204,6 +204,7 @@ end
 local options = {
     completion = { completeopt = "menu,menuone" },
     formatting = {
+        fields = { "abbr", "kind", "menu" },
         ---@param entry {}
         ---@param item {abbr: string, word: string, dup: number, kind: string, menu: string, kind_hl_group: string }
         format = function(entry, item)
@@ -294,20 +295,20 @@ local options = {
 
     matching = { disallow_symbol_nonprefix_matching = false },
     sorting = {
-        comparators = {
-            set_bottom_priority(require("cmp.types").lsp.CompletionItemKind.Text),
-            -- cmp.config.compare.offset,
-            -- cmp.config.compare.exact,
-            -- cmp.config.compare.score,
-            -- cmp.config.compare.recently_used,
-            -- cmp.config.compare.locality,
-            -- function(entry1, entry2) sort_by_completion_item_kind(entry1, entry2) end,
-            -- cmp.config.compare.kind,
-            -- -- change length
-            -- cmp.config.compare.length,
-            -- cmp.config.compare.sort_text,
-            -- cmp.config.compare.order,
-        },
+        -- comparators = {
+        --     set_bottom_priority(require("cmp.types").lsp.CompletionItemKind.Text),
+        --     cmp.config.compare.offset,
+        --     cmp.config.compare.exact,
+        --     cmp.config.compare.score,
+        --     cmp.config.compare.recently_used,
+        --     cmp.config.compare.locality,
+        --     function(entry1, entry2) sort_by_completion_item_kind(entry1, entry2) end,
+        --     cmp.config.compare.kind,
+        --     -- change length
+        --     cmp.config.compare.length,
+        --     cmp.config.compare.sort_text,
+        --     cmp.config.compare.order,
+        -- },
     },
     sources = {
         -- { name = "nvim_lsp", priority = 10 },
