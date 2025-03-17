@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+local luasnip = require("luasnip")
 
 local map = vim.keymap.set
 local demap = vim.keymap.del
@@ -45,6 +46,15 @@ map("n", "<C-z>", function() end, { noremap = true, silent = true })
 map("i", "<C-H>", "<C-W>", { noremap = true })
 map("i", "<C-Del>", "<C-o>dw", { noremap = true })
 map("i", "<C-c>", "<Esc>", { noremap = true })
+-- These two mappings end a small suffering i had, they are in conjunction with ./configs/cmp.lua mapping.Tab && S-Tab
+-- to revert it, delete these lines and uncomment cmp mapping.Tab and S-Tab
+map("i", "<C-k>", function()
+    if luasnip.jumpable(-1) then luasnip.jump(-1) end
+end)
+map("i", "<C-m>", function()
+    if luasnip.expand_or_jumpable() then luasnip.expand_or_jump() end
+end)
+--
 
 -- Visual mode
 map("v", "<C-c>", "<Esc>", { noremap = true })
