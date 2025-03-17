@@ -16,6 +16,14 @@
         "path": "./rust.json"
       },
       {
+        "language": [
+          "bash",
+          "shell",
+          "sh"
+        ],
+        "path": "./bash.json"
+      },
+      {
         "language": "cpp",
         "path": "./cpp.json"
       },

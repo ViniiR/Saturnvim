@@ -21,6 +21,8 @@ map("n", "J", "mzJ`z", { noremap = true })
 -- map("n", "<C-u>", "<C-u>zz", { noremap = true })
 map("n", "n", "nzzzv", { noremap = true })
 map("n", "N", "Nzzzv", { noremap = true })
+map("n", "<leader>n", ":bnext<CR>", { noremap = true, silent = true })
+map("n", "<leader>p", ":bprevious<CR>", { noremap = true, silent = true })
 map("n", "<Tab>", function()
     local prev_buf = vim.fn.bufnr("#")
     if prev_buf < 1 and not vim.api.nvim_buf_is_valid(prev_buf) then
