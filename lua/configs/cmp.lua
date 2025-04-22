@@ -275,9 +275,9 @@ local options = {
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-            -- disable <Tab> for luasnip
-            -- elseif require("luasnip").expand_or_jumpable() then
-            --     require("luasnip").expand_or_jump()
+            -- comment to disable <Tab> for luasnip
+            elseif require("luasnip").expand_or_jumpable() then
+                require("luasnip").expand_or_jump()
             else
                 fallback()
             end
@@ -286,9 +286,9 @@ local options = {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            -- disable <S-Tab> for luasnip
-            -- elseif require("luasnip").jumpable(-1) then
-            --     require("luasnip").jump(-1)
+            -- comment to disable <S-Tab> for luasnip
+            elseif require("luasnip").jumpable(-1) then
+                require("luasnip").jump(-1)
             else
                 fallback()
             end

@@ -204,6 +204,7 @@ highlights["@lsp.type.function"] = { link = "CustomVFunction" }
 -- highlights["@lsp.type.generic"] = { link = "" }
 highlights["@lsp.type.interface"] = { link = "CustomVType" }
 highlights["@lsp.type.keyword"] = { link = "@keyword" }
+highlights["@keyword.debug.rust"] = { link = "@variable.parameter" }
 highlights["@lsp.type.macro"] = { link = "@function.macro.rust" }
 highlights["@lsp.type.method"] = { link = "CustomVFunction" }
 -- highlights["@lsp.type.namespace"] = { link = "" }

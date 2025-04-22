@@ -12,6 +12,34 @@ local enable_native_virtual_text = true
 
 local x = vim.diagnostic.severity
 
+local servers = {
+    -- ts, js, html, css
+    "ts_ls",
+    "eslint",
+    "emmet_language_server",
+    "html",
+    "cssls",
+    "tailwindcss",
+    -- "cssmodules_ls", -- not found
+    -- "css-variables-lsp", -- not found
+    -- "somesass_ls", -- never used, not found
+    -- kotlin (doesnt work)
+    -- "kotlin_language_server",
+    -- prisma
+    "prismals",
+    -- json, yaml
+    "jsonls",
+    "yamlls",
+    -- bash
+    "bashls",
+    -- c
+    "clangd",
+    "neocmake",
+    -- nix
+    "nixd",
+    -- "rust_analyzer", --handled by rustaceanvim
+}
+
 vim.diagnostic.config({
     virtual_text = enable_native_virtual_text and {
         prefix = "",
@@ -32,33 +60,6 @@ vim.diagnostic.config({
         focusable = true,
     },
 })
-
-local servers = {
-    -- ts, js, html, css
-    "ts_ls",
-    "eslint",
-    "emmet_language_server",
-    "html",
-    "cssls",
-    "tailwindcss",
-    -- "cssmodules_ls", -- not found
-    -- "css-variables-lsp", -- not found
-    -- "somesass_ls", -- never used, not found
-    --
-    -- prisma
-    "prismals",
-    -- json, yaml
-    "jsonls",
-    "yamlls",
-    -- bash
-    "bashls",
-    -- c
-    "clangd",
-    "neocmake",
-    -- nix
-    "nixd",
-    -- "rust_analyzer", --handled by rustaceanvim
-}
 
 vim.fn.sign_define("DiagnosticSignError", { text = LSP_SYMBOLS.ERROR, texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = LSP_SYMBOLS.WARN, texthl = "DiagnosticSignWarn" })
