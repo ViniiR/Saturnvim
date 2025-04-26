@@ -20,10 +20,6 @@ highlights["CustomVStruct"] = { fg = "#4ebd90" }
 highlights["CustomVLualineGreen"] = { fg = "#7eca9c", bg = "#323942" }
 highlights["CustomVLualineYellow"] = { fg = "yellow", bg = "#323942" }
 
--- diagnostics
-highlights["DiagnosticInfo"] = { fg = COLORS.info_diagnostic_fg }
-highlights["DiagnosticVirtualTextInfo"] = { fg = COLORS.info_diagnostic_fg, bg = "none" }
-
 -- vim illuminate
 highlights["IlluminatedWord"] = { bold = false, bg = COLORS.illuminate_bg }
 highlights["IlluminatedCurWord"] = { bold = false, bg = COLORS.illuminate_bg }
@@ -339,15 +335,18 @@ highlights["TelescopePromptPrefix"] = { fg = COLORS.red, bg = "none" }
 highlights["TelescopeNormal"] = { bg = "none" }
 highlights["TelescopePromptNormal"] = { bg = "none" }
 
--- LSP diagnostics
+-- LSP diagnostics virtual text
+highlights["DiagnosticVirtualTextInfo"] = { fg = COLORS.info_diagnostic_fg, bg = "none" }
 highlights["DiagnosticVirtualTextHint"] = { fg = COLORS.purple, bg = "none" }
 highlights["DiagnosticVirtualTextWarn"] = { fg = COLORS.yellow, bg = "none" }
 highlights["DiagnosticVirtualTextError"] = { fg = COLORS.red, bg = "none" }
 
+-- LSP diagnostics icons(generally)
+highlights["DiagnosticInfo"] = { fg = COLORS.info_diagnostic_fg }
 highlights["DiagnosticHint"] = { fg = COLORS.purple }
-highlights["DiagnosticError"] = { fg = COLORS.red }
 highlights["DiagnosticWarn"] = { fg = COLORS.yellow }
-highlights["DiagnosticInfo"] = { fg = COLORS.green }
+highlights["DiagnosticError"] = { fg = COLORS.red }
+
 highlights["LspSignatureActiveParameter"] = { fg = COLORS.black, bg = COLORS.green }
 
 for hl_name, hl_value in pairs(highlights) do
