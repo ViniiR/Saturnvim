@@ -1,21 +1,31 @@
--- dap should work by default with rustaceanvim
--- vscode-extensions.vadimcn.vscode-lldb.adapter
 -- local dap = require("dap")
+-- -- local dapui = require("dapui")
+-- -- dap should work by default with rustaceanvim
+-- -- vscode-extensions.vadimcn.vscode-lldb.adapter
 -- dap.adapters.lldb = {
---   type = 'executable',
---   command = '/etc/profiles/per-user/vinii/bin/rust-lldb', -- adjust as needed, must be absolute path
---   name = 'rust-lldb'
+--     type = "executable",
+--     command = "/etc/profiles/per-user/vinii/bin/rust-lldb", -- adjust as needed, must be absolute path
+--     name = "lldb",
 -- }
 -- dap.configurations.rust = {
---   {
---     name = 'Launch',
---     type = 'lldb',
---     request = 'launch',
---     program = function()
---       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
---     end,
---     cwd = '${workspaceFolder}',
---     stopOnEntry = false,
---     args = {},
---   },
+--     {
+--         name = "Launch",
+--         type = "lldb",
+--         request = "launch",
+--         program = function() return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file") end,
+--         cwd = "${workspaceFolder}",
+--         stopOnEntry = false,
+--         args = {},
+--     },
 -- }
+--
+-- vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, {
+--     desc = "Debugger toggle breakpoint",
+--     noremap = true,
+--     silent = true,
+-- })
+-- vim.keymap.set("n", "<leader>dc", dap.continue, {
+--     desc = "Debugger toggle breakpoint",
+--     noremap = true,
+--     silent = true,
+-- })

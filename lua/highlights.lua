@@ -77,6 +77,8 @@ highlights["CmpItemKindStruct"] = { link = "CustomVStruct" }
 highlights["CmpItemKindEnumMember"] = { link = "CustomVEnumMember" }
 highlights["CmpItemKindEnum"] = { link = "CustomVEnum" }
 highlights["CmpItemKindHtml"] = { link = "CmpItemKindSnippet" }
+highlights["CmpItemKindVersion"] = { link = "DiagnosticInfo" }
+highlights["CmpItemKindFeature"] = { link = "CustomVFunction" }
 -- highlights["CmpItemKindInterface"] = { link = "CustomVInterface" }
 --
 -- highlights["CmpItemKindColor"] = { link = "" }

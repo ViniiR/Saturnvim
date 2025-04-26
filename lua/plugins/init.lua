@@ -68,12 +68,6 @@ return {
             "nvim-telescope/telescope.nvim",
         },
     },
-    -- {
-    --     "nvim-tree/nvim-tree.lua",
-    --     opts = {
-    --         git = { enable = true },
-    --     },
-    -- },
     {
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -185,6 +179,12 @@ return {
         init = function() vim.g.rustfmt_autosave = 1 end,
     },
     {
+        "saecki/crates.nvim",
+        ft = { "toml" },
+        event = { "BufRead Cargo.toml" },
+        tag = "stable",
+    },
+    {
         "lukas-reineke/virt-column.nvim",
         opts = {},
     },
@@ -196,14 +196,14 @@ return {
     {
         "RRethy/vim-illuminate",
     },
-    {
-        "mfussenegger/nvim-dap",
-    },
+    -- {
+    --     "mfussenegger/nvim-dap",
+    -- },
     -- {
     --     "rcarriga/nvim-dap-ui",
     --     dependencies = {
     --         "mfussenegger/nvim-dap",
-    --         -- "nvim-neotest/nvim-nio",
+    --         "nvim-neotest/nvim-nio",
     --     },
     -- },
 }

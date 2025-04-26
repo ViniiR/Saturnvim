@@ -3,6 +3,8 @@ local cmp = require("cmp")
 -- 󰆧
 local icons = {
     Html = "",
+    Version = "󰏖",
+    Feature = "󰐱",
     Text = "󰉿",
     Function = "󰊕",
     Method = "󰊕",
@@ -98,6 +100,8 @@ local kind_mapper = require("cmp.types").lsp.CompletionItemKind
 -- 	TypeParameter = 25;
 local kind_score = {
     Html = 1,
+    Version = 1,
+    Feature = 1,
     Variable = 1,
     Color = 2,
     Method = 3,
@@ -221,11 +225,13 @@ local options = {
 
             if entry.source.name == "nvim_lsp" and entry.source.source then
                 local lsp_name = tostring(entry.source.source.client.name)
-                local is_html_snippet = lsp_name == "emmet_language_server" and item.kind == (icons.Text .. " Text")
 
-                if is_html_snippet then
-                    item.kind_hl_group = "CmpItemKindHtml"
-                    item.kind = tostring(icons.Html) .. " Html"
+                if item.kind == (icons.Text .. " Text") then
+                    local is_html_snippet = lsp_name == "emmet_language_server"
+                    if is_html_snippet then
+                        item.kind_hl_group = "CmpItemKindHtml"
+                        item.kind = tostring(icons.Html) .. " Html"
+                    end
                 end
             end
 
@@ -323,6 +329,8 @@ local options = {
         { name = "luasnip" },
         { name = "nvim_lua" },
         { name = "buffer" },
+        --
+        { name = "crates" },
     },
     experimental = {
         ghost_text = false,
