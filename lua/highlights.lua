@@ -1,4 +1,7 @@
 -- PLEASE DELETE ALL OF THE COMMENTED OUT IF IT WORKS FINE FROM NOW ON TODO
+
+-- IMPORTANT NOTE:
+-- to disable a highlight set it { link = "" }
 local highlights = {}
 
 -- CustomV
@@ -172,7 +175,6 @@ highlights["@constructor.cpp"] = { link = "CustomVFunction" }
 highlights["@tag.attribute.tsx"] = { link = "CustomVProperty" }
 -- tsx tag
 highlights["@tag.tsx"] = { link = "CustomVType" }
-
 --
 --
 -- Semantic tokens override
@@ -350,6 +352,8 @@ highlights["DiagnosticWarn"] = { fg = COLORS.yellow }
 highlights["DiagnosticError"] = { fg = COLORS.red }
 
 highlights["LspSignatureActiveParameter"] = { fg = COLORS.black, bg = COLORS.green }
+
+highlights["@none.tsx"] = { link = "" }
 
 for hl_name, hl_value in pairs(highlights) do
     vim.api.nvim_set_hl(0, hl_name, hl_value)
