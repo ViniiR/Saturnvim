@@ -3,6 +3,7 @@
 <div align="center">
   <a href="https://github.com/ViniiR/">ViniiR</a>
   <span> • </span>
+  <a href="https://github.com/ViniiR/Saturnvim">Saturnvim</a>
   <p></p>
 </div> 
 
@@ -15,3 +16,5 @@
 ## Showcase
 
 <img src="https://github.com/ViniiR/Saturnvim/blob/master/pictures/screenshot%3A%2027-04-2025%2013%3A35%5B0%5D.png">
+<img src="https://github.com/ViniiR/Saturnvim/blob/master/pictures/screenshot%3A%2027-04-2025%2014%3A00%5B0%5D.png">
+<img src="https://github.com/ViniiR/Saturnvim/blob/master/pictures/screenshot%3A%2027-04-2025%2014%3A01%5B0%5D.png">
