@@ -5,6 +5,7 @@ return {
     },
     {
         "neovim/nvim-lspconfig",
+        -- TODO: move to separate file
         config = function() require("configs.lspconfig") end,
     },
     {
@@ -125,6 +126,7 @@ return {
                     fast_wrap = {},
                     disable_filetype = { "TelescopePrompt", "vim" },
                 },
+                -- TODO: move to separate file
                 config = function(_, opts)
                     require("nvim-autopairs").setup(opts)
                     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
@@ -146,6 +148,7 @@ return {
         lazy = false, -- This plugin is already lazy
         dependencies = "neovim/nvim-lspconfig",
         ft = { "rust" },
+        -- TODO: delete if it works
         -- 11/03/2025 20:39 Confirmed to be working on xv-chat repo (apparently perfectly)
         -- 11/03/2025 21:28 Does not work on overly large projects (hopefully a hardware issue since it works on different pc (same setup))
         -- config = function()

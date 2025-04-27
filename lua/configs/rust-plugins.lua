@@ -1,6 +1,5 @@
 local lspconfig = require("configs.lspconfig")
 
-
 vim.g.rustaceanvim = {
     server = {
         on_attach = lspconfig.on_attach,

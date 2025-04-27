@@ -20,7 +20,7 @@ require("crates").setup({
         },
     },
     popup = {
-        border = BORDER_KIND,
+        border = BORDER_KIND or "single",
     },
 })
 

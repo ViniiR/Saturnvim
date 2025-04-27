@@ -5,7 +5,7 @@
     },
     "std::endl": {
         "prefix": "endl",
-        "body": "std::endl"
+        "body": "std::endl$1"
     },
     "include": {
         "prefix": "in",

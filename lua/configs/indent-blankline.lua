@@ -1,15 +1,15 @@
 local ibl = require("ibl")
-local hooks = require("ibl.hooks")
+-- local hooks = require("ibl.hooks")
 
-local highlight = {
-    "RainbowRed",
-    "RainbowYellow",
-    "RainbowBlue",
-    "RainbowOrange",
-    "RainbowGreen",
-    "RainbowViolet",
-    "RainbowCyan",
-}
+-- local highlight = {
+--     "RainbowRed",
+--     "RainbowYellow",
+--     "RainbowBlue",
+--     "RainbowOrange",
+--     "RainbowGreen",
+--     "RainbowViolet",
+--     "RainbowCyan",
+-- }
 
 -- brightest
 local indent_bar_hl = {

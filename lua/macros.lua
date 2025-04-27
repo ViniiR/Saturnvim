@@ -1,11 +1,13 @@
 local api = vim.api
+
 --- vim <Esc> key
 local esc = api.nvim_replace_termcodes("<Esc>", true, true, true)
+
 local m = {
-    ---@param filetypes table list of string filetypes e.g. {"typescript", "javascript"}
-    ---@param group_name string string of au_group name e.g. "EcmaLogGroup"
     ---@param macro string macro string stored at register
-    ---@param register string register that hold the macro string
+    ---@param register string register to hold the macro string
+    ---@param filetypes table list of string filetypes e.g. { "typescript", "javascript" }
+    ---@param group_name string string of au_group name e.g. "EcmaLogGroup"
     create_macro = function(macro, register, filetypes, group_name)
         api.nvim_create_augroup(group_name, { clear = true })
         api.nvim_create_autocmd("FileType", {

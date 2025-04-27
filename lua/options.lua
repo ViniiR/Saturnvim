@@ -17,6 +17,7 @@ opt.showmode = false
 o.ruler = false
 
 -- editor in general
+
 opt.wrap = true
 opt.list = true
 opt.cursorline = true
@@ -27,11 +28,10 @@ opt.colorcolumn = "80,120"
 opt.virtualedit = "block"
 -- centers the cursor whenever possible
 -- opt.scrolloff = 999
-
--- idk
 opt.ignorecase = true
 
 -- lsp
+
 opt.signcolumn = "yes"
 
 -- disable splash screen
@@ -55,6 +55,7 @@ opt.clipboard = "unnamedplus"
 o.number = true
 o.relativenumber = true
 opt.foldcolumn = "1"
+
 -- indenting
 
 opt.smartindent = true

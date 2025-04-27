@@ -1,4 +1,4 @@
--- _DEPRECATED
+-- TODO: _DEPRECATED
 -- local win_config = {
 --     relative = "editor",
 --     width = vim.o.columns,

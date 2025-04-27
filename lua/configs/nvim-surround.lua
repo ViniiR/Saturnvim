@@ -39,6 +39,7 @@ require("nvim-surround").setup({
         ["k"] = {
             add = { "`", "`" },
         },
+        -- Generic<Type> surround
         ["g"] = {
             add = function()
                 local result = config.get_input("Enter generic Type name: ")

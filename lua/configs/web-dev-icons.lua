@@ -1,7 +1,7 @@
 local devicons = require("nvim-web-devicons")
 
 devicons.setup({})
--- setuo override does not work
+-- setup override does not work
 devicons.set_icon({
     js = {
         icon = "",

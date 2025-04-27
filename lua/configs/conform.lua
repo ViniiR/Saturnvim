@@ -7,6 +7,7 @@ local map = vim.keymap.set
 -- prettierd
 -- clang_format == clang tools
 -- alejandra
+-- yamlfmt
 --
 ---
 
