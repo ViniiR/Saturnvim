@@ -23,8 +23,6 @@ local servers = {
     -- "cssmodules_ls", -- not found
     -- "css-variables-lsp", -- not found
     -- "somesass_ls", -- never used, not found
-    -- kotlin (doesnt work)
-    -- "kotlin_language_server",
     -- prisma
     "prismals",
     -- json, yaml
