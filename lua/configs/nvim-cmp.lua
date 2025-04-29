@@ -265,41 +265,8 @@ local options = {
         expand = function(args) require("luasnip").lsp_expand(args.body) end,
     },
 
-    mapping = {
-        ["<C-p>"] = cmp.mapping.select_prev_item(),
-        ["<C-n>"] = cmp.mapping.select_next_item(),
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-z>"] = cmp.mapping.close(),
-
-        ["<CR>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-        }),
-
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            -- comment to disable <Tab> for luasnip
-            elseif require("luasnip").expand_or_jumpable() then
-                require("luasnip").expand_or_jump()
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            -- comment to disable <S-Tab> for luasnip
-            elseif require("luasnip").jumpable(-1) then
-                require("luasnip").jump(-1)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-    },
+    ---@module "mappings.plugins.cmp"
+    mapping = require("mappings.plugins.cmp"),
 
     matching = { disallow_symbol_nonprefix_matching = false },
     sorting = {

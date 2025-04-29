@@ -1,150 +1,12 @@
--- local telescope_plugin = require("telescope")
 local telescope_builtin = require("telescope.builtin")
 local harpoon = require("harpoon")
 local dap = require("dap")
 local conform = require("conform")
--- TODO: TEST EVERY SINGLE FUCKING BINDING AND ADD LSP DYNAMIC ONES
 
-local keys = {
-    escape = "<Esc>",
-    enter = "<Enter>",
-    carriage_return = "<CR>",
-    space = "<Space>",
-    delete = "<Del>",
-    arrow_left = "<Left>",
-    arrow_down = "<Down>",
-    arrow_up = "<Up>",
-    arrow_right = "<Right>",
-    no_operation = "<Nop>",
-    backspace = "<BS>",
-    home = "<Home>",
-    -- end_key = "<end>",
-    local_leader = "<LocalLeader>",
-    control_backspace = "<C-H>",
-    tab = "<Tab>",
-    shift_tab = "<S-tab>",
-    ---@param keys string
-    ---@return string
-    ---returns <leader>{keys}
-    ---```lua
-    ---leader("ff") == "<leader>ff"
-    ---```
-    leader = function(keys) return "<leader>" .. keys end,
-    ---@param key string
-    ---@param compound_keys? string
-    ---@return string
-    ---returns <C-{key}> or <C-{key}>{compound_keys}
-    ---```lua
-    ---control("c") == "<C-c>"
-    ---control("c", "w") == "<C-c>w"
-    ---```
-    control = function(key, compound_keys)
-        -- TODO: not wokrinadasdasd
-        if string.sub(key, 1, 1) == "<" then key = string.sub(key, 2, -2) end
-        local keymap = "<C-" .. key .. ">"
-        if compound_keys then return keymap .. compound_keys end
-        return keymap
-    end,
-    ---@param key string
-    ---@param compound_keys? string
-    ---@return string
-    ---returns <M-{key}> or <M-{key}>{compound_keys}
-    ---```lua
-    ---alt("c") == "<M-c>"
-    ---alt("c", "w") == "<M-c>w"
-    ---```
-    alt = function(key, compound_keys)
-        if string.sub(key, 1, 1) == "<" then key = string.sub(key, 2, -2) end
-        local keymap = "<M-" .. key .. ">"
-        if compound_keys then return keymap .. compound_keys end
-        return keymap
-    end,
-    ---@param key string
-    ---@param compound_keys? string
-    ---@return string
-    ---returns <C-S-{key}> or <C-S-{key}>{compound_keys}
-    ---```lua
-    ---control_shift("c") == "<C-S-c>"
-    ---control_shift("c", "w") == "<C-S-c>w"
-    ---```
-    control_shift = function(key, compound_keys)
-        if string.sub(key, 1, 1) == "<" then key = string.sub(key, 2, -2) end
-        local keymap = "<C-S-" .. key .. ">"
-        if compound_keys then return keymap .. compound_keys end
-        return keymap
-    end,
-    ---@param key string
-    ---@param compound_keys? string
-    ---@return string
-    ---returns <C-M-{key}> or <C-M-{key}>{compound_keys}
-    ---```lua
-    ---control_shift("c") == "<C-M-c>"
-    ---control_shift("c", "w") == "<C-M-c>w"
-    ---```
-    control_alt = function(key, compound_keys)
-        if string.sub(key, 1, 1) == "<" then key = string.sub(key, 2, -2) end
-        local keymap = "<C-M-" .. key .. ">"
-        if compound_keys then return keymap .. compound_keys end
-        return keymap
-    end,
-    ---@param key string
-    ---@param compound_keys? string
-    ---@return string
-    ---returns <C-S-M-{key}> or <C-S-M-{key}>{compound_keys}
-    ---```lua
-    ---control_shift("c") == "<C-S-M-c>"
-    ---control_shift("c", "w") == "<C-S-M-c>w"
-    ---```
-    control_shift_alt = function(key, compound_keys)
-        if string.sub(key, 1, 1) == "<" then key = string.sub(key, 2, -2) end
-        local keymap = "<C-S-M-" .. key .. ">"
-        if compound_keys then return keymap .. compound_keys end
-        return keymap
-    end,
-}
-
-local desc = {
-    ---@param desc string
-    ---@return table { desc string }
-    desc = function(desc)
-        return {
-            desc = desc,
-        }
-    end,
-    ---@param desc string
-    ---@return table { desc string, noremap boolean }
-    noremap = function(desc)
-        return {
-            desc = desc,
-            noremap = true,
-        }
-    end,
-    ---@param desc string
-    ---@return table { desc string, silent boolean }
-    silent = function(desc)
-        return {
-            desc = desc,
-            noremap = true,
-        }
-    end,
-    ---@param desc string
-    ---@return table { desc string, noremap boolean, silent boolean }
-    noremap_silent = function(desc)
-        return {
-            desc = desc,
-            noremap = true,
-            silent = true,
-        }
-    end,
-}
-
-local modes = {
-    normal = "n",
-    insert = "i",
-    visual = "v",
-    command = "c",
-    terminal = "t",
-}
+local lib = require("mappings.lib")
+local keys = lib.keys
+local modes = lib.modes
+local desc = lib.desc
 
 local mappings = {
     undotree = {
@@ -282,7 +144,7 @@ local mappings = {
     },
     editor = {
         {
-            modes.normal,
+            { modes.normal, modes.visual },
             ";",
             ":",
             desc.noremap("Bind semicolon to colon"),
@@ -302,25 +164,25 @@ local mappings = {
         {
             modes.normal,
             keys.control("h"),
-            keys.control("w", "h"),
+            keys.control("W", "h"),
             desc.desc("Switch window left"),
         },
         {
             modes.normal,
             keys.control("j"),
-            keys.control("w", "j"),
+            keys.control("W", "j"),
             desc.desc("Switch window bottom"),
         },
         {
             modes.normal,
             keys.control("k"),
-            keys.control("w", "k"),
+            keys.control("W", "k"),
             desc.desc("Switch window top"),
         },
         {
             modes.normal,
             keys.control("l"),
-            keys.control("w", "l"),
+            keys.control("W", "l"),
             desc.desc("Switch window right"),
         },
         -- The Primeagen's bindings
@@ -328,13 +190,19 @@ local mappings = {
             modes.normal,
             "Y",
             "yg$",
-            desc.desc("Copy current line without newline"),
+            desc.noremap("Copy cursor positon to end of line without newline"),
+        },
+        {
+            modes.normal,
+            "YY",
+            "mzyyg$`z",
+            desc.noremap("Copy current line without newline"),
         },
         {
             modes.normal,
             "J",
             "mzJ`z",
-            desc.desc("TODO:"),
+            desc.desc("Joins line below without moving cursor"),
         },
         -- map("n", "<C-d>", "<C-d>zz", { noremap = true })
         -- map("n", "<C-u>", "<C-u>zz", { noremap = true })
@@ -347,7 +215,7 @@ local mappings = {
         {
             modes.normal,
             "N",
-            "nzzzv",
+            "Nzzzv",
             desc.desc("Center screen around previous match"),
         },
         -- end of The Primeagen's bindings
@@ -412,15 +280,16 @@ local mappings = {
             function() vim.cmd("Gitsigns toggle_current_line_blame") end,
             desc.noremap_silent("Gitsigns toggle blame"),
         },
+
         -- Insert mode
         {
             { modes.insert, modes.command },
             keys.control_backspace,
-            keys.control("w"),
+            keys.control("W"),
             desc.noremap("Ctrl + backspace delete word backwards"),
         },
         {
-            -- TODO: doesnt work in command mode
+            -- FIXME: doesnt work in command mode
             { modes.insert, modes.command },
             keys.control(keys.delete),
             keys.control("o", "dw"),
@@ -436,30 +305,26 @@ local mappings = {
         -- end)
 
         -- Visual mode
-        {
-            modes.visual,
-            ";",
-            ":",
-            desc.noremap("Ctrl + delete delete word"),
-        },
         -- the Primeagen's bindings
         {
+            -- FIXME: broken
             modes.visual,
             keys.control("j"),
             function()
-                --":m '>+1<CR>gv=gv"
-                vim.cmd("m '>+1" .. keys.carriage_return .. "gv=gv")
+                -- map("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true })
+                vim.cmd("m '>+1<CR>gv=gv")
             end,
-            desc.noremap("TODO:"),
+            desc.noremap("Moves current line down"),
         },
         {
+            -- FIXME: broken
             modes.visual,
             keys.control("k"),
             function()
-                --":m '<-2<CR>gv=gv"
-                vim.cmd("m '<-2" .. keys.carriage_return .. "gv=gv")
+                -- map("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true })
+                vim.cmd("m '<-2<CR>gv=gv")
             end,
-            desc.noremap("TODO:"),
+            desc.noremap("Moves current line up"),
         },
         {
             modes.visual,
@@ -474,7 +339,7 @@ local mappings = {
             modes.command,
             keys.control("c"),
             keys.control("c"),
-            desc.noremap("TODO:"),
+            desc.noremap("TODO: im not exactly sure why it exists but works"),
         },
         {
             modes.command,
@@ -492,105 +357,102 @@ local mappings = {
         -- map("c", ";", "<Nop>", { noremap = true, silent = true })
 
         -- Terminal mode
+        -- TODO: possibly deprecated due to now using toggleterm
+        -- {
+        --     --vim.keymap.set("t", "<C-\\><C-\\>", "<C-\\><C-N>", { noremap = true })
+        --     modes.command,
+        --     keys.control("\\", keys.control("\\")),
+        --     keys.control("\\", keys.control("N")),
+        --     desc.noremap("TODO:"),
+        -- },
+    },
+    lspconfig = {
+        --local function opts(desc) return { buffer = bufnr, desc = "LSP " .. desc } end
         {
-            modes.command,
-            keys.control("\\", keys.control("\\")),
-            keys.control("\\", keys.control("n")),
-            desc.noremap("TODO:"),
+            modes.normal,
+            "gD",
+            vim.lsp.buf.declaration,
+            desc.desc("LSP Go to declaration"),
+        },
+        {
+            modes.normal,
+            "gd",
+            vim.lsp.buf.definition,
+            desc.desc("LSP Go to definition"),
+        },
+        {
+            modes.normal,
+            "gi",
+            vim.lsp.buf.implementation,
+            desc.desc("LSP Go to implementation"),
+        },
+        {
+            modes.normal,
+            keys.leader("sh"),
+            vim.lsp.buf.signature_help,
+            desc.desc("LSP Show signature help"),
+        },
+        {
+            modes.normal,
+            keys.leader("wa"),
+            vim.lsp.buf.add_workspace_folder,
+            desc.desc("LSP Add workspace folder"),
+        },
+        {
+            modes.normal,
+            keys.leader("wr"),
+            vim.lsp.buf.remove_workspace_folder,
+            desc.desc("LSP Remove workspace folder"),
+        },
+        {
+            modes.normal,
+            keys.leader("wl"),
+            function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+            desc.desc("LSP List workspace folder"),
+        },
+        {
+            modes.normal,
+            keys.leader("D"),
+            vim.lsp.buf.type_definition,
+            desc.desc("LSP Go to type definition"),
+        },
+        {
+            { modes.normal, modes.visual },
+            keys.leader("la"),
+            vim.lsp.buf.code_action,
+            desc.desc("LSP Code action"),
+        },
+        {
+            modes.normal,
+            "gr",
+            vim.lsp.buf.references,
+            desc.desc("LSP Show references"),
+        },
+        {
+            modes.normal,
+            "[d",
+            function()
+                vim.diagnostic.goto_prev()
+                vim.diagnostic.open_float()
+            end,
+            desc.desc("LSP Go to previous diagnostic"),
+        },
+        {
+            modes.normal,
+            "]d",
+            function()
+                vim.diagnostic.goto_next()
+                vim.diagnostic.open_float()
+            end,
+            desc.desc("LSP Go to next diagnostic"),
+        },
+        {
+            modes.normal,
+            keys.control("W", "d"),
+            function() vim.diagnostic.open_float() end,
+            desc.desc("LSP Open current line diagnostics"),
         },
     },
-    -- TODO:
-    -- lspconfig = {
-    --
-    -- local function opts(desc) return { buffer = bufnr, desc = "LSP " .. desc } end
-    --
-    -- map("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
-    -- map("n", "gd", vim.lsp.buf.definition, opts("Go to definition"))
-    -- map("n", "gi", vim.lsp.buf.implementation, opts("Go to implementation"))
-    -- map("n", "<leader>sh", vim.lsp.buf.signature_help, opts("Show signature help"))
-    -- map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts("Add workspace folder"))
-    -- map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts("Remove workspace folder"))
-    --
-    -- map(
-    --     "n",
-    --     "<leader>wl",
-    --     function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-    --     opts("List workspace folders")
-    -- )
-    --
-    -- map("n", "<leader>D", vim.lsp.buf.type_definition, opts("Go to type definition"))
-    --
-    -- map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts("Code action"))
-    -- map("n", "gr", vim.lsp.buf.references, opts("Show references"))
-    --
-    -- map("n", "[d", function()
-    --     vim.diagnostic.goto_prev()
-    --     vim.diagnostic.open_float()
-    -- end, { desc = "Goto previous diagnostic" })
-    -- map("n", "]d", function()
-    --     vim.diagnostic.goto_next()
-    --     vim.diagnostic.open_float()
-    -- end, { desc = "Goto next diagnostic" })
-    -- map("n", "<C-w>d", function() vim.diagnostic.open_float() end)
-    -- }
 }
 
-local mappings_setup = {}
-
----Sets up all undotree keybinds
-function mappings_setup:setup_undotree()
-    for _, mapping in ipairs(mappings.undotree) do
-        vim.keymap.set(unpack(mapping))
-    end
-end
-
----Sets up all oil keybinds
-function mappings_setup:setup_oil()
-    for _, mapping in ipairs(mappings.oil) do
-        vim.keymap.set(unpack(mapping))
-    end
-end
-
----Sets up all conform keybinds
-function mappings_setup:setup_conform()
-    for _, mapping in ipairs(mappings.conform) do
-        vim.keymap.set(unpack(mapping))
-    end
-end
-
----Sets up all dap keybinds
-function mappings_setup:setup_dap()
-    for _, mapping in ipairs(mappings.dap) do
-        vim.keymap.set(unpack(mapping))
-    end
-end
-
----Sets up all telescope keybinds
-function mappings_setup:setup_telescope()
-    for _, mapping in ipairs(mappings.telescope) do
-        vim.keymap.set(unpack(mapping))
-    end
-end
-
----Sets up all harpoon keybinds
-function mappings_setup:setup_harpoon()
-    for _, mapping in ipairs(mappings.harpoon) do
-        vim.keymap.set(unpack(mapping))
-    end
-end
-
----Sets up all editor keybinds
-function mappings_setup:setup_editor()
-    for _, mapping in ipairs(mappings.editor) do
-        vim.keymap.set(unpack(mapping))
-    end
-end
-
----Sets up all nvim lsp specific keybinds
-function mappings_setup:setup_lspconfig()
-    for _, mapping in ipairs(mappings.lspconfig) do
-        vim.keymap.set(unpack(mapping))
-    end
-end
-
-return mappings_setup
+return mappings

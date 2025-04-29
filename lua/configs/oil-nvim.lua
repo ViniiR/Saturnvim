@@ -4,7 +4,6 @@ require("oil").setup({
     },
 })
 
-local maps = require("mappings2")
-maps:setup_oil()
+require("mappings.setup").oil()
 
 -- vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })

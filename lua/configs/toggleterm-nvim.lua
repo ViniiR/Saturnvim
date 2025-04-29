@@ -1,7 +1,7 @@
 require("toggleterm").setup({
     -- size can be a number or function which is passed the current terminal
     size = 20,
-    open_mapping = "<C-\\>", -- or [[<c-\>]]
+    open_mapping = require("mappings.plugins.toggleterm").open, -- or [[<c-\>]]
     -- on_create = fun(t: Terminal), -- function to run when the terminal is first created
     -- on_open = fun(t: Terminal), -- function to run when the terminal opens
     -- on_close = fun(t: Terminal), -- function to run when the terminal closes

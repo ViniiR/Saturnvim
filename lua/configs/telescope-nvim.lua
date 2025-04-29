@@ -1,5 +1,5 @@
 local telescope = require("telescope")
-local actions = require("telescope.actions")
+-- local actions = require("telescope.actions")
 
 -- local builtin = require("telescope.builtin")
 --
@@ -19,9 +19,7 @@ local actions = require("telescope.actions")
 --     { desc = "telescope find all files" }
 -- )
 
-local maps = require("mappings2")
-maps:setup_telescope()
-
+require("mappings.setup").telescope()
 
 telescope.setup({
     defaults = {
@@ -39,18 +37,8 @@ telescope.setup({
             height = 0.80,
         },
         sorting_strategy = "ascending",
-        mappings = {
-            n = {
-                ["q"] = actions.close,
-            },
-            i = {
-                ["<C-H>"] = function() vim.api.nvim_input("<C-W>") end,
-                ["<C-Del>"] = function() vim.api.nvim_input("<C-o>dw") end,
-                ["<Tab>"] = function() vim.api.nvim_input("<C-n>") end,
-                ["<S-Tab>"] = function() vim.api.nvim_input("<C-p>") end,
-                ["<Esc>"] = actions.close,
-            },
-        },
+        ---@module "mappings.plugins.telescope"
+        mappings = require("mappings.plugins.telescope"),
         pickers = {},
         extensions = {},
         file_ignore_patterns = { "node_modules", ".git/", "target", ".png", ".webp", ".jpeg", ".jpg", ".svg" },

@@ -77,9 +77,7 @@ require("conform").setup({
     },
 })
 
-local maps = require("mappings2")
-maps:setup_conform()
-
+require("mappings.setup").conform()
 
 -- map("n", "<leader>fm", function()
 --     print("Conform Formatted")

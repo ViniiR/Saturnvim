@@ -1,5 +1,5 @@
 local harpoon = require("harpoon")
-local map = vim.keymap.set;
+local map = vim.keymap.set
 
 -- REQUIRED
 harpoon:setup({})
@@ -23,9 +23,7 @@ harpoon:setup({})
 --     }):find()
 -- end
 
-local maps = require("mappings2")
-maps:setup_harpoon()
-
+require("mappings.setup").harpoon()
 
 -- -- map("n", "<M-e>", function() toggle_telescope(harpoon:list()) end, { desc = "Open harpoon window" })
 -- map("n", "<M-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, {desc = "Toggle Harpoon menu"})
