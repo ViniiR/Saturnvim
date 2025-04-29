@@ -1,4 +1,4 @@
-local lspconfig = require("configs.lspconfig")
+local lspconfig = require("configs.nvim-lspconfig")
 
 vim.g.rustaceanvim = {
     server = {

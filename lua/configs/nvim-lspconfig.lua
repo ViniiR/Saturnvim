@@ -111,17 +111,17 @@ M.on_attach = function(_, bufnr)
 
     map("n", "<leader>D", vim.lsp.buf.type_definition, opts("Go to type definition"))
 
-    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
+    map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts("Code action"))
     map("n", "gr", vim.lsp.buf.references, opts("Show references"))
 
     map("n", "[d", function()
         vim.diagnostic.goto_prev()
         vim.diagnostic.open_float()
-    end)
+    end, { desc = "Goto previous diagnostic" })
     map("n", "]d", function()
         vim.diagnostic.goto_next()
         vim.diagnostic.open_float()
-    end)
+    end, { desc = "Goto next diagnostic" })
     map("n", "<C-w>d", function() vim.diagnostic.open_float() end)
     vim.lsp.inlay_hint.enable(true)
     vim.diagnostic.config({ virtual_text = enable_native_virtual_text and true or false })
@@ -164,6 +164,9 @@ M.defaults = function()
 
         settings = {
             Lua = {
+                runtime = {
+                    version = "LuaJIT", -- Current Neovim Lua runtime version
+                },
                 diagnostics = {
                     globals = { "vim" },
                 },

@@ -1,4 +1,4 @@
-local map = vim.keymap.set
+-- local map = vim.keymap.set
 
 ---
 -- this config is not responsible for installing the formatters and LSPs to keep compatibility with NixOS
@@ -77,12 +77,16 @@ require("conform").setup({
     },
 })
 
-map("n", "<leader>fm", function()
-    print("Conform Formatted")
-    require("conform").format({ lsp_fallback = true })
-end, { desc = "General Format file" })
+local maps = require("mappings2")
+maps:setup_conform()
 
-map("n", "<leader>mm", function()
-    print("Conform Formatted")
-    require("conform").format({ lsp_fallback = true })
-end, { desc = "General Format file" })
+
+-- map("n", "<leader>fm", function()
+--     print("Conform Formatted")
+--     require("conform").format({ lsp_fallback = true })
+-- end, { desc = "General Format file" })
+--
+-- map("n", "<leader>mm", function()
+--     print("Conform Formatted")
+--     require("conform").format({ lsp_fallback = true })
+-- end, { desc = "General Format file" })

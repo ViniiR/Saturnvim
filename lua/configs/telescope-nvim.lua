@@ -1,23 +1,27 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 
-local builtin = require("telescope.builtin")
+-- local builtin = require("telescope.builtin")
+--
+-- local map = vim.keymap.set
+--
+-- map("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+-- map("n", "<leader>fw", builtin.live_grep, { desc = "Telescope live grep" })
+-- map("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+-- -- clone of builtin.buffers for convenience
+-- map("n", "<leader>bb", builtin.buffers, { desc = "Telescope buffers" })
+-- -- map("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+-- map("n", "<leader>fh", function() vim.cmd("Telescope highlights") end, { desc = "Telescope highlights" })
+-- map(
+--     "n",
+--     "<leader>fa",
+--     "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
+--     { desc = "telescope find all files" }
+-- )
 
-local map = vim.keymap.set
+local maps = require("mappings2")
+maps:setup_telescope()
 
-map("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
-map("n", "<leader>fw", builtin.live_grep, { desc = "Telescope live grep" })
-map("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
--- clone of builtin.buffers for convenience
-map("n", "<leader>bb", builtin.buffers, { desc = "Telescope buffers" })
--- map("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
-map("n", "<leader>fh", function() vim.cmd("Telescope highlights") end, { desc = "Telescope highlights" })
-map(
-    "n",
-    "<leader>fa",
-    "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-    { desc = "telescope find all files" }
-)
 
 telescope.setup({
     defaults = {
