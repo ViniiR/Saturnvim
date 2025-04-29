@@ -6,46 +6,34 @@ return {
     {
         "neovim/nvim-lspconfig",
         -- TODO: move to separate file
-        config = function() require("configs.lspconfig") end,
+        config = function() require("configs.nvim-lspconfig") end,
     },
     {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
-            {
-                "neovim/nvim-lspconfig",
-            },
-            {
-                "hrsh7th/cmp-nvim-lsp",
-            },
-            {
-                "hrsh7th/cmp-buffer",
-            },
-            {
-                "hrsh7th/cmp-path",
-            },
-            {
-                "hrsh7th/cmp-cmdline",
-            },
-            {
-                "hrsh7th/nvim-cmp",
-            },
-            {
-                "L3MON4D3/LuaSnip",
-            },
-            {
-                "saadparwaiz1/cmp_luasnip",
-            },
+            { "neovim/nvim-lspconfig" },
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "hrsh7th/cmp-buffer" },
+            { "hrsh7th/cmp-path" },
+            { "hrsh7th/cmp-cmdline" },
+            { "hrsh7th/nvim-cmp" },
+            { "L3MON4D3/LuaSnip" },
+            { "saadparwaiz1/cmp_luasnip" },
         },
     },
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.8",
-        dependencies = { "nvim-lua/plenary.nvim" },
         cmd = "Telescope",
         module = "telescope",
+        dependencies = {
+            { "nvim-lua/plenary.nvim" },
+        },
     },
-    { "brenoprata10/nvim-highlight-colors" },
+    {
+        "brenoprata10/nvim-highlight-colors",
+    },
     {
         "nvim-tree/nvim-web-devicons",
     },
@@ -65,8 +53,8 @@ return {
         branch = "harpoon2",
         lazy = true,
         dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim",
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-telescope/telescope.nvim" },
         },
     },
     {
@@ -79,7 +67,9 @@ return {
         "stevearc/oil.nvim",
         opts = {},
         lazy = true,
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        dependencies = {
+            { "nvim-tree/nvim-web-devicons" },
+        },
     },
     {
         "lukas-reineke/indent-blankline.nvim",
@@ -98,7 +88,9 @@ return {
     {
         "nvimdev/dashboard-nvim",
         event = "VimEnter",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        dependencies = {
+            { "nvim-tree/nvim-web-devicons" },
+        },
     },
     {
         "lewis6991/gitsigns.nvim",
@@ -107,7 +99,9 @@ return {
     },
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        dependencies = {
+            { "nvim-tree/nvim-web-devicons" },
+        },
     },
     {
         "hrsh7th/nvim-cmp",
@@ -134,11 +128,11 @@ return {
                 end,
             },
             {
-                "saadparwaiz1/cmp_luasnip",
-                "hrsh7th/cmp-nvim-lua",
-                "hrsh7th/cmp-nvim-lsp",
-                "hrsh7th/cmp-buffer",
-                "hrsh7th/cmp-path",
+                { "saadparwaiz1/cmp_luasnip" },
+                { "hrsh7th/cmp-nvim-lua" },
+                { "hrsh7th/cmp-nvim-lsp" },
+                { "hrsh7th/cmp-buffer" },
+                { "hrsh7th/cmp-path" },
             },
         },
     },
@@ -146,7 +140,9 @@ return {
         "mrcjkb/rustaceanvim",
         version = "^5", -- Recommended
         lazy = false, -- This plugin is already lazy
-        dependencies = "neovim/nvim-lspconfig",
+        dependencies = {
+            { "neovim/nvim-lspconfig" },
+        },
         ft = { "rust" },
         -- TODO: delete if it works
         -- 11/03/2025 20:39 Confirmed to be working on xv-chat repo (apparently perfectly)
@@ -183,9 +179,9 @@ return {
     },
     {
         "saecki/crates.nvim",
+        tag = "stable",
         ft = { "toml" },
         event = { "BufRead Cargo.toml" },
-        tag = "stable",
     },
     {
         "lukas-reineke/virt-column.nvim",
@@ -199,14 +195,16 @@ return {
     {
         "RRethy/vim-illuminate",
     },
-    -- {
-    --     "mfussenegger/nvim-dap",
-    -- },
-    -- {
-    --     "rcarriga/nvim-dap-ui",
-    --     dependencies = {
-    --         "mfussenegger/nvim-dap",
-    --         "nvim-neotest/nvim-nio",
-    --     },
-    -- },
+    {
+        "mfussenegger/nvim-dap",
+        event = "VeryLazy",
+    },
+    {
+        "rcarriga/nvim-dap-ui",
+        event = "VeryLazy",
+        dependencies = {
+            { "mfussenegger/nvim-dap" },
+            { "nvim-neotest/nvim-nio" },
+        },
+    },
 }

@@ -52,6 +52,7 @@ COLORS = {
     grey_fg2 = "#6f737b",
     light_grey = "#6f737b",
     red = "#e06c75",
+    bright_red = "#FF0000",
     baby_pink = "#DE8C92",
     pink = "#ff75a0",
     line = "#31353d", -- for lines like vertsplit

@@ -353,7 +353,16 @@ highlights["DiagnosticError"] = { fg = COLORS.red }
 
 highlights["LspSignatureActiveParameter"] = { fg = COLORS.black, bg = COLORS.green }
 
+-- dap
+highlights["DapBreakpoint"] = { fg = COLORS.bright_red }
+highlights["DapBreakpointCondition"] = { fg = COLORS.red }
+highlights["DapLogPoint"] = { fg = COLORS.yellow }
+highlights["DapStopped"] = { fg = COLORS.bright_red }
+highlights["DapBreakpointRejected"] = { fg = COLORS.bright_red }
+
+-- disabled
 highlights["@none.tsx"] = { link = "" }
+--
 
 for hl_name, hl_value in pairs(highlights) do
     vim.api.nvim_set_hl(0, hl_name, hl_value)
