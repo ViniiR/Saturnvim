@@ -129,7 +129,7 @@ return {
         -- TEST WORKS
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
-        lazy = false,
+        lazy = true,
         config = function() require("configs._lualine-nvim") end,
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
