@@ -266,7 +266,7 @@ local options = {
     },
 
     ---@module "mappings.plugins.cmp"
-    mapping = require("mappings.plugins.cmp"),
+    mapping = require("mappings.plugins._cmp"),
 
     matching = { disallow_symbol_nonprefix_matching = false },
     sorting = {

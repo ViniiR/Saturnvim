@@ -1,25 +1,6 @@
 local telescope = require("telescope")
--- local actions = require("telescope.actions")
 
--- local builtin = require("telescope.builtin")
---
--- local map = vim.keymap.set
---
--- map("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
--- map("n", "<leader>fw", builtin.live_grep, { desc = "Telescope live grep" })
--- map("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
--- -- clone of builtin.buffers for convenience
--- map("n", "<leader>bb", builtin.buffers, { desc = "Telescope buffers" })
--- -- map("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
--- map("n", "<leader>fh", function() vim.cmd("Telescope highlights") end, { desc = "Telescope highlights" })
--- map(
---     "n",
---     "<leader>fa",
---     "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
---     { desc = "telescope find all files" }
--- )
-
-require("mappings.setup").telescope()
+require("mappings.setup._telescope")()
 
 telescope.setup({
     defaults = {
@@ -38,7 +19,7 @@ telescope.setup({
         },
         sorting_strategy = "ascending",
         ---@module "mappings.plugins.telescope"
-        mappings = require("mappings.plugins.telescope"),
+        mappings = require("mappings.plugins._telescope"),
         pickers = {},
         extensions = {},
         file_ignore_patterns = { "node_modules", ".git/", "target", ".png", ".webp", ".jpeg", ".jpg", ".svg" },

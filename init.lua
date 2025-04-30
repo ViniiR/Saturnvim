@@ -1,7 +1,7 @@
 require("globals")
 require("configs")
 require("options")
-require("mappings.setup").editor()
+require("mappings.setup._editor")()
 require("commands")
 require("autocmds")
 require("highlights")

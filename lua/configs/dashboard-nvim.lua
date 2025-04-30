@@ -77,7 +77,6 @@ require("dashboard").setup({
             { desc = "[Saturvim]", group = "DashboardShortCut" },
             { desc = "[ " .. get_nvim_version() .. "]", group = "DashboardShortCut" },
         },
-        -- TODO fork dashboard-nvim and fix the no-icon error at 367 & allow number keys for mru
         packages = { enable = true },
         project = { enable = false },
         mru = { label = "", icon = "", icon_hl = "" },

@@ -2,6 +2,7 @@
 
 BORDER_KIND = "rounded"
 
+-- signs = { text = { [x.ERROR] = "", [x.WARN] = "", [x.INFO] = "", [x.HINT] = "" } },
 LSP_SYMBOLS = {
     -- ERROR = "",
     -- WARN = "",

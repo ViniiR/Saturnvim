@@ -1,4 +1,4 @@
-local M = {}
+local config = {}
 
 local lspconfig = require("lspconfig")
 
@@ -91,45 +91,16 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
         or false,
 })
 
-local mappings_setup = require("mappings.setup")
+local mappings_setup = require("mappings.setup._lspconfig")
 
-M.on_attach = function(_, bufnr)
-    mappings_setup.lspconfig(bufnr)
-    -- local function opts(desc) return { buffer = bufnr, desc = "LSP " .. desc } end
-    --
-    -- map("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
-    -- map("n", "gd", vim.lsp.buf.definition, opts("Go to definition"))
-    -- map("n", "gi", vim.lsp.buf.implementation, opts("Go to implementation"))
-    -- map("n", "<leader>sh", vim.lsp.buf.signature_help, opts("Show signature help"))
-    -- map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts("Add workspace folder"))
-    -- map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts("Remove workspace folder"))
-    --
-    -- map(
-    --     "n",
-    --     "<leader>wl",
-    --     function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-    --     opts("List workspace folders")
-    -- )
-    --
-    -- map("n", "<leader>D", vim.lsp.buf.type_definition, opts("Go to type definition"))
-    --
-    -- map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts("Code action"))
-    -- map("n", "gr", vim.lsp.buf.references, opts("Show references"))
-    --
-    -- map("n", "[d", function()
-    --     vim.diagnostic.goto_prev()
-    --     vim.diagnostic.open_float()
-    -- end, { desc = "Goto previous diagnostic" })
-    -- map("n", "]d", function()
-    --     vim.diagnostic.goto_next()
-    --     vim.diagnostic.open_float()
-    -- end, { desc = "Goto next diagnostic" })
-    -- map("n", "<C-w>d", function() vim.diagnostic.open_float() end)
+config.on_attach = function(_, bufnr)
+    mappings_setup(bufnr)
+
     vim.lsp.inlay_hint.enable(true)
     vim.diagnostic.config({ virtual_text = enable_native_virtual_text and true or false })
 end
 
-M.on_init = function(client, _)
+config.on_init = function(client, _)
     if client.supports_method("textDocument/semanticTokens") then
         client.server_capabilities.semanticTokensProvider = nil
     end
@@ -139,8 +110,8 @@ M.on_init = function(client, _)
     -- })[1].name
 end
 
-M.capabilities = vim.lsp.protocol.make_client_capabilities()
-M.capabilities.textDocument.completion.completionItem = {
+config.capabilities = vim.lsp.protocol.make_client_capabilities()
+config.capabilities.textDocument.completion.completionItem = {
     documentationFormat = { "markdown", "plaintext" },
     snippetSupport = true,
     preselectSupport = true,
@@ -158,11 +129,11 @@ M.capabilities.textDocument.completion.completionItem = {
     },
 }
 
-M.defaults = function()
+config.defaults = function()
     require("lspconfig").lua_ls.setup({
-        on_attach = M.on_attach,
-        capabilities = M.capabilities,
-        on_init = M.on_init,
+        on_attach = config.on_attach,
+        capabilities = config.capabilities,
+        on_init = config.on_init,
 
         settings = {
             Lua = {
@@ -187,14 +158,14 @@ M.defaults = function()
     })
 end
 
-M.defaults()
+config.defaults()
 
 for _, lsp in ipairs(servers) do
     if lsp == "nixd" then
         lspconfig[lsp].setup({
-            on_init = M.on_init,
-            on_attach = M.on_attach,
-            capabilities = M.capabilities,
+            on_init = config.on_init,
+            on_attach = config.on_attach,
+            capabilities = config.capabilities,
             cmd = { "nixd" },
             settings = {
                 nixd = {
@@ -217,12 +188,11 @@ for _, lsp in ipairs(servers) do
         })
     else
         lspconfig[lsp].setup({
-            on_init = M.on_init,
-            on_attach = M.on_attach,
-            capabilities = M.capabilities,
+            on_init = config.on_init,
+            on_attach = config.on_attach,
+            capabilities = config.capabilities,
         })
     end
 end
 
-return M
--- signs = { text = { [x.ERROR] = "", [x.WARN] = "", [x.INFO] = "", [x.HINT] = "" } },
+return config

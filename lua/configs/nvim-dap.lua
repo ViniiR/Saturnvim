@@ -42,20 +42,4 @@ vim.fn.sign_define("DapStopped", { text = "󰓛", texthl = "DapStopped", linehl 
 -- `DapBreakpointRejected` to indicate breakpoints rejected by the debug adapter (default: `R`)
 vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DapBreakpointRejected", linehl = "", numhl = "" })
 
-require("mappings.setup").dap()
-
--- vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, {
---     desc = "Debugger toggle breakpoint",
---     noremap = true,
---     silent = true,
--- })
--- vim.keymap.set("n", "<leader>dc", dap.continue, {
---     desc = "Debugger continue",
---     noremap = true,
---     silent = true,
--- })
--- vim.keymap.set("n", "<leader>dx", dap.clear_breakpoints, {
---     desc = "Debugger clear breakpoints",
---     noremap = true,
---     silent = true,
--- })
+require("mappings.setup._dap")()
