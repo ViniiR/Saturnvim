@@ -1,40 +1,81 @@
 return {
     {
         "nvim-lua/plenary.nvim",
+        lazy = false,
     },
     {
         "neovim/nvim-lspconfig",
+        event = "VeryLazy",
+        lazy = true,
+        config = function() require("configs.nvim-lspconfig") end,
     },
+    -- {
+    --     "hrsh7th/nvim-cmp",
+    --     event = "InsertEnter",
+    --     lazy = true,
+    --     config = function ()
+    --         require("configs.nvim-cmp")
+    --     end,
+    --     dependencies = {
+    --         { "neovim/nvim-lspconfig" },
+    --         { "hrsh7th/cmp-nvim-lsp" },
+    --         { "hrsh7th/cmp-buffer" },
+    --         { "hrsh7th/cmp-path" },
+    --         { "hrsh7th/cmp-cmdline" },
+    --         { "hrsh7th/nvim-cmp" },
+    --         { "L3MON4D3/LuaSnip" },
+    --         { "saadparwaiz1/cmp_luasnip" },
+    --     },
+    -- },
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.8",
         cmd = "Telescope",
         module = "telescope",
+        event = "VimEnter",
+        lazy = false,
+        config = function() require("configs.telescope-nvim") end,
         dependencies = {
             { "nvim-lua/plenary.nvim" },
         },
     },
     {
         "brenoprata10/nvim-highlight-colors",
+        event = "BufReadPre",
+        lazy = true,
+        config = function() require("configs.nvim-highlight-colors") end,
     },
     {
         "nvim-tree/nvim-web-devicons",
+        event = "VimEnter",
+        lazy = false,
+        config = function() require("configs.nvim-web-dev-icons") end,
     },
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
+        event = "VeryLazy",
+        lazy = true,
+        config = function() require("configs.nvim-treesitter") end,
     },
     {
         "navarasu/onedark.nvim",
+        event = "VimEnter",
+        lazy = false,
+        config = function() require("configs.onedark-nvim") end,
     },
     {
         "stevearc/conform.nvim",
+        event = "BufReadPre",
         lazy = true,
+        config = function() require("configs.conform-nvim") end,
     },
     {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
+        event = "VeryLazy",
         lazy = true,
+        config = function() require("configs.harpoon") end,
         dependencies = {
             { "nvim-lua/plenary.nvim" },
             { "nvim-telescope/telescope.nvim" },
@@ -45,32 +86,43 @@ return {
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
         event = "VeryLazy",
         lazy = true,
+        config = function() require("configs.nvim-surround") end,
     },
     {
         "stevearc/oil.nvim",
-        opts = {},
-        lazy = true,
+        event = "VimEnter",
+        lazy = false,
+        config = function() require("configs.oil-nvim") end,
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
         },
     },
     {
         "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
         event = "User FilePost",
+        main = "ibl",
+        lazy = true,
+        config = function() require("configs.indent-blankline-nvim") end,
     },
     {
         "folke/which-key.nvim",
         keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g", "[", "]" },
         cmd = "WhichKey",
-        event = "VeryLazy",
+        event = "VimEnter",
+        lazy = false,
+        config = function() require("configs.which-key-nvim") end,
     },
     {
         "mbbill/undotree",
+        lazy = true,
+        event = "BufRead",
+        config = function() require("configs.undotree") end,
     },
     {
         "nvimdev/dashboard-nvim",
         event = "VimEnter",
+        lazy = false,
+        config = function() require("configs.dashboard-nvim") end,
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
         },
@@ -79,9 +131,12 @@ return {
         "lewis6991/gitsigns.nvim",
         lazy = true,
         event = "User FilePost",
+        config = function() require("configs.gitsigns-nvim") end,
     },
     {
         "nvim-lualine/lualine.nvim",
+        lazy = false,
+        config = function() require("configs.lualine-nvim") end,
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
         },
@@ -89,18 +144,16 @@ return {
     {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
+        lazy = true,
+        config = function() require("configs.nvim-cmp") end,
         dependencies = {
+
             { "neovim/nvim-lspconfig" },
             { "brenoprata10/nvim-highlight-colors" },
             {
                 "L3MON4D3/LuaSnip",
-                dependencies = {
-                    "rafamadriz/friendly-snippets",
-                },
-                opts = {
-                    history = true,
-                    updateevents = "TextChanged,TextChangedI",
-                },
+                dependencies = "rafamadriz/friendly-snippets",
+                opts = { history = true, updateevents = "TextChanged,TextChangedI" },
                 lazy = true,
             },
             {
@@ -131,6 +184,7 @@ return {
         version = "^5", -- Recommended
         ft = { "rust" },
         lazy = false, -- This plugin is already lazy
+        config = function() require("configs.rustaceanvim") end,
         dependencies = {
             { "neovim/nvim-lspconfig" },
         },
@@ -172,24 +226,37 @@ return {
         tag = "stable",
         ft = { "toml" },
         event = { "BufRead Cargo.toml" },
+        lazy = true,
+        config = function() require("configs.crates-nvim") end,
     },
     {
         "lukas-reineke/virt-column.nvim",
+        event = "BufReadPre",
+        lazy = true,
+        config = function() require("configs.virt-column-nvim") end,
     },
     {
         "akinsho/toggleterm.nvim",
         version = "*",
-        config = true,
+        event = "VimEnter",
+        lazy = false,
+        config = function() require("configs.toggleterm-nvim") end,
     },
     {
         "RRethy/vim-illuminate",
+        event = "BufReadPre",
+        lazy = true,
+        config = function() require("configs.vim-illuminate") end,
     },
     {
         "mfussenegger/nvim-dap",
         event = "VeryLazy",
+        lazy = true,
+        config = function() require("configs.nvim-dap") end,
     },
     {
         "rcarriga/nvim-dap-ui",
+        lazy = true,
         event = "VeryLazy",
         dependencies = {
             { "mfussenegger/nvim-dap" },
