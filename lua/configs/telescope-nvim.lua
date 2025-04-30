@@ -18,7 +18,6 @@ telescope.setup({
             height = 0.80,
         },
         sorting_strategy = "ascending",
-        ---@module "mappings.plugins.telescope"
         mappings = require("mappings.plugins._telescope"),
         pickers = {},
         extensions = {},

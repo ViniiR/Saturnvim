@@ -265,7 +265,6 @@ local options = {
         expand = function(args) require("luasnip").lsp_expand(args.body) end,
     },
 
-    ---@module "mappings.plugins.cmp"
     mapping = require("mappings.plugins._cmp"),
 
     matching = { disallow_symbol_nonprefix_matching = false },
