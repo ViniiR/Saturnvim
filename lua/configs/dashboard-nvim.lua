@@ -21,16 +21,46 @@ local saturnvim_text = {
     [[              .. . ."'            ███████████ ███    ███ █████████ █████ █████ ████ █████                        ]],
     [[             .                   ██████  █████████████████████ ████ █████ █████ ████ ██████                       ]],
     [[                                                                                                                             ]],
-    -- [[                                                                     ]],
-    -- [[       ████ ██████           █████      ██                     ]],
-    -- [[      ███████████             █████                             ]],
-    -- [[      █████████ ███████████████████ ███   ███████████   ]],
-    -- [[     █████████  ███    █████████████ █████ ██████████████   ]],
-    -- [[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
-    -- [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
-    -- [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
-    -- [[                                                                       ]],
 }
+
+local get_nvim_version = function()
+    local version = vim.version()
+    return string.format("%d.%d.%d", version.major, version.minor, version.patch)
+end
+
+require("dashboard").setup({
+    theme = "hyper",
+    config = {
+        header = saturnvim_text,
+        week_header = {
+            enable = false, -- change header based on week day
+        },
+        shortcut = {
+            -- 
+            -- 
+            -- 
+            -- 
+            { desc = SATURNVIM, group = "DashboardShortCut" },
+            { desc = "[" .. NEOVIM_ICONS.filled .. " " .. get_nvim_version() .. "]", group = "DashboardShortCut" },
+        },
+        packages = { enable = true },
+        project = { enable = false },
+        mru = { label = "", icon = "", icon_hl = "" },
+        -- center = {},
+        footer = {
+            "",
+            "Made By " .. V_ICON,
+        },
+    },
+})
+-- -- General
+-- DashboardHeader DashboardFooter
+-- -- Hyper theme
+-- DashboardProjectTitle DashboardProjectTitleIcon DashboardProjectIcon
+-- DashboardMruTitle DashboardMruIcon DashboardFiles DashboardShortCutIcon
+-- -- Doome theme
+-- DashboardDesc DashboardKey DashboardIcon DashboardShortCut
+--
 -- local saturn_plus = {
 --     [[                                                   ]],
 --     [[                                              ___  ]],
@@ -56,41 +86,12 @@ local saturnvim_text = {
 --     [[ .                                                 ]],
 --     [[                                                   ]],
 -- }
-
-local get_nvim_version = function()
-    local version = vim.version()
-    return string.format("%d.%d.%d", version.major, version.minor, version.patch)
-end
-
-require("dashboard").setup({
-    theme = "hyper",
-    config = {
-        header = saturnvim_text,
-        week_header = {
-            enable = false, -- change header based on week day
-        },
-        shortcut = {
-            -- 
-            -- 
-            -- 
-            -- 
-            { desc = "[Saturvim]", group = "DashboardShortCut" },
-            { desc = "[ " .. get_nvim_version() .. "]", group = "DashboardShortCut" },
-        },
-        packages = { enable = true },
-        project = { enable = false },
-        mru = { label = "", icon = "", icon_hl = "" },
-        -- center = {},
-        footer = {
-            "",
-            "Made By ",
-        },
-    },
-})
--- -- General
--- DashboardHeader DashboardFooter
--- -- Hyper theme
--- DashboardProjectTitle DashboardProjectTitleIcon DashboardProjectIcon
--- DashboardMruTitle DashboardMruIcon DashboardFiles DashboardShortCutIcon
--- -- Doome theme
--- DashboardDesc DashboardKey DashboardIcon DashboardShortCut
+-- [[                                                                     ]],
+-- [[       ████ ██████           █████      ██                     ]],
+-- [[      ███████████             █████                             ]],
+-- [[      █████████ ███████████████████ ███   ███████████   ]],
+-- [[     █████████  ███    █████████████ █████ ██████████████   ]],
+-- [[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
+-- [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
+-- [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
+-- [[                                                                       ]],

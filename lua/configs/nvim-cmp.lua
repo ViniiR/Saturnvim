@@ -1,57 +1,5 @@
 local cmp = require("cmp")
 
--- 󰆧
-local icons = {
-    Html = "",
-    Version = "󰏖",
-    Feature = "󰐱",
-    Text = "󰉿",
-    Function = "󰊕",
-    Method = "󰊕",
-    Constructor = "",
-    Field = "󰜢",
-    Variable = "󰀫",
-    Class = "󰠱",
-    Interface = "",
-    Module = "",
-    Property = "󰜢",
-    Value = "󰎠",
-    Enum = "",
-    Keyword = "󰌋", --
-    Snippet = "",
-    Color = "󰏘",
-    Constant = "󰏿",
-    Struct = "󰙅",
-    String = "󰉿",
-    Operator = "󰆕",
-    Table = "",
-    Object = "󰅩",
-    Tag = "",
-    Array = "[]",
-    Boolean = "", --
-    Number = "", --
-    Null = "󰟢", --
-    File = "󰈚",
-    Folder = "󰉋", -- Directory
-    Namespace = "󰌗",
-    TypeParameter = "󰊄",
-    Package = "",
-    EnumMember = "",
-
-    --
-
-    Unit = "󰑭",
-    Reference = "󰈇",
-    Event = "",
-    Supermaven = "",
-    Calendar = "",
-    Watch = "󰥔",
-    Copilot = "",
-    Codeium = "",
-    TabNine = "",
-    BladeNav = "",
-}
-
 --- Moves CompletionItemKind to the bottom of priority
 --- @param kind any CompletionItemKind
 --- @return nil
@@ -72,32 +20,6 @@ local function set_bottom_priority(kind) -- unnecessary as long as the function 
 end
 
 local kind_mapper = require("cmp.types").lsp.CompletionItemKind
--- Defaults
--- 	Text = 1;
--- 	Method = 2;
--- 	Function = 3;
--- 	Constructor = 4;
--- 	Field = 5;
--- 	Variable = 6;
--- 	Class = 7;
--- 	Interface = 8;
--- 	Module = 9;
--- 	Property = 10;
--- 	Unit = 11;
--- 	Value = 12;
--- 	Enum = 13;
--- 	Keyword = 14;
--- 	Snippet = 15;
--- 	Color = 16;
--- 	File = 17;
--- 	Reference = 18;
--- 	Folder = 19;
--- 	EnumMember = 20;
--- 	Constant = 21;
--- 	Struct = 22;
--- 	Event = 23;
--- 	Operator = 24;
--- 	TypeParameter = 25;
 local kind_score = {
     Html = 1,
     Version = 1,
@@ -153,7 +75,7 @@ local options_hlc = {
     enable_short_hex = true,
     enable_tailwind = false,
     custom_colors = nil,
-    virtual_symbol = "■",
+    virtual_symbol = VIRTUAL_COLOR_ICON,
     virtual_symbol_prefix = "",
     virtual_symbol_suffix = " ",
     virtual_symbol_position = "inline",
@@ -214,9 +136,9 @@ local options = {
         format = function(entry, item)
             if item.menu ~= nil and #item.menu >= 60 then item.menu = string.sub(item.menu or "", 1, 60) .. "..." end
 
-            local icon = icons[item.kind]
+            local icon = CMP_ICONS[item.kind]
             if icon == nil then
-                item.kind = icons.Text .. " Text"
+                item.kind = CMP_ICONS.Text .. " Text"
             else
                 -- item.kind = " " .. item.kind
                 -- item.abbr = tostring(icon) .. " " .. item.abbr
@@ -226,11 +148,11 @@ local options = {
             if entry.source.name == "nvim_lsp" and entry.source.source then
                 local lsp_name = tostring(entry.source.source.client.name)
 
-                if item.kind == (icons.Text .. " Text") then
+                if item.kind == (CMP_ICONS.Text .. " Text") then
                     local is_html_snippet = lsp_name == "emmet_language_server"
                     if is_html_snippet then
                         item.kind_hl_group = "CmpItemKindHtml"
-                        item.kind = tostring(icons.Html) .. " Html"
+                        item.kind = tostring(CMP_ICONS.Html) .. " Html"
                     end
                 end
             end
@@ -304,6 +226,33 @@ local options = {
 }
 
 cmp.setup(options)
+
+-- Default kind scores
+-- 	Text = 1;
+-- 	Method = 2;
+-- 	Function = 3;
+-- 	Constructor = 4;
+-- 	Field = 5;
+-- 	Variable = 6;
+-- 	Class = 7;
+-- 	Interface = 8;
+-- 	Module = 9;
+-- 	Property = 10;
+-- 	Unit = 11;
+-- 	Value = 12;
+-- 	Enum = 13;
+-- 	Keyword = 14;
+-- 	Snippet = 15;
+-- 	Color = 16;
+-- 	File = 17;
+-- 	Reference = 18;
+-- 	Folder = 19;
+-- 	EnumMember = 20;
+-- 	Constant = 21;
+-- 	Struct = 22;
+-- 	Event = 23;
+-- 	Operator = 24;
+-- 	TypeParameter = 25;
 
 -- cmp.setup.cmdline({ "/", "?" }, {
 --     mapping = cmp.mapping.preset.cmdline(),

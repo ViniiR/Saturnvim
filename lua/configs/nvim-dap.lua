@@ -26,20 +26,27 @@ dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() 
 dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
 dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
 
--- `DapBreakpoint` for breakpoints (default: `B`)
-vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint", linehl = "", numhl = "" })
--- `DapBreakpointCondition` for conditional breakpoints (default: `C`)
-vim.fn.sign_define("DapBreakpointCondition", {
-    text = "",
-    texthl = "DapBreakpointCondition",
-    linehl = "",
-    numhl = "",
+local sign = vim.fn.sign_define
+
+sign("DapBreakpoint", {
+    text = DAP_SYMBOLS.DAP_BREAKPOINT,
+    texthl = "DapBreakpoint",
 })
--- `DapLogPoint` for log points (default: `L`)
-vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DapLogPoint", linehl = "", numhl = "" })
--- `DapStopped` to indicate where the debugee is stopped (default: `→`)
-vim.fn.sign_define("DapStopped", { text = "󰓛", texthl = "DapStopped", linehl = "", numhl = "" })
--- `DapBreakpointRejected` to indicate breakpoints rejected by the debug adapter (default: `R`)
-vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DapBreakpointRejected", linehl = "", numhl = "" })
+sign("DapBreakpointCondition", {
+    text = DAP_SYMBOLS.DAP_BREAKPOINT_CONDITION,
+    texthl = "DapBreakpointCondition",
+})
+sign("DapLogPoint", {
+    text = DAP_SYMBOLS.DAP_LOG_POINT,
+    texthl = "DapLogPoint",
+})
+sign("DapStopped", {
+    text = DAP_SYMBOLS.DAP_STOPPED,
+    texthl = "DapStopped",
+})
+sign("DapBreakpointRejected", {
+    text = DAP_SYMBOLS.DAP_BREAKPOINT_REJECTED,
+    texthl = "DapBreakpointRejected",
+})
 
 require("mappings.setup._dap")()

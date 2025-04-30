@@ -1,16 +1,16 @@
 local opt = vim.opt
 local o = vim.o
 
--- charlist
+-- char list
 opt.fillchars = {
-    eob = "b",
-    fold = " ",
-    foldopen = "",
-    foldclose = "",
-    foldsep = "│",
+    eob = FILLCHARS.EOB,
+    fold = FILLCHARS.FOLD,
+    foldopen = FILLCHARS.FOLDOPEN,
+    foldclose = FILLCHARS.FOLDCLOSE,
+    foldsep = FILLCHARS.FOLDSEP,
 }
-opt.listchars:append("space:⋅")
-opt.listchars:append("eol:↴")
+opt.listchars:append(LISTCHARS.SPACE)
+opt.listchars:append(LISTCHARS.EOL)
 
 -- commandline bar
 opt.showmode = false
@@ -30,8 +30,7 @@ opt.virtualedit = "block"
 -- opt.scrolloff = 999
 opt.ignorecase = true
 
--- lsp
-
+-- sign column for sign_define() icons (includes fold icons)
 opt.signcolumn = "yes"
 
 -- disable splash screen

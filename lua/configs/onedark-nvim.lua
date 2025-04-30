@@ -34,6 +34,7 @@ require("onedark").setup({
     colors = {}, -- Override default colors
 
     highlights = {
+        -- TODO: remove
         -- DevIconc = { fg = COLORS.blue },
         -- DevIconcss = { fg = COLORS.blue },
         -- DevIcondeb = { fg = COLORS.cyan },

@@ -123,6 +123,94 @@ v_one_dark.command = {
         bg = command_bg,
     },
 }
+require("lualine").setup({
+    options = {
+        icons_enabled = true,
+        theme = v_one_dark,
+        -- █
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
+        disabled_filetypes = {
+            "NvimTree",
+            -- statusline = {},
+            -- winbar = {},
+        },
+        ignore_focus = {},
+        always_divide_middle = true,
+        globalstatus = false,
+        refresh = {
+            statusline = 1000,
+            tabline = 1000, -- TODO disable
+            winbar = 1000, -- TODO disable
+        },
+    },
+    sections = {
+        lualine_a = { function() return VIM_MODE_MAP[vim.api.nvim_get_mode().mode] or "_?" end },
+        lualine_b = {
+            { "branch", icon = GIT_ICONS.branch },
+            {
+                "diff",
+                symbols = {
+                    added = GIT_ICONS.added .. " ",
+                    modified = GIT_ICONS.modified .. " ",
+                    removed = GIT_ICONS.removed .. " ",
+                },
+            },
+            -- { "diff", symbols = { added = " ", modified = " ", removed = " " } },
+        },
+        lualine_c = {
+            { "filename", file_status = false },
+            function()
+                if vim.bo.modified then
+                    return "%#CustomVLualineGreen#" .. LUALINE_ICONS.file_modified
+                elseif vim.bo.modifiable == false or vim.bo.readonly == true then
+                    return "%#CustomVLualineYellow#" .. LUALINE_ICONS.file_immuatable
+                else
+                    return ""
+                end
+            end,
+            { "filetype", icon_only = true },
+            -- "searchcount",
+        },
+        lualine_x = {
+            {
+                "diagnostics",
+                symbols = {
+                    error = LSP_SYMBOLS.ERROR .. " ",
+                    warn = LSP_SYMBOLS.WARN .. " ",
+                    info = LSP_SYMBOLS.INFO .. " ",
+                    hint = LSP_SYMBOLS.HINT .. " ",
+                },
+            },
+            function() return LUALINE_ICONS.lsp_server .. " " .. vim.g.current_attached_lsp end,
+        },
+        lualine_y = {
+            -- "encoding",
+            "fileformat",
+            function()
+                local tablen = vim.bo.tabstop
+                if string.len(tablen) == 0 then return "" end
+                return "Tabs: " .. tablen .. ","
+            end,
+            function() return "Ln " .. vim.fn.line(".") .. ", " .. "Col " .. vim.fn.charcol(".") end,
+        },
+        lualine_z = {
+            function() return LUALINE_ICONS.directory .. " " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") end,
+        },
+    },
+    inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { "filename" },
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
+    },
+    tabline = {},
+    winbar = {},
+    inactive_winbar = {},
+    extensions = {},
+})
 
 --["n"] = { "NORMAL", "Normal" },
 --["no"] = { "NORMAL (no)", "Normal" },
@@ -166,42 +254,6 @@ v_one_dark.command = {
 --["r?"] = { "CONFIRM", "Confirm" },
 --["x"] = { "CONFIRM", "Confirm" },
 --["!"] = { "SHELL", "Terminal" },
-local mode_map = {
-    ["n"] = " NORMAL",
-    ["no"] = " O-PENDING",
-    ["nov"] = " O-PENDING",
-    ["noV"] = " O-PENDING",
-    ["no"] = " O-PENDING",
-    ["niI"] = " NORMAL",
-    ["niR"] = " NORMAL",
-    ["niV"] = " NORMAL",
-    ["nt"] = " NORMAL",
-    ["v"] = " VISUAL",
-    ["vs"] = " VISUAL",
-    ["V"] = " V-LINE",
-    ["Vs"] = " V-LINE",
-    [""] = " V-BLOCK",
-    ["s"] = " SELECT",
-    ["S"] = " S-LINE",
-    [""] = " S-BLOCK",
-    ["i"] = " INSERT",
-    ["ic"] = " INSERT",
-    ["ix"] = " INSERT",
-    ["R"] = " REPLACE",
-    ["Rc"] = " REPLACE",
-    ["Rx"] = " REPLACE",
-    ["Rv"] = " V-REPLACE",
-    ["Rvc"] = " V-REPLACE",
-    ["Rvx"] = " V-REPLACE",
-    ["c"] = " COMMAND",
-    ["cv"] = " EX",
-    ["ce"] = " EX",
-    ["r"] = " REPLACE",
-    ["rm"] = " MORE",
-    ["r?"] = " CONFIRM",
-    ["!"] = " SHELL",
-    ["t"] = " TERMINAL",
-}
 -- local mode_map = {
 --     --  
 --     --  󰉖
@@ -241,84 +293,3 @@ local mode_map = {
 --     ["t"] = " TERMINAL",
 -- }
 
-require("lualine").setup({
-    options = {
-        icons_enabled = true,
-        theme = v_one_dark,
-        -- █
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
-        disabled_filetypes = {
-            "NvimTree",
-            -- statusline = {},
-            -- winbar = {},
-        },
-        ignore_focus = {},
-        always_divide_middle = true,
-        globalstatus = false,
-        refresh = {
-            statusline = 1000,
-            tabline = 1000,
-            winbar = 1000,
-        },
-    },
-    sections = {
-        lualine_a = { function() return mode_map[vim.api.nvim_get_mode().mode] or "_?" end },
-        lualine_b = {
-            { "branch", icon = "󰘬" },
-            { "diff", symbols = { added = "󰐖 ", modified = "󰦓 ", removed = "󰍵 " } },
-            -- { "diff", symbols = { added = " ", modified = " ", removed = " " } },
-        },
-        lualine_c = {
-            { "filename", file_status = false },
-            function()
-                if vim.bo.modified then
-                    return "%#CustomVLualineGreen#[󱗜]~"
-                elseif vim.bo.modifiable == false or vim.bo.readonly == true then
-                    return "%#CustomVLualineYellow#[󰐀]-"
-                else
-                    return ""
-                end
-            end,
-            { "filetype", icon_only = true },
-            -- "searchcount",
-        },
-        lualine_x = {
-            {
-                "diagnostics",
-                symbols = {
-                    error = LSP_SYMBOLS.ERROR .. " ",
-                    warn = LSP_SYMBOLS.WARN .. " ",
-                    info = LSP_SYMBOLS.INFO .. " ",
-                    hint = LSP_SYMBOLS.HINT .. " ",
-                },
-            },
-            function() return "󰒋 " .. vim.g.current_attached_lsp end,
-        },
-        lualine_y = {
-            -- "encoding",
-            "fileformat",
-            function()
-                local tablen = vim.bo.tabstop
-                if string.len(tablen) == 0 then return "" end
-                return "Tabs: " .. tablen .. ","
-            end,
-            function() return "Ln " .. vim.fn.line(".") .. ", " .. "Col " .. vim.fn.charcol(".") end,
-        },
-        lualine_z = {
-            function() return "󰉖 " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") end,
-        },
-    },
-    inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { "filename" },
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {},
-    },
-    tabline = {},
-    winbar = {},
-    inactive_winbar = {},
-    extensions = {},
-})

@@ -5,10 +5,11 @@ require("mappings.setup._telescope")()
 telescope.setup({
     defaults = {
         layout_strategy = "horizontal",
-        prompt_prefix = "   ",
-        selection_caret = " ",
+        prompt_prefix = " " .. TELESCOPE_ICONS.prompt .. "  ",
+        selection_caret = TELESCOPE_ICONS.selection_caret,
+        -- space before all entries
         entry_prefix = " ",
-        borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+        borderchars = ROUNDED_BORDER_CHARS,
         layout_config = {
             horizontal = {
                 prompt_position = "top",

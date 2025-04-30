@@ -12,9 +12,12 @@ local ibl = require("ibl")
 -- }
 
 local opts = {
-    indent = { char = "│" },
+    -- used for all indents
+    indent = { char = INDENT_BLANK_LINE_PIPE },
     scope = {
-        char = "│",
+        -- used for scopes e.g if statement
+        -- overrides normal indent
+        char = INDENT_BLANK_LINE_SCOPE_PIPE,
         enabled = true,
         show_start = false,
         show_end = false,

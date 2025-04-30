@@ -1,15 +1,12 @@
-local config = {}
-
 local lspconfig = require("lspconfig")
 
-vim.g.current_attached_lsp = "No LSP"
-
 local enable_native_virtual_text = true
+local x = vim.diagnostic.severity
+vim.g.current_attached_lsp = "No LSP"
+local config = {}
 
 -- disable semantic tokens completely
 -- vim.highlight.priorities.semantic_tokens = 0
-
-local x = vim.diagnostic.severity
 
 local servers = {
     -- ts, js, html, css
@@ -39,7 +36,7 @@ local servers = {
 
 vim.diagnostic.config({
     virtual_text = enable_native_virtual_text and {
-        prefix = "",
+        prefix = VIRTUAL_TEXT_PREFIX,
         virt_text_hide = false,
     } or false,
     signs = {
@@ -58,37 +55,51 @@ vim.diagnostic.config({
     },
 })
 
-vim.fn.sign_define("DiagnosticSignError", { text = LSP_SYMBOLS.ERROR, texthl = "DiagnosticSignError" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = LSP_SYMBOLS.WARN, texthl = "DiagnosticSignWarn" })
-vim.fn.sign_define("DiagnosticSignInfo", { text = LSP_SYMBOLS.INFO, texthl = "DiagnosticSignInfo" })
-vim.fn.sign_define("DiagnosticSignHint", { text = LSP_SYMBOLS.HINT, texthl = "DiagnosticSignHint" })
+-- TODO: uncomment if broken
+-- local sign = vim.fn.sign_define
+--
+-- sign("DiagnosticSignError", {
+--     text = LSP_SYMBOLS.ERROR,
+--     texthl = "DiagnosticSignError",
+-- })
+-- sign("DiagnosticSignWarn", {
+--     text = LSP_SYMBOLS.WARN,
+--     texthl = "DiagnosticSignWarn",
+-- })
+-- sign("DiagnosticSignInfo", {
+--     text = LSP_SYMBOLS.INFO,
+--     texthl = "DiagnosticSignInfo",
+-- })
+-- sign("DiagnosticSignHint", {
+--     text = LSP_SYMBOLS.HINT,
+--     texthl = "DiagnosticSignHint",
+-- })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = BORDER_KIND or "single",
+    -- TODO: set max width
     max_width = nil,
     max_height = nil,
     title = " Info ",
 })
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = enable_native_virtual_text
-            and {
-                prefix = function(diagnostic)
-                    local vim_diagnostic = vim.diagnostic.severity
-                    local severity = diagnostic.severity
-                    if severity == vim_diagnostic.ERROR then
-                        return " " .. LSP_SYMBOLS.ERROR
-                    elseif severity == vim_diagnostic.WARN then
-                        return " " .. LSP_SYMBOLS.WARN
-                    elseif severity == vim_diagnostic.INFO then
-                        return " " .. LSP_SYMBOLS.INFO
-                    elseif severity == vim_diagnostic.HINT then
-                        return " " .. LSP_SYMBOLS.HINT
-                    else
-                        return "" --■
-                    end
-                end,
-            }
-        or false,
+    virtual_text = enable_native_virtual_text and {
+        prefix = function(diagnostic)
+            local vim_diagnostic = vim.diagnostic.severity
+            local severity = diagnostic.severity
+            if severity == vim_diagnostic.ERROR then
+                return " " .. LSP_SYMBOLS.ERROR
+            elseif severity == vim_diagnostic.WARN then
+                return " " .. LSP_SYMBOLS.WARN
+            elseif severity == vim_diagnostic.INFO then
+                return " " .. LSP_SYMBOLS.INFO
+            elseif severity == vim_diagnostic.HINT then
+                return " " .. LSP_SYMBOLS.HINT
+            else
+                return VIRTUAL_TEXT_PREFIX
+            end
+        end,
+    } or false,
 })
 
 local mappings_setup = require("mappings.setup._lspconfig")

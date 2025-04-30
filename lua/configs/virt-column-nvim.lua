@@ -1,3 +1,3 @@
 require("virt-column").setup({
-    char = "│",
+    char = VIRT_COLUMN_PIPE,
 })
