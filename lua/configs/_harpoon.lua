@@ -1,14 +1,24 @@
-local harpoon = require("harpoon")
+-- ensure set before mappings
+HARPOON_OPTS = {
+    border = BORDER_KIND,
+    title_pos = "left",
+    title = " " .. HARPOON_ICON .. " Harpoon ",
+}
 
+require("mappings.setup._harpoon")()
+
+-- possibly deprecated
+--
+-- local harpoon = require("harpoon")
 -- REQUIRED
-harpoon:setup({
-    settings = {
-        border = BORDER_KIND,
-        display = {
-            title = "test",
-        },
-    },
-})
+-- harpoon:setup({
+--     settings = {
+--         border = BORDER_KIND,
+--         display = {
+--             title = "test",
+--         },
+--     },
+-- })
 -- REQUIRED
 
 -- basic telescope configuration
@@ -28,5 +38,3 @@ harpoon:setup({
 --         sorter = conf.generic_sorter({}),
 --     }):find()
 -- end
-
-require("mappings.setup._harpoon")()

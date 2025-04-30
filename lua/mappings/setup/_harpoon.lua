@@ -4,13 +4,15 @@ local modes = lib.modes
 local desc = lib.desc
 local harpoon = require("harpoon")
 
+local harpoon_opts = HARPOON_OPTS
+
 local mappings = {
     {
         -- map("n", "<M-e>", function() toggle_telescope(harpoon:list()) end, { desc = "Open harpoon window" })
         -- map("i", "<M-e>", function() toggle_telescope(harpoon:close_menu()) end, { desc = "Open harpoon window" })
         modes.normal,
         keys.alt("e"),
-        function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+        function() harpoon.ui:toggle_quick_menu(harpoon:list(), harpoon_opts) end,
         desc.desc("Open harpoon window"),
     },
     {
