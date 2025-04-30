@@ -1,5 +1,5 @@
 -- Ensure lazy is first
-require("configs.lazy-nvim")
+require("configs._lazy-nvim")
 --
 
 -- -- Must be loaded immediately

@@ -1,7 +1,14 @@
 local harpoon = require("harpoon")
 
 -- REQUIRED
-harpoon:setup({})
+harpoon:setup({
+    settings = {
+        border = BORDER_KIND,
+        display = {
+            title = "test",
+        },
+    },
+})
 -- REQUIRED
 
 -- basic telescope configuration
