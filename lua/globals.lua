@@ -41,6 +41,22 @@ COLORS = {
     title_fg = "#65b6c2",
     ts_fg = "#2d79c7",
 
+    -- brightest
+    indent_bar_hl = {
+        fg = "#42464e",
+        bg = "none",
+    },
+    -- in between
+    indent_whitespace_hl = {
+        fg = "#373c45",
+        bg = "none",
+    },
+    -- dimmest one
+    whitespace_hl = {
+        fg = "#31353d",
+        bg = "none",
+    },
+
     white = "#abb2bf",
     darker_black = "#1b1f27",
     black = "#1e222a", --  nvim bg

@@ -11,33 +11,6 @@ local ibl = require("ibl")
 --     "RainbowCyan",
 -- }
 
--- brightest
-local indent_bar_hl = {
-    fg = "#42464e",
-    bg = "none",
-}
--- in between
-local indent_whitespace_hl = {
-    fg = "#373c45",
-    bg = "none",
-}
--- dimmest one
-local whitespace_hl = {
-    fg = "#31353d",
-    bg = "none",
-}
-
---Ibl hl groups
-vim.api.nvim_set_hl(0, "IblIndent", indent_bar_hl)
-vim.api.nvim_set_hl(0, "IblWhitespace", indent_whitespace_hl)
-vim.api.nvim_set_hl(0, "Whitespace", whitespace_hl)
-vim.api.nvim_set_hl(0, "IblScope", { fg = "grey", bg = "none" })
--- vim.api.nvim_set_hl(0, "@ibl.scope.underline.1", { fg = "white", bg = "none" })
-
--- nvim default for \n chars
-vim.api.nvim_set_hl(0, "NonText", whitespace_hl)
-vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#5c6370" }) --  by default links to NonText so hard code default color or NonText
-
 local opts = {
     indent = { char = "│" },
     scope = {

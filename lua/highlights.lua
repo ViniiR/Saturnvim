@@ -360,6 +360,18 @@ highlights["DapLogPoint"] = { fg = COLORS.yellow }
 highlights["DapStopped"] = { fg = COLORS.bright_red }
 highlights["DapBreakpointRejected"] = { fg = COLORS.bright_red }
 
+-- ibl indent blank line
+highlights["IblIndent"] = COLORS.indent_bar_hl
+highlights["IblWhitespace"] = COLORS.indent_whitespace_hl
+highlights["Whitespace"] = COLORS.whitespace_hl
+highlights["IblScope"] = { fg = "grey", bg = "none" }
+-- vim.api.nvim_set_hl(0, "@ibl.scope.underline.1", { fg = "white", bg = "none" })
+
+-- nvim default for \n chars
+highlights["NonText"] = COLORS.whitespace_hl
+-- nvim lsp inlay hint
+highlights["LspInlayHint"] = { fg = "#5c6370" } --  by default links to NonText so hard code default color or NonText
+
 -- disabled
 highlights["@none.tsx"] = { link = "" }
 --
