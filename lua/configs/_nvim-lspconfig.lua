@@ -80,7 +80,7 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     -- TODO: set max width
     max_width = nil,
     max_height = nil,
-    title = " Info ",
+    title = " " .. INFO_ICON .. " Info ",
 })
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = enable_native_virtual_text and {
