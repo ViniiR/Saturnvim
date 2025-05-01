@@ -180,6 +180,9 @@ local options = {
             side_padding = 1,
             scrollbar = false,
             scrolloff = 0,
+            -- FORK
+            -- title = " TEST ",
+            -- title_pos = "center",
         },
     },
 

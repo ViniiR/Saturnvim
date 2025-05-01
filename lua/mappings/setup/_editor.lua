@@ -166,26 +166,26 @@ local mappings = {
 
     -- Visual mode
     -- the Primeagen's bindings
-    {
-        -- FIXME: broken
-        modes.visual,
-        keys.control("j"),
-        function()
-            -- map("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true })
-            vim.cmd("m '>+1<CR>gv=gv")
-        end,
-        desc.noremap("Moves current line down"),
-    },
-    {
-        -- FIXME: broken
-        modes.visual,
-        keys.control("k"),
-        function()
-            -- map("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true })
-            vim.cmd("m '<-2<CR>gv=gv")
-        end,
-        desc.noremap("Moves current line up"),
-    },
+    -- {
+    --     -- FIXME: broken
+    --     modes.visual,
+    --     keys.control("j"),
+    --     function()
+    --         -- map("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true })
+    --         vim.cmd("m '>+1<CR>gv=gv")
+    --     end,
+    --     desc.noremap("Moves current line down"),
+    -- },
+    -- {
+    --     -- FIXME: broken
+    --     modes.visual,
+    --     keys.control("k"),
+    --     function()
+    --         -- map("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true })
+    --         vim.cmd("m '<-2<CR>gv=gv")
+    --     end,
+    --     desc.noremap("Moves current line up"),
+    -- },
     {
         modes.visual,
         keys.leader("lr"),
