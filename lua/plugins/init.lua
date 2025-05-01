@@ -251,21 +251,37 @@ return {
         lazy = true,
         config = function() require("configs._vim-illuminate") end,
     },
-    {
-        -- TEST WORKS
-        "mfussenegger/nvim-dap",
-        event = "VeryLazy",
-        lazy = true,
-        config = function() require("configs._nvim-dap") end,
-    },
-    {
-        -- TEST UNTESTED
-        "rcarriga/nvim-dap-ui",
-        event = "VeryLazy",
-        lazy = true,
-        dependencies = {
-            { "mfussenegger/nvim-dap" },
-            { "nvim-neotest/nvim-nio" },
-        },
-    },
+    -- {
+    --     -- TEST WORKS
+    --     "mfussenegger/nvim-dap",
+    --     event = "VeryLazy",
+    --     lazy = true,
+    --     config = function() require("configs._nvim-dap") end,
+    -- },
+    -- {
+    --     -- TEST UNTESTED
+    --     "rcarriga/nvim-dap-ui",
+    --     event = "VeryLazy",
+    --     lazy = true,
+    --     dependencies = {
+    --         { "mfussenegger/nvim-dap" },
+    --         { "nvim-neotest/nvim-nio" },
+    --     },
+    -- },
+    -- {
+    --     "mxsdev/nvim-dap-vscode-js",
+    --     event = "VeryLazy",
+    --     lazy = true,
+    --     config = function()
+    --         require("dap-vscode-js").setup({
+    --             debugger_path = "/home/vinii/Downloads/vscode-js-debug",
+    --             adapters = {
+    --                 "pwa-node",
+    --                 "pwa-chrome",
+    --                 "pwa-msedge",
+    --                 "pwa-extensionHost",
+    --             },
+    --         })
+    --     end,
+    -- },
 }

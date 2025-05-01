@@ -131,10 +131,10 @@ CMP_ICONS = {
 }
 
 DAP_SYMBOLS = {
-    DAP_BREAKPOINT = "", -- "B"
+    DAP_BREAKPOINT = "", -- "B"
     DAP_BREAKPOINT_CONDITION = "", -- "C"
     DAP_LOG_POINT = "", -- "L"
-    DAP_STOPPED = "󰓛", -- "→"
+    DAP_STOPPED = "→", -- "󰓛"
     DAP_BREAKPOINT_REJECTED = "", -- "R"
 }
 

@@ -23,6 +23,18 @@ local mappings = {
         dap.clear_breakpoints,
         desc.noremap_silent("Debugger clear breakpoints"),
     },
+    {
+        modes.normal,
+        keys.leader("do"),
+        dap.step_over,
+        desc.noremap_silent("Debugger step over"),
+    },
+    {
+        modes.normal,
+        keys.leader("dO"),
+        dap.step_out,
+        desc.noremap_silent("Debugger step out"),
+    },
 }
 
 return function()
