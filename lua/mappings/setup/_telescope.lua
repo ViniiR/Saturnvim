@@ -49,6 +49,30 @@ local mappings = {
         function() vim.cmd("Telescope find_files follow=true no_ignore=true hidden=true") end,
         desc.desc("Telescope find all files"),
     },
+    {
+        modes.normal,
+        keys.leader("fk"),
+        telescope_builtin.marks,
+        desc.desc("Telescope find marks"),
+    },
+    {
+        modes.normal,
+        keys.leader("gc"),
+        telescope_builtin.git_commits,
+        desc.desc("Telescope git commits"),
+    },
+    {
+        modes.normal,
+        keys.leader("gs"),
+        telescope_builtin.git_status,
+        desc.desc("Telescope git status"),
+    },
+    {
+        modes.normal,
+        keys.leader("fg"), -- fz
+        telescope_builtin.current_buffer_fuzzy_find,
+        desc.desc("Telescope current buffer fuzzy find"),
+    },
 }
 return function()
     for _, mapping in ipairs(mappings) do
