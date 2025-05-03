@@ -274,6 +274,7 @@ return {
     --     lazy = true,
     --     config = function()
     --         require("dap-vscode-js").setup({
+    --             -- WARNING: ensure manually compiled vscode-js-debug github project
     --             debugger_path = "/home/vinii/Downloads/vscode-js-debug",
     --             adapters = {
     --                 "pwa-node",
