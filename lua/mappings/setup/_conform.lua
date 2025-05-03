@@ -4,23 +4,27 @@ local modes = lib.modes
 local desc = lib.desc
 local conform = require("conform")
 
+local function format()
+    ---@type boolean
+    local success = conform.format({ lsp_fallback = true })
+    if success then
+        print("Conform: Formatted")
+    else
+        vim.notify('Conform: No formatters specified for filetype "' .. vim.bo.filetype .. '"', vim.log.levels.WARN)
+    end
+end
+
 local mappings = {
     {
         modes.normal,
         keys.leader("fm"),
-        function()
-            conform.format({ lsp_fallback = true })
-            print("Conform Formatted")
-        end,
+        format,
         desc.desc("General Format file"),
     },
     {
         modes.normal,
         keys.leader("mm"),
-        function()
-            conform.format({ lsp_fallback = true })
-            print("Conform Formatted")
-        end,
+        format,
         desc.desc("General Format file"),
     },
 }
