@@ -199,7 +199,7 @@ local mappings = {
         modes.command,
         keys.control("c"),
         keys.control("c"),
-        desc.noremap("TODO: im not exactly sure why it exists but works"),
+        desc.noremap("TODO: is this really necessary"),
     },
     {
         modes.command,

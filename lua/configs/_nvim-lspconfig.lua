@@ -77,8 +77,7 @@ vim.diagnostic.config({
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = BORDER_KIND or "single",
-    -- TODO: set max width
-    max_width = nil,
+    max_width = nil, -- TODO
     max_height = nil,
     title = " " .. INFO_ICON .. " Info ",
 })
