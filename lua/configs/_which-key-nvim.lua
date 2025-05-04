@@ -6,3 +6,4 @@ require("which-key").setup({
         title_pos = "left",
     },
 })
+require("mappings.setup._which-key")()
