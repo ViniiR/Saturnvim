@@ -135,12 +135,6 @@ local mappings = {
         end,
         desc.noremap_silent("Reload Neovim config"),
     },
-    {
-        modes.normal,
-        keys.leader("gd"),
-        function() vim.cmd("Gitsigns toggle_current_line_blame") end,
-        desc.noremap_silent("Gitsigns toggle blame"),
-    },
     -- Insert mode
     {
         { modes.insert, modes.command },

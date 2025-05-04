@@ -48,3 +48,4 @@ require("gitsigns").setup({
         col = 1,
     },
 })
+require("mappings.setup._gitsigns")()
