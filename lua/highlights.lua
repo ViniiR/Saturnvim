@@ -372,6 +372,9 @@ highlights["NonText"] = COLORS.whitespace_hl
 -- nvim lsp inlay hint
 highlights["LspInlayHint"] = { fg = "#5c6370" } --  by default links to NonText so hard code default color or NonText
 
+-- which key
+-- highlights["WhichKeySeparator"] = {link = "@ibl.scope.char.1"}
+
 -- disabled
 highlights["@none.tsx"] = { link = "" }
 --
