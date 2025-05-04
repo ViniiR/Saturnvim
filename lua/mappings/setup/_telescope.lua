@@ -40,7 +40,7 @@ local mappings = {
     {
         modes.normal,
         keys.leader("fh"),
-        function() vim.cmd("Telescope highlights") end,
+        telescope_builtin.highlights,
         desc.desc("Telescope find highlights"),
     },
     {
