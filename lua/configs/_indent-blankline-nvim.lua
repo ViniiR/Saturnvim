@@ -55,6 +55,8 @@ local opts = {
 
 -- vim.g.rainbow_delimiters = { highlight = highlight }
 
+require("mappings.setup._indent-blankline")()
+
 ibl.setup(opts)
 
 -- hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
