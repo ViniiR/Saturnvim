@@ -373,7 +373,7 @@ highlights["NonText"] = COLORS.whitespace_hl
 highlights["LspInlayHint"] = { fg = "#5c6370" } --  by default links to NonText so hard code default color or NonText
 
 -- which key
--- highlights["WhichKeySeparator"] = {link = "@ibl.scope.char.1"}
+highlights["WhichKeySeparator"] = { fg = "#a5a9ae" }
 
 -- disabled
 highlights["@none.tsx"] = { link = "" }
