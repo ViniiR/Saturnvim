@@ -1,26 +1,22 @@
 return {
     {
-        -- TEST WORKS
         -- Must be the first plugin loaded
         "navarasu/onedark.nvim",
         lazy = false,
         config = function() require("configs._onedark-nvim") end,
     },
     {
-        -- TEST WORKS
         "nvim-tree/nvim-web-devicons",
         lazy = false,
         config = function() require("configs._nvim-web-dev-icons") end,
     },
     {
-        -- TEST WORKS
         "neovim/nvim-lspconfig",
         event = "VeryLazy",
         lazy = true,
         config = function() require("configs._nvim-lspconfig") end,
     },
     {
-        -- TEST WORKS
         "nvim-telescope/telescope.nvim",
         tag = "0.1.8",
         cmd = "Telescope",
@@ -33,14 +29,12 @@ return {
         },
     },
     {
-        -- TEST WORKS
         "brenoprata10/nvim-highlight-colors",
         event = "VeryLazy",
         lazy = true,
         config = function() require("configs._nvim-highlight-colors") end,
     },
     {
-        -- TEST WORKS
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         event = "VeryLazy",
@@ -48,14 +42,12 @@ return {
         config = function() require("configs._nvim-treesitter") end,
     },
     {
-        -- TEST WORKS
         "stevearc/conform.nvim",
         event = "VeryLazy",
         lazy = true,
         config = function() require("configs._conform-nvim") end,
     },
     {
-        -- TEST WORKS
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
         event = "VimEnter",
@@ -67,7 +59,6 @@ return {
         },
     },
     {
-        -- TEST WORKS
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
         event = "VeryLazy",
@@ -75,7 +66,6 @@ return {
         config = function() require("configs._nvim-surround") end,
     },
     {
-        -- TEST WORKS
         "stevearc/oil.nvim",
         event = "VeryLazy",
         lazy = true,
@@ -85,7 +75,6 @@ return {
         },
     },
     {
-        -- TEST WORKS
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
         event = "VeryLazy",
@@ -93,8 +82,8 @@ return {
         config = function() require("configs._indent-blankline-nvim") end,
     },
     {
-        -- TEST WORKS
         "folke/which-key.nvim",
+        -- TODO: move to config if possible
         keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g", "[", "]" },
         cmd = "WhichKey",
         event = "VeryLazy",
@@ -102,14 +91,12 @@ return {
         config = function() require("configs._which-key-nvim") end,
     },
     {
-        -- TEST WORKS
         "mbbill/undotree",
         event = "VeryLazy",
         lazy = true,
         config = function() require("configs._undotree") end,
     },
     {
-        -- TEST WORKS
         "nvimdev/dashboard-nvim",
         event = "VimEnter",
         lazy = true,
@@ -119,14 +106,12 @@ return {
         },
     },
     {
-        -- TEST WORKS
         "lewis6991/gitsigns.nvim",
         event = "VeryLazy",
         lazy = true,
         config = function() require("configs._gitsigns-nvim") end,
     },
     {
-        -- TEST WORKS
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
         lazy = true,
@@ -136,7 +121,6 @@ return {
         },
     },
     {
-        -- TEST WORKS
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         lazy = true,
@@ -170,7 +154,6 @@ return {
         },
     },
     {
-        -- TEST UNTESTED
         "mrcjkb/rustaceanvim",
         version = "^5", -- Recommended
         ft = { "rust" },
@@ -207,14 +190,12 @@ return {
         -- end,
     },
     {
-        -- TEST WORKS
         "rust-lang/rust.vim",
         ft = "rust",
         lazy = true,
         init = function() vim.g.rustfmt_autosave = 1 end,
     },
     {
-        -- TEST WORKS
         "saecki/crates.nvim",
         tag = "stable",
         ft = { "toml" },
@@ -223,14 +204,12 @@ return {
         config = function() require("configs._crates-nvim") end,
     },
     {
-        -- TEST WORKS
         "lukas-reineke/virt-column.nvim",
         event = "VeryLazy",
         lazy = true,
         config = function() require("configs._virt-column-nvim") end,
     },
     {
-        -- TEST WORKS
         "akinsho/toggleterm.nvim",
         version = "*",
         event = "VeryLazy",
@@ -238,21 +217,18 @@ return {
         config = function() require("configs._toggleterm-nvim") end,
     },
     {
-        -- TEST WORKS
         "RRethy/vim-illuminate",
         event = "VeryLazy",
         lazy = true,
         config = function() require("configs._vim-illuminate") end,
     },
     -- {
-    --     -- TEST WORKS
     --     "mfussenegger/nvim-dap",
     --     event = "VeryLazy",
     --     lazy = true,
     --     config = function() require("configs._nvim-dap") end,
     -- },
     -- {
-    --     -- TEST UNTESTED
     --     "rcarriga/nvim-dap-ui",
     --     event = "VeryLazy",
     --     lazy = true,
