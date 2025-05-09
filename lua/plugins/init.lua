@@ -142,35 +142,25 @@ return {
         lazy = true,
         config = function() require("configs._nvim-cmp") end,
         dependencies = {
-            { "neovim/nvim-lspconfig" },
-            { "brenoprata10/nvim-highlight-colors" },
             {
                 "L3MON4D3/LuaSnip",
-                dependencies = {
-                    "rafamadriz/friendly-snippets",
-                },
+                -- TODO: move to setup
                 opts = {
                     history = true,
                     updateevents = "TextChanged,TextChangedI",
                 },
                 lazy = true,
-                config = function ()
-                    require("configs._luasnip")
-                end
+                config = function() require("configs._luasnip") end,
+                dependencies = {
+                    "rafamadriz/friendly-snippets",
+                },
             },
             {
                 "windwp/nvim-autopairs",
-                opts = {
-                    fast_wrap = {},
-                    disable_filetype = { "TelescopePrompt", "vim" },
-                },
-                -- TODO: move to separate file
-                config = function(_, opts)
-                    require("nvim-autopairs").setup(opts)
-                    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-                    require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-                end,
+                config = function() require("configs._nvim-autopairs") end,
             },
+            { "neovim/nvim-lspconfig" },
+            { "brenoprata10/nvim-highlight-colors" },
             { "saadparwaiz1/cmp_luasnip" },
             { "hrsh7th/cmp-nvim-lua" },
             { "hrsh7th/cmp-nvim-lsp" },
