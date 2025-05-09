@@ -154,6 +154,9 @@ return {
                     updateevents = "TextChanged,TextChangedI",
                 },
                 lazy = true,
+                config = function ()
+                    require("configs._luasnip")
+                end
             },
             {
                 "windwp/nvim-autopairs",
