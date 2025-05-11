@@ -68,8 +68,15 @@ local mappings = {
         desc.desc("Telescope git status"),
     },
     {
+        -- clone of git status for convenience
         modes.normal,
-        keys.leader("fg"), -- fz
+        keys.leader("fzd"),
+        telescope_builtin.git_status,
+        desc.desc("Telescope git status"),
+    },
+    {
+        modes.normal,
+        keys.leader("fg"), -- fz(g)
         telescope_builtin.current_buffer_fuzzy_find,
         desc.desc("Telescope current buffer fuzzy find"),
     },
