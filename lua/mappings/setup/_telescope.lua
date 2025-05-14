@@ -1,9 +1,18 @@
 local telescope_builtin = require("telescope.builtin")
+local telescope_plugin_mappings = require("mappings.plugins._telescope")
 
 local lib = require("mappings.lib")
 local keys = lib.keys
 local modes = lib.modes
 local desc = lib.desc
+local function telescope_git_status()
+    telescope_builtin.git_status({
+        attach_mappings = function(_prompt_bufnr, map)
+            map(modes.insert, keys.tab, telescope_plugin_mappings.i[keys.tab])
+            return true
+        end,
+    })
+end
 
 local mappings = {
     {
@@ -64,14 +73,14 @@ local mappings = {
     {
         modes.normal,
         keys.leader("gs"),
-        telescope_builtin.git_status,
+        telescope_git_status,
         desc.desc("Telescope git status"),
     },
     {
         -- clone of git status for convenience
         modes.normal,
         keys.leader("fzd"),
-        telescope_builtin.git_status,
+        telescope_git_status,
         desc.desc("Telescope git status"),
     },
     {
