@@ -18,6 +18,8 @@ return {
     },
     {
         "nvim-telescope/telescope.nvim",
+        -- old
+        -- tag = "0.1.8",
         branch = "0.1.x",
         cmd = "Telescope",
         module = "telescope",
