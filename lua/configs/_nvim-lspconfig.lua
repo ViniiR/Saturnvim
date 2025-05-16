@@ -31,6 +31,7 @@ local servers = {
     "neocmake",
     -- nix
     "nixd",
+    "nil_ls",
     -- "rust_analyzer", --handled by rustaceanvim
 }
 
@@ -104,7 +105,10 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 
 local mappings_setup = require("mappings.setup._lspconfig")
 
-config.on_attach = function(_, bufnr)
+config.on_attach = function(client, bufnr)
+    -- prevents nixd from showing hover diagnostics
+    -- in favor of nil_ls's better hover
+    if client.name == "nixd" then client.server_capabilities.hoverProvider = false end
     mappings_setup(bufnr)
 
     vim.lsp.inlay_hint.enable(true)
@@ -188,11 +192,11 @@ for _, lsp in ipairs(servers) do
                     },
                     options = {
                         nixos = {
-                            expr = '(bultins.getFlake) "/etc/nixos/").nixosConfigurations.nixos.options',
+                            expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.nixos.options',
                         },
-                        -- home_manager = {
-                        --     expr = '(bultins.getFlake) "/etc/nixos/").nixosConfigurations.nixos.options',
-                        -- },
+                        home_manager = {
+                            expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."vinii@nixos".options',
+                        },
                     },
                 },
             },
