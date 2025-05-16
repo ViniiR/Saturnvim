@@ -146,8 +146,11 @@ highlights["@boolean.typescript"] = { link = "CustomVBool" }
 highlights["@variable.tsx"] = { link = "CustomVVariable" }
 highlights["@variable.typescript"] = { link = "CustomVVariable" }
 highlights["@variable.typescript"] = { link = "CustomVVariable" }
+-- possible TODO
+-- disable variable.builtin so built-in variables have special highlight (default: red-ish)
 highlights["@variable.builtin.tsx"] = { link = "CustomVVariable" }
 highlights["@variable.builtin.typescript"] = { link = "CustomVVariable" }
+highlights["@variable.builtin.javascript"] = { link = "CustomVVariable" }
 
 -- imports
 highlights["@keyword.import.tsx"] = { link = "@keyword.coroutine.tsx" }

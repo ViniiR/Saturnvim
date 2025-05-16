@@ -1,3 +1,4 @@
+--TODO: check if all bindings work before deleting the file
 vim.g.mapleader = " "
 -- local luasnip = require("luasnip")
 
