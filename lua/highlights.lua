@@ -367,6 +367,14 @@ highlights["Whitespace"] = COLORS.whitespace_hl
 highlights["IblScope"] = { fg = "grey", bg = "none" }
 -- vim.api.nvim_set_hl(0, "@ibl.scope.underline.1", { fg = "white", bg = "none" })
 
+-- HTML
+highlights["@tag.delimiter.html"] = { link = "@tag.delimiter.tsx" }
+highlights["@tag.html"] = { link = "@tag.builtin.tsx" }
+highlights["@tag.attribute.html"] = { link = "@tag.attribute.tsx" }
+-- XML
+highlights["@tag.delimiter.xml"] = { link = "@tag.delimiter.tsx" }
+highlights["@tag.xml"] = { fg = "#ed4a57" }
+
 -- nvim default for \n chars
 highlights["NonText"] = COLORS.whitespace_hl
 -- nvim lsp inlay hint
