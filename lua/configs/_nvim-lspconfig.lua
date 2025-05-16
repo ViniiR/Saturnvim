@@ -49,7 +49,8 @@ vim.diagnostic.config({
     },
     underline = true,
     float = {
-        header = "false",
+        header = "",
+        title = " 󰺄 Diagnostics ",
         border = BORDER_KIND or "single",
         focusable = true,
     },
