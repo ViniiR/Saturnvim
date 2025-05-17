@@ -12,10 +12,16 @@ local function set_bottom_priority(kind) -- unnecessary as long as the function 
         if kind == cmp.lsp.CompletionItemKind.Text then
             local is_html_snippet = vim.inspect(e1.source.name)
             -- returning false means (i hope so): it will remain the same order?
-            if is_html_snippet then return false end
+            if is_html_snippet then
+                return false
+            end
         end
-        if e1:get_kind() == kind then return false end
-        if e2:get_kind() == kind then return true end
+        if e1:get_kind() == kind then
+            return false
+        end
+        if e2:get_kind() == kind then
+            return true
+        end
     end
 end
 
@@ -95,10 +101,14 @@ local function format(entry, item)
     end
 
     local entryItem = entry:get_completion_item()
-    if entryItem == nil then return item end
+    if entryItem == nil then
+        return item
+    end
 
     local entryDoc = entryItem.documentation
-    if entryDoc == nil or type(entryDoc) ~= "string" then return item end
+    if entryDoc == nil or type(entryDoc) ~= "string" then
+        return item
+    end
 
     local cached = format_cache[entryDoc]
     if cached == nil then
@@ -134,7 +144,9 @@ local options = {
         ---@param entry {}
         ---@param item {abbr: string, word: string, dup: number, kind: string, menu: string, kind_hl_group: string }
         format = function(entry, item)
-            if item.menu ~= nil and #item.menu >= 60 then item.menu = string.sub(item.menu or "", 1, 60) .. "..." end
+            if item.menu ~= nil and #item.menu >= 60 then
+                item.menu = string.sub(item.menu or "", 1, 60) .. "..."
+            end
 
             local icon = CMP_ICONS[item.kind]
             if icon == nil then
@@ -167,7 +179,7 @@ local options = {
     window = {
         completion = {
             -- { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-            border = BORDER_KIND or "single",
+            border = BORDER_KIND,
             winhighlight = "Normal:CmpNormal,FloatBorder:CmpFloatBorder,CursorLine:CmpVisual",
             side_padding = 1,
             scrollbar = false,
@@ -175,7 +187,7 @@ local options = {
             -- max_width = math.floor(vim.o.columns * 0.5),
         },
         documentation = {
-            border = BORDER_KIND or "single",
+            border = BORDER_KIND,
             winhighlight = "Normal:CmpNormal,FloatBorder:CmpFloatBorder,CursorLine:CmpVisual",
             side_padding = 1,
             scrollbar = false,
@@ -187,7 +199,9 @@ local options = {
     },
 
     snippet = {
-        expand = function(args) require("luasnip").lsp_expand(args.body) end,
+        expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+        end,
     },
 
     mapping = require("mappings.plugins._cmp"),

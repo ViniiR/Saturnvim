@@ -1,7 +1,7 @@
 require("which-key").setup({
     win = {
         no_overlap = true,
-        border = BORDER_KIND or "single",
+        border = BORDER_KIND,
         width = vim.o.columns,
         title_pos = "left",
     },
