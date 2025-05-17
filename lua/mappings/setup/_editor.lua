@@ -3,6 +3,25 @@ local keys = lib.keys
 local modes = lib.modes
 local desc = lib.desc
 
+---@param block string[] { block_start, block_end }
+---@param block_finder_keypresses string
+local function surround_block(block, block_finder_keypresses)
+    local start_pos = vim.fn.line("v")
+    local end_pos = vim.fn.line(".")
+    if start_pos > end_pos then
+        start_pos, end_pos = end_pos, start_pos
+    end
+
+    -- create statement around selection
+    vim.fn.append(start_pos - 1, block[1])
+    vim.fn.append(end_pos + 1, block[2])
+
+    -- deselects text
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+
+    vim.api.nvim_feedkeys(block_finder_keypresses, "n", false)
+end
+
 local mappings = {
     {
         { modes.normal, modes.visual },
@@ -19,7 +38,9 @@ local mappings = {
     {
         modes.normal,
         keys.escape,
-        function() vim.cmd("noh") end,
+        function()
+            vim.cmd("noh")
+        end,
         desc.noremap("General Clear highlights"),
     },
     {
@@ -83,13 +104,17 @@ local mappings = {
     {
         modes.normal,
         keys.leader("n"),
-        function() vim.cmd("bnext") end,
+        function()
+            vim.cmd("bnext")
+        end,
         desc.noremap_silent("Jump to next buffer"),
     },
     {
         modes.normal,
         keys.leader("p"),
-        function() vim.cmd("bprevious") end,
+        function()
+            vim.cmd("bprevious")
+        end,
         desc.noremap_silent("Jump to previous buffer"),
     },
     {
@@ -183,17 +208,65 @@ local mappings = {
     {
         modes.visual,
         keys.leader("lr"),
-        function() vim.lsp.buf.rename() end,
+        function()
+            vim.lsp.buf.rename()
+        end,
         desc.noremap_silent("LSP rename"),
     },
     -- end of the Primeagen's bindings
+    {
+        modes.visual,
+        keys.leader("si"),
+        function()
+            -- defaults to ecmascript if statements
+            local block_start = "if (  ) {"
+            local block_end = "}"
+            local finder_command = "k0f(la"
+
+            if vim.bo.filetype == "lua" then
+                block_start = "if  then"
+                block_end = "end"
+                finder_command = "k0f a"
+            elseif vim.bo.filetype == "rust" then
+                block_start = "if  {"
+                block_end = "}"
+                finder_command = "k0f a"
+            end
+
+            surround_block({ block_start, block_end }, finder_command)
+        end,
+        desc.noremap_silent("Surround selection with an if statement"),
+    },
+    {
+        modes.visual,
+        keys.leader("sf"),
+        function()
+            -- defaults to ecmascript function statements
+            local block_start = "function () {"
+            local block_end = "}"
+            local finder_command = "k0f a"
+
+            if vim.bo.filetype == "lua" then
+                block_start = "local function ()"
+                block_end = "end"
+                finder_command = "k02f a"
+            elseif vim.bo.filetype == "rust" then
+                block_start = "fn () {"
+                block_end = "}"
+                finder_command = "k0f a"
+            end
+
+            surround_block({ block_start, block_end }, finder_command)
+        end,
+        desc.noremap_silent("Surround selection with an if statement"),
+    },
 
     -- Command mode
     {
         modes.command,
         keys.control("c"),
         keys.control("c"),
-        desc.noremap("TODO: is this really necessary"),
+        desc.noremap("TODO: is this really necessary?"),
     },
     {
         modes.command,
