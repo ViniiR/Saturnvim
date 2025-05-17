@@ -2,37 +2,36 @@ local lspconfig = require("lspconfig")
 
 local enable_native_virtual_text = true
 local x = vim.diagnostic.severity
+
+--- INFO: updated in autocmds.lua
 vim.g.current_attached_lsp = "No LSP"
+
 local config = {}
 
+--- INFO: useful information
 -- disable semantic tokens completely
 -- vim.highlight.priorities.semantic_tokens = 0
 
-local servers = {
-    -- ts, js, html, css
+-- WARNING: rust_analyzer is managed externally by rustaceanvim do not include it
+local lsp_list = {
+    "lua_ls",
     "ts_ls",
     "eslint",
     "emmet_language_server",
     "html",
     "cssls",
     "tailwindcss",
+    "prismals",
+    "jsonls",
+    "yamlls",
+    "bashls",
+    "clangd",
+    "neocmake",
+    "nil_ls",
+    "nixd",
     -- "cssmodules_ls", -- not found
     -- "css-variables-lsp", -- not found
     -- "somesass_ls", -- never used, not found
-    -- prisma
-    "prismals",
-    -- json, yaml
-    "jsonls",
-    "yamlls",
-    -- bash
-    "bashls",
-    -- c
-    "clangd",
-    "neocmake",
-    -- nix
-    "nixd",
-    "nil_ls",
-    -- "rust_analyzer", --handled by rustaceanvim
 }
 
 vim.diagnostic.config({
@@ -56,26 +55,6 @@ vim.diagnostic.config({
         focusable = true,
     },
 })
-
--- TODO: uncomment if broken
--- local sign = vim.fn.sign_define
---
--- sign("DiagnosticSignError", {
---     text = LSP_SYMBOLS.ERROR,
---     texthl = "DiagnosticSignError",
--- })
--- sign("DiagnosticSignWarn", {
---     text = LSP_SYMBOLS.WARN,
---     texthl = "DiagnosticSignWarn",
--- })
--- sign("DiagnosticSignInfo", {
---     text = LSP_SYMBOLS.INFO,
---     texthl = "DiagnosticSignInfo",
--- })
--- sign("DiagnosticSignHint", {
---     text = LSP_SYMBOLS.HINT,
---     texthl = "DiagnosticSignHint",
--- })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = BORDER_KIND or "single",
@@ -106,9 +85,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 local mappings_setup = require("mappings.setup._lspconfig")
 
 config.on_attach = function(client, bufnr)
-    -- prevents nixd from showing hover diagnostics
-    -- in favor of nil_ls's better hover
-    if client.name == "nixd" then client.server_capabilities.hoverProvider = false end
+    -- INFO
+    -- prevents nixd from showing hover diagnostics in favor of nil_ls's better hover
+    -- ensure nil_ls enabled
+    if client.name == "nixd" then
+        client.server_capabilities.hoverProvider = false
+    end
     mappings_setup(bufnr)
 
     vim.lsp.inlay_hint.enable(true)
@@ -119,10 +101,6 @@ config.on_init = function(client, _)
     if client.supports_method("textDocument/semanticTokens") then
         client.server_capabilities.semanticTokensProvider = nil
     end
-
-    -- vim.g.current_attached_lsp = vim.lsp.get_clients({
-    --     bufnr = 0,
-    -- })[1].name
 end
 
 config.capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -134,7 +112,11 @@ config.capabilities.textDocument.completion.completionItem = {
     labelDetailsSupport = true,
     deprecatedSupport = true,
     commitCharactersSupport = true,
-    tagSupport = { valueSet = { 1 } },
+    tagSupport = {
+        valueSet = {
+            1,
+        },
+    },
     resolveSupport = {
         properties = {
             "documentation",
@@ -144,13 +126,14 @@ config.capabilities.textDocument.completion.completionItem = {
     },
 }
 
-config.defaults = function()
-    require("lspconfig").lua_ls.setup({
+for _, lsp_name in pairs(lsp_list) do
+    local lspconf = {
+        on_init = config.on_init,
         on_attach = config.on_attach,
         capabilities = config.capabilities,
-        on_init = config.on_init,
-
-        settings = {
+    }
+    if lsp_name == "lua_ls" then
+        lspconf.settings = {
             Lua = {
                 runtime = {
                     version = "LuaJIT", -- Current Neovim Lua runtime version
@@ -169,45 +152,49 @@ config.defaults = function()
                     preloadFileSize = 10000,
                 },
             },
-        },
-    })
-end
-
-config.defaults()
-
-for _, lsp in ipairs(servers) do
-    if lsp == "nixd" then
-        lspconfig[lsp].setup({
-            on_init = config.on_init,
-            on_attach = config.on_attach,
-            capabilities = config.capabilities,
-            cmd = { "nixd" },
-            settings = {
-                nixd = {
-                    nixpkgs = {
-                        expr = "import <nixpkgs> { }",
+        }
+    elseif lsp_name == "nixd" then
+        lspconf.cmd = { "nixd" }
+        lspconf.settings = {
+            nixd = {
+                nixpkgs = {
+                    expr = "import <nixpkgs> { }",
+                },
+                formatting = {
+                    command = { "alejandra" },
+                },
+                options = {
+                    nixos = {
+                        expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.nixos.options',
                     },
-                    formatting = {
-                        command = { "alejandra" },
-                    },
-                    options = {
-                        nixos = {
-                            expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.nixos.options',
-                        },
-                        home_manager = {
-                            expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."vinii@nixos".options',
-                        },
+                    home_manager = {
+                        expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."vinii@nixos".options',
                     },
                 },
             },
-        })
-    else
-        lspconfig[lsp].setup({
-            on_init = config.on_init,
-            on_attach = config.on_attach,
-            capabilities = config.capabilities,
-        })
+        }
     end
+    lspconfig[lsp_name].setup(lspconf)
 end
 
 return config
+
+-- TODO: uncomment if broken
+-- local sign = vim.fn.sign_define
+--
+-- sign("DiagnosticSignError", {
+--     text = LSP_SYMBOLS.ERROR,
+--     texthl = "DiagnosticSignError",
+-- })
+-- sign("DiagnosticSignWarn", {
+--     text = LSP_SYMBOLS.WARN,
+--     texthl = "DiagnosticSignWarn",
+-- })
+-- sign("DiagnosticSignInfo", {
+--     text = LSP_SYMBOLS.INFO,
+--     texthl = "DiagnosticSignInfo",
+-- })
+-- sign("DiagnosticSignHint", {
+--     text = LSP_SYMBOLS.HINT,
+--     texthl = "DiagnosticSignHint",
+-- })
