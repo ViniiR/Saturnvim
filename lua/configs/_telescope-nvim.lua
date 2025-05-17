@@ -5,8 +5,8 @@ require("mappings.setup._telescope")()
 telescope.setup({
     defaults = {
         layout_strategy = "horizontal",
-        prompt_prefix = " " .. TELESCOPE_ICONS.prompt .. "  ",
-        selection_caret = TELESCOPE_ICONS.selection_caret,
+        prompt_prefix = string.format(" %s  ", TELESCOPE_ICONS.prompt),
+        selection_caret = string.format("%s", TELESCOPE_ICONS.selection_caret),
         -- space before all entries
         entry_prefix = " ",
         borderchars = ROUNDED_BORDER_CHARS,

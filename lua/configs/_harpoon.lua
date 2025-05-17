@@ -2,7 +2,7 @@
 HARPOON_OPTS = {
     border = BORDER_KIND,
     title_pos = "left",
-    title = " " .. HARPOON_ICON .. " Harpoon ",
+    title = string.format(" %s Harpoon ", HARPOON_ICON),
 }
 
 require("mappings.setup._harpoon")()

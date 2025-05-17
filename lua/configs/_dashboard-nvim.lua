@@ -41,7 +41,7 @@ require("dashboard").setup({
             -- 
             -- 
             { desc = SATURNVIM, group = "DashboardShortCut" },
-            { desc = "[" .. NEOVIM_ICONS.filled .. " " .. get_nvim_version() .. "]", group = "DashboardShortCut" },
+            { desc = string.format("[%s %s]", NEOVIM_ICONS.filled, get_nvim_version()), group = "DashboardShortCut" },
         },
         packages = { enable = true },
         project = { enable = false },
@@ -49,7 +49,7 @@ require("dashboard").setup({
         -- center = {},
         footer = {
             "",
-            "Made By " .. V_ICON,
+            string.format("Made by %s", V_ICON),
         },
     },
 })

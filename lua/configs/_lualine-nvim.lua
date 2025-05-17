@@ -145,7 +145,11 @@ require("lualine").setup({
         },
     },
     sections = {
-        lualine_a = { function() return VIM_MODE_MAP[vim.api.nvim_get_mode().mode] or "_?" end },
+        lualine_a = {
+            function()
+                return VIM_MODE_MAP[vim.api.nvim_get_mode().mode] or "_?"
+            end,
+        },
         lualine_b = {
             { "branch", icon = GIT_ICONS.branch },
             {
@@ -162,6 +166,7 @@ require("lualine").setup({
             { "filename", file_status = false },
             function()
                 if vim.bo.modified then
+                    -- syntax for inline highlights = "%#<hl_name>#"
                     return "%#CustomVLualineGreen#" .. LUALINE_ICONS.file_modified
                 elseif vim.bo.modifiable == false or vim.bo.readonly == true then
                     return "%#CustomVLualineYellow#" .. LUALINE_ICONS.file_immuatable
@@ -182,20 +187,28 @@ require("lualine").setup({
                     hint = LSP_SYMBOLS.HINT .. " ",
                 },
             },
-            function() return LUALINE_ICONS.lsp_server .. " " .. vim.g.current_attached_lsp end,
+            function()
+                return string.format("%s %s", LUALINE_ICONS.lsp_server, vim.g.current_attached_lsp)
+            end,
         },
         lualine_y = {
             -- "encoding",
             "fileformat",
             function()
                 local tablen = vim.bo.tabstop
-                if string.len(tablen) == 0 then return "" end
-                return "Tabs: " .. tablen .. ","
+                if string.len(tablen) == 0 then
+                    return ""
+                end
+                return string.format("Tabs: %d,", tablen)
             end,
-            function() return "Ln " .. vim.fn.line(".") .. ", " .. "Col " .. vim.fn.charcol(".") end,
+            function()
+                return string.format("Ln %d, Col %d", vim.fn.line("."), vim.fn.charcol("."))
+            end,
         },
         lualine_z = {
-            function() return LUALINE_ICONS.directory .. " " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") end,
+            function()
+                return string.format("%s %s", LUALINE_ICONS.directory, vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
+            end,
         },
     },
     inactive_sections = {
@@ -292,4 +305,3 @@ require("lualine").setup({
 --     ["!"] = " SHELL",
 --     ["t"] = " TERMINAL",
 -- }
-
