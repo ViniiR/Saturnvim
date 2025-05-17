@@ -3,18 +3,24 @@ return {
         -- Must be the first plugin loaded
         "navarasu/onedark.nvim",
         lazy = false,
-        config = function() require("configs._onedark-nvim") end,
+        config = function()
+            require("configs._onedark-nvim")
+        end,
     },
     {
         "nvim-tree/nvim-web-devicons",
         lazy = false,
-        config = function() require("configs._nvim-web-dev-icons") end,
+        config = function()
+            require("configs._nvim-web-dev-icons")
+        end,
     },
     {
         "neovim/nvim-lspconfig",
         event = "VeryLazy",
         lazy = true,
-        config = function() require("configs._nvim-lspconfig") end,
+        config = function()
+            require("configs._nvim-lspconfig")
+        end,
     },
     {
         "nvim-telescope/telescope.nvim",
@@ -25,7 +31,9 @@ return {
         module = "telescope",
         event = "VimEnter",
         lazy = true,
-        config = function() require("configs._telescope-nvim") end,
+        config = function()
+            require("configs._telescope-nvim")
+        end,
         dependencies = {
             { "nvim-lua/plenary.nvim" },
         },
@@ -34,27 +42,35 @@ return {
         "brenoprata10/nvim-highlight-colors",
         event = "VeryLazy",
         lazy = true,
-        config = function() require("configs._nvim-highlight-colors") end,
+        config = function()
+            require("configs._nvim-highlight-colors")
+        end,
     },
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         event = "VeryLazy",
         lazy = true,
-        config = function() require("configs._nvim-treesitter") end,
+        config = function()
+            require("configs._nvim-treesitter")
+        end,
     },
     {
         "stevearc/conform.nvim",
         event = "VeryLazy",
         lazy = true,
-        config = function() require("configs._conform-nvim") end,
+        config = function()
+            require("configs._conform-nvim")
+        end,
     },
     {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
         event = "VimEnter",
         lazy = true,
-        config = function() require("configs._harpoon") end,
+        config = function()
+            require("configs._harpoon")
+        end,
         dependencies = {
             { "nvim-lua/plenary.nvim" },
             { "nvim-telescope/telescope.nvim" },
@@ -65,13 +81,17 @@ return {
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
         event = "VeryLazy",
         lazy = true,
-        config = function() require("configs._nvim-surround") end,
+        config = function()
+            require("configs._nvim-surround")
+        end,
     },
     {
         "stevearc/oil.nvim",
         event = "VeryLazy",
         lazy = true,
-        config = function() require("configs._oil-nvim") end,
+        config = function()
+            require("configs._oil-nvim")
+        end,
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
         },
@@ -81,7 +101,9 @@ return {
         main = "ibl",
         event = "VeryLazy",
         lazy = true,
-        config = function() require("configs._indent-blankline-nvim") end,
+        config = function()
+            require("configs._indent-blankline-nvim")
+        end,
     },
     {
         "folke/which-key.nvim",
@@ -90,19 +112,25 @@ return {
         cmd = "WhichKey",
         event = "VeryLazy",
         lazy = true,
-        config = function() require("configs._which-key-nvim") end,
+        config = function()
+            require("configs._which-key-nvim")
+        end,
     },
     {
         "mbbill/undotree",
         event = "VeryLazy",
         lazy = true,
-        config = function() require("configs._undotree") end,
+        config = function()
+            require("configs._undotree")
+        end,
     },
     {
         "nvimdev/dashboard-nvim",
         event = "VimEnter",
         lazy = true,
-        config = function() require("configs._dashboard-nvim") end,
+        config = function()
+            require("configs._dashboard-nvim")
+        end,
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
         },
@@ -111,22 +139,36 @@ return {
         "lewis6991/gitsigns.nvim",
         event = "VeryLazy",
         lazy = true,
-        config = function() require("configs._gitsigns-nvim") end,
+        config = function()
+            require("configs._gitsigns-nvim")
+        end,
     },
     {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
         lazy = true,
-        config = function() require("configs._lualine-nvim") end,
+        config = function()
+            require("configs._lualine-nvim")
+        end,
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
         },
     },
     {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        lazy = true,
+        config = function()
+            require("configs._nvim-autopairs")
+        end,
+    },
+    {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         lazy = true,
-        config = function() require("configs._nvim-cmp") end,
+        config = function()
+            require("configs._nvim-cmp")
+        end,
         dependencies = {
             {
                 "L3MON4D3/LuaSnip",
@@ -136,14 +178,12 @@ return {
                     updateevents = "TextChanged,TextChangedI",
                 },
                 lazy = true,
-                config = function() require("configs._luasnip") end,
+                config = function()
+                    require("configs._luasnip")
+                end,
                 dependencies = {
                     "rafamadriz/friendly-snippets",
                 },
-            },
-            {
-                "windwp/nvim-autopairs",
-                config = function() require("configs._nvim-autopairs") end,
             },
             { "neovim/nvim-lspconfig" },
             { "brenoprata10/nvim-highlight-colors" },
@@ -160,7 +200,9 @@ return {
         version = "^5", -- Recommended
         ft = { "rust" },
         lazy = false, -- This plugin is already lazy
-        config = function() require("configs._rustaceanvim") end,
+        config = function()
+            require("configs._rustaceanvim")
+        end,
         dependencies = {
             { "neovim/nvim-lspconfig" },
         },
@@ -195,7 +237,9 @@ return {
         "rust-lang/rust.vim",
         ft = "rust",
         lazy = true,
-        init = function() vim.g.rustfmt_autosave = 1 end,
+        init = function()
+            vim.g.rustfmt_autosave = 1
+        end,
     },
     {
         "saecki/crates.nvim",
@@ -203,26 +247,34 @@ return {
         ft = { "toml" },
         event = { "BufRead Cargo.toml" },
         lazy = true,
-        config = function() require("configs._crates-nvim") end,
+        config = function()
+            require("configs._crates-nvim")
+        end,
     },
     {
         "lukas-reineke/virt-column.nvim",
         event = "VeryLazy",
         lazy = true,
-        config = function() require("configs._virt-column-nvim") end,
+        config = function()
+            require("configs._virt-column-nvim")
+        end,
     },
     {
         "akinsho/toggleterm.nvim",
         version = "*",
         event = "VeryLazy",
         lazy = true,
-        config = function() require("configs._toggleterm-nvim") end,
+        config = function()
+            require("configs._toggleterm-nvim")
+        end,
     },
     {
         "RRethy/vim-illuminate",
         event = "VeryLazy",
         lazy = true,
-        config = function() require("configs._vim-illuminate") end,
+        config = function()
+            require("configs._vim-illuminate")
+        end,
     },
     -- {
     --     "mfussenegger/nvim-dap",
