@@ -5,9 +5,9 @@ vim.g.rustaceanvim = {
         float_win_config = lspconfig.hover_window_config,
     },
     server = {
+        -- on_init = lspconfig.on_init,
         on_attach = lspconfig.on_attach,
-        capabilities = lspconfig.capabilities,
-        on_init = lspconfig.on_init,
+        -- capabilities = lspconfig.capabilities,
         default_settings = {
             ["rust-analyzer"] = {
                 capabilities = lspconfig.capabilities,
