@@ -1,5 +1,4 @@
 local opt = vim.opt
-local o = vim.o
 
 -- char list
 opt.fillchars = {
@@ -14,7 +13,7 @@ opt.listchars:append(LISTCHARS.EOL)
 
 -- commandline bar
 opt.showmode = false
-o.ruler = false
+opt.ruler = false
 
 -- editor in general
 
@@ -22,7 +21,7 @@ opt.wrap = true
 opt.list = true
 opt.cursorline = true
 opt.cursorlineopt = "number"
-o.numberwidth = 2
+opt.numberwidth = 2
 opt.inccommand = "nosplit"
 opt.colorcolumn = "80,120"
 opt.virtualedit = "block"
@@ -51,18 +50,18 @@ opt.clipboard = "unnamedplus"
 
 -- left line count
 
-o.number = true
-o.relativenumber = true
+opt.number = true
+opt.relativenumber = true
 opt.foldcolumn = "1"
 
 -- indenting
 
 opt.smartindent = true
-o.expandtab = true
+opt.expandtab = true
 opt.tabstop = 4
 opt.shiftwidth = 4
-o.softtabstop = 4
-o.autoindent = true
+opt.softtabstop = 4
+opt.autoindent = true
 
 -- command mode
 
@@ -70,10 +69,10 @@ opt.smartcase = true
 
 -- undo tree save
 
-o.undofile = true
-o.updatetime = 250
+opt.undofile = true
+opt.updatetime = 250
 
 -- windowing
 
-o.splitbelow = true
-o.splitright = true
+opt.splitbelow = true
+opt.splitright = true
