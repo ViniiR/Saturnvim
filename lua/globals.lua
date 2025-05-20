@@ -31,6 +31,9 @@ FILLCHARS = {
 LISTCHARS = {
     SPACE = "space:⋅",
     EOL = "eol:↴",
+    TAB = "tab:󰌒 ",
+    -- NBSP = "nbsp:+",
+    TRAIL = "trail:-"
 }
 
 TELESCOPE_ICONS = {
@@ -73,7 +76,7 @@ GIT_SIGNS_STAGED = {
 
 LUALINE_ICONS = {
     file_modified = "[󱗜]~",
-    file_immuatable = "[󰐀]-",
+    file_immutable = "[󰐀]-",
     lsp_server = "󰒋",
     directory = "󰉖",
 }

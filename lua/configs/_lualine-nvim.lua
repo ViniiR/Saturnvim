@@ -169,7 +169,7 @@ require("lualine").setup({
                     -- syntax for inline highlights = "%#<hl_name>#"
                     return "%#CustomVLualineGreen#" .. LUALINE_ICONS.file_modified
                 elseif vim.bo.modifiable == false or vim.bo.readonly == true then
-                    return "%#CustomVLualineYellow#" .. LUALINE_ICONS.file_immuatable
+                    return "%#CustomVLualineYellow#" .. LUALINE_ICONS.file_immutable
                 else
                     return ""
                 end
