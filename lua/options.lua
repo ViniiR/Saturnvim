@@ -72,6 +72,9 @@ local opts = {
     virtualedit = "block", -- allow virtual editing in visual block mode
     fileencoding = "utf-8", -- file-content encoding for the current buffer
 
+    -- tabline
+    showtabline = 0, -- hide tabline
+
     -- spelling
     spell = true, -- enable spell check
     spelllang = { "en_us" }, -- spell check languages

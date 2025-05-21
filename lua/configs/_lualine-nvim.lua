@@ -139,8 +139,8 @@ require("lualine").setup({
         always_divide_middle = true,
         globalstatus = false,
         refresh = {
-            statusline = 1000,
-            tabline = 1000, -- TODO disable
+            statusline = 100,
+            tabline = 100, -- TODO disable
             winbar = 1000, -- TODO disable
         },
     },
@@ -219,7 +219,11 @@ require("lualine").setup({
         lualine_y = {},
         lualine_z = {},
     },
-    tabline = {},
+    tabline = {
+        -- lualine_a = {
+        --     "buffers",
+        -- },
+    },
     winbar = {},
     inactive_winbar = {},
     extensions = {},
