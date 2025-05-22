@@ -36,8 +36,10 @@ local function surround_block(block, block_finder_keypresses)
     -- deselects text
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
 
+    -- set cursor at start of selection to standardize block_finder_keypresses start position
     vim.api.nvim_win_set_cursor(0, { positions.start_pos.line + 1, 0 })
 
+    -- puts cursor on desired position
     vim.api.nvim_feedkeys(block_finder_keypresses, "n", false)
 end
 
