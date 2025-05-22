@@ -66,12 +66,16 @@ require("nvim-surround").setup({
                 end,
             },
         },
+        -- -- generic statement surround (requires manual input)
         -- ["i"] = {
         -- },
+        -- -- html tag
         -- ["t"] = {
         -- },
+        -- -- html tag
         -- ["T"] = {
         -- },
+        -- -- function call surround
         -- ["f"] = {
         -- },
     },
