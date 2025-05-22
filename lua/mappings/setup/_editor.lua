@@ -60,7 +60,7 @@ local mappings = {
         modes.normal,
         keys.escape,
         function()
-            vim.cmd("noh")
+            vim.cmd("nohlsearch")
         end,
         desc.noremap("General Clear highlights"),
     },
@@ -95,12 +95,12 @@ local mappings = {
         "yg$",
         desc.noremap("Copy cursor positon to end of line without newline"),
     },
-    {
-        modes.normal,
-        "YY",
-        "mzyyg$`z",
-        desc.noremap("Copy current line without newline"),
-    },
+    -- {
+    --     modes.normal,
+    --     "yY",
+    --     "mz0yyg$`z",
+    --     desc.noremap("Copy current line without newline"),
+    -- },
     {
         modes.normal,
         "J",
@@ -171,16 +171,16 @@ local mappings = {
         keys.no_operation,
         desc.noremap_silent("Disable Ctrl + M"),
     },
-    {
-        -- FIXME: broken
-        modes.normal,
-        keys.leader("rr"),
-        function()
-            vim.cmd(" so ~/.config/nvim/init.lua")
-            print("Reloaded Neovim config")
-        end,
-        desc.noremap_silent("Reload Neovim config"),
-    },
+    -- {
+    --     -- FIXME: broken
+    --     modes.normal,
+    --     keys.leader("rr"),
+    --     function()
+    --         vim.cmd(" so ~/.config/nvim/init.lua")
+    --         print("Reloaded Neovim config")
+    --     end,
+    --     desc.noremap_silent("Reload Neovim config"),
+    -- },
     -- Insert mode
     {
         { modes.insert, modes.command },
@@ -190,13 +190,14 @@ local mappings = {
     },
     {
         -- FIXME: doesnt work in command mode
-        { modes.insert, modes.command },
+        modes.insert,
         keys.control(keys.delete),
         keys.control("o", "dw"),
         desc.noremap("Ctrl + delete delete word"),
     },
     -- These two mappings end a small suffering i had, they are in conjunction with ./configs/cmp.lua mapping.Tab && S-Tab
     -- to revert it, delete these lines and uncomment cmp mapping.Tab and S-Tab
+    -- it prevents tab from jumping to snippets $1 instead of outputting a <Tab>
     -- map("i", "<C-k>", function()
     --     if luasnip.jumpable(-1) then luasnip.jump(-1) end
     -- end)
@@ -206,26 +207,18 @@ local mappings = {
 
     -- Visual mode
     -- the Primeagen's bindings
-    -- {
-    --     -- FIXME: broken
-    --     modes.visual,
-    --     keys.control("j"),
-    --     function()
-    --         -- map("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true })
-    --         vim.cmd("m '>+1<CR>gv=gv")
-    --     end,
-    --     desc.noremap("Moves current line down"),
-    -- },
-    -- {
-    --     -- FIXME: broken
-    --     modes.visual,
-    --     keys.control("k"),
-    --     function()
-    --         -- map("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true })
-    --         vim.cmd("m '<-2<CR>gv=gv")
-    --     end,
-    --     desc.noremap("Moves current line up"),
-    -- },
+    {
+        modes.visual,
+        keys.control("j"),
+        ":m '>+1<CR>gv=gv",
+        desc.noremap("Moves current line down"),
+    },
+    {
+        modes.visual,
+        keys.control("k"),
+        ":m '<-2<CR>gv=gv",
+        desc.noremap("Moves current line up"),
+    },
     {
         modes.visual,
         keys.leader("lr"),
