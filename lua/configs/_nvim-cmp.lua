@@ -79,7 +79,7 @@ local options_hlc = {
     enable_var_usage = true,
     enable_named_colors = true,
     enable_short_hex = true,
-    enable_tailwind = false,
+    enable_tailwind = true, -- TODO: was false before (untested)
     custom_colors = nil,
     virtual_symbol = VIRTUAL_COLOR_ICON,
     virtual_symbol_prefix = "",
@@ -192,9 +192,6 @@ local options = {
             side_padding = 1,
             scrollbar = false,
             scrolloff = 0,
-            -- FORK
-            -- title = " TEST ",
-            -- title_pos = "center",
         },
     },
 
