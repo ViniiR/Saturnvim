@@ -5,19 +5,38 @@ local desc = lib.desc
 
 ---@param block string[] { block_start, block_end }
 ---@param block_finder_keypresses string
+---before running "block_finder_keypresses" it sets the cursor on the line below the statement start
 local function surround_block(block, block_finder_keypresses)
-    local start_pos = vim.fn.line("v")
-    local end_pos = vim.fn.line(".")
-    if start_pos > end_pos then
-        start_pos, end_pos = end_pos, start_pos
+    local positions = {
+        start_pos = {
+            line = vim.fn.line("v"),
+            -- column = vim.fn.col("v"),
+        },
+        end_pos = {
+            line = vim.fn.line("."),
+            -- column = vim.fn.col("."),
+        },
+    }
+    if positions.start_pos.line > positions.end_pos.line then
+        positions.start_pos.line, positions.end_pos.line = positions.end_pos.line, positions.start_pos.line
     end
 
+    -- get the current block's indentation characters
+    local start_line = vim.api.nvim_buf_get_lines(0, positions.start_pos.line - 1, positions.start_pos.line, false)[1]
+        or ""
+    local indent = start_line:match("^[ \t]*") or ""
+
+    -- apply one indent level to the selected lines
+    vim.cmd(string.format("%s,%s>", positions.start_pos.line, positions.end_pos.line))
+
     -- create statement around selection
-    vim.fn.append(start_pos - 1, block[1])
-    vim.fn.append(end_pos + 1, block[2])
+    vim.fn.append(positions.start_pos.line - 1, indent .. block[1])
+    vim.fn.append(positions.end_pos.line + 1, indent .. block[2])
 
     -- deselects text
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+
+    vim.api.nvim_win_set_cursor(0, { positions.start_pos.line + 1, 0 })
 
     vim.api.nvim_feedkeys(block_finder_keypresses, "n", false)
 end
@@ -221,16 +240,16 @@ local mappings = {
             -- defaults to ecmascript if statements
             local block_start = "if (  ) {"
             local block_end = "}"
-            local finder_command = "k0f(la"
+            local finder_command = "k_f(la"
 
             if vim.bo.filetype == "lua" then
                 block_start = "if  then"
                 block_end = "end"
-                finder_command = "k0f a"
+                finder_command = "k_f a"
             elseif vim.bo.filetype == "rust" then
                 block_start = "if  {"
                 block_end = "}"
-                finder_command = "k0f a"
+                finder_command = "k_f a"
             end
 
             surround_block({ block_start, block_end }, finder_command)
@@ -239,26 +258,49 @@ local mappings = {
     },
     {
         modes.visual,
-        keys.leader("sf"),
+        keys.leader("sfu"),
         function()
             -- defaults to ecmascript function statements
             local block_start = "function () {"
             local block_end = "}"
-            local finder_command = "k0f a"
+            local finder_command = "k_f a"
 
             if vim.bo.filetype == "lua" then
                 block_start = "local function ()"
                 block_end = "end"
-                finder_command = "k02f a"
+                finder_command = "k_2f a"
             elseif vim.bo.filetype == "rust" then
                 block_start = "fn () {"
                 block_end = "}"
-                finder_command = "k0f a"
+                finder_command = "k_f a"
             end
 
             surround_block({ block_start, block_end }, finder_command)
         end,
         desc.noremap_silent("Surround selection with an if statement"),
+    },
+    {
+        modes.visual,
+        keys.leader("sfo"),
+        function()
+            -- defaults to ecmascript function statements
+            local block_start = "for (  ) {"
+            local block_end = "}"
+            local finder_command = "k_f lla"
+
+            if vim.bo.filetype == "lua" then
+                block_start = "for  in ipairs() do"
+                block_end = "end"
+                finder_command = "k_f a"
+            elseif vim.bo.filetype == "rust" then
+                block_start = "for  in  {"
+                block_end = "}"
+                finder_command = "k_f a"
+            end
+
+            surround_block({ block_start, block_end }, finder_command)
+        end,
+        desc.noremap_silent("Surround selection with a for statement"),
     },
 
     -- Command mode
