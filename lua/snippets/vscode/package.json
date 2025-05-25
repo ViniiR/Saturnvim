@@ -30,6 +30,10 @@
       {
         "language": "nix",
         "path": "./nix.json"
+      },
+      {
+        "language": "lua",
+        "path": "./lua.json"
       }
     ]
   }
