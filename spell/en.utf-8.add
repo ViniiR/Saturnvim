@@ -80,3 +80,11 @@ abandon'ed
 swapfile
 commandline
 tabline
+rustup
+fmt
+rustfmt
+rustdoc
+rustc
+lldb
+gdb
+clippy
