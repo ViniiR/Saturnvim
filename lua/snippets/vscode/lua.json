@@ -8,7 +8,7 @@
     "body": "vim.fn.$1"
   },
   "vim print vim inspect": {
-    "prefix": "vpi",
+    "prefix": "vip",
     "body": "vim.print(vim.inspect($1))"
   }
 }
