@@ -44,6 +44,7 @@ local function surround_block(block, block_finder_keypresses)
 end
 
 local mappings = {
+    -- Normal mode
     {
         { modes.normal, modes.visual },
         ";",
@@ -181,6 +182,69 @@ local mappings = {
     --     end,
     --     desc.noremap_silent("Reload Neovim config"),
     -- },
+    {
+        modes.normal,
+        keys.leader("rc"),
+        function()
+            local query = vim.fn.input("Rust crate info: ")
+            if query == "" then
+                return
+            end
+            vim.system({ "cargo-info", "info", query }, { text = true }, function(out)
+                if out.code ~= 0 then
+                    vim.schedule(function()
+                        vim.notify(
+                            "Rust cargo-info error code: " .. out.signal .. " Stderr: " .. out.stderr,
+                            vim.log.levels.ERROR
+                        )
+                    end)
+                    return
+                end
+                vim.schedule(function()
+                    local lines = vim.split(out.stdout, "\n", { trimempty = true })
+                    for i, line in ipairs(lines) do
+                        lines[i] = " " .. line .. " "
+                    end
+
+                    table.insert(lines, 1, "   ")
+                    table.insert(lines, "   ")
+
+                    local buf = vim.api.nvim_create_buf(false, true)
+                    vim.bo[buf].filetype = "toml"
+
+                    local height = #lines
+                    local width = 0
+                    for _, line in ipairs(lines) do
+                        local len = vim.fn.strdisplaywidth(line)
+                        if len > width then
+                            width = len
+                        end
+                    end
+                    local ui = vim.api.nvim_list_uis()[1]
+                    local row = math.floor((ui.height - height) / 2)
+                    local col = math.floor((ui.width - width) / 2)
+
+                    local win = vim.api.nvim_open_win(buf, true, {
+                        relative = "editor",
+                        title = string.format(" %s Crate-Info ", CRATE_ICON),
+                        title_pos = "left",
+                        border = BORDER_KIND,
+                        style = "minimal",
+                        height = height,
+                        width = width,
+                        row = row,
+                        col = col,
+                    })
+
+                    vim.keymap.set("n", "q", function()
+                        vim.api.nvim_win_close(win, true)
+                    end, { buffer = buf, nowait = true, silent = true })
+                    vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+                end)
+            end)
+        end,
+        desc.noremap("Rust crate info"),
+    },
     -- Insert mode
     {
         { modes.insert, modes.command },

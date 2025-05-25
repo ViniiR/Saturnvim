@@ -16,9 +16,9 @@ HARPOON_ICON = "󰛢"
 INFO_ICON = "󱁯"
 DIAGNOSTICS_ICON = "󰺄"
 
-TERMINAL_ICON=""
+TERMINAL_ICON = ""
 -- LOADING_ICON = ""
--- CRATE_ICON = ""
+CRATE_ICON = ""
 -- LIB_ICON = ""
 -- DOCS_ICON = ""
 
@@ -35,7 +35,7 @@ LISTCHARS = {
     EOL = "eol:↴",
     TAB = "tab:󰌒 ",
     -- NBSP = "nbsp:+",
-    TRAIL = "trail:-"
+    TRAIL = "trail:-",
 }
 
 TELESCOPE_ICONS = {
