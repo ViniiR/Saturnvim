@@ -191,16 +191,11 @@ local mappings = {
                 return
             end
             vim.system({ "cargo-info", "info", query }, { text = true }, function(out)
-                if out.code ~= 0 then
-                    vim.schedule(function()
-                        vim.notify(
-                            "Rust cargo-info error code: " .. out.signal .. " Stderr: " .. out.stderr,
-                            vim.log.levels.ERROR
-                        )
-                    end)
-                    return
-                end
                 vim.schedule(function()
+                    if out.code ~= 0 then
+                        vim.notify("Rust cargo-info " .. out.stderr, vim.log.levels.ERROR)
+                        return
+                    end
                     local lines = vim.split(out.stdout, "\n", { trimempty = true })
                     for i, line in ipairs(lines) do
                         lines[i] = " " .. line .. " "
@@ -360,6 +355,26 @@ local mappings = {
             surround_block({ block_start, block_end }, finder_command)
         end,
         desc.noremap_silent("Surround selection with a for statement"),
+    },
+    {
+        modes.visual,
+        keys.leader("rd"),
+        function()
+            vim.cmd('normal!"zy')
+            local text = vim.fn.getreg("z")
+            local input = vim.fn.input("Search for: ", text)
+            -- TODO: use rusty-man if possible
+            vim.system({ "rustup", "doc", input }, { text = true }, function(out)
+                vim.schedule(function()
+                    if out.code ~= 0 then
+                        vim.notify("Rustup doc " .. out.stderr, vim.log.levels.ERROR)
+                        return
+                    end
+                    print("Opening documentation with firefox...")
+                end)
+            end)
+        end,
+        desc.noremap("Rust stdlib documentation"),
     },
 
     -- Command mode
