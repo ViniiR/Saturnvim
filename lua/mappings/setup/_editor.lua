@@ -190,56 +190,86 @@ local mappings = {
             if query == "" then
                 return
             end
-            vim.system({ "cargo-info", "info", query }, { text = true }, function(out)
-                vim.schedule(function()
-                    if out.code ~= 0 then
-                        vim.notify("Rust cargo-info " .. out.stderr, vim.log.levels.ERROR)
-                        return
-                    end
-                    local lines = vim.split(out.stdout, "\n", { trimempty = true })
-                    for i, line in ipairs(lines) do
-                        lines[i] = " " .. line .. " "
-                    end
 
-                    table.insert(lines, 1, "   ")
-                    table.insert(lines, "   ")
+            local res = vim.system({ "cargo-info", "info", query }, { text = true }):wait()
 
-                    local buf = vim.api.nvim_create_buf(false, true)
-                    vim.bo[buf].filetype = "toml"
+            if res.code ~= 0 then
+                vim.notify("Rust cargo-info " .. res.stderr, vim.log.levels.ERROR)
+                return
+            end
+            local lines = vim.split(res.stdout, "\n", { trimempty = true })
+            for i, line in ipairs(lines) do
+                lines[i] = " " .. line .. " "
+            end
 
-                    local height = #lines
-                    local width = 0
-                    for _, line in ipairs(lines) do
-                        local len = vim.fn.strdisplaywidth(line)
-                        if len > width then
-                            width = len
-                        end
-                    end
-                    local ui = vim.api.nvim_list_uis()[1]
-                    local row = math.floor((ui.height - height) / 2)
-                    local col = math.floor((ui.width - width) / 2)
+            table.insert(lines, 1, "   ")
+            table.insert(lines, "   ")
 
-                    local win = vim.api.nvim_open_win(buf, true, {
-                        relative = "editor",
-                        title = string.format(" %s Crate-Info ", CRATE_ICON),
-                        title_pos = "left",
-                        border = BORDER_KIND,
-                        style = "minimal",
-                        height = height,
-                        width = width,
-                        row = row,
-                        col = col,
-                    })
+            local buf = vim.api.nvim_create_buf(false, true)
+            vim.bo[buf].filetype = "toml"
 
-                    vim.keymap.set("n", "q", function()
-                        vim.api.nvim_win_close(win, true)
-                    end, { buffer = buf, nowait = true, silent = true })
-                    vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-                end)
-            end)
+            local height = #lines
+            local width = 0
+            for _, line in ipairs(lines) do
+                local len = vim.fn.strdisplaywidth(line)
+                if len > width then
+                    width = len
+                end
+            end
+            local ui = vim.api.nvim_list_uis()[1]
+            local row = math.floor((ui.height - height) / 2)
+            local col = math.floor((ui.width - width) / 2)
+
+            local win = vim.api.nvim_open_win(buf, true, {
+                relative = "editor",
+                title = string.format(" %s Crate-Info ", CRATE_ICON),
+                title_pos = "left",
+                border = BORDER_KIND,
+                style = "minimal",
+                height = height,
+                width = width,
+                row = row,
+                col = col,
+            })
+
+            vim.keymap.set("n", "q", function()
+                vim.api.nvim_win_close(win, true)
+            end, { buffer = buf, nowait = true, silent = true })
+            vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
         end,
         desc.noremap("Rust crate info"),
     },
+    {
+        modes.normal,
+        keys.func["10"],
+        function()
+            if vim.fn.filereadable("./Run.sh") == 0 then
+                vim.notify('File "./Run.sh" does not exist.', vim.log.levels.WARN)
+                return
+            end
+
+            local res = vim.system({ "./Run.sh" }, { text = true }):wait()
+
+            if res.code ~= 0 then
+                local err_string = string.format('Failed to execute "./Run.sh", Error code: %d.', res.code)
+
+                -- You may use "echo ... >&2 to display an error"
+                if #res.stderr > 0 then
+                    res.stderr = res.stderr:gsub("\n", "")
+                    err_string =
+                        string.format('Failed to execute "./Run.sh", Error code: %d, "%s".', res.code, res.stderr)
+                end
+
+                vim.notify(err_string, vim.log.levels.WARN)
+
+                return
+            end
+
+            vim.print('Executed "./Run.sh" with success.')
+        end,
+        desc.noremap_silent("Execute ./Run.sh"),
+    },
+
     -- Insert mode
     {
         { modes.insert, modes.command },

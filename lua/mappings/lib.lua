@@ -17,6 +17,20 @@ return {
         control_backspace = "<C-H>",
         tab = "<Tab>",
         shift_tab = "<S-tab>",
+        func = {
+            ["1"] = "<F1>",
+            ["2"] = "<F2>",
+            ["3"] = "<F3>",
+            ["4"] = "<F4>",
+            ["5"] = "<F5>",
+            ["6"] = "<F6>",
+            ["7"] = "<F7>",
+            ["8"] = "<F8>",
+            ["9"] = "<F9>",
+            ["10"] = "<F10>",
+            ["11"] = "<F11>",
+            ["12"] = "<F12>",
+        },
         ---@param keys string
         ---@return string
         ---returns <leader>{keys}
