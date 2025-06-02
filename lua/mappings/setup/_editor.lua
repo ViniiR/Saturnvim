@@ -240,6 +240,7 @@ local mappings = {
         desc.noremap("Rust crate info"),
     },
     {
+        -- TODO: possibly useless
         modes.normal,
         keys.func["10"],
         function()
@@ -248,24 +249,28 @@ local mappings = {
                 return
             end
 
-            local res = vim.system({ "./Run.sh" }, { text = true }):wait()
+            vim.system({ "./Run.sh" }, { text = true }, function(out)
+                if out.code ~= 0 then
+                    local err_string = string.format('Failed to execute "./Run.sh", Error code: %d.', out.code)
 
-            if res.code ~= 0 then
-                local err_string = string.format('Failed to execute "./Run.sh", Error code: %d.', res.code)
+                    -- You may use "echo ... >&2 to display an error"
+                    if #out.stderr > 0 then
+                        err_string = string.format(
+                            'Failed to execute "./Run.sh", Error code: %d, "%s".',
+                            out.code,
+                            out.stderr:gsub("\n", "")
+                        )
+                    end
 
-                -- You may use "echo ... >&2 to display an error"
-                if #res.stderr > 0 then
-                    res.stderr = res.stderr:gsub("\n", "")
-                    err_string =
-                        string.format('Failed to execute "./Run.sh", Error code: %d, "%s".', res.code, res.stderr)
+                    vim.schedule(function()
+                        vim.notify(err_string, vim.log.levels.WARN)
+                    end)
+
+                    return
                 end
 
-                vim.notify(err_string, vim.log.levels.WARN)
-
-                return
-            end
-
-            vim.print('Executed "./Run.sh" with success.')
+                vim.print('Executed "./Run.sh" with success.')
+            end)
         end,
         desc.noremap_silent("Execute ./Run.sh"),
     },
