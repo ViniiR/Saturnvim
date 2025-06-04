@@ -3,6 +3,12 @@ local opt = vim.opt
 -- INFO: rules
 -- prefer shorter name opts before longer ones
 
+vim.filetype.add({
+    extension = {
+        i3conf = "i3config",
+    },
+})
+
 -- char list
 opt.listchars:append(LISTCHARS.EOL) -- end of line character
 opt.listchars:append(LISTCHARS.TAB) -- tab character

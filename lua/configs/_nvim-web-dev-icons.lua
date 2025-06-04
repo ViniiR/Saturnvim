@@ -12,4 +12,9 @@ devicons.set_icon({
         name = "ts",
         color = COLORS.ts_fg,
     },
+    i3conf = {
+        icon = "",
+        name = "i3conf",
+        color = COLORS.red
+    }
 })
