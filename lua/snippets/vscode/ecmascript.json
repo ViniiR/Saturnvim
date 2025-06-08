@@ -38,5 +38,9 @@
   "HTML tag": {
     "prefix": "tg",
     "body": ["<$1></$2>"]
+  },
+  "console.dir": {
+    "prefix": "dir",
+    "body": ["console.dir($1, { depth: null });"]
   }
 }
