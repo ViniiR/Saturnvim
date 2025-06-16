@@ -31,8 +31,8 @@ FILLCHARS = {
 }
 
 LISTCHARS = {
-    SPACE = "space:⋅",
-    EOL = "eol:↴",
+    SPACE = "space:⋅", -- 
+    EOL = "eol:↴", -- 
     TAB = "tab:󰌒 ",
     -- NBSP = "nbsp:+",
     TRAIL = "trail:-",
