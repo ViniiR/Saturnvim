@@ -1,4 +1,4 @@
-vim.g.vscode_snippets_path = vim.fn.stdpath("config") .. "/lua/snippets/vscode"
+vim.g.vscode_snippets_path = vim.fn.stdpath("config") .. "/snippets/vscode"
 
 -- vscode format
 require("luasnip.loaders.from_vscode").lazy_load { exclude = vim.g.vscode_snippets_exclude or {} }
