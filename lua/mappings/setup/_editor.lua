@@ -274,6 +274,12 @@ local mappings = {
         end,
         desc.noremap_silent("Execute ./Run.sh"),
     },
+    {
+        modes.normal,
+        keys.control(keys.delete),
+        keys.no_operation,
+        desc.noremap("Disable normal mode Ctrl + Del"),
+    },
 
     -- Insert mode
     {
