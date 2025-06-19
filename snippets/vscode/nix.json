@@ -3,6 +3,18 @@
     "prefix": "f",
     "body": ["{...}:{", "\t$1", "}"]
   },
+  "nixos programs": {
+    "prefix": "pro",
+    "body": "programs."
+  },
+  "nixos services": {
+    "prefix": "ser",
+    "body": "services."
+  },
+  "nixos enable": {
+    "prefix": "en",
+    "body": "enable = true;"
+  },
   "nix-shell": {
     "prefix": "mks",
     "body": [
