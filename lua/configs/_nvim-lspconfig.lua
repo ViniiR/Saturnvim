@@ -19,9 +19,23 @@ local config = {
     },
     diagnostic_config = {
         virtual_text = enable_native_virtual_text and {
-            prefix = VIRTUAL_TEXT_PREFIX,
-            virt_text_hide = false,
+            prefix = function(diagnostic)
+                local vim_diagnostic = vim.diagnostic.severity
+                local severity = diagnostic.severity
+                if severity == vim_diagnostic.ERROR then
+                    return " " .. LSP_SYMBOLS.ERROR
+                elseif severity == vim_diagnostic.WARN then
+                    return " " .. LSP_SYMBOLS.WARN
+                elseif severity == vim_diagnostic.INFO then
+                    return " " .. LSP_SYMBOLS.INFO
+                elseif severity == vim_diagnostic.HINT then
+                    return " " .. LSP_SYMBOLS.HINT
+                else
+                    return VIRTUAL_TEXT_PREFIX
+                end
+            end,
         } or false,
+        virtual_lines = false, -- cool feature maybe add later
         signs = {
             text = {
                 [x.ERROR] = LSP_SYMBOLS.ERROR,
@@ -54,48 +68,7 @@ local config = {
         severity_sort = true,
         update_in_insert = false,
     },
-    publish_diagnostics_config = {
-        virtual_text = enable_native_virtual_text and {
-            prefix = function(diagnostic)
-                local vim_diagnostic = vim.diagnostic.severity
-                local severity = diagnostic.severity
-                if severity == vim_diagnostic.ERROR then
-                    return " " .. LSP_SYMBOLS.ERROR
-                elseif severity == vim_diagnostic.WARN then
-                    return " " .. LSP_SYMBOLS.WARN
-                elseif severity == vim_diagnostic.INFO then
-                    return " " .. LSP_SYMBOLS.INFO
-                elseif severity == vim_diagnostic.HINT then
-                    return " " .. LSP_SYMBOLS.HINT
-                else
-                    return VIRTUAL_TEXT_PREFIX
-                end
-            end,
-        } or false,
-    },
-    signature_help_config = {
-        border = BORDER_KIND,
-        -- width = 80,
-    },
-    sign_list = {
-        ["DiagnosticSignError"] = {
-            text = LSP_SYMBOLS.ERROR,
-            texthl = "DiagnosticSignError",
-        },
-        ["DiagnosticSignWarn"] = {
-            text = LSP_SYMBOLS.WARN,
-            texthl = "DiagnosticSignWarn",
-        },
-        ["DiagnosticSignInfo"] = {
-            text = LSP_SYMBOLS.INFO,
-            texthl = "DiagnosticSignInfo",
-        },
-        ["DiagnosticSignHint"] = {
-            text = LSP_SYMBOLS.HINT,
-            texthl = "DiagnosticSignHint",
-        },
-    },
-    -- WARNING: rust_analyzer is managed externally by rustaceanvim do not include it
+    --- WARNING: rust_analyzer is managed externally by rustaceanvim do not include it
     lsp_list = {
         "lua_ls",
         "ts_ls",
@@ -119,19 +92,13 @@ local config = {
     },
 }
 
-for key, sign in pairs(config.sign_list) do
-    vim.fn.sign_define(key, sign)
-end
-
 vim.diagnostic.config(config.diagnostic_config)
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, config.hover_window_config)
-
-vim.lsp.handlers["textDocument/signatureHelp"] =
-    vim.lsp.with(vim.lsp.handlers.signature_help, config.signature_help_config)
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, config.publish_diagnostics_config)
+local hover = vim.lsp.buf.hover -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, config.hover_window_config)
+---@diagnostic disable-next-line: duplicate-set-field
+vim.lsp.buf.hover = function()
+    return hover(config.hover_window_config)
+end
 
 local mappings_setup = require("mappings.setup._lspconfig")
 
@@ -139,7 +106,7 @@ config["on_attach"] = function(_, bufnr)
     mappings_setup(bufnr)
 
     vim.lsp.inlay_hint.enable(true)
-    vim.diagnostic.config({ virtual_text = enable_native_virtual_text and true or false })
+    vim.diagnostic.config(config.diagnostic_config)
 end
 
 config["on_init"] = function(client, _)
