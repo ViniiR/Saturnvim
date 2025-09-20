@@ -33,6 +33,7 @@
       "\t\tNIX_ENFORCE_PURITY = 0;",
       "\t};",
       "",
+      "# RUST_SRC_PATH = \"${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}\";",
       "\tnativeBuildInputs = with pkgs; [",
       "\t\t  zsh",
       "\t];",
