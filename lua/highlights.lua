@@ -225,7 +225,8 @@ highlights["@lsp.type.type"] = { link = "CustomVType" }
 highlights["@lsp.type.typeAlias"] = { link = "CustomVType" } -- change ?
 highlights["@lsp.type.typeParameter"] = { link = "CustomVType" }
 -- highlights["@lsp.type.variable"] = { link = "CustomVVariable" }
-highlights["@lsp.type.variable.rust"] = { link = "" }
+highlights["@lsp.type.variable.rust"] = { link = "CustomVVariable" }
+highlights["@lsp.type.formatSpecifier.rust"] = { link = "CustomVChar" }
 --
 highlights["@lsp.mod.public.rust"] = { link = "CustomVFunction" }
 highlights["@lsp.typemod.namespace.macro.rust"] = { link = "@lsp.type.namespace" }
