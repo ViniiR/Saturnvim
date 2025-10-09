@@ -11,6 +11,7 @@ require("macros")
 local enable_specific_semantic_tokens = {
     ["@lsp.type.variable.rust"] = true, -- shows "{var}" highlight in rust string
     ["@lsp.type.formatSpecifier.rust"] = true, -- shows "{var:?}" highlight in rust string
+    ["@lsp.type.struct.rust"] = true, -- shows Struct(value) as type color instead of function
 }
 
 -- Disables semantic tokens individually (works)

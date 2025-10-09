@@ -221,6 +221,7 @@ highlights["@lsp.type.selfTypeKeyword"] = { link = "CustomVType" }
 -- highlights["@lsp.type.selfTypeKeyword"] = { fg = "#e03d68" }
 highlights["@lsp.type.string"] = { link = "@string" }
 highlights["@lsp.type.struct"] = { link = "CustomVStruct" }
+highlights["@lsp.type.struct.rust"] = { link = "CustomVType" }
 highlights["@lsp.type.type"] = { link = "CustomVType" }
 highlights["@lsp.type.typeAlias"] = { link = "CustomVType" } -- change ?
 highlights["@lsp.type.typeParameter"] = { link = "CustomVType" }
