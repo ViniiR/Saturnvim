@@ -54,7 +54,17 @@ require("conform").setup({
         yaml = {
             "yamlfmt",
         },
+        gdscript = {
+            "gdformat",
+        },
         -- rust is handled by rust.vim and rustaceanvim
+    },
+
+    formatters = {
+        gdformat = {
+            command = "gdformat",
+            append_args = { "-s", "4" },
+        },
     },
 
     ft_parsers = {

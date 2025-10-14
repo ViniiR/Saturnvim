@@ -83,6 +83,7 @@ local config = {
         "bashls",
         "clangd",
         "neocmake",
+        "gdscript",
         -- "nil_ls",
         "nixd",
         -- not found in nix
@@ -186,6 +187,12 @@ for _, lsp_name in ipairs(config.lsp_list) do
                 },
             },
         }
+    elseif lsp_name == "gdscript" then
+        local port = os.getenv("GDScript_Port") or "6005"
+        local cmd = vim.lsp.rpc.connect("127.0.0.1", tonumber(port))
+        lspconf.cmd = cmd
+        lspconf.filetypes = { "gd", "gdscript", "gdscript3" }
+        lspconf.root_markers = { "project.godot", ".git" }
     end
     lspconfig[lsp_name].setup(lspconf)
 end
