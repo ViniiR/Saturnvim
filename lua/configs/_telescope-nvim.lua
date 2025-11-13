@@ -22,6 +22,16 @@ telescope.setup({
         mappings = require("mappings.plugins._telescope"),
         pickers = {},
         extensions = {},
-        file_ignore_patterns = { "node_modules", ".git/", "target", ".png", ".webp", ".jpeg", ".jpg", ".svg" },
+        file_ignore_patterns = {
+            "node_modules",
+            ".git/",
+            "target",
+            ".png",
+            ".webp",
+            ".jpeg",
+            ".jpg",
+            ".svg",
+            ".gd.uid"
+        },
     },
 })
