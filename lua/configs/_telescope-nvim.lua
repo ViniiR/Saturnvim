@@ -20,18 +20,27 @@ telescope.setup({
         },
         sorting_strategy = "ascending",
         mappings = require("mappings.plugins._telescope"),
-        pickers = {},
-        extensions = {},
+        pickers = {
+            -- Ignore files on <leader>ff
+            find_files = {
+                file_ignore_patterns = {
+                    "node_modules",
+                    ".git/",
+                    "target",
+                    ".png",
+                    ".webp",
+                    ".jpeg",
+                    ".jpg",
+                    ".svg",
+                    ".gd.uid",
+                },
+            },
+        },
+        -- Ignore files on <leader>fa
         file_ignore_patterns = {
             "node_modules",
             ".git/",
-            "target",
-            ".png",
-            ".webp",
-            ".jpeg",
-            ".jpg",
-            ".svg",
-            ".gd.uid"
         },
+        extensions = {},
     },
 })
