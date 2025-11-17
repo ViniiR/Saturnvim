@@ -3,13 +3,12 @@ require("toggleterm").setup({
     size = 20,
     open_mapping = require("mappings.plugins._toggleterm").open, -- or [[<c-\>]]
     -- on_create = fun(t: Terminal), -- function to run when the terminal is first created
-    on_open = function(term)
+    on_open = function(term) -- function to run when the terminal opens
         vim.api.nvim_win_set_config(term.window, {
             title = string.format(" %s Terminal ", TERMINAL_ICON),
         })
-    end, -- function to run when the terminal opens
+    end,
     -- on_close = fun(t: Terminal), -- function to run when the terminal closes
-    -- TODO: delete 0331 character or smth
     -- on_stdout = fun(t: Terminal, job: number, data: string[], name: string) -- callback for processing output on stdout
     -- on_stderr = fun(t: Terminal, job: number, data: string[], name: string) -- callback for processing output on stderr
     -- on_exit = fun(t: Terminal, job: number, exit_code: number, name: string) -- function to run when terminal process exits
