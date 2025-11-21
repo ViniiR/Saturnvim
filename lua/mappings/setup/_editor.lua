@@ -43,6 +43,100 @@ local function surround_block(block, block_finder_keypresses)
     vim.api.nvim_feedkeys(block_finder_keypresses, "n", false)
 end
 
+---@param surround table
+---@return string, string, string
+local function unpack_surround(surround)
+    return surround.block_start, surround.block_end, surround.finder_command
+end
+
+local surround_blocks = {
+    ecmascript = {
+        if_statement = {
+            block_start = "if (  ) {",
+            block_end = "}",
+            finder_command = "k_f(la",
+        },
+        function_statement = {
+            block_start = "function () {",
+            block_end = "}",
+            finder_command = "k_f a",
+        },
+        for_statement = {
+            block_start = "for (  ) {",
+            block_end = "}",
+            finder_command = "k_f lla",
+        },
+    },
+    lua = {
+        if_statement = {
+            block_start = "if  then",
+            block_end = "end",
+            finder_command = "k_f a",
+        },
+        function_statement = {
+            block_start = "local function ()",
+            block_end = "end",
+            finder_command = "k_2f a",
+        },
+        for_statement = {
+            block_start = "for  in ipairs() do",
+            block_end = "end",
+            finder_command = "k_f a",
+        },
+    },
+    rust = {
+        if_statement = {
+            block_start = "if  {",
+            block_end = "}",
+            finder_command = "k_f a",
+        },
+        function_statement = {
+            block_start = "fn () {",
+            block_end = "}",
+            finder_command = "k_f a",
+        },
+        for_statement = {
+            block_start = "for  in  {",
+            block_end = "}",
+            finder_command = "k_f a",
+        },
+    },
+    gdscript = {
+        if_statement = {
+            block_start = "if  :",
+            block_end = "",
+            finder_command = "k_f a",
+        },
+        function_statement = {
+            block_start = "func ():",
+            block_end = "a",
+            finder_command = "k_f a",
+        },
+        for_statement = {
+            block_start = "for  :",
+            block_end = "",
+            finder_command = "k_f a",
+        },
+    },
+    python = {
+        if_statement = {
+            block_start = "if  :",
+            block_end = "",
+            finder_command = "k_f a",
+        },
+        function_statement = {
+            block_start = "def ():",
+            block_end = "",
+            finder_command = "k_f a",
+        },
+        for_statement = {
+            block_start = "for  :",
+            block_end = "",
+            finder_command = "k_f a",
+        },
+    },
+}
+
 local mappings = {
     -- Normal mode
     {
@@ -63,7 +157,7 @@ local mappings = {
         function()
             vim.cmd("nohlsearch")
         end,
-        desc.noremap("General Clear highlights"),
+        desc.noremap("Normal mode Escape key"),
     },
     {
         modes.normal,
@@ -89,7 +183,7 @@ local mappings = {
         keys.control("W", "l"),
         desc.desc("Switch window right"),
     },
-    -- The Primeagen's bindings
+    -- The Primeagen's mappings
     {
         modes.normal,
         "Y",
@@ -122,7 +216,7 @@ local mappings = {
         "Nzzzv",
         desc.desc("Center screen around previous match"),
     },
-    -- end of The Primeagen's bindings
+    -- end of The Primeagen's mappings
     {
         modes.normal,
         keys.leader("n"),
@@ -145,11 +239,17 @@ local mappings = {
         function()
             local prev_buf = vim.fn.bufnr("#")
             if prev_buf < 1 and not vim.api.nvim_buf_is_valid(prev_buf) then
-                print("No previous buffer attached")
+                vim.notify("No previous buffer attached", vim.log.levels.WARN)
                 return
             end
+
             local buf = vim.fn.bufname("%")
             local last_buf = vim.fs.basename(buf)
+
+            if not vim.api.nvim_buf_is_loaded(prev_buf) then
+                vim.notify("Previous buffer is unloaded", vim.log.levels.WARN)
+                return
+            end
 
             vim.cmd("b#")
 
@@ -306,7 +406,7 @@ local mappings = {
     -- end)
 
     -- Visual mode
-    -- the Primeagen's bindings
+    -- the Primeagen's mappings
     {
         modes.visual,
         keys.control("j"),
@@ -327,24 +427,23 @@ local mappings = {
         end,
         desc.noremap_silent("LSP rename"),
     },
-    -- end of the Primeagen's bindings
+    -- end of the Primeagen's mappings
+    -- Surround mappings
     {
         modes.visual,
         keys.leader("si"),
         function()
             -- defaults to ecmascript if statements
-            local block_start = "if (  ) {"
-            local block_end = "}"
-            local finder_command = "k_f(la"
+            local block_start, block_end, finder_command = unpack_surround(surround_blocks.ecmascript.if_statement)
 
             if vim.bo.filetype == "lua" then
-                block_start = "if  then"
-                block_end = "end"
-                finder_command = "k_f a"
+                block_start, block_end, finder_command = unpack_surround(surround_blocks.lua.if_statement)
             elseif vim.bo.filetype == "rust" then
-                block_start = "if  {"
-                block_end = "}"
-                finder_command = "k_f a"
+                block_start, block_end, finder_command = unpack_surround(surround_blocks.rust.if_statement)
+            elseif vim.bo.filetype == "gdscript" then
+                block_start, block_end, finder_command = unpack_surround(surround_blocks.gdscript.if_statement)
+            elseif vim.bo.filetype == "python" then
+                block_start, block_end, finder_command = unpack_surround(surround_blocks.python.if_statement)
             end
 
             surround_block({ block_start, block_end }, finder_command)
@@ -356,41 +455,37 @@ local mappings = {
         keys.leader("sfu"),
         function()
             -- defaults to ecmascript function statements
-            local block_start = "function () {"
-            local block_end = "}"
-            local finder_command = "k_f a"
+            local block_start, block_end, finder_command = unpack_surround(surround_blocks.ecmascript.function_statement)
 
             if vim.bo.filetype == "lua" then
-                block_start = "local function ()"
-                block_end = "end"
-                finder_command = "k_2f a"
+                block_start, block_end, finder_command = unpack_surround(surround_blocks.lua.function_statement)
             elseif vim.bo.filetype == "rust" then
-                block_start = "fn () {"
-                block_end = "}"
-                finder_command = "k_f a"
+                block_start, block_end, finder_command = unpack_surround(surround_blocks.rust.function_statement)
+            elseif vim.bo.filetype == "gdscript" then
+                block_start, block_end, finder_command = unpack_surround(surround_blocks.gdscript.function_statement)
+            elseif vim.bo.filetype == "python" then
+                block_start, block_end, finder_command = unpack_surround(surround_blocks.python.function_statement)
             end
 
             surround_block({ block_start, block_end }, finder_command)
         end,
-        desc.noremap_silent("Surround selection with an if statement"),
+        desc.noremap_silent("Surround selection with a function statement"),
     },
     {
         modes.visual,
         keys.leader("sfo"),
         function()
-            -- defaults to ecmascript function statements
-            local block_start = "for (  ) {"
-            local block_end = "}"
-            local finder_command = "k_f lla"
+            -- defaults to ecmascript for statements
+            local block_start, block_end, finder_command = unpack_surround(surround_blocks.ecmascript.for_statement)
 
             if vim.bo.filetype == "lua" then
-                block_start = "for  in ipairs() do"
-                block_end = "end"
-                finder_command = "k_f a"
+                block_start, block_end, finder_command = unpack_surround(surround_blocks.lua.for_statement)
             elseif vim.bo.filetype == "rust" then
-                block_start = "for  in  {"
-                block_end = "}"
-                finder_command = "k_f a"
+                block_start, block_end, finder_command = unpack_surround(surround_blocks.rust.for_statement)
+            elseif vim.bo.filetype == "gdscript" then
+                block_start, block_end, finder_command = unpack_surround(surround_blocks.gdscript.for_statement)
+            elseif vim.bo.filetype == "python" then
+                block_start, block_end, finder_command = unpack_surround(surround_blocks.python.for_statement)
             end
 
             surround_block({ block_start, block_end }, finder_command)
@@ -439,16 +534,6 @@ local mappings = {
     },
     -- noop ; to prevent ;w file also prevents ; from ever being typed
     -- map("c", ";", "<Nop>", { noremap = true, silent = true })
-
-    -- Terminal mode
-    -- TODO: possibly deprecated due to now using toggleterm
-    -- {
-    --     --vim.keymap.set("t", "<C-\\><C-\\>", "<C-\\><C-N>", { noremap = true })
-    --     modes.command,
-    --     keys.control("\\", keys.control("\\")),
-    --     keys.control("\\", keys.control("N")),
-    --     desc.noremap("TODO:"),
-    -- },
 }
 
 return function()
