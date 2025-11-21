@@ -151,6 +151,7 @@ for _, lsp_name in ipairs(config.lsp_list) do
             Lua = {
                 runtime = {
                     version = "LuaJIT", -- Current Neovim Lua runtime version
+                    path = vim.split(package.path, ";"),
                 },
                 diagnostics = {
                     globals = { "vim" },
