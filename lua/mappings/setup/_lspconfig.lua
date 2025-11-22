@@ -85,7 +85,7 @@ local mappings = {
     },
     {
         modes.normal,
-        keys.control("W", "d"),
+        keys.control("w", "d"),
         function() vim.diagnostic.open_float() end,
         desc.desc("LSP Open current line diagnostics"),
     },

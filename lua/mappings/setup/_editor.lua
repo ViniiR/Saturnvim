@@ -162,25 +162,25 @@ local mappings = {
     {
         modes.normal,
         keys.control("h"),
-        keys.control("W", "h"),
+        keys.control("w", "h"),
         desc.desc("Switch window left"),
     },
     {
         modes.normal,
         keys.control("j"),
-        keys.control("W", "j"),
+        keys.control("w", "j"),
         desc.desc("Switch window bottom"),
     },
     {
         modes.normal,
         keys.control("k"),
-        keys.control("W", "k"),
+        keys.control("w", "k"),
         desc.desc("Switch window top"),
     },
     {
         modes.normal,
         keys.control("l"),
-        keys.control("W", "l"),
+        keys.control("w", "l"),
         desc.desc("Switch window right"),
     },
     -- The Primeagen's mappings
@@ -385,7 +385,7 @@ local mappings = {
     {
         { modes.insert, modes.command },
         keys.control_backspace,
-        keys.control("W"),
+        keys.control("w"),
         desc.noremap("Ctrl + backspace delete word backwards"),
     },
     {
@@ -492,26 +492,27 @@ local mappings = {
         end,
         desc.noremap_silent("Surround selection with a for statement"),
     },
-    {
-        modes.visual,
-        keys.leader("rd"),
-        function()
-            vim.cmd('normal!"zy')
-            local text = vim.fn.getreg("z")
-            local input = vim.fn.input("Search for: ", text)
-            -- TODO: use rusty-man if possible
-            vim.system({ "rustup", "doc", input }, { text = true }, function(out)
-                vim.schedule(function()
-                    if out.code ~= 0 then
-                        vim.notify("Rustup doc " .. out.stderr, vim.log.levels.ERROR)
-                        return
-                    end
-                    print("Opening documentation with firefox...")
-                end)
-            end)
-        end,
-        desc.noremap("Rust stdlib documentation"),
-    },
+    -- -- INFO: disabled since rustup doc doesn't work on nixos
+    -- -- rusty-man doesn't work without rustup either
+    -- {
+    --     modes.visual,
+    --     keys.leader("rd"),
+    --     function()
+    --         vim.cmd('normal!"zy')
+    --         local text = vim.fn.getreg("z")
+    --         local input = vim.fn.input("Search for: ", text)
+    --         vim.system({ "rustup", "doc", input }, { text = true }, function(out)
+    --             vim.schedule(function()
+    --                 if out.code ~= 0 then
+    --                     vim.notify("Rustup doc " .. out.stderr, vim.log.levels.ERROR)
+    --                     return
+    --                 end
+    --                 print("Opening documentation with firefox...")
+    --             end)
+    --         end)
+    --     end,
+    --     desc.noremap("Rust stdlib documentation"),
+    -- },
 
     -- Command mode
     {
