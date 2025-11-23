@@ -12,7 +12,9 @@ local mappings = {
         -- map("i", "<M-e>", function() toggle_telescope(harpoon:close_menu()) end, { desc = "Open harpoon window" })
         modes.normal,
         keys.alt("e"),
-        function() harpoon.ui:toggle_quick_menu(harpoon:list(), harpoon_opts) end,
+        function()
+            harpoon.ui:toggle_quick_menu(harpoon:list(), harpoon_opts)
+        end,
         desc.desc("Open harpoon window"),
     },
     {
