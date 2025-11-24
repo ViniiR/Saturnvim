@@ -74,6 +74,8 @@ local config = {
         "ts_ls",
         "eslint",
         "emmet_language_server",
+        "svelte",
+        "vuels",
         "html",
         "cssls",
         "tailwindcss",
