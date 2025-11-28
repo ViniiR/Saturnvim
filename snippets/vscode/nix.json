@@ -15,6 +15,10 @@
     "prefix": "en",
     "body": "enable = true;"
   },
+  "inline comment": {
+    "prefix": "/*",
+    "body": "/* $1 */"
+  },
   "nix-shell": {
     "prefix": "mks",
     "body": [
