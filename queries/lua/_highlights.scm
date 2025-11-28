@@ -1,2 +1,2 @@
-; extends
+;; extends
 (string) @spell
