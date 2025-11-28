@@ -86,6 +86,7 @@ local config = {
         "clangd",
         "neocmake",
         "gdscript",
+        "ocamllsp",
         -- "nil_ls",
         "nixd",
         -- not found in nix

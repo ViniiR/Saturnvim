@@ -57,6 +57,9 @@ require("conform").setup({
         gdscript = {
             "gdformat",
         },
+        ocaml = {
+            "ocamlformat",
+        },
         -- rust is handled by rust.vim and rustaceanvim
     },
 
