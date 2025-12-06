@@ -1,0 +1,22 @@
+{
+  "let%lwt": {
+    "prefix": "letlwt",
+    "body": ["let%lwt"]
+  },
+  "try%lwt": {
+    "prefix": "trylwt",
+    "body": ["try%lwt", "\t$1", "with _ -> ()"]
+  },
+  "(* comment *)": {
+    "prefix": "co",
+    "body": ["(* $1 *)"]
+  },
+  "printg": {
+    "prefix": "pr",
+    "body": ["Printf.printf \"$1\""]
+  },
+  "then...else": {
+    "prefix": "then",
+    "body": ["then", "\t$s", "else"]
+  }
+}

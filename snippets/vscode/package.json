@@ -12,6 +12,10 @@
         "path": "./ecmascript.json"
       },
       {
+        "language": "json",
+        "path": "./json.json"
+      },
+      {
         "language": "rust",
         "path": "./rust.json"
       },
@@ -36,8 +40,8 @@
         "path": "./lua.json"
       },
       {
-        "language": "json",
-        "path": "./json.json"
+        "language": "ocaml",
+        "path": "./ocaml.json"
       }
     ]
   }
