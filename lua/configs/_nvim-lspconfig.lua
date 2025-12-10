@@ -87,6 +87,7 @@ local config = {
         "neocmake",
         "gdscript",
         "ocamllsp",
+        "ts_query_ls",
         -- "nil_ls",
         "nixd",
         -- not found in nix
@@ -197,6 +198,13 @@ for _, lsp_name in ipairs(config.lsp_list) do
         lspconf.cmd = cmd
         lspconf.filetypes = { "gd", "gdscript", "gdscript3" }
         lspconf.root_markers = { "project.godot", ".git" }
+    elseif lsp_name == "ts_query_ls" then
+        lspconf.settings = {
+            parser_install_directories = {
+                -- If using nvim-treesitter with lazy.nvim
+                vim.fs.joinpath(vim.fn.stdpath("data"), "/lazy/nvim-treesitter/parser/"),
+            },
+        }
     end
     lspconfig[lsp_name].setup(lspconf)
 end
