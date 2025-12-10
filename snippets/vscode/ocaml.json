@@ -17,6 +17,14 @@
   },
   "then...else": {
     "prefix": "then",
-    "body": ["then", "\t$s", "else"]
+    "body": ["then", "\t$1", "else"]
+  },
+  "with _ -> ...": {
+    "prefix": "with",
+    "body": ["with", "\t| $1"]
+  },
+  "array": {
+    "prefix": "[|",
+    "body": ["[| $1 |]"]
   }
 }
