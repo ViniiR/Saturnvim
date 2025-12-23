@@ -11,9 +11,17 @@
     "prefix": "co",
     "body": ["(* $1 *)"]
   },
-  "printg": {
+  "print": {
     "prefix": "pr",
-    "body": ["Printf.printf \"$1\""]
+    "body": ["Printf.printf \"$1\\n\"$2;"]
+  },
+  "print error": {
+    "prefix": "epr",
+    "body": ["Printf.eprintf \"$1\\n\"$2;"]
+  },
+  "flush std": {
+    "prefix": "fl",
+    "body": ["Stdlib.flush stdout;"]
   },
   "then...else": {
     "prefix": "then",
@@ -26,5 +34,13 @@
   "array": {
     "prefix": "[|",
     "body": ["[| $1 |]"]
+  },
+  "lambda function": {
+    "prefix": "fun",
+    "body": ["(fun $1 -> $2)"]
+  },
+  "match function": {
+    "prefix": "func",
+    "body": ["function", "| Ok _ -> ()", "| Error _ -> ()"]
   }
 }
