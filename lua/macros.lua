@@ -10,7 +10,7 @@ local esc = api.nvim_replace_termcodes("<Esc>", true, true, true)
 local m = {
     ---@param macro string[] macro string array stored at register
     ---@param register string register to hold the macro string
-    ---@param filetypes table list of string filetypes e.g. { "typescript", "javascript" }
+    ---@param filetypes nil | table list of string filetypes e.g. { "typescript", "javascript" }
     ---@param group_name string string of au_group name e.g. "EcmaLogGroup"
     create_macro = function(macro, register, filetypes, group_name)
         local macro_string = table.concat(macro)
@@ -23,7 +23,10 @@ local m = {
             end,
         })
     end,
-    log_key = "l",
+    keys = {
+        log = "l",
+        semicolon = "c",
+    },
     if_key = "i",
     function_key = "f",
     ecma_filetypes = {
@@ -56,7 +59,7 @@ m.create_macro({
     esc,
     "pa);",
     esc,
-}, m.log_key, m.ecma_filetypes, "EcmaLogGroup")
+}, m.keys.log, m.ecma_filetypes, "EcmaLogGroup")
 m.create_macro({
     'yodbg!("',
     esc,
@@ -65,7 +68,7 @@ m.create_macro({
     "pa);",
     esc,
     "",
-}, m.log_key, m.rust_filetypes, "RustLogGroup")
+}, m.keys.log, m.rust_filetypes, "RustLogGroup")
 m.create_macro({
     'yoprint("',
     esc,
@@ -74,4 +77,14 @@ m.create_macro({
     "pa)",
     esc,
     "",
-}, m.log_key, m.lua_filetypes, "LuaLogGroup")
+}, m.keys.log, m.lua_filetypes, "LuaLogGroup")
+
+-- semicolon macros
+
+m.create_macro({
+    "mzA;",
+    esc,
+    "`z",
+    esc,
+    "",
+}, m.keys.semicolon, nil, "SemicolonGroup")
