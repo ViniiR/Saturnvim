@@ -172,11 +172,6 @@ return {
         dependencies = {
             {
                 "L3MON4D3/LuaSnip",
-                -- TODO: move to setup
-                opts = {
-                    history = true,
-                    updateevents = "TextChanged,TextChangedI",
-                },
                 lazy = true,
                 config = function()
                     require("configs._luasnip")
