@@ -1,4 +1,5 @@
 require("nvim-autopairs").setup({
+    enable_moveright = false,
     -- TODO: learn how to use this
     fast_wrap = {
         map = "<M-f>", -- TODO: change mapping
