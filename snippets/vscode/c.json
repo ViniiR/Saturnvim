@@ -1,0 +1,10 @@
+{
+    "include": {
+        "prefix": "in",
+        "body": "#include <$1>"
+    },
+    "include local": {
+        "prefix": "inl",
+        "body": "#include \"$1\""
+    }
+}
