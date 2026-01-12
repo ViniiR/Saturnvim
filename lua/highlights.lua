@@ -22,6 +22,7 @@ highlights["CustomVEnumMember"] = { fg = "#4d98d6" }
 highlights["CustomVStruct"] = { fg = "#4ebd90" }
 highlights["CustomVLualineGreen"] = { fg = "#7eca9c", bg = "#323942" }
 highlights["CustomVLualineYellow"] = { fg = "yellow", bg = "#323942" }
+highlights["CustomVLualineLspRed"] = { fg = "red", bg = "#323942" }
 
 -- vim illuminate
 highlights["IlluminatedWord"] = { bold = false, bg = COLORS.illuminate_bg }
@@ -332,7 +333,7 @@ highlights["TelescopeResultsBorder"] = { fg = COLORS.one_bg3 }
 
 highlights["TelescopePromptTitle"] = { fg = COLORS.black, bg = COLORS.red }
 
-highlights["TelescopeSelection"] = { bg = COLORS.grey, fg = COLORS.white }
+highlights["TelescopeSelection"] = { bg = COLORS.grey, fg = "none" }
 highlights["TelescopeResultsDiffAdd"] = { fg = COLORS.green }
 highlights["TelescopeResultsDiffChange"] = { fg = COLORS.yellow }
 highlights["TelescopeResultsDiffDelete"] = { fg = COLORS.red }
