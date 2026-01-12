@@ -188,7 +188,18 @@ require("lualine").setup({
                 },
             },
             function()
-                return string.format("%s %s", LUALINE_ICONS.lsp_server, vim.g.current_attached_lsp)
+                local has_lsp = vim.g.current_attached_lsp ~= nil and vim.g.current_attached_lsp ~= "No LSP"
+                local str = ""
+
+                -- Override the v_one_dark theme color if there is no LSP
+                -- NOTE: lualine does not recompute v_one_dark after setup, so changing it at runtime does not modify the color
+                if has_lsp then
+                    str = string.format("%s %s", LUALINE_ICONS.lsp_server, vim.g.current_attached_lsp)
+                else
+                    str = "%#CustomVLualineLspRed#" .. string.format("%s %s", LUALINE_ICONS.lsp_server_fail, "None")
+                end
+
+                return str
             end,
         },
         lualine_y = {
@@ -202,7 +213,7 @@ require("lualine").setup({
                 return string.format("Tabs: %d,", tablen)
             end,
             function()
-                return string.format("Ln %d, Col %d", vim.fn.line("."), vim.fn.charcol("."))
+                return string.format("Ln %2d, Col %2d", vim.fn.line("."), vim.fn.charcol("."))
             end,
         },
         lualine_z = {

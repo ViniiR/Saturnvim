@@ -80,6 +80,7 @@ LUALINE_ICONS = {
     file_modified = "[󱗜]~",
     file_immutable = "[󰐀]-",
     lsp_server = "󰒋",
+    lsp_server_fail = "",
     directory = "󰉖",
 }
 
