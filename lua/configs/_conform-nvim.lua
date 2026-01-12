@@ -30,14 +30,17 @@ require("conform").setup({
         json = {
             "prettierd",
         },
+        jsonc = {
+            "prettierd",
+        },
+        json5 = {
+            "prettierd",
+        },
         cpp = {
             "clang_format",
         },
         c = {
             "clang_format",
-        },
-        jsonc = {
-            "prettierd",
         },
         css = {
             "prettierd",
@@ -46,6 +49,9 @@ require("conform").setup({
             "prettierd",
         },
         sass = {
+            "prettierd",
+        },
+        html = {
             "prettierd",
         },
         nix = {
