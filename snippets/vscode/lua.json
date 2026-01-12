@@ -10,5 +10,9 @@
   "vim print vim inspect": {
     "prefix": "vip",
     "body": "vim.print(vim.inspect($1))"
+  },
+  "vim print": {
+    "prefix": "vp",
+    "body": "vim.print($1)"
   }
 }
