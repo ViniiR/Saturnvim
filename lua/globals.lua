@@ -22,6 +22,86 @@ CRATE_ICON = ""
 -- LIB_ICON = ""
 -- DOCS_ICON = ""
 
+--- Standardized definition of filetypes config wide,
+--- especially used by LSPs
+FILETYPES = {
+    --- Merge two or more filetype tables
+    --- ```lua
+    --- FILETYPES.merge({ 1 }, { 2, 3 }, { 4 }) -> { 1, 2, 3, 4 }
+    --- ```
+    --- @param left table
+    --- @param ... table
+    --- @return table
+    merge = function(left, ...)
+        local result = {}
+        -- Prevents lua passing left by reference
+        vim.list_extend(result, left)
+
+        local args = { ... }
+
+        for _, val in ipairs(args) do
+            vim.list_extend(result, val)
+        end
+        return result
+    end,
+    ecma = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "javascript.jsx",
+        "typescript.tsx",
+        "vue",
+        "svelte",
+        "astro",
+        "angular",
+    },
+    -- used by framework LSPs
+    ecma_frameworks = {
+        svelte = { "svelte" },
+        vue = { "vue" },
+        -- react = {
+        --     "javascriptreact",
+        --     "typescriptreact",
+        --     "javascript.jsx",
+        --     "typescript.tsx",
+        -- },
+        -- astro = { "astro" },
+        -- angular = { "angular" },
+    },
+    json = {
+        "json",
+        "jsonc",
+        "json5",
+    },
+    toml = { "toml" },
+    yaml = { "yaml" },
+    html = { "html" },
+    css = {
+        "css",
+        "sass",
+        "scss",
+        "postcss",
+        "cssmodules",
+    },
+    bash = {
+        "sh",
+        "bash",
+    },
+    godot = {
+        "gd",
+        "gdscript",
+        "gdscript3",
+    },
+    lua = { "lua" },
+    nix = { "nix" },
+    ocaml = { "ocaml", "ml" },
+    c = { "c" },
+    cpp = { "cpp" },
+    cmake = { "cmake" },
+    treesitter_query = { "query" },
+}
+
 FILLCHARS = {
     EOB = "b",
     FOLD = " ",
