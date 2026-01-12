@@ -1,4 +1,4 @@
-local lspconfig = require("lspconfig")
+-- INFO: after 0.11.5 this file is now loaded directly via init.lua
 
 local enable_native_virtual_text = true
 local x = vim.diagnostic.severity
@@ -6,17 +6,19 @@ local x = vim.diagnostic.severity
 --- INFO: updated in autocmds.lua
 vim.g.current_attached_lsp = "No LSP"
 
---- INFO: useful information
--- disable semantic tokens completely
+-- INFO: disable semantic tokens completely
+-- NOTE: some semantic tokens are specifically enabled in init.lua
 -- vim.highlight.priorities.semantic_tokens = 0
 
 local config = {
-    hover_window_config = {
-        title = string.format(" %s Info ", INFO_ICON),
-        border = BORDER_KIND,
-        max_width = nil, -- TODO
-        max_height = nil,
-    },
+    -- INFO: now defined in mappings/_nvim-lspconfig.lua
+    -- hover_window_config = {
+    --     title = string.format(" %s Info ", INFO_ICON),
+    --     border = BORDER_KIND,
+    --     max_width = nil, -- TODO
+    --     max_height = nil,
+    -- },
+    --- @type vim.diagnostic.Opts
     diagnostic_config = {
         virtual_text = enable_native_virtual_text and {
             prefix = function(diagnostic)
@@ -99,12 +101,6 @@ local config = {
 
 vim.diagnostic.config(config.diagnostic_config)
 
-local hover = vim.lsp.buf.hover -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, config.hover_window_config)
----@diagnostic disable-next-line: duplicate-set-field
-vim.lsp.buf.hover = function()
-    return hover(config.hover_window_config)
-end
-
 local mappings_setup = require("mappings.setup._lspconfig")
 
 config["on_attach"] = function(_, bufnr)
@@ -161,14 +157,23 @@ for _, lsp_name in ipairs(config.lsp_list) do
                     globals = { "vim" },
                 },
                 workspace = {
-                    library = {
-                        vim.fn.expand("$VIMRUNTIME/lua"),
-                        vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
-                        vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
-                        "${3rd}/luv/library",
-                    },
+                    -- NOTE: loads .vim runtime library
+                    -- Shows intellisense
+                    -- Does not have annotations
+                    library = vim.api.nvim_get_runtime_file("", true),
+                    -- -- Previous config
+                    -- library = {
+                    --     vim.fn.expand("$VIMRUNTIME/lua"),
+                    --     -- vim.fn.expand("$VIMRUNTIME/lua/vim"),
+                    --     -- vim.fn.expand("$VIMRUNTIME/lua/vim/keymap"),
+                    --     -- vim.fn.expand("$VIMRUNTIME/lua/vim/filetype"),
+                    --     vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
+                    --     vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
+                    --     "${3rd}/luv/library",
+                    -- },
                     maxPreload = 100000,
                     preloadFileSize = 10000,
+                    telemetry = { enable = false },
                 },
             },
         }
@@ -206,7 +211,9 @@ for _, lsp_name in ipairs(config.lsp_list) do
             },
         }
     end
-    lspconfig[lsp_name].setup(lspconf)
+    vim.lsp.config[lsp_name] = lspconf
 end
+
+vim.lsp.enable(config.lsp_list)
 
 return config

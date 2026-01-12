@@ -3,6 +3,8 @@ local keys = lib.keys
 local modes = lib.modes
 local desc = lib.desc
 
+local lsp_config = require("lsp.config")
+
 local mappings = {
     --local function opts(desc) return { buffer = bufnr, desc = "LSP " .. desc } end
     {
@@ -44,7 +46,9 @@ local mappings = {
     {
         modes.normal,
         keys.leader("wl"),
-        function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+        function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end,
         desc.desc("LSP List workspace folder"),
     },
     {
@@ -86,7 +90,17 @@ local mappings = {
     {
         modes.normal,
         keys.control("w", "d"),
-        function() vim.diagnostic.open_float() end,
+        function()
+            vim.diagnostic.open_float()
+        end,
+        desc.desc("LSP Open current line diagnostics"),
+    },
+    {
+        modes.normal,
+        "K",
+        function()
+            vim.lsp.buf.hover(lsp_config.hover_window_config)
+        end,
         desc.desc("LSP Open current line diagnostics"),
     },
 }
