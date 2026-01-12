@@ -1,6 +1,7 @@
+--- @type LazySpec[]
 return {
     {
-        -- Must be the first plugin loaded
+        -- INFO: Must be the first plugin loaded
         "navarasu/onedark.nvim",
         lazy = false,
         config = function()
@@ -8,6 +9,7 @@ return {
         end,
     },
     {
+        -- INFO: Must be loaded right after theme
         "nvim-tree/nvim-web-devicons",
         lazy = false,
         config = function()
@@ -15,20 +17,19 @@ return {
         end,
     },
     {
+        -- INFO: Now only used by vim.lsp api to define default configs
         "neovim/nvim-lspconfig",
         event = "VeryLazy",
         lazy = true,
         config = function()
-            require("configs._nvim-lspconfig")
+            require("lsp")
         end,
     },
     {
         "nvim-telescope/telescope.nvim",
-        -- old
-        -- tag = "0.1.8",
-        branch = "0.1.x",
+        tag = "v0.2.1",
         cmd = "Telescope",
-        module = "telescope",
+        module = false,
         event = "VimEnter",
         lazy = true,
         config = function()
@@ -48,6 +49,7 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "master", -- TODO: main branch update (requires new config)
         build = ":TSUpdate",
         event = "VeryLazy",
         lazy = true,
@@ -73,7 +75,6 @@ return {
         end,
         dependencies = {
             { "nvim-lua/plenary.nvim" },
-            { "nvim-telescope/telescope.nvim" },
         },
     },
     {
@@ -92,9 +93,6 @@ return {
         config = function()
             require("configs._oil-nvim")
         end,
-        dependencies = {
-            { "nvim-tree/nvim-web-devicons" },
-        },
     },
     {
         "lukas-reineke/indent-blankline.nvim",
@@ -131,9 +129,6 @@ return {
         config = function()
             require("configs._dashboard-nvim")
         end,
-        dependencies = {
-            { "nvim-tree/nvim-web-devicons" },
-        },
     },
     {
         "lewis6991/gitsigns.nvim",
@@ -150,9 +145,6 @@ return {
         config = function()
             require("configs._lualine-nvim")
         end,
-        dependencies = {
-            { "nvim-tree/nvim-web-devicons" },
-        },
     },
     {
         "windwp/nvim-autopairs",
@@ -163,6 +155,16 @@ return {
         end,
     },
     {
+        "L3MON4D3/LuaSnip",
+        lazy = true,
+        config = function()
+            require("configs._luasnip")
+        end,
+        dependencies = {
+            "rafamadriz/friendly-snippets",
+        },
+    },
+    {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         lazy = true,
@@ -170,18 +172,6 @@ return {
             require("configs._nvim-cmp")
         end,
         dependencies = {
-            {
-                "L3MON4D3/LuaSnip",
-                lazy = true,
-                config = function()
-                    require("configs._luasnip")
-                end,
-                dependencies = {
-                    "rafamadriz/friendly-snippets",
-                },
-            },
-            { "neovim/nvim-lspconfig" },
-            { "brenoprata10/nvim-highlight-colors" },
             { "saadparwaiz1/cmp_luasnip" },
             { "hrsh7th/cmp-nvim-lua" },
             { "hrsh7th/cmp-nvim-lsp" },
@@ -192,15 +182,12 @@ return {
     },
     {
         "mrcjkb/rustaceanvim",
-        version = "^5", -- Recommended
+        version = "^6", -- Recommended
         ft = { "rust" },
         lazy = false, -- This plugin is already lazy
         config = function()
             require("configs._rustaceanvim")
         end,
-        dependencies = {
-            { "neovim/nvim-lspconfig" },
-        },
         -- TODO: delete if it works
         -- 11/03/2025 20:39 Confirmed to be working on xv-chat repo (apparently perfectly)
         -- 11/03/2025 21:28 Does not work on overly large projects (hopefully a hardware issue since it works on different pc (same setup))
@@ -303,4 +290,8 @@ return {
     --         })
     --     end,
     -- },
+    {
+        dir = "~/Documents/projects/rings-nvim",
+        lazy = true,
+    },
 }
