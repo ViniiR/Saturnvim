@@ -1,34 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
 
-autocmd("LspAttach", {
-    callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client == nil then
-            return
-        end
-
-        if client then
-            vim.g.current_attached_lsp = client.name or "No LSP"
-        end
-
-        -- LSP specific configs
-        if client.name == "rust-analyzer" then
-            local is_in_rust_root = vim.fn.filereadable("./Cargo.toml")
-            if not is_in_rust_root then
-                return
-            end
-
-            local is_in_nix_shell = vim.env.NIX_ENFORCE_PURITY ~= nil
-            if not is_in_nix_shell then
-                vim.notify("Rust Analyzer requires a Nix Shell to work properly", vim.log.levels.ERROR)
-            end
-        end
-
-        -- disable semantic tokens? (possibly unnecessary)
-        -- if client == "rust_analyzer" then client.server_capabilities.semanticTokensProvider = nil end
-    end,
-})
-
 autocmd("BufEnter", {
     callback = function()
         -- Overrides gdscript.vim's use of Tabs instead of Spaces
@@ -39,6 +10,7 @@ autocmd("BufEnter", {
         end
     end,
 })
+
 -- TODO: possibly doesn't work in rust
 -- seems to use too much cpu
 -- autocmd("LspAttach", {
