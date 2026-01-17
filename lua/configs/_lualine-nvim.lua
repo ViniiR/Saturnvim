@@ -191,12 +191,26 @@ require("lualine").setup({
                 local has_lsp = vim.g.current_attached_lsp ~= nil and vim.g.current_attached_lsp ~= "No LSP"
                 local str = ""
 
+                local is_in_nix_shell = vim.env.IN_NIX_SHELL ~= nil
+
                 -- Override the v_one_dark theme color if there is no LSP
                 -- NOTE: lualine does not recompute v_one_dark after setup, so changing it at runtime does not modify the color
                 if has_lsp then
                     str = string.format("%s %s", LUALINE_ICONS.lsp_server, vim.g.current_attached_lsp)
+                    if is_in_nix_shell then
+                        str = "%#CustomVLualineGreenLsp#" .. str
+                    end
                 else
                     str = "%#CustomVLualineLspRed#" .. string.format("%s %s", LUALINE_ICONS.lsp_server_fail, "None")
+                end
+
+                if is_in_nix_shell then
+                    local icon = "󰊕"
+                    if vim.env.IN_NIX_SHELL == "impure" then
+                        icon = "!󰊕"
+                    end
+
+                    str = "%#CustomVNix#" .. icon .. "  " .. str
                 end
 
                 return str

@@ -21,8 +21,10 @@ highlights["CustomVEnum"] = { fg = "#4ebd90" }
 highlights["CustomVEnumMember"] = { fg = "#4d98d6" }
 highlights["CustomVStruct"] = { fg = "#4ebd90" }
 highlights["CustomVLualineGreen"] = { fg = "#7eca9c", bg = "#323942" }
+highlights["CustomVLualineGreenLsp"] = { fg = "#51db44", bg = "#323942" }
 highlights["CustomVLualineYellow"] = { fg = "yellow", bg = "#323942" }
 highlights["CustomVLualineLspRed"] = { fg = "red", bg = "#323942" }
+highlights["CustomVNix"] = { fg = "#5277C3", bg = "#323942" }
 
 -- vim illuminate
 highlights["IlluminatedWord"] = { bold = false, bg = COLORS.illuminate_bg }

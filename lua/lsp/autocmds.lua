@@ -28,7 +28,7 @@ autocmd("LspAttach", {
         -- Rust analyzer custom config
         if client.name == "rust-analyzer" then
             local is_in_rust_root = vim.fn.filereadable("./Cargo.toml")
-            local is_in_nix_shell = vim.env.NIX_ENFORCE_PURITY ~= nil
+            local is_in_nix_shell = vim.env.IN_NIX_SHELL ~= nil
 
             if is_in_rust_root and not is_in_nix_shell then
                 local msg = "Rust Analyzer requires a Nix Shell to work properly"
