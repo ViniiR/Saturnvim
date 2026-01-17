@@ -6,7 +6,7 @@ return {
         "shell.nix",
         ".git",
     },
-    filetypes = FILETYPES.nix,
+    filetypes = { "nix" },
     settings = {
         nixd = {
             nixpkgs = {

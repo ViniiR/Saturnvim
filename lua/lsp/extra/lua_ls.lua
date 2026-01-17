@@ -1,7 +1,7 @@
 --- @type vim.lsp.ClientConfig
 return {
     cmd = { "lua-language-server" },
-    filetypes = FILETYPES.lua,
+    filetypes = { "lua" },
     root_markers = {
         ".luarc.json",
         ".luarc.jsonc",

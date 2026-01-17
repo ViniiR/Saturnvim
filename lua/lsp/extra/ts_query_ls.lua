@@ -1,7 +1,7 @@
 --- @type vim.lsp.Config
 return {
     cmd = { "ts_query_ls" },
-    filetypes = FILETYPES.treesitter_query,
+    filetypes = { "query" },
     settings = {
         parser_install_directories = {
             -- If using nvim-treesitter with lazy.nvim
