@@ -24,7 +24,7 @@ return {
         -- INFO: Must be loaded right after theme
         "nvim-tree/nvim-web-devicons",
         branch = "master",
-        version = "*",
+        version = false, -- tags are years behind updates
 
         -- Loading
         lazy = false,
@@ -69,7 +69,7 @@ return {
     {
         "brenoprata10/nvim-highlight-colors",
         branch = "main",
-        version = "*",
+        version = false, -- does not offer tags
 
         -- Loading
         event = "VeryLazy",
@@ -109,7 +109,7 @@ return {
     {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
-        version = "*",
+        version = false, -- does not offer tags
 
         -- Loading
         event = "VimEnter",
@@ -138,7 +138,7 @@ return {
     {
         "stevearc/oil.nvim",
         branch = "master",
-        version = "*",
+        version = false, -- tags are years behind updates
 
         -- Loading
         event = "VeryLazy",
@@ -165,15 +165,13 @@ return {
     {
         "folke/which-key.nvim",
         branch = "main",
-        version = "*",
+        version = false, -- tags are years behind updates
 
         -- Loading
         event = "VeryLazy",
-        lazy = true,
-        cmd = "WhichKey",
-        -- TODO: move to mappings
-        -- TODO: add every possible key which-key might need (keys = lazy loading event)
         keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g", "[", "]" },
+        cmd = "WhichKey",
+        lazy = true,
 
         config = function()
             require("configs._which-key-nvim")
@@ -182,7 +180,7 @@ return {
     {
         "mbbill/undotree",
         branch = "master",
-        version = "*",
+        version = false, -- tags are years behind updates
 
         -- Loading
         event = "VeryLazy",
@@ -195,7 +193,7 @@ return {
     {
         "nvimdev/dashboard-nvim",
         branch = "master",
-        version = "*",
+        version = false, -- does not offer tags
 
         -- Loading
         event = "VimEnter",
@@ -221,7 +219,7 @@ return {
     {
         "nvim-lualine/lualine.nvim",
         branch = "master",
-        version = "*",
+        version = false, -- does not offer tags
 
         -- Loading
         event = "VeryLazy",
@@ -234,7 +232,7 @@ return {
     {
         "windwp/nvim-autopairs",
         branch = "master",
-        version = "*",
+        version = false, -- tags are years behind updates
 
         -- Loading
         event = "InsertEnter",
@@ -264,7 +262,7 @@ return {
     {
         "hrsh7th/nvim-cmp",
         branch = "main",
-        version = "*",
+        version = false, -- tags are years behind updates
 
         -- Loading
         event = "InsertEnter",
@@ -337,7 +335,7 @@ return {
     {
         "akinsho/toggleterm.nvim",
         branch = "main",
-        version = "*",
+        version = false, -- tags are years behind updates
 
         -- Loading
         event = "VeryLazy",
@@ -350,7 +348,7 @@ return {
     {
         "RRethy/vim-illuminate",
         branch = "master",
-        version = "*",
+        version = false, -- does not offer tags
 
         -- Loading
         event = "VeryLazy",
