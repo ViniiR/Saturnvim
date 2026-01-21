@@ -1,9 +1,21 @@
---- @type LazySpec[]
+--- @class LazyCustom
+--- @field branch? string | "master" | "main"
+--- @field version? string | boolean | "*"
+
+-- INFO: consult https://lazy.folke.io/spec
+
+--- @type LazySpec | LazyCustom[]
 return {
     {
         -- INFO: Must be the first plugin loaded
         "navarasu/onedark.nvim",
+        branch = "master",
+        version = "*",
+
+        -- Loading
         lazy = false,
+        priority = 100, -- Lazy.nvim recommends colorschemes to be higher than 50 (default)
+
         config = function()
             require("configs._onedark-nvim")
         end,
@@ -11,7 +23,12 @@ return {
     {
         -- INFO: Must be loaded right after theme
         "nvim-tree/nvim-web-devicons",
+        branch = "master",
+        version = "*",
+
+        -- Loading
         lazy = false,
+
         config = function()
             require("configs._nvim-web-dev-icons")
         end,
@@ -19,30 +36,45 @@ return {
     {
         -- INFO: Now only used by vim.lsp api to define default configs
         "neovim/nvim-lspconfig",
+        branch = "master",
+        version = "*",
+
+        -- Lazy
         event = "VeryLazy",
         lazy = true,
+
+        -- Config
         config = function()
             require("lsp")
         end,
     },
     {
         "nvim-telescope/telescope.nvim",
-        tag = "v0.2.1",
-        cmd = "Telescope",
-        module = false,
+        branch = "master",
+        version = "*",
+
+        -- Loading
         event = "VimEnter",
+        cmd = "Telescope",
         lazy = true,
+
         config = function()
             require("configs._telescope-nvim")
         end,
+        module = false,
         dependencies = {
             { "nvim-lua/plenary.nvim" },
         },
     },
     {
         "brenoprata10/nvim-highlight-colors",
+        branch = "main",
+        version = "*",
+
+        -- Loading
         event = "VeryLazy",
         lazy = true,
+
         config = function()
             require("configs._nvim-highlight-colors")
         end,
@@ -50,17 +82,26 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         branch = "master", -- TODO: main branch update (requires new config)
-        build = ":TSUpdate",
+        -- version = "*",
+
+        -- Loading
         event = "VeryLazy",
         lazy = true,
+
+        build = ":TSUpdate",
         config = function()
             require("configs._nvim-treesitter")
         end,
     },
     {
         "stevearc/conform.nvim",
+        branch = "master",
+        version = "*",
+
+        -- Loading
         event = "VeryLazy",
         lazy = true,
+
         config = function()
             require("configs._conform-nvim")
         end,
@@ -68,8 +109,12 @@ return {
     {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
+        version = "*",
+
+        -- Loading
         event = "VimEnter",
         lazy = true,
+
         config = function()
             require("configs._harpoon")
         end,
@@ -79,98 +124,156 @@ return {
     },
     {
         "kylechui/nvim-surround",
-        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        branch = "main",
+        version = "*",
+
+        -- Loading
         event = "VeryLazy",
         lazy = true,
+
         config = function()
             require("configs._nvim-surround")
         end,
     },
     {
         "stevearc/oil.nvim",
+        branch = "master",
+        version = "*",
+
+        -- Loading
         event = "VeryLazy",
         lazy = true,
+
         config = function()
             require("configs._oil-nvim")
         end,
     },
     {
         "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
+        branch = "master",
+        version = "*",
+
+        -- Loading
         event = "VeryLazy",
         lazy = true,
+
+        main = "ibl",
         config = function()
             require("configs._indent-blankline-nvim")
         end,
     },
     {
         "folke/which-key.nvim",
-        -- TODO: move to config if possible
-        keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g", "[", "]" },
-        cmd = "WhichKey",
+        branch = "main",
+        version = "*",
+
+        -- Loading
         event = "VeryLazy",
         lazy = true,
+        cmd = "WhichKey",
+        -- TODO: move to mappings
+        -- TODO: add every possible key which-key might need (keys = lazy loading event)
+        keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g", "[", "]" },
+
         config = function()
             require("configs._which-key-nvim")
         end,
     },
     {
         "mbbill/undotree",
+        branch = "master",
+        version = "*",
+
+        -- Loading
         event = "VeryLazy",
         lazy = true,
+
         config = function()
             require("configs._undotree")
         end,
     },
     {
         "nvimdev/dashboard-nvim",
+        branch = "master",
+        version = "*",
+
+        -- Loading
         event = "VimEnter",
         lazy = true,
+
         config = function()
             require("configs._dashboard-nvim")
         end,
     },
     {
         "lewis6991/gitsigns.nvim",
+        branch = "main",
+        version = "*",
+
+        -- Loading
         event = "VeryLazy",
         lazy = true,
+
         config = function()
             require("configs._gitsigns-nvim")
         end,
     },
     {
         "nvim-lualine/lualine.nvim",
+        branch = "master",
+        version = "*",
+
+        -- Loading
         event = "VeryLazy",
         lazy = true,
+
         config = function()
             require("configs._lualine-nvim")
         end,
     },
     {
         "windwp/nvim-autopairs",
+        branch = "master",
+        version = "*",
+
+        -- Loading
         event = "InsertEnter",
         lazy = true,
+
         config = function()
             require("configs._nvim-autopairs")
         end,
     },
     {
         "L3MON4D3/LuaSnip",
+        branch = "master",
+        version = "*",
+
+        -- Loading
+        event = "InsertEnter",
         lazy = true,
+
         config = function()
             require("configs._luasnip")
         end,
+
         dependencies = {
             "rafamadriz/friendly-snippets",
         },
     },
     {
         "hrsh7th/nvim-cmp",
+        branch = "main",
+        version = "*",
+
+        -- Loading
         event = "InsertEnter",
         lazy = true,
+
         config = function()
             require("configs._nvim-cmp")
         end,
+
         dependencies = {
             { "saadparwaiz1/cmp_luasnip" },
             { "hrsh7th/cmp-nvim-lua" },
@@ -182,116 +285,146 @@ return {
     },
     {
         "mrcjkb/rustaceanvim",
-        version = "^6", -- Recommended
-        ft = { "rust" },
+        branch = "master",
+        version = "^6", -- NOTE: TODO: must manually update
+
+        -- Loading
         lazy = false, -- This plugin is already lazy
+
         config = function()
             require("configs._rustaceanvim")
         end,
-        -- TODO: delete if it works
-        -- 11/03/2025 20:39 Confirmed to be working on xv-chat repo (apparently perfectly)
-        -- 11/03/2025 21:28 Does not work on overly large projects (hopefully a hardware issue since it works on different pc (same setup))
-        -- config = function()
-        --     local lspconfig = require("configs.lspconfig")
-        --     vim.g.rustaceanvim = {
-        --         server = {
-        --             on_attach = lspconfig.on_attach,
-        --             -- capabilities = lspconfig.capabilities,
-        --             -- on_init = lspconfig.on_init,
-        --             default_settings = {
-        --                 ["rust-analyzer"] = {
-        --                     capabilities = lspconfig.capabilities,
-        --                     cargo = {
-        --                         allFeatures = true,
-        --                     },
-        --                     -- checkOnSave = true,
-        --                     -- check = {
-        --                     -- 	enable = true,
-        --                     -- 	command = "check",
-        --                     -- },
-        --                 },
-        --             },
-        --         },
-        --     }
-        -- end,
     },
     {
         "rust-lang/rust.vim",
+        branch = "master",
+        version = "*",
+
+        -- Loading
         ft = "rust",
         lazy = true,
+
         init = function()
             vim.g.rustfmt_autosave = 1
         end,
     },
     {
         "saecki/crates.nvim",
-        tag = "stable",
-        ft = { "toml" },
+        branch = "main",
+        version = "*",
+
+        -- Loading
         event = { "BufRead Cargo.toml" },
         lazy = true,
+
         config = function()
             require("configs._crates-nvim")
         end,
     },
     {
         "lukas-reineke/virt-column.nvim",
+        branch = "master",
+        version = "*",
+
+        -- Loading
         event = "VeryLazy",
         lazy = true,
+
         config = function()
             require("configs._virt-column-nvim")
         end,
     },
     {
         "akinsho/toggleterm.nvim",
+        branch = "main",
         version = "*",
+
+        -- Loading
         event = "VeryLazy",
         lazy = true,
+
         config = function()
             require("configs._toggleterm-nvim")
         end,
     },
     {
         "RRethy/vim-illuminate",
+        branch = "master",
+        version = "*",
+
+        -- Loading
         event = "VeryLazy",
         lazy = true,
+
         config = function()
             require("configs._vim-illuminate")
         end,
     },
-    -- {
-    --     "mfussenegger/nvim-dap",
-    --     event = "VeryLazy",
-    --     lazy = true,
-    --     config = function() require("configs._nvim-dap") end,
-    -- },
-    -- {
-    --     "rcarriga/nvim-dap-ui",
-    --     event = "VeryLazy",
-    --     lazy = true,
-    --     dependencies = {
-    --         { "mfussenegger/nvim-dap" },
-    --         { "nvim-neotest/nvim-nio" },
-    --     },
-    -- },
-    -- {
-    --     "mxsdev/nvim-dap-vscode-js",
-    --     event = "VeryLazy",
-    --     lazy = true,
-    --     config = function()
-    --         require("dap-vscode-js").setup({
-    --             -- WARNING: ensure manually compiled vscode-js-debug github project
-    --             debugger_path = "/home/vinii/Downloads/vscode-js-debug",
-    --             adapters = {
-    --                 "pwa-node",
-    --                 "pwa-chrome",
-    --                 "pwa-msedge",
-    --                 "pwa-extensionHost",
-    --             },
-    --         })
-    --     end,
-    -- },
+    {
+        "mfussenegger/nvim-dap",
+        branch = "master",
+        version = "*",
+
+        enabled = false,
+
+        -- Loading
+        event = "VeryLazy",
+        lazy = true,
+
+        config = function()
+            require("configs._nvim-dap")
+        end,
+    },
+    {
+        "rcarriga/nvim-dap-ui",
+        branch = "master",
+        version = "*",
+
+        enabled = false,
+
+        -- Loading
+        event = "VeryLazy",
+        lazy = true,
+
+        config = function()
+            --
+        end,
+
+        dependencies = {
+            { "nvim-neotest/nvim-nio" },
+        },
+    },
+    {
+        "mxsdev/nvim-dap-vscode-js",
+        branch = "main",
+        version = "*",
+
+        enabled = false,
+
+        -- Loading
+        event = "VeryLazy",
+        lazy = true,
+
+        config = function()
+            require("dap-vscode-js").setup({
+                -- WARNING: ensure manually compiled vscode-js-debug github project
+                debugger_path = "/home/vinii/Downloads/vscode-js-debug",
+                adapters = {
+                    "pwa-node",
+                    "pwa-chrome",
+                    "pwa-msedge",
+                    "pwa-extensionHost",
+                },
+            })
+        end,
+    },
     {
         dir = "~/Documents/projects/rings-nvim",
+
+        enabled = false,
+
+        -- Loading
+        event = "VeryLazy",
         lazy = true,
     },
 }
