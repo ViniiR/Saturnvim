@@ -1,7 +1,6 @@
 require("crates").setup({
     lsp = {
         enabled = true,
-        on_attach = require("configs._nvim-lspconfig").on_attach,
         actions = false,
         hover = true,
         completion = true,

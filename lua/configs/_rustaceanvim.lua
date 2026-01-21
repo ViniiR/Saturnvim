@@ -1,16 +1,16 @@
-local lspconfig = require("configs._nvim-lspconfig")
+local lsp_config = require("lsp.config")
 
 vim.g.rustaceanvim = {
     tools = {
-        float_win_config = lspconfig.hover_window_config,
+        float_win_config = lsp_config.hover_window_config,
     },
     server = {
-        -- on_init = lspconfig.on_init,
-        on_attach = lspconfig.on_attach,
+        -- on_init = lsp_config.on_init,
+        -- on_attach = lsp_config.on_attach,
         -- capabilities = lspconfig.capabilities,
         default_settings = {
             ["rust-analyzer"] = {
-                capabilities = lspconfig.capabilities,
+                capabilities = lsp_config.capabilities,
                 cargo = {
                     allFeatures = true,
                 },
