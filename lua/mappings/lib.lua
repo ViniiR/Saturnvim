@@ -31,14 +31,17 @@ return {
             "<F11>",
             "<F12>",
         },
-        ---@param keys string
+        ---@param keys string?
         ---@return string
         ---returns <leader>{keys}
         ---```lua
         ---leader("ff") == "<leader>ff"
         ---```
         leader = function(keys)
-            return "<leader>" .. keys
+            if keys ~= nil then
+                return "<leader>" .. keys
+            end
+            return "<leader>"
         end,
         ---@param key string
         ---@param compound_keys? string

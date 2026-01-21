@@ -169,7 +169,7 @@ return {
 
         -- Loading
         event = "VeryLazy",
-        keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g", "[", "]" },
+        keys = require("mappings.plugins._which-key"),
         cmd = "WhichKey",
         lazy = true,
 
