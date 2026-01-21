@@ -1,5 +1,6 @@
 --- @type vim.lsp.Config
 return {
+    filetypes = { "html", "templ", "markdown" },
     settings = {
         html = {
             hover = {
