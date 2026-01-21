@@ -8,9 +8,9 @@ local function format()
     ---@type boolean
     local success = conform.format({ lsp_fallback = true })
     if success then
-        print("Conform: Formatted")
+        print("Formatted")
     else
-        vim.notify('Conform: No formatters specified for filetype "' .. vim.bo.filetype .. '"', vim.log.levels.WARN)
+        vim.notify('No formatters specified for filetype "' .. vim.bo.filetype .. '"', vim.log.levels.WARN)
     end
 end
 
