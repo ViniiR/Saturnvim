@@ -15,10 +15,6 @@ autocmd("LspAttach", {
         -- map LSP specific bindings
         require("mappings.setup._lspconfig")(args.buf)
 
-        -- NOTE: used in deprecated config but is already set before LspAttach
-        -- vim.diagnostic.config(config.diagnostic_config)
-        -- vim.lsp.inlay_hint.enable(true) -- TODO: is this necessary?
-
         -- NOTE: 0.11 uses : instead of .
         -- Disable semantic tokens
         if client ~= "rust-analyzer" and client:supports_method("textDocument/semanticTokens") then
