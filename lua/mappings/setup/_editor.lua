@@ -342,7 +342,7 @@ local mappings = {
     {
         -- TODO: possibly useless
         modes.normal,
-        keys.func["10"],
+        keys.func[10],
         function()
             if vim.fn.filereadable("./Run.sh") == 0 then
                 vim.notify('File "./Run.sh" does not exist.', vim.log.levels.WARN)

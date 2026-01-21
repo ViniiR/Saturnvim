@@ -18,18 +18,18 @@ return {
         tab = "<Tab>",
         shift_tab = "<S-tab>",
         func = {
-            ["1"] = "<F1>",
-            ["2"] = "<F2>",
-            ["3"] = "<F3>",
-            ["4"] = "<F4>",
-            ["5"] = "<F5>",
-            ["6"] = "<F6>",
-            ["7"] = "<F7>",
-            ["8"] = "<F8>",
-            ["9"] = "<F9>",
-            ["10"] = "<F10>",
-            ["11"] = "<F11>",
-            ["12"] = "<F12>",
+            "<F1>",
+            "<F2>",
+            "<F3>",
+            "<F4>",
+            "<F5>",
+            "<F6>",
+            "<F7>",
+            "<F8>",
+            "<F9>",
+            "<F10>",
+            "<F11>",
+            "<F12>",
         },
         ---@param keys string
         ---@return string
@@ -37,7 +37,9 @@ return {
         ---```lua
         ---leader("ff") == "<leader>ff"
         ---```
-        leader = function(keys) return "<leader>" .. keys end,
+        leader = function(keys)
+            return "<leader>" .. keys
+        end,
         ---@param key string
         ---@param compound_keys? string
         ---@return string
@@ -47,9 +49,13 @@ return {
         ---control("c", "w") == "<C-c>w"
         ---```
         control = function(key, compound_keys)
-            if string.sub(key, 1, 1) == "<" then key = string.sub(key, 2, -2) end
+            if string.sub(key, 1, 1) == "<" then
+                key = string.sub(key, 2, -2)
+            end
             local keymap = "<C-" .. key .. ">"
-            if compound_keys then return keymap .. compound_keys end
+            if compound_keys then
+                return keymap .. compound_keys
+            end
             return keymap
         end,
         ---@param key string
@@ -61,9 +67,13 @@ return {
         ---alt("c", "w") == "<M-c>w"
         ---```
         alt = function(key, compound_keys)
-            if string.sub(key, 1, 1) == "<" then key = string.sub(key, 2, -2) end
+            if string.sub(key, 1, 1) == "<" then
+                key = string.sub(key, 2, -2)
+            end
             local keymap = "<M-" .. key .. ">"
-            if compound_keys then return keymap .. compound_keys end
+            if compound_keys then
+                return keymap .. compound_keys
+            end
             return keymap
         end,
         ---@param key string
@@ -75,9 +85,13 @@ return {
         ---control_shift("c", "w") == "<C-S-c>w"
         ---```
         control_shift = function(key, compound_keys)
-            if string.sub(key, 1, 1) == "<" then key = string.sub(key, 2, -2) end
+            if string.sub(key, 1, 1) == "<" then
+                key = string.sub(key, 2, -2)
+            end
             local keymap = "<C-S-" .. key .. ">"
-            if compound_keys then return keymap .. compound_keys end
+            if compound_keys then
+                return keymap .. compound_keys
+            end
             return keymap
         end,
         ---@param key string
@@ -89,9 +103,13 @@ return {
         ---control_shift("c", "w") == "<C-M-c>w"
         ---```
         control_alt = function(key, compound_keys)
-            if string.sub(key, 1, 1) == "<" then key = string.sub(key, 2, -2) end
+            if string.sub(key, 1, 1) == "<" then
+                key = string.sub(key, 2, -2)
+            end
             local keymap = "<C-M-" .. key .. ">"
-            if compound_keys then return keymap .. compound_keys end
+            if compound_keys then
+                return keymap .. compound_keys
+            end
             return keymap
         end,
         ---@param key string
@@ -103,9 +121,13 @@ return {
         ---control_shift("c", "w") == "<C-S-M-c>w"
         ---```
         control_shift_alt = function(key, compound_keys)
-            if string.sub(key, 1, 1) == "<" then key = string.sub(key, 2, -2) end
+            if string.sub(key, 1, 1) == "<" then
+                key = string.sub(key, 2, -2)
+            end
             local keymap = "<C-S-M-" .. key .. ">"
-            if compound_keys then return keymap .. compound_keys end
+            if compound_keys then
+                return keymap .. compound_keys
+            end
             return keymap
         end,
     },
