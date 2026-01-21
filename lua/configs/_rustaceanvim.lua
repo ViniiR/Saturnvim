@@ -1,6 +1,7 @@
 local lsp_config = require("lsp.config")
 
-vim.g.rustaceanvim = {
+-- vim.g.rustaceanvim
+return {
     tools = {
         float_win_config = lsp_config.hover_window_config,
     },

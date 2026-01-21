@@ -39,11 +39,10 @@ return {
         branch = "master",
         version = "*",
 
-        -- Lazy
+        -- Loading
         event = "VeryLazy",
         lazy = true,
 
-        -- Config
         config = function()
             require("lsp")
         end,
@@ -61,9 +60,10 @@ return {
         config = function()
             require("configs._telescope-nvim")
         end,
-        module = false,
+
         dependencies = {
             { "nvim-lua/plenary.nvim" },
+            -- { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         },
     },
     {
@@ -118,6 +118,7 @@ return {
         config = function()
             require("configs._harpoon")
         end,
+
         dependencies = {
             { "nvim-lua/plenary.nvim" },
         },
@@ -289,8 +290,8 @@ return {
         -- Loading
         lazy = false, -- This plugin is already lazy
 
-        config = function()
-            require("configs._rustaceanvim")
+        init = function()
+            vim.g.rustaceanvim = require("configs._rustaceanvim")
         end,
     },
     {
