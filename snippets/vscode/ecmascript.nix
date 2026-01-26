@@ -1,0 +1,66 @@
+{
+    arrow-function = {
+        prefix = "ar";
+        body = "($1) => {$2}";
+    };
+    html-comment = {
+        prefix = "hc";
+        body = "<!-- \n$1\n -->";
+    };
+    console-log = {
+        prefix = "cl";
+        body = "console.log($1);";
+    };
+    template-string = {
+        prefix = "ts";
+        body = "\${$1}";
+    };
+    function = {
+        prefix = "fun";
+        body = [
+            "function $1($2) {"
+            "\t$3"
+            "}"
+        ];
+    };
+    async-function = {
+        prefix = "asf";
+        body = [
+            "async function $1($2) {"
+            "\t$3"
+            "}"
+        ];
+    };
+    function-component = {
+        prefix = "edf";
+        body = [
+            "export default function $1($2) {"
+            "\t$3"
+            "}"
+        ];
+    };
+    async-function-component = {
+        prefix = "edaf";
+        body = [
+            "export default async function $1($2) {"
+            "\t$3"
+            "}"
+        ];
+    };
+    interface = {
+        prefix = "int";
+        body = [
+            "interface $1 {"
+            "\t$2"
+            "}"
+        ];
+    };
+    html-tag = {
+        prefix = "tg";
+        body = "<$1></$2>";
+    };
+    console-dir = {
+        prefix = "dir";
+        body = "console.dir($1; { depth: null });";
+    };
+}

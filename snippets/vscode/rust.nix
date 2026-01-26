@@ -1,0 +1,22 @@
+{
+    debug-macro = {
+        prefix = "db";
+        body = "dbg!($1);";
+    };
+    todo-macro = {
+        prefix = "td";
+        body = "todo!($1);";
+    };
+    async-fn = {
+        prefix = "asf";
+        body = [
+            "async fn $1($2)$3 {"
+            "\t$4"
+            "}"
+        ];
+    };
+    template-string = {
+        prefix = "ts";
+        body = "\"{}\"";
+    };
+}

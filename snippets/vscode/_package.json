@@ -41,7 +41,7 @@
       },
       {
         "language": "lua",
-        "path": "./lua.json"
+        "path": "./lua.nix"
       },
       {
         "language": "ocaml",
