@@ -50,9 +50,6 @@ for _, file in ipairs(vim.api.nvim_get_runtime_file("lua/lsp/extra/*.lua", true)
     vim.lsp.config(name, conf)
 end
 
--- Enable inlay hints
-vim.lsp.inlay_hint.enable(true)
-
 -- sets lsp diagnostic configs
 vim.diagnostic.config(config.diagnostic_config)
 

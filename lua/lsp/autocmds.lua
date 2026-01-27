@@ -15,7 +15,11 @@ autocmd("LspAttach", {
         -- map LSP specific bindings
         require("mappings.setup._lspconfig")(args.buf)
 
-        -- NOTE: 0.11 uses : instead of .
+        -- Only enable inlay hints on LSPs that support it
+        if client:supports_method("textDocument/inlayHint") then
+            vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+        end
+
         -- Disable semantic tokens
         if client ~= "rust-analyzer" and client:supports_method("textDocument/semanticTokens") then
             client.server_capabilities.semanticTokensProvider = nil
