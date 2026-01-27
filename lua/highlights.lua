@@ -391,6 +391,9 @@ highlights["LspInlayHint"] = { fg = "#5c6370" } --  by default links to NonText 
 -- which key
 highlights["WhichKeySeparator"] = { fg = "#a5a9ae" }
 
+-- nix
+highlights["@string.special.path.nix"] = { link = "@variable.parameter" }
+
 -- disabled
 highlights["@none.tsx"] = { link = "" }
 --
