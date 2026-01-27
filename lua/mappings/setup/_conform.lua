@@ -5,13 +5,22 @@ local desc = lib.desc
 local conform = require("conform")
 
 local function format()
-    ---@type boolean
-    local success = conform.format({ lsp_fallback = true })
-    if success then
-        print("Formatted")
-    else
-        vim.notify('No formatters specified for filetype "' .. vim.bo.filetype .. '"', vim.log.levels.WARN)
-    end
+    conform.format(
+        {
+            lsp_fallback = true,
+        },
+        --- @param err string | nil
+        --- @param did_edit boolean
+        function(err, did_edit)
+            if err then
+                vim.notify(err, vim.log.levels.WARN)
+                return
+            end
+            if did_edit then
+                print("Formatted")
+            end
+        end
+    )
 end
 
 local mappings = {
