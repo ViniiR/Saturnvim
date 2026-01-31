@@ -1,11 +1,6 @@
 -- ensure set before mappings
-HARPOON_OPTS = {
-    border = BORDER_KIND,
-    title_pos = "left",
-    title = string.format(" %s Harpoon ", HARPOON_ICON),
-}
 
-require("mappings.setup._harpoon")()
+-- require("mappings.setup._harpoon")()
 
 -- possibly deprecated
 --
@@ -38,3 +33,11 @@ require("mappings.setup._harpoon")()
 --         sorter = conf.generic_sorter({}),
 --     }):find()
 -- end
+--
+return {
+    settings = {
+        border = BORDER_KIND,
+        title_pos = "left",
+        title = string.format(" %s Harpoon ", HARPOON_ICON),
+    },
+}

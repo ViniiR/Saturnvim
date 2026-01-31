@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
     end,
 })
 
-luasnip.setup({
+return {
     -- FIXME: history is a legacy option
     history = true,
     -- keep_roots = false,
@@ -35,4 +35,4 @@ luasnip.setup({
     -- FIXME: i'm unsure which one i should use, _ is newer
     updateevents = "TextChanged,TextChangedI",
     update_events = "TextChanged,TextChangedI",
-})
+}

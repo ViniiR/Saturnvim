@@ -1,4 +1,4 @@
-require("nvim-autopairs").setup({
+return {
     enable_moveright = false,
     -- TODO: learn how to use this
     fast_wrap = {
@@ -18,7 +18,4 @@ require("nvim-autopairs").setup({
         "TelescopePrompt",
         "vim",
     },
-})
-
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+}

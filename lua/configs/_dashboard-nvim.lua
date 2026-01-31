@@ -28,7 +28,7 @@ local get_nvim_version = function()
     return string.format("%d.%d.%d", version.major, version.minor, version.patch)
 end
 
-require("dashboard").setup({
+return {
     theme = "hyper",
     config = {
         header = saturnvim_text,
@@ -45,14 +45,19 @@ require("dashboard").setup({
         },
         packages = { enable = true },
         project = { enable = false },
-        mru = { label = "", icon = "", icon_hl = "" },
+        mru = {
+            label = "",
+            icon = "",
+            icon_hl = "",
+            -- last_dir_only = true,
+        },
         -- center = {},
         footer = {
             "",
             string.format("Made by %s", V_ICON),
         },
     },
-})
+}
 -- -- General
 -- DashboardHeader DashboardFooter
 -- -- Hyper theme

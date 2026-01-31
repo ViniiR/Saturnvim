@@ -1,4 +1,4 @@
-local ibl = require("ibl")
+-- local ibl = require("ibl")
 -- local hooks = require("ibl.hooks")
 
 -- local highlight = {
@@ -11,7 +11,7 @@ local ibl = require("ibl")
 --     "RainbowCyan",
 -- }
 
-local opts = {
+return {
     -- used for all indents
     indent = { char = INDENT_BLANK_LINE_PIPE },
     scope = {
@@ -55,8 +55,8 @@ local opts = {
 
 -- vim.g.rainbow_delimiters = { highlight = highlight }
 
-require("mappings.setup._indent-blankline")()
+-- require("mappings.setup._indent-blankline")()
 
-ibl.setup(opts)
+-- ibl.setup(opts)
 
 -- hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)

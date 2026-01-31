@@ -14,10 +14,13 @@ return {
 
         -- Loading
         lazy = false,
-        priority = 100, -- Lazy.nvim recommends colorschemes to be higher than 50 (default)
+        priority = 1000, -- Recommended
 
-        config = function()
-            require("configs._onedark-nvim")
+        opts = require("configs._onedark-nvim"),
+        config = function(_, opts)
+            require("onedark").setup(opts)
+            require("onedark").load()
+            -- no mappings
         end,
     },
     {
@@ -29,8 +32,8 @@ return {
         -- Loading
         lazy = false,
 
-        config = function()
-            require("configs._nvim-web-dev-icons")
+        opts = function()
+            return require("configs._nvim-web-dev-icons")
         end,
     },
     {
@@ -43,6 +46,7 @@ return {
         event = "VeryLazy",
         lazy = true,
 
+        -- using lspconfig to load vim.lsp config
         config = function()
             require("lsp")
         end,
@@ -57,8 +61,10 @@ return {
         cmd = "Telescope",
         lazy = true,
 
-        config = function()
-            require("configs._telescope-nvim")
+        opts = require("configs._telescope-nvim"),
+        config = function(_, opts)
+            require("telescope").setup(opts)
+            require("mappings.setup._telescope")()
         end,
 
         dependencies = {
@@ -75,13 +81,12 @@ return {
         event = "VeryLazy",
         lazy = true,
 
-        config = function()
-            require("configs._nvim-highlight-colors")
-        end,
+        opts = require("configs._nvim-highlight-colors"),
     },
     {
+        -- TODO: main branch update (requires new config)
         "nvim-treesitter/nvim-treesitter",
-        branch = "master", -- TODO: main branch update (requires new config)
+        branch = "master",
         -- version = "*",
 
         -- Loading
@@ -89,7 +94,9 @@ return {
         lazy = true,
 
         build = ":TSUpdate",
+        -- TODO: migrate to opts
         config = function()
+            -- TODO: rework configuration
             require("configs._nvim-treesitter")
         end,
     },
@@ -102,8 +109,10 @@ return {
         event = "VeryLazy",
         lazy = true,
 
-        config = function()
-            require("configs._conform-nvim")
+        opts = require("configs._conform-nvim"),
+        config = function(_, opts)
+            require("conform").setup(opts)
+            require("mappings.setup._conform")()
         end,
     },
     {
@@ -115,8 +124,17 @@ return {
         event = "VimEnter",
         lazy = true,
 
-        config = function()
-            require("configs._harpoon")
+        init = function()
+            vim.g.harpoon_opts = {
+                border = BORDER_KIND,
+                title_pos = "left",
+                title = string.format(" %s Harpoon ", HARPOON_ICON),
+            }
+        end,
+        opts = require("configs._harpoon"),
+        config = function(_, opts)
+            require("harpoon"):setup(opts)
+            require("mappings.setup._harpoon")()
         end,
 
         dependencies = {
@@ -132,8 +150,12 @@ return {
         event = "VeryLazy",
         lazy = true,
 
-        config = function()
-            require("configs._nvim-surround")
+        opts = function()
+            return require("configs._nvim-surround")
+        end,
+        config = function(_, opts)
+            require("nvim-surround").setup(opts)
+            -- no mappings
         end,
     },
     {
@@ -142,11 +164,12 @@ return {
         version = false, -- tags are years behind updates
 
         -- Loading
-        event = "VeryLazy",
-        lazy = true,
+        lazy = false, -- Load immediately to avoid Netrw
 
-        config = function()
-            require("configs._oil-nvim")
+        opts = require("configs._oil-nvim"),
+        config = function(_, opts)
+            require("oil").setup(opts)
+            require("mappings.setup._oil")()
         end,
     },
     {
@@ -158,9 +181,11 @@ return {
         event = "VeryLazy",
         lazy = true,
 
-        main = "ibl",
-        config = function()
-            require("configs._indent-blankline-nvim")
+        main = "ibl", -- TODO: check if works without explicit main =
+        opts = require("configs._indent-blankline-nvim"),
+        config = function(_, opts)
+            require("ibl").setup(opts)
+            require("mappings.setup._indent-blankline")()
         end,
     },
     {
@@ -174,8 +199,10 @@ return {
         cmd = "WhichKey",
         lazy = true,
 
-        config = function()
-            require("configs._which-key-nvim")
+        opts = require("configs._which-key-nvim"),
+        config = function(_, opts)
+            require("which-key").setup(opts)
+            require("mappings.setup._which-key")()
         end,
     },
     {
@@ -187,12 +214,20 @@ return {
         event = "VeryLazy",
         lazy = true,
 
+        init = function()
+            for key, value in pairs(require("configs._undotree")) do
+                vim.g[key] = value
+            end
+        end,
         config = function()
-            require("configs._undotree")
+            -- no setup
+            require("mappings.setup._undotree")()
         end,
     },
     {
         "nvimdev/dashboard-nvim",
+        -- dir = "~/Downloads/dashboard-nvim",
+        -- dev = true;
         branch = "master",
         version = false, -- does not offer tags
 
@@ -200,9 +235,7 @@ return {
         event = "VimEnter",
         lazy = true,
 
-        config = function()
-            require("configs._dashboard-nvim")
-        end,
+        opts = require("configs._dashboard-nvim"),
     },
     {
         "lewis6991/gitsigns.nvim",
@@ -213,8 +246,10 @@ return {
         event = "VeryLazy",
         lazy = true,
 
-        config = function()
-            require("configs._gitsigns-nvim")
+        opts = require("configs._gitsigns-nvim"),
+        config = function(_, opts)
+            require("gitsigns").setup(opts)
+            require("mappings.setup._gitsigns")()
         end,
     },
     {
@@ -226,8 +261,13 @@ return {
         event = "VeryLazy",
         lazy = true,
 
-        config = function()
-            require("configs._lualine-nvim")
+        -- Cannot use opts, must do require operations
+        opts = function()
+            return require("configs._lualine-nvim")
+        end,
+        config = function(_, opts)
+            require("lualine").setup(opts)
+            -- no mappings
         end,
     },
     {
@@ -239,12 +279,21 @@ return {
         event = "InsertEnter",
         lazy = true,
 
-        config = function()
-            require("configs._nvim-autopairs")
+        opts = require("configs._nvim-autopairs"),
+        config = function(_, opts)
+            local autopairs = require("nvim-autopairs")
+            autopairs.setup(opts)
+            --- @diagnostic disable-next-line: undefined-field
+            require("cmp").event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
+            autopairs.remove_rule("```") -- FINALLY PEACE
+            -- no mappings
         end,
     },
     {
-        "L3MON4D3/LuaSnip",
+        dir = "~/Downloads/LuaSnip",
+        dev = true,
+
+        "ViniiR/NixSnip",
         branch = "master",
         version = "*",
 
@@ -252,8 +301,13 @@ return {
         event = "InsertEnter",
         lazy = true,
 
-        config = function()
-            require("configs._luasnip")
+        -- build = "make install_jsregexp", -- optional
+        -- Cannot use opts, must do require operations
+        opts = function()
+            return require("configs._luasnip")
+        end,
+        config = function(_, opts)
+            require("luasnip").setup(opts)
         end,
 
         dependencies = {
@@ -269,8 +323,8 @@ return {
         event = "InsertEnter",
         lazy = true,
 
-        config = function()
-            require("configs._nvim-cmp")
+        opts = function()
+            return require("configs._nvim-cmp")
         end,
 
         dependencies = {
@@ -315,10 +369,7 @@ return {
         -- Loading
         event = { "BufRead Cargo.toml" },
         lazy = true,
-
-        config = function()
-            require("configs._crates-nvim")
-        end,
+        opts = require("configs._crates-nvim"),
     },
     {
         "lukas-reineke/virt-column.nvim",
@@ -329,9 +380,7 @@ return {
         event = "VeryLazy",
         lazy = true,
 
-        config = function()
-            require("configs._virt-column-nvim")
-        end,
+        opts = require("configs._virt-column-nvim"),
     },
     {
         "akinsho/toggleterm.nvim",
@@ -342,9 +391,7 @@ return {
         event = "VeryLazy",
         lazy = true,
 
-        config = function()
-            require("configs._toggleterm-nvim")
-        end,
+        opts = require("configs._toggleterm-nvim"),
     },
     {
         "RRethy/vim-illuminate",
@@ -355,8 +402,9 @@ return {
         event = "VeryLazy",
         lazy = true,
 
-        config = function()
-            require("configs._vim-illuminate")
+        opts = require("configs._vim-illuminate"),
+        config = function(_, opts)
+            require("illuminate").configure(opts)
         end,
     },
     {
@@ -371,6 +419,7 @@ return {
         lazy = true,
 
         config = function()
+            -- TODO: migrate to opts
             require("configs._nvim-dap")
         end,
     },
@@ -385,6 +434,7 @@ return {
         event = "VeryLazy",
         lazy = true,
 
+        -- TODO: migrate to opts
         config = function()
             --
         end,
@@ -404,6 +454,7 @@ return {
         event = "VeryLazy",
         lazy = true,
 
+        -- TODO: migrate to opts
         config = function()
             require("dap-vscode-js").setup({
                 -- WARNING: ensure manually compiled vscode-js-debug github project

@@ -123,7 +123,7 @@ v_one_dark.command = {
         bg = command_bg,
     },
 }
-require("lualine").setup({
+return {
     options = {
         icons_enabled = true,
         theme = v_one_dark,
@@ -252,7 +252,7 @@ require("lualine").setup({
     winbar = {},
     inactive_winbar = {},
     extensions = {},
-})
+}
 
 --["n"] = { "NORMAL", "Normal" },
 --["no"] = { "NORMAL (no)", "Normal" },

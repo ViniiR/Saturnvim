@@ -1,4 +1,4 @@
-require("crates").setup({
+return {
     lsp = {
         enabled = true,
         actions = false,
@@ -21,7 +21,7 @@ require("crates").setup({
     popup = {
         border = BORDER_KIND,
     },
-})
+}
 
 -- defaults
 -- require("crates").setup {

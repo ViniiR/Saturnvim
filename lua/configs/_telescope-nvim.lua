@@ -1,8 +1,4 @@
-local telescope = require("telescope")
-
-require("mappings.setup._telescope")()
-
-telescope.setup({
+return {
     defaults = {
         layout_strategy = "horizontal",
         prompt_prefix = string.format(" %s  ", TELESCOPE_ICONS.prompt),
@@ -43,4 +39,4 @@ telescope.setup({
         },
         extensions = {},
     },
-})
+}

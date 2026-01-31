@@ -1,4 +1,4 @@
-require("toggleterm").setup({
+return {
     -- size can be a number or function which is passed the current terminal
     size = 20,
     open_mapping = require("mappings.plugins._toggleterm").open, -- or [[<c-\>]]
@@ -74,4 +74,4 @@ require("toggleterm").setup({
         -- default = 0 which means the feature is turned off
         horizontal_breakpoint = 135,
     },
-})
+}

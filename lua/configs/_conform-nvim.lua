@@ -8,8 +8,7 @@
 -- yamlfmt
 --
 ---
-
-require("conform").setup({
+return {
     lsp_fallback = true,
     formatters_by_ft = {
         lua = {
@@ -92,6 +91,4 @@ require("conform").setup({
         yaml = "yaml",
         markdown = "markdown",
     },
-})
-
-require("mappings.setup._conform")()
+}

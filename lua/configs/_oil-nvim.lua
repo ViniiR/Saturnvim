@@ -1,4 +1,4 @@
-require("oil").setup({
+return {
     view_options = {
         show_hidden = true,
     },
@@ -7,6 +7,4 @@ require("oil").setup({
 
     -- uncomment to disable (unused) keymaps
     -- use_default_keymaps = false,
-})
-
-require("mappings.setup._oil")()
+}

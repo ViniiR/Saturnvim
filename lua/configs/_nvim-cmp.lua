@@ -137,7 +137,7 @@ local function format(entry, item)
     return item
 end
 
-local options = {
+return {
     completion = { completeopt = "menu,menuone" },
     formatting = {
         fields = { "abbr", "kind", "menu" },
@@ -238,8 +238,6 @@ local options = {
         ghost_text = false,
     },
 }
-
-cmp.setup(options)
 
 -- Default kind scores
 -- 	Text = 1;

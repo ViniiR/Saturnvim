@@ -1,4 +1,4 @@
-require("gitsigns").setup({
+return {
     signs = {
         add = { text = GIT_SIGNS.add },
         change = { text = GIT_SIGNS.change },
@@ -39,14 +39,13 @@ require("gitsigns").setup({
     update_debounce = 100,
     status_formatter = nil, -- Use default
     max_file_length = 40000, -- Disable if file is longer than this (in lines)
+    -- Used by :Gitsigns preview_hunk
     preview_config = {
         -- Options passed to nvim_open_win
-        -- TODO: whats this
-        border = "single",
+        border = BORDER_KIND,
         style = "minimal",
         relative = "cursor",
         row = 0,
         col = 1,
     },
-})
-require("mappings.setup._gitsigns")()
+}

@@ -1,3 +1,3 @@
-require("virt-column").setup({
+return {
     char = VIRT_COLUMN_PIPE,
-})
+}

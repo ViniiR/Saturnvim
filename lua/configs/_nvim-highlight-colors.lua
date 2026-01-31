@@ -1,4 +1,4 @@
-require("nvim-highlight-colors").setup({
+return {
     ---Render style
     ---@usage 'background'|'foreground'|'virtual'
     render = "virtual",
@@ -51,4 +51,4 @@ require("nvim-highlight-colors").setup({
     -- Exclude filetypes or buftypes from highlighting e.g. 'exclude_buftypes = {'text'}'
     exclude_filetypes = {},
     exclude_buftypes = {},
-})
+}

@@ -4,7 +4,7 @@ local modes = lib.modes
 local desc = lib.desc
 local harpoon = require("harpoon")
 
-local harpoon_opts = HARPOON_OPTS
+local harpoon_opts = vim.g.harpoon_opts
 
 local mappings = {
     {

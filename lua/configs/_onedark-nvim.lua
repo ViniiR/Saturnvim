@@ -2,7 +2,7 @@
 -- 		light_grey = "#848b98",
 --black = "#181a1f"
 
-require("onedark").setup({
+return {
     -- Main options --
     style = "dark", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
     transparent = false, -- Show/hide background
@@ -154,6 +154,4 @@ require("onedark").setup({
         undercurl = true, -- use undercurl instead of underline for diagnostics
         background = true, -- use background color for virtual text
     },
-})
-
-require("onedark").load()
+}

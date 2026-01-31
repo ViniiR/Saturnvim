@@ -1,6 +1,6 @@
 local config = require("nvim-surround.config")
 
-require("nvim-surround").setup({
+return {
     surrounds = {
         ["("] = {
             add = { "(", ")" },
@@ -43,7 +43,9 @@ require("nvim-surround").setup({
         ["g"] = {
             add = function()
                 local result = config.get_input("Enter generic Type name: ")
-                if result then return { { result .. "<" }, { ">" } } end
+                if result then
+                    return { { result .. "<" }, { ">" } }
+                end
             end,
             find = function()
                 if vim.g.loaded_nvim_treesitter then
@@ -53,7 +55,9 @@ require("nvim-surround").setup({
                             type = "textobjects",
                         },
                     })
-                    if selection then return selection end
+                    if selection then
+                        return selection
+                    end
                 end
                 return config.get_selection({ pattern = "[^=%s%<%>{}]+%b<>" })
             end,
@@ -62,7 +66,9 @@ require("nvim-surround").setup({
                 target = "^.-([%w_]+)()%<.-%>()()$",
                 replacement = function()
                     local result = config.get_input("Enter generic Type name: ")
-                    if result then return { { result }, { "" } } end
+                    if result then
+                        return { { result }, { "" } }
+                    end
                 end,
             },
         },
@@ -79,4 +85,4 @@ require("nvim-surround").setup({
         -- ["f"] = {
         -- },
     },
-})
+}
