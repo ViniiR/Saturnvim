@@ -12,11 +12,14 @@ return {
     --     ignoreComments = false,
     -- },
     settings = {
+        doc = {
+            privateName = { "^_" },
+        },
         Lua = {
             runtime = {
                 version = "LuaJIT", -- Current Neovim Lua runtime version
                 pathStrict = false, -- Searches nested directories if false
-                path = vim.list_extend({ -- Paths for "require()"
+                path = vim.list_extend({ -- Paths for "require()" FIXME: maybe not paths for require (unsure)
                     "?.lua",
                     "?/init.lua",
                     "?/?.lua",
@@ -25,18 +28,21 @@ return {
             diagnostics = {
                 globals = { "vim" }, -- Global variables
             },
+            codeLens = { enable = true },
+            hint = { enable = true, semicolon = "Enable" },
             telemetry = { enable = false },
             workspace = {
                 maxPreload = 100000,
                 preloadFileSize = 10000,
                 checkThirdParty = "Disable", -- auto detect limited number of lua libraries
-                library = { -- Libraries available for intellisense
-                    -- NOTE: slow option
-                    -- vim.api.nvim_get_runtime_file("", true),
 
+                library = { -- Libraries available for intellisense (including files for require)
                     vim.env.VIMRUNTIME .. "/lua",
-                    vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
                     vim.fn.stdpath("config"),
+
+                    -- vim.fn.stdpath("data") .. "/lazy", -- all lazy plugins including itself NOTE: makes it way too slow
+                    vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy", -- NOTE: mutually exclusive with .. /lazy
+
                     "${3rd}/luv/library", -- libuv library
                     -- "${3rd}/busted/library", -- busted is a lua testing lib
                 },

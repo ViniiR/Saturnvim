@@ -104,3 +104,4 @@ Lwt
 intellisense
 lualine
 lsps
+boolean
