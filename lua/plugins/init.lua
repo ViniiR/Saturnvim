@@ -84,21 +84,35 @@ return {
         opts = require("configs._nvim-highlight-colors"),
     },
     {
-        -- TODO: main branch update (requires new config)
         "nvim-treesitter/nvim-treesitter",
-        branch = "master",
-        -- version = "*",
+        branch = "main",
+        commit = "5a70b1e", -- WARNING: must match nixpkgs nvim-treesitter-cli version
+        version = false, -- releases are still the master branch
 
         -- Loading
-        event = "VeryLazy",
-        lazy = true,
+        lazy = false,
 
         build = ":TSUpdate",
-        -- TODO: migrate to opts
-        config = function()
-            -- TODO: rework configuration
-            require("configs._nvim-treesitter")
+        opts = function()
+            return require("configs._nvim-treesitter")
         end,
+        init = function()
+            vim.env.CC = "gcc"
+        end,
+        config = function(_, opts)
+            require("nvim-treesitter.config").setup(opts)
+        end,
+    },
+    {
+        "ViniiR/nvim-treesitter-extension",
+        dir = "~/Documents/projects/nvim-treesitter-extension",
+        dev = false,
+        enabled = true,
+
+        -- Loading
+        lazy = false,
+
+        opts = require("configs._nvim-treesitter-extension"),
     },
     {
         "stevearc/conform.nvim",
@@ -339,7 +353,7 @@ return {
     {
         "mrcjkb/rustaceanvim",
         branch = "master",
-        version = "^6", -- NOTE: TODO: must manually update
+        version = "*",
 
         -- Loading
         lazy = false, -- This plugin is already lazy
