@@ -1,5 +1,7 @@
 {
     name = "SaturnVim Snippets";
+    version = "1.0.0";
+    description = "VS Code Snippets";
     contributes = {
         snippets = [
             {
