@@ -105,9 +105,11 @@ return {
     },
     {
         "ViniiR/nvim-treesitter-extension",
-        dir = "~/Documents/projects/nvim-treesitter-extension",
+        branch = "master",
+        version = "*",
+
+        -- dir = "~/Documents/projects/nvim-treesitter-extension",
         dev = false,
-        enabled = true,
 
         -- Loading
         lazy = false,
@@ -240,8 +242,6 @@ return {
     },
     {
         "nvimdev/dashboard-nvim",
-        -- dir = "~/Downloads/dashboard-nvim",
-        -- dev = true;
         branch = "master",
         version = false, -- does not offer tags
 
@@ -304,12 +304,12 @@ return {
         end,
     },
     {
-        dir = "~/Downloads/LuaSnip",
-        dev = true,
-
         "ViniiR/NixSnip",
         branch = "master",
         version = "*",
+
+        -- dir = "~/Documents/projects/NixSnip",
+        dev = false,
 
         -- Loading
         event = "InsertEnter",
