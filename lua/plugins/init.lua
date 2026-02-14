@@ -325,7 +325,10 @@ return {
         end,
 
         dependencies = {
-            "rafamadriz/friendly-snippets",
+            {
+                "ViniiR/friendly-snippets",
+                branch = "lua-functions-symbols",
+            },
         },
     },
     {
