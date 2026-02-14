@@ -1,3 +1,4 @@
+--- see https://luals.github.io/wiki/settings/
 --- @type vim.lsp.ClientConfig
 return {
     cmd = { "lua-language-server" },
@@ -19,7 +20,7 @@ return {
             runtime = {
                 version = "LuaJIT", -- Current Neovim Lua runtime version
                 pathStrict = false, -- Searches nested directories if false
-                path = vim.list_extend({ -- Paths for "require()" FIXME: maybe not paths for require (unsure)
+                path = vim.list_extend({ -- Paths for "require()"
                     "?.lua",
                     "?/init.lua",
                     "?/?.lua",
@@ -27,10 +28,16 @@ return {
             },
             diagnostics = {
                 globals = { "vim" }, -- Global variables
+                unusedLocalExclude = {
+                    "^_",
+                },
             },
             codeLens = { enable = true },
-            hint = { enable = true, semicolon = "Enable" },
-            telemetry = { enable = false },
+            hint = {
+                enable = true,
+                setType = true,
+                semicolon = "Enable",
+            },
             workspace = {
                 maxPreload = 100000,
                 preloadFileSize = 10000,
