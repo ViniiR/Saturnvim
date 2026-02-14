@@ -25,14 +25,26 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 })
 
 return {
-    -- FIXME: history is a legacy option
-    history = true,
-    -- keep_roots = false,
-    -- link_roots = false,
-    -- exit_roots = true,
-    -- link_children = false,
+    nixsnip = {
+        enforce_manifest_properties = true,
+    },
 
-    -- FIXME: i'm unsure which one i should use, _ is newer
-    updateevents = "TextChanged,TextChangedI",
-    update_events = "TextChanged,TextChangedI",
+    -- history = true,
+    keep_roots = true,
+    link_roots = true,
+    exit_roots = false,
+    link_children = true,
+
+    -- if user_config.history ~= nil then
+    -- 	conf.keep_roots = user_config.history
+    -- 	conf.link_roots = user_config.history
+    -- 	conf.exit_roots = not user_config.history
+    -- 	conf.link_children = user_config.history
+    --
+    -- 	-- unset key to prevent handling twice.
+    -- 	conf.history = nil
+    -- end
+
+    -- update_events = "InsertLeave", -- default
+    update_events = "TextChanged,TextChangedI", -- set by me TODO: maybe not necessary
 }
