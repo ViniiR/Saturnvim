@@ -73,8 +73,11 @@ local mappings = {
         modes.normal,
         "[d",
         function()
-            vim.diagnostic.goto_prev()
-            vim.diagnostic.open_float()
+            vim.diagnostic.jump({
+                count = -1,
+                wrap = true,
+                float = true,
+            })
         end,
         desc.desc("LSP Go to previous diagnostic"),
     },
@@ -82,8 +85,11 @@ local mappings = {
         modes.normal,
         "]d",
         function()
-            vim.diagnostic.goto_next()
-            vim.diagnostic.open_float()
+            vim.diagnostic.jump({
+                count = 1,
+                wrap = true,
+                float = true,
+            })
         end,
         desc.desc("LSP Go to next diagnostic"),
     },
