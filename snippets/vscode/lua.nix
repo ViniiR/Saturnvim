@@ -15,4 +15,8 @@
         prefix = "vp";
         body = "vim.print($1)";
     };
+    stylue-ignore = {
+        prefix = "sty";
+        body = "-- stylua: ignore $1";
+    };
 }
