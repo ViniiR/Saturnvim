@@ -59,4 +59,6 @@ return {
         enable = true,
         disable = ignore_install,
     },
+
+    warn_cli_version = true,
 }

@@ -86,7 +86,7 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         branch = "main",
-        commit = "5a70b1e", -- WARNING: must match nixpkgs nvim-treesitter-cli version
+        commit = "5a70b1e", -- must match nixpkgs nvim-treesitter-cli version
         version = false, -- releases are still the master branch
 
         -- Loading
@@ -109,7 +109,7 @@ return {
         version = "*",
 
         -- dir = "~/Documents/projects/nvim-treesitter-extension",
-        dev = false,
+        -- dev = true,
 
         -- Loading
         lazy = false,
