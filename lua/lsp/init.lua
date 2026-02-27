@@ -9,24 +9,24 @@ local config = require("lsp.config")
 vim.g.current_attached_lsp = "No LSP"
 
 --- @type string[]
-local servers = { -- TODO: test all servers (+ filetypes in general)
-    "ts_ls", -- working
-    "bashls", -- working
-    "clangd", -- working
+local servers = {
+    "ts_ls",
+    "bashls",
+    "clangd",
     "cssls",
-    "emmet_language_server", -- working
+    "emmet_language_server",
     "eslint",
     "gdscript",
-    "html", -- working
-    "jsonls", -- working
-    "lua_ls", -- working
-    "neocmake", -- working
-    "nixd", -- working
-    "ocamllsp", -- working
-    "prismals", -- won't test
-    "svelte", -- working
+    "html",
+    "jsonls",
+    "lua_ls",
+    "neocmake",
+    "nil_ls", -- nix
+    "ocamllsp",
+    "prismals",
+    "svelte",
     "tailwindcss",
-    "ts_query_ls", -- working
+    "ts_query_ls",
     "vue_ls",
     "yamlls",
     -- WARNING: do not include "rust_analyzer"

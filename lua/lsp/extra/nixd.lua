@@ -7,6 +7,7 @@ return {
         ".git",
     },
     filetypes = { "nix" },
+    -- FIXME: has capability to autocomplete nixos && hm modules but doesn't
     settings = {
         nixd = {
             nixpkgs = {
