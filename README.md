@@ -33,11 +33,11 @@
 <div align="center">
     <!--
     <a><img
-        src="https://img.shields.io/badge/Neovim-0.11.5-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white)](https://github.com/neovim/neovim/releases/tag/stable" />
+        src="https://img.shields.io/badge/Neovim-0.11.6-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white)](https://github.com/neovim/neovim/releases/tag/stable" />
     </a>
     -->
     
-  [![Neovim Minimum Version](https://img.shields.io/badge/Neovim-0.11.5-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white)](https://github.com/neovim/neovim/releases/tag/stable)
+  [![Neovim Minimum Version](https://img.shields.io/badge/Neovim-0.11.6-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white)](https://github.com/neovim/neovim/releases/tag/stable)
 
 </div>
 
