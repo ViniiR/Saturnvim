@@ -21,7 +21,7 @@ return {
             find_files = {
                 file_ignore_patterns = {
                     "node_modules",
-                    ".git/",
+                    "^%.git/",
                     "target",
                     ".png",
                     ".webp",
@@ -35,7 +35,7 @@ return {
         -- Ignore files on <leader>fa
         file_ignore_patterns = {
             "node_modules",
-            ".git/",
+            "^%.git/",
         },
         extensions = {},
     },
