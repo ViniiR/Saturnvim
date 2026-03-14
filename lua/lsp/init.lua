@@ -21,7 +21,8 @@ local servers = {
     "jsonls",
     "lua_ls",
     "neocmake",
-    "nil_ls", -- nix
+    "nil_ls", -- for modules and builtins
+    "nixd", -- for pkgs
     "ocamllsp",
     "prismals",
     "svelte",

@@ -1,28 +1,33 @@
 --- @type vim.lsp.ClientConfig
 return {
     cmd = { "nixd" },
+    filetypes = { "nix" },
     root_markers = {
         "flake.nix",
-        "shell.nix",
         ".git",
     },
-    filetypes = { "nix" },
     -- FIXME: has capability to autocomplete nixos && hm modules but doesn't
     settings = {
         nixd = {
             nixpkgs = {
-                expr = "import <nixpkgs> { }",
+                -- For flake.
+                -- This expression will be interpreted as "nixpkgs" toplevel
+                -- Nixd provides package, lib completion/information from it.
+                -- Resource Usage: Entries are lazily evaluated, entire nixpkgs takes 200~300MB for just "names".
+                -- Package documentation, versions, are evaluated by-need.
+                -- expr = "import (builtins.getFlake(toString ./.)).inputs.nixpkgs { }",
+                expr = nil,
             },
             formatting = {
-                command = { "alejandra" },
+                command = nil,
             },
             options = {
                 nixos = {
-                    expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.nixos.options',
+                    expr = nil,
                 },
-                home_manager = {
-                    expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."vinii@nixos".options',
-                },
+                -- home_manager = {
+                --     expr = 'let flake = builtins.getFlake(toString ./.); in flake.homeConfigurations."nixos@vinii".options',
+                -- },
             },
         },
     },
