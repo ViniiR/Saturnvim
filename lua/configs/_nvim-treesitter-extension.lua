@@ -52,7 +52,7 @@ return {
     -- List of parsers to ignore installing
     ignore_install = ignore_install,
 
-    indent = true, -- experimental
+    indent = false, -- experimental (breaks in bash)
     fold = false,
 
     highlight = {
