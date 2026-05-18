@@ -17,5 +17,6 @@ return {
         "typescriptreact",
         "vue",
         "markdown",
+        "xml",
     },
 }
