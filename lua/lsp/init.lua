@@ -14,6 +14,7 @@ local servers = {
     "bashls",
     "clangd",
     "cssls",
+    -- TODO: random tags arent working
     "emmet_language_server",
     "eslint",
     "gdscript",
@@ -30,6 +31,8 @@ local servers = {
     "ts_query_ls",
     "vue_ls",
     "yamlls",
+    "lemminx",
+
     -- WARNING: do not include "rust_analyzer"
     -- -- "rust_analyzer" -- working
 }
