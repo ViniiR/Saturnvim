@@ -15,11 +15,11 @@ return {
                 cargo = {
                     allFeatures = true,
                 },
-                -- checkOnSave = true,
-                -- check = {
-                -- 	enable = true,
-                -- 	command = "check",
-                -- },
+                checkOnSave = true,
+                check = {
+                	enable = true,
+                	command = "check",
+                },
             },
         },
     },
