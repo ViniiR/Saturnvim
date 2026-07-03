@@ -19,4 +19,12 @@
         prefix = "ts";
         body = "\"{}\"";
     };
+    lambda = {
+        prefix = "la";
+        body = [
+            "|$1| {"
+            "\t$2"
+            "}"
+        ];
+    };
 }
