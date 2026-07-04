@@ -256,7 +256,7 @@ local mappings = {
             buf = vim.fn.bufname("%")
             local current_buf = vim.fs.basename(buf)
 
-            print("Moved from: |" .. last_buf .. "| into: |" .. current_buf .. "|")
+            print("Moved into: |" .. current_buf .. "| from: |" .. last_buf .. "|")
         end,
         desc.noremap_silent("Jump to last active buffer"),
     },
