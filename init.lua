@@ -15,6 +15,7 @@ local enable_specific_semantic_tokens = {
 }
 
 -- Disables semantic tokens individually (works)
+-- NOTE: ./lua/lsp/autocmds.lua disables semantic tokens for all non rust LSPs
 for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
     if not enable_specific_semantic_tokens[group] then
         vim.api.nvim_set_hl(0, group, {})
