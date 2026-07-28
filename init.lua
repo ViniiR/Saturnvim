@@ -12,6 +12,7 @@ local enable_specific_semantic_tokens = {
     ["@lsp.type.variable.rust"] = true, -- shows "{var}" highlight in rust string
     ["@lsp.type.formatSpecifier.rust"] = true, -- shows "{var:?}" highlight in rust string
     ["@lsp.type.struct.rust"] = true, -- shows Struct(value) as type color instead of function
+    ["@lsp.typemod.operator.controlFlow.rust"] = true, -- shows ? operator, NOTE: might match some future unstable rust features
 }
 
 -- Disables semantic tokens individually (works)

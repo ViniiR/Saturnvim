@@ -195,6 +195,7 @@ highlights["@lsp.mod.macro.rust"] = { fg = "red", link = "@variable.parameter" }
 highlights["@lsp.typemod.macro.declaration.rust"] = { link = "CustomVFunction" }
 highlights["@lsp.type.macro"] = { link = "@variable.parameter" }
 highlights["@type"] = { link = "CustomVType" }
+highlights["@lsp.typemod.operator.controlFlow.rust"] = { link = "Special" }
 
 -- highlights["@lsp.type.attributeBracket"] = { link = "" }
 -- highlights["@lsp.type.builtinAttribute"] = { link = "" }
