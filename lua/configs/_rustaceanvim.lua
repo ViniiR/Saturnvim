@@ -18,7 +18,7 @@ return {
                 checkOnSave = true,
                 check = {
                 	enable = true,
-                	command = "check",
+                	command = "clippy", -- TODO: fallback to 'check' if clippy doesnt exist
                 },
             },
         },
