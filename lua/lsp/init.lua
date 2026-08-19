@@ -32,6 +32,7 @@ local servers = {
     "vue_ls",
     "yamlls",
     "lemminx",
+    "zls",
 
     -- WARNING: do not include "rust_analyzer"
     -- -- "rust_analyzer" -- working
