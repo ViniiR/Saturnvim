@@ -176,5 +176,6 @@ return {
         visual = "v",
         command = "c",
         terminal = "t",
+        select = "s",
     },
 }
