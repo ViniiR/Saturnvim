@@ -7,4 +7,8 @@
         prefix = "inl";
         body = "#include \"$1\"";
     };
+    eprintf = {
+        prefix = "epr";
+        body = "fprintf(stderr, \"%s\\n\", $1);";
+    };
 }
