@@ -33,7 +33,7 @@ local servers = {
     "yamlls",
     "lemminx",
     "zls",
-    "omnisharp"
+    "roslyn_ls"
 
     -- WARNING: do not include "rust_analyzer"
     -- -- "rust_analyzer" -- working
