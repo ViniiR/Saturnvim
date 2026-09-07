@@ -16,27 +16,27 @@ return {
         },
         sorting_strategy = "ascending",
         mappings = require("mappings.plugins._telescope"),
-        pickers = {
-            -- Ignore files on <leader>ff
-            find_files = {
-                file_ignore_patterns = {
-                    "node_modules",
-                    "^%.git/",
-                    "target",
-                    ".png",
-                    ".webp",
-                    ".jpeg",
-                    ".jpg",
-                    ".svg",
-                    ".gd.uid",
-                },
-            },
-        },
-        -- Ignore files on <leader>fa
+
+        -- Default ignored files on all Telescope pickers
         file_ignore_patterns = {
             "node_modules",
             "^%.git/",
+            "^%.godot/",
         },
         extensions = {},
+    },
+    pickers = {
+        -- Ignore files on <leader>ff && <leader>fa (since fa is only flags of find_files)
+        find_files = {
+            -- NOTE: Overrides defaults
+            file_ignore_patterns = {
+                "node_modules",
+                "^%.git/",
+                "^%.godot/",
+                "^target/",
+                "%.gd%.uid$",
+                "%.cs%.uid$",
+            },
+        },
     },
 }
