@@ -1,5 +1,6 @@
 ; extends
 
+; TODO: broken
 (command
   name: (command_name
     (word)) @_command
