@@ -6,6 +6,7 @@ local opt = vim.opt
 vim.filetype.add({
     extension = {
         i3conf = "i3config",
+        v = "v",
     },
 })
 
