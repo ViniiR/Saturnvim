@@ -53,6 +53,10 @@
                 language = "ocaml";
                 path = ./ocaml.nix;
             }
+            {
+                language = "zig";
+                path = ./zig.nix;
+            }
         ];
     };
 }
