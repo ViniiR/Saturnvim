@@ -1,7 +1,6 @@
 <h1 align="center">Saturnvim</h1>
 <h2 align="center">
 <!--
-    TODO: fix pixelated logo
     Heraldry meaning
     Vim's green diamond atop to represent the Vim project
     a heraldic bend shield colored as Neovim and a Prussian Blue border
