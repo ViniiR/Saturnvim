@@ -21,7 +21,7 @@ autocmd("LspAttach", {
         end
 
         -- Disable semantic tokens
-        if client.name ~= "rust-analyzer" and client:supports_method("textDocument/semanticTokens") then
+        if not ENABLE_LSP_SEMANTIC_TOKENS[client.name] and client:supports_method("textDocument/semanticTokens") then
             client.server_capabilities.semanticTokensProvider = nil
         end
 
