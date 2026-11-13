@@ -170,7 +170,7 @@ highlights["@function.method.call"] = { link = "CustomVFunction" }
 highlights["@function.call.tsx"] = { link = "CustomVFunction" }
 highlights["@function.call.rust"] = { link = "CustomVFunction" }
 highlights["@character.rust"] = { link = "CustomVChar" }
-highlights["@character.special.rust"] = { link = "@punctuation.delimiter" }
+highlights["@character.special.rust"] = { link = "Special" }
 highlights["@punctuation.special.rust"] = { fg = "#e5c07b" } -- lsp namespace color
 highlights["@function.call.typescript"] = { link = "CustomVFunction" }
 highlights["@function.method.call.typescript"] = { link = "CustomVFunction" }
