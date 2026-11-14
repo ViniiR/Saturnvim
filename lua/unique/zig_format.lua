@@ -1,5 +1,10 @@
 -- WARNING: AI written code, i decided to separate it from the rest since it is so long
 -- it does have acceptable performance, it does not however highlight it in a perfect way (TODO: improve hl)
+--
+-- TODO: after .(inclusive) use Number hl
+-- After : use Field hl
+-- ?, !, : always use Special hl
+-- everything else before : is Variable hl
 
 local namespace = vim.api.nvim_create_namespace("ZigFormatHighlights")
 
