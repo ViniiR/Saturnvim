@@ -1,6 +1,9 @@
 local config = require("nvim-surround.config")
 
 return {
+    aliases = {
+        ["p"] = "|",
+    },
     surrounds = {
         ["("] = {
             add = { "(", ")" },
@@ -39,6 +42,7 @@ return {
         ["k"] = {
             add = { "`", "`" },
         },
+        -- TODO: make f function surround support f<T>() and f::<T>() language-dependent
         -- Generic<Type> surround
         ["g"] = {
             add = function()
@@ -71,6 +75,14 @@ return {
                     end
                 end,
             },
+        },
+        ["|"] = {
+            add = { "| ", " |" },
+            find = function()
+                return config.get_selection({ pattern = "|.-|" })
+            end,
+            delete = "^(|)().-(|)()$",
+            label = "| ... |",
         },
         -- -- generic statement surround (requires manual input)
         -- ["i"] = {
