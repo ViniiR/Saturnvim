@@ -29,7 +29,8 @@ require("lazy").setup({
     },
     spec = {
         -- import your plugins
-        { import = "plugins" },
+        -- NOTE: default is 'plugins', since i am placing _lazy-nvim.lua together i need to only include .init
+        { import = "plugins.init" },
     },
     -- Configure any other settings here. See the documentation for more details.
     -- colorscheme that will be used when installing plugins.

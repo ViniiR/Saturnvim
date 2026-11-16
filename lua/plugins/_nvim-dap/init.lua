@@ -1,0 +1,61 @@
+--- @type LazySpec | LazyCustom
+-- TODO: handle this correctly when importing it
+return {
+    -- "mfussenegger/nvim-dap",
+    -- branch = "master",
+    -- version = "*",
+    --
+    -- enabled = false,
+    --
+    -- -- Loading
+    -- event = "VeryLazy",
+    -- lazy = true,
+    --
+    -- config = function()
+    --     -- TODO: migrate to opts
+    --     require("plugins._nvim-dap.config")
+    -- end,
+-- }, {
+--     "rcarriga/nvim-dap-ui",
+--     branch = "master",
+--     version = "*",
+--
+--     enabled = false,
+--
+--     -- Loading
+--     event = "VeryLazy",
+--     lazy = true,
+--
+--     -- TODO: migrate to opts
+--     config = function()
+--         --
+--     end,
+--
+--     dependencies = {
+--         { "nvim-neotest/nvim-nio" },
+--     },
+-- }, {
+--     "mxsdev/nvim-dap-vscode-js",
+--     branch = "main",
+--     version = "*",
+--
+--     enabled = false,
+--
+--     -- Loading
+--     event = "VeryLazy",
+--     lazy = true,
+--
+--     -- TODO: migrate to opts
+--     config = function()
+--         require("dap-vscode-js").setup({
+--             -- WARNING: ensure manually compiled vscode-js-debug github project
+--             debugger_path = "/home/vinii/Downloads/vscode-js-debug",
+--             adapters = {
+--                 "pwa-node",
+--                 "pwa-chrome",
+--                 "pwa-msedge",
+--                 "pwa-extensionHost",
+--             },
+--         })
+--     end,
+}
