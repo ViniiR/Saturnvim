@@ -1,4 +1,4 @@
-return {
+local lib = {
     keys = {
         escape = "<Esc>",
         enter = "<Enter>",
@@ -179,3 +179,15 @@ return {
         select = "s",
     },
 }
+
+function lib.setup(table)
+    for _, mapping in ipairs(table) do
+        local mode = mapping[1]
+        local lhs = mapping[2]
+        local rhs = mapping[3]
+        local opts = mapping[4]
+        vim.keymap.set(mode, lhs, rhs, opts)
+    end
+end
+
+return lib

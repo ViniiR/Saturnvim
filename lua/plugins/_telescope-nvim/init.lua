@@ -12,7 +12,7 @@ return {
     opts = require("plugins._telescope-nvim.config"),
     config = function(_, opts)
         require("telescope").setup(opts)
-        require("mappings.setup._telescope")()
+        require("plugins._telescope-nvim.mappings"):setup()
     end,
 
     dependencies = {

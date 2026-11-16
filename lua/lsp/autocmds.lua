@@ -13,7 +13,7 @@ autocmd("LspAttach", {
         vim.g.current_attached_lsp = client.name or "No LSP"
 
         -- map LSP specific bindings
-        require("mappings.setup._lspconfig")(args.buf)
+        require("plugins._nvim-lspconfig.mappings"):setup(args.buf)
 
         -- Only enable inlay hints on LSPs that support it
         if client:supports_method("textDocument/inlayHint") then

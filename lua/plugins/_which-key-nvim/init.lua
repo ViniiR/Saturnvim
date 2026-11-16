@@ -6,13 +6,13 @@ return {
 
     -- Loading
     event = "VeryLazy",
-    keys = require("mappings.plugins._which-key"),
+    keys = require("plugins._which-key-nvim.mappings.internal"),
     cmd = "WhichKey",
     lazy = true,
 
     opts = require("plugins._which-key-nvim.config"),
     config = function(_, opts)
         require("which-key").setup(opts)
-        require("mappings.setup._which-key")()
+        require("plugins._which-key-nvim.mappings"):setup()
     end,
 }

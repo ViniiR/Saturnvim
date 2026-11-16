@@ -38,12 +38,8 @@ local mappings = {
     },
 }
 
-return function()
-    for _, mapping in ipairs(mappings) do
-        local mode = mapping[1]
-        local lhs = mapping[2]
-        local rhs = mapping[3]
-        local opts = mapping[4]
-        vim.keymap.set(mode, lhs, rhs, opts)
-    end
+function mappings:setup()
+    lib.setup(self)
 end
+
+return mappings

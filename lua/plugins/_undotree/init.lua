@@ -15,6 +15,6 @@ return {
     end,
     config = function()
         -- no setup
-        require("mappings.setup._undotree")()
+        require("plugins._undotree.mappings"):setup()
     end,
 }

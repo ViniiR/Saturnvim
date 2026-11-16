@@ -1,7 +1,7 @@
 return {
     -- size can be a number or function which is passed the current terminal
     size = 20,
-    open_mapping = require("mappings.plugins._toggleterm").open, -- or [[<c-\>]]
+    open_mapping = require("plugins._toggleterm-nvim.mappings.internal").open, -- or [[<c-\>]]
     -- on_create = fun(t: Terminal), -- function to run when the terminal is first created
     on_open = function(term) -- function to run when the terminal opens
         vim.api.nvim_win_set_config(term.window, {

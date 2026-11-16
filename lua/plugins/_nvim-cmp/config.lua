@@ -201,7 +201,7 @@ return {
         end,
     },
 
-    mapping = require("mappings.plugins._cmp"),
+    mapping = require("plugins._nvim-cmp.mappings.internal"),
 
     matching = { disallow_symbol_nonprefix_matching = false },
     sorting = {

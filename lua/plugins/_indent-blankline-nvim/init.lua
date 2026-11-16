@@ -12,6 +12,6 @@ return {
     opts = require("plugins._indent-blankline-nvim.config"),
     config = function(_, opts)
         require("ibl").setup(opts)
-        require("mappings.setup._indent-blankline")()
+        require("plugins._indent-blankline-nvim.mappings"):setup()
     end,
 }

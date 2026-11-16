@@ -10,6 +10,6 @@ return {
     opts = require("plugins._oil-nvim.config"),
     config = function(_, opts)
         require("oil").setup(opts)
-        require("mappings.setup._oil")()
+        require("plugins._oil-nvim.mappings"):setup()
     end,
 }

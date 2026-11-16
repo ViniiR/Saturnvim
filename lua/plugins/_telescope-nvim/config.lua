@@ -15,7 +15,7 @@ return {
             height = 0.80,
         },
         sorting_strategy = "ascending",
-        mappings = require("mappings.plugins._telescope"),
+        mappings = require("plugins._telescope-nvim.mappings.internal"),
 
         -- Default ignored files on all Telescope pickers
         file_ignore_patterns = {

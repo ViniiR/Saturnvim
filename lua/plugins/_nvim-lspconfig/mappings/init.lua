@@ -111,7 +111,9 @@ local mappings = {
     },
 }
 
-return function(bufnr)
+-- Unique compared to others, requires bufnr
+--- @param bufnr integer
+function mappings:setup(bufnr)
     for _, mapping in ipairs(mappings) do
         local mode = mapping[1]
         local lhs = mapping[2]
@@ -121,3 +123,5 @@ return function(bufnr)
         vim.keymap.set(mode, lhs, rhs, opts)
     end
 end
+
+return mappings

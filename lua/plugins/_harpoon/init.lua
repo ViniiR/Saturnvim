@@ -18,7 +18,7 @@ return {
     opts = require("plugins._harpoon.config"),
     config = function(_, opts)
         require("harpoon"):setup(opts)
-        require("mappings.setup._harpoon")()
+        require("plugins._harpoon.mappings"):setup()
     end,
 
     dependencies = {

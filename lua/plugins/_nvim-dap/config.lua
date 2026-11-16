@@ -118,4 +118,4 @@ sign("DapBreakpointRejected", {
     texthl = "DapBreakpointRejected",
 })
 
-require("mappings.setup._dap")()
+require("plugins._nvim-dap.mappings"):setup()

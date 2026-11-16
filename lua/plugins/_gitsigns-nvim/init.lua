@@ -11,6 +11,6 @@ return {
     opts = require("plugins._gitsigns-nvim.config"),
     config = function(_, opts)
         require("gitsigns").setup(opts)
-        require("mappings.setup._gitsigns")()
+        require("plugins._gitsigns-nvim.mappings"):setup()
     end,
 }

@@ -1,5 +1,5 @@
 local telescope_builtin = require("telescope.builtin")
-local telescope_plugin_mappings = require("mappings.plugins._telescope")
+local telescope_plugin_mappings = require("plugins._telescope-nvim.mappings.internal")
 
 local lib = require("mappings.lib")
 local keys = lib.keys
@@ -55,7 +55,9 @@ local mappings = {
     {
         modes.normal,
         keys.leader("fa"),
-        function() vim.cmd("Telescope find_files follow=true no_ignore=true hidden=true") end,
+        function()
+            vim.cmd("Telescope find_files follow=true no_ignore=true hidden=true")
+        end,
         desc.desc("Telescope find all files"),
     },
     {
@@ -90,12 +92,9 @@ local mappings = {
         desc.desc("Telescope current buffer fuzzy find"),
     },
 }
-return function()
-    for _, mapping in ipairs(mappings) do
-        local mode = mapping[1]
-        local lhs = mapping[2]
-        local rhs = mapping[3]
-        local opts = mapping[4]
-        vim.keymap.set(mode, lhs, rhs, opts)
-    end
+
+function mappings:setup()
+    lib.setup(self)
 end
+
+return mappings
