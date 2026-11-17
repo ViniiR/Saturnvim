@@ -1,3 +1,5 @@
+local toggleterm_icons = require("plugins._toggleterm-nvim.icons")
+
 return {
     -- size can be a number or function which is passed the current terminal
     size = 20,
@@ -5,7 +7,7 @@ return {
     -- on_create = fun(t: Terminal), -- function to run when the terminal is first created
     on_open = function(term) -- function to run when the terminal opens
         vim.api.nvim_win_set_config(term.window, {
-            title = string.format(" %s Terminal ", TERMINAL_ICON),
+            title = string.format(" %s Terminal ", toggleterm_icons.terminal),
         })
     end,
     -- on_close = fun(t: Terminal), -- function to run when the terminal closes
