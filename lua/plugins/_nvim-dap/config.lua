@@ -3,6 +3,8 @@
 local dap = require("dap")
 local dapui = require("dapui")
 
+local dap_icons = require("plugins._nvim-dap.icons")
+
 -- dap should work by default with rustaceanvim
 -- vscode-extensions.vadimcn.vscode-lldb.adapter
 -- dap.adapters = {
@@ -98,23 +100,23 @@ dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
 local sign = vim.fn.sign_define
 
 sign("DapBreakpoint", {
-    text = DAP_SYMBOLS.DAP_BREAKPOINT,
+    text = dap_icons.breakpoint,
     texthl = "DapBreakpoint",
 })
 sign("DapBreakpointCondition", {
-    text = DAP_SYMBOLS.DAP_BREAKPOINT_CONDITION,
+    text = dap_icons.breakpoint_condition,
     texthl = "DapBreakpointCondition",
 })
 sign("DapLogPoint", {
-    text = DAP_SYMBOLS.DAP_LOG_POINT,
+    text = dap_icons.log_point,
     texthl = "DapLogPoint",
 })
 sign("DapStopped", {
-    text = DAP_SYMBOLS.DAP_STOPPED,
+    text = dap_icons.stopped,
     texthl = "DapStopped",
 })
 sign("DapBreakpointRejected", {
-    text = DAP_SYMBOLS.DAP_BREAKPOINT_REJECTED,
+    text = dap_icons.breakpoint_rejected,
     texthl = "DapBreakpointRejected",
 })
 
