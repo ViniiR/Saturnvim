@@ -1,5 +1,6 @@
 local lualine_theme = require("plugins._lualine-nvim.theme")
 local modes_map = require("plugins._lualine-nvim.modes_map")
+local lualine_icons = require("plugins._lualine-nvim.icons")
 
 return {
     options = {
@@ -30,13 +31,13 @@ return {
             end,
         },
         lualine_b = {
-            { "branch", icon = GIT_ICONS.branch },
+            { "branch", icon = lualine_icons.git.branch },
             {
                 "diff",
                 symbols = {
-                    added = GIT_ICONS.added .. " ",
-                    modified = GIT_ICONS.modified .. " ",
-                    removed = GIT_ICONS.removed .. " ",
+                    added = lualine_icons.git.added .. " ",
+                    modified = lualine_icons.git.modified .. " ",
+                    removed = lualine_icons.git.removed .. " ",
                 },
             },
             -- { "diff", symbols = { added = " ", modified = " ", removed = " " } },
@@ -46,9 +47,9 @@ return {
             function()
                 if vim.bo.modified then
                     -- syntax for inline highlights = "%#<hl_name>#"
-                    return "%#CustomVLualineGreen#" .. LUALINE_ICONS.file_modified
+                    return "%#CustomVLualineGreen#" .. lualine_icons.file.modified
                 elseif vim.bo.modifiable == false or vim.bo.readonly == true then
-                    return "%#CustomVLualineYellow#" .. LUALINE_ICONS.file_immutable
+                    return "%#CustomVLualineYellow#" .. lualine_icons.file.immutable
                 else
                     return ""
                 end
@@ -72,21 +73,21 @@ return {
 
                 local is_in_nix_shell = vim.env.IN_NIX_SHELL ~= nil
 
-                -- Override the v_one_dark theme color if there is no LSP
-                -- NOTE: lualine does not recompute v_one_dark after setup, so changing it at runtime does not modify the color
+                -- Override the lualine_theme theme color if there is no LSP
+                -- NOTE: lualine does not recompute lualine_theme after setup, so changing it at runtime does not modify the color
                 if has_lsp then
-                    str = string.format("%s %s", LUALINE_ICONS.lsp_server, vim.g.current_attached_lsp)
+                    str = string.format("%s %s", lualine_icons.lsp.server, vim.g.current_attached_lsp)
                     if is_in_nix_shell then
                         str = "%#CustomVLualineGreenLsp#" .. str
                     end
                 else
-                    str = "%#CustomVLualineLspRed#" .. string.format("%s %s", LUALINE_ICONS.lsp_server_fail, "None")
+                    str = "%#CustomVLualineLspRed#" .. string.format("%s %s", lualine_icons.lsp.server_fail, "None")
                 end
 
                 if is_in_nix_shell then
-                    local icon = "󰊕"
+                    local icon = lualine_icons.nix.pure
                     if vim.env.IN_NIX_SHELL == "impure" then
-                        icon = "!󰊕"
+                        icon = lualine_icons.nix.impure
                     end
 
                     str = "%#CustomVNix#" .. icon .. "  " .. str
@@ -111,7 +112,7 @@ return {
         },
         lualine_z = {
             function()
-                return string.format("%s %s", LUALINE_ICONS.directory, vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
+                return string.format("%s %s", lualine_icons.file.directory, vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
             end,
         },
     },

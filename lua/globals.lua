@@ -43,17 +43,10 @@ TELESCOPE_ICONS = {
     selection_caret = " ", -- "→"
 }
 
-GIT_ICONS = {
-    branch = "󰘬",
-    added = "󰐖",
-    modified = "󰦓",
-    removed = "󰍵",
-}
-
 GIT_SIGNS = {
     add = "┃",
     change = "┃",
-    delete = GIT_ICONS.removed, -- "󰍵"
+    delete = "󰍵",
     topdelete = "‾",
     changedelete = "󱕖",
     untracked = "┆",
@@ -65,14 +58,6 @@ GIT_SIGNS_STAGED = {
     topdelete = GIT_SIGNS.topdelete, -- "‾"
     changedelete = "~",
     untracked = GIT_SIGNS.untracked, -- "┆"
-}
-
-LUALINE_ICONS = {
-    file_modified = "[󱗜]~",
-    file_immutable = "[󰐀]-",
-    lsp_server = "󰒋",
-    lsp_server_fail = "",
-    directory = "󰉖",
 }
 
 -- WARNING:
