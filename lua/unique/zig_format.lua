@@ -1,5 +1,5 @@
 -- WARNING: AI written code, i decided to separate it from the rest since it is so long
--- it does have acceptable performance, it does not however highlight it in a perfect way (TODO: improve hl)
+-- it does have acceptable performance, it does not however highlight it in a perfect way
 --
 -- TODO: after .(inclusive) use Number hl
 -- After : use Field hl

@@ -29,7 +29,7 @@ return {
     hover_window_config = {
         title = string.format(" %s Info ", INFO_ICON),
         border = BORDER_KIND,
-        max_width = nil, -- TODO
+        max_width = nil, -- TODO:
         max_height = nil,
     },
     --- @type vim.diagnostic.Opts

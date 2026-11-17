@@ -42,7 +42,6 @@ return {
         ["k"] = {
             add = { "`", "`" },
         },
-        -- TODO: make f function surround support f<T>() and f::<T>() language-dependent
         -- Generic<Type> surround
         ["g"] = {
             add = function()

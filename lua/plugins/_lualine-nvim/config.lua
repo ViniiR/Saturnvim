@@ -140,8 +140,8 @@ return {
         globalstatus = false,
         refresh = {
             statusline = 100,
-            tabline = 100, -- TODO disable
-            winbar = 1000, -- TODO disable
+            tabline = 100, -- TODO: disable
+            winbar = 1000, -- TODO: disable
         },
     },
     sections = {
