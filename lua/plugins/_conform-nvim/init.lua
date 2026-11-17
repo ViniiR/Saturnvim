@@ -11,6 +11,6 @@ return {
     opts = require("plugins._conform-nvim.config"),
     config = function(_, opts)
         require("conform").setup(opts)
-        require("plugins._conform-nvim.mappings")
+        require("plugins._conform-nvim.mappings"):setup()
     end,
 }

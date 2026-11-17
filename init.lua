@@ -4,7 +4,7 @@ require("plugins._lazy-nvim")
 require("mappings._editor"):setup()
 require("commands")
 require("autocmds")
-require("highlights")
+require("highlight")
 require("macros")
 require("unique.symmetric_surrounds")
 

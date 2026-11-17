@@ -1,5 +1,7 @@
 -- PLEASE DELETE ALL OF THE COMMENTED OUT IF IT WORKS FINE FROM NOW ON TODO
 
+local theme = require("highlight.theme")
+
 -- IMPORTANT NOTE:
 -- to disable a highlight set it { link = "" }
 local highlights = {}
@@ -27,11 +29,11 @@ highlights["CustomVLualineLspRed"] = { fg = "red", bg = "#323942" }
 highlights["CustomVNix"] = { fg = "#5277C3", bg = "#323942" }
 
 -- vim illuminate
-highlights["IlluminatedWord"] = { bold = false, bg = COLORS.illuminate_bg }
-highlights["IlluminatedCurWord"] = { bold = false, bg = COLORS.illuminate_bg }
-highlights["IlluminatedWordRead"] = { bold = false, bg = COLORS.illuminate_bg }
-highlights["IlluminatedWordText"] = { bold = false, bg = COLORS.illuminate_bg }
-highlights["IlluminatedWordWrite"] = { bold = false, bg = COLORS.illuminate_bg }
+highlights["IlluminatedWord"] = { bold = false, bg = theme.colors.illuminate_bg }
+highlights["IlluminatedCurWord"] = { bold = false, bg = theme.colors.illuminate_bg }
+highlights["IlluminatedWordRead"] = { bold = false, bg = theme.colors.illuminate_bg }
+highlights["IlluminatedWordText"] = { bold = false, bg = theme.colors.illuminate_bg }
+highlights["IlluminatedWordWrite"] = { bold = false, bg = theme.colors.illuminate_bg }
 
 -- comments
 highlights["@comment.error.comment"] = { link = "VFixme" }
@@ -46,14 +48,14 @@ highlights["GitSignsCurrentLineBlame"] = { link = "comment" }
 highlights["FoldColumn"] = { link = "Normal" }
 
 -- cmp
-highlights["Title"] = { bg = COLORS.one_bg, fg = COLORS.title_fg }
-highlights["CmpNormal"] = { bg = COLORS.one_bg }
-highlights["CmpFloatBorder"] = { bg = COLORS.one_bg }
+highlights["Title"] = { bg = theme.colors.one_bg, fg = theme.colors.title_fg }
+highlights["CmpNormal"] = { bg = theme.colors.one_bg }
+highlights["CmpFloatBorder"] = { bg = theme.colors.one_bg }
 -- selection
 -- CmpItemAbbrMatchFuzzy fg=#56b6c2
-highlights["CmpItemAbbrMatchFuzzy"] = { fg = COLORS.matching_bg, underline = false, bold = true }
-highlights["CmpVisual"] = { bg = COLORS.matching_bg, fg = COLORS.cmp_selected_text_fg, bold = false }
-highlights["CmpItemAbbrMatch"] = { fg = COLORS.matching_bg, bold = true }
+highlights["CmpItemAbbrMatchFuzzy"] = { fg = theme.colors.matching_bg, underline = false, bold = true }
+highlights["CmpVisual"] = { bg = theme.colors.matching_bg, fg = theme.colors.cmp_selected_text_fg, bold = false }
+highlights["CmpItemAbbrMatch"] = { fg = theme.colors.matching_bg, bold = true }
 -- highlights["CmpVisual", { bg = "#56b6c2"] = fg = COLORS.cmp_selected_text_fg, bold = false }
 -- highlights["CmpItemAbbrMatch", { fg = "#56b6c2"] = bold = true }
 -- --
@@ -265,58 +267,58 @@ highlights["@lsp.type.decorator.rust"] = {}
 highlights["@lsp.type.lifetime"] = { link = "Special" }
 highlights["@lsp.type.lifetime.rust"] = { link = "@lsp.type.lifetime" }
 
-highlights["DevIconc"] = { fg = COLORS.blue }
-highlights["DevIconcss"] = { fg = COLORS.blue }
-highlights["DevIcondeb"] = { fg = COLORS.cyan }
-highlights["DevIconDockerfile"] = { fg = COLORS.cyan }
-highlights["DevIconhtml"] = { fg = COLORS.baby_pink }
-highlights["DevIconjpeg"] = { fg = COLORS.dark_purple }
-highlights["DevIconjpg"] = { fg = COLORS.dark_purple }
-highlights["DevIconjs"] = { fg = COLORS.sun }
-highlights["DevIconkt"] = { fg = COLORS.orange }
-highlights["DevIconlock"] = { fg = COLORS.red }
-highlights["DevIconlua"] = { fg = COLORS.blue }
-highlights["DevIconmp3"] = { fg = COLORS.white }
-highlights["DevIconmp4"] = { fg = COLORS.white }
-highlights["DevIconout"] = { fg = COLORS.white }
-highlights["DevIconpng"] = { fg = COLORS.dark_purple }
-highlights["DevIconpy"] = { fg = COLORS.cyan }
-highlights["DevIcontoml"] = { fg = COLORS.blue }
-highlights["DevIconts"] = { fg = COLORS.teal }
-highlights["DevIconttf"] = { fg = COLORS.white }
-highlights["DevIconrb"] = { fg = COLORS.pink }
-highlights["DevIconrpm"] = { fg = COLORS.orange }
-highlights["DevIconvue"] = { fg = COLORS.vibrant_green }
-highlights["DevIconwoff"] = { fg = COLORS.white }
-highlights["DevIconwoff2"] = { fg = COLORS.white }
-highlights["DevIconxz"] = { fg = COLORS.sun }
-highlights["DevIconzip"] = { fg = COLORS.sun }
-highlights["DevIconZig"] = { fg = COLORS.orange }
-highlights["DevIconMd"] = { fg = COLORS.blue }
-highlights["DevIconTSX"] = { fg = COLORS.ts_fg }
-highlights["DevIconJSX"] = { fg = COLORS.blue }
-highlights["DevIconSvelte"] = { fg = COLORS.red }
-highlights["DevIconJava"] = { fg = COLORS.orange }
-highlights["DevIconDart"] = { fg = COLORS.cyan }
+highlights["DevIconc"] = { fg = theme.colors.blue }
+highlights["DevIconcss"] = { fg = theme.colors.blue }
+highlights["DevIcondeb"] = { fg = theme.colors.cyan }
+highlights["DevIconDockerfile"] = { fg = theme.colors.cyan }
+highlights["DevIconhtml"] = { fg = theme.colors.baby_pink }
+highlights["DevIconjpeg"] = { fg = theme.colors.dark_purple }
+highlights["DevIconjpg"] = { fg = theme.colors.dark_purple }
+highlights["DevIconjs"] = { fg = theme.colors.sun }
+highlights["DevIconkt"] = { fg = theme.colors.orange }
+highlights["DevIconlock"] = { fg = theme.colors.red }
+highlights["DevIconlua"] = { fg = theme.colors.blue }
+highlights["DevIconmp3"] = { fg = theme.colors.white }
+highlights["DevIconmp4"] = { fg = theme.colors.white }
+highlights["DevIconout"] = { fg = theme.colors.white }
+highlights["DevIconpng"] = { fg = theme.colors.dark_purple }
+highlights["DevIconpy"] = { fg = theme.colors.cyan }
+highlights["DevIcontoml"] = { fg = theme.colors.blue }
+highlights["DevIconts"] = { fg = theme.colors.teal }
+highlights["DevIconttf"] = { fg = theme.colors.white }
+highlights["DevIconrb"] = { fg = theme.colors.pink }
+highlights["DevIconrpm"] = { fg = theme.colors.orange }
+highlights["DevIconvue"] = { fg = theme.colors.vibrant_green }
+highlights["DevIconwoff"] = { fg = theme.colors.white }
+highlights["DevIconwoff2"] = { fg = theme.colors.white }
+highlights["DevIconxz"] = { fg = theme.colors.sun }
+highlights["DevIconzip"] = { fg = theme.colors.sun }
+highlights["DevIconZig"] = { fg = theme.colors.orange }
+highlights["DevIconMd"] = { fg = theme.colors.blue }
+highlights["DevIconTSX"] = { fg = theme.colors.ts_fg }
+highlights["DevIconJSX"] = { fg = theme.colors.blue }
+highlights["DevIconSvelte"] = { fg = theme.colors.red }
+highlights["DevIconJava"] = { fg = theme.colors.orange }
+highlights["DevIconDart"] = { fg = theme.colors.cyan }
 
 -- git
-highlights["diffNewFile"] = { fg = COLORS.blue }
-highlights["DiffText"] = { fg = COLORS.white, bg = COLORS.black2 }
-highlights["gitcommitOverflow"] = { fg = THEME.base08 }
-highlights["gitcommitSummary"] = { fg = THEME.base0B }
-highlights["gitcommitComment"] = { fg = THEME.base03 }
-highlights["gitcommitUntracked"] = { fg = THEME.base03 }
-highlights["gitcommitDiscarded"] = { fg = THEME.base03 }
-highlights["gitcommitSelected"] = { fg = THEME.base03 }
-highlights["gitcommitHeader"] = { fg = THEME.base0E }
-highlights["gitcommitSelectedType"] = { fg = THEME.base0D }
-highlights["gitcommitUnmergedType"] = { fg = THEME.base0D }
-highlights["gitcommitDiscardedType"] = { fg = THEME.base0D }
-highlights["gitcommitBranch"] = { fg = THEME.base09, bold = true }
-highlights["gitcommitUntrackedFile"] = { fg = THEME.base0A }
-highlights["gitcommitUnmergedFile"] = { fg = THEME.base08, bold = true }
-highlights["gitcommitDiscardedFile"] = { fg = THEME.base08, bold = true }
-highlights["gitcommitSelectedFile"] = { fg = THEME.base0B, bold = true }
+highlights["diffNewFile"] = { fg = theme.colors.blue }
+highlights["DiffText"] = { fg = theme.colors.white, bg = theme.colors.black2 }
+highlights["gitcommitOverflow"] = { fg = theme.scheme.base08 }
+highlights["gitcommitSummary"] = { fg = theme.scheme.base0B }
+highlights["gitcommitComment"] = { fg = theme.scheme.base03 }
+highlights["gitcommitUntracked"] = { fg = theme.scheme.base03 }
+highlights["gitcommitDiscarded"] = { fg = theme.scheme.base03 }
+highlights["gitcommitSelected"] = { fg = theme.scheme.base03 }
+highlights["gitcommitHeader"] = { fg = theme.scheme.base0E }
+highlights["gitcommitSelectedType"] = { fg = theme.scheme.base0D }
+highlights["gitcommitUnmergedType"] = { fg = theme.scheme.base0D }
+highlights["gitcommitDiscardedType"] = { fg = theme.scheme.base0D }
+highlights["gitcommitBranch"] = { fg = theme.scheme.base09, bold = true }
+highlights["gitcommitUntrackedFile"] = { fg = theme.scheme.base0A }
+highlights["gitcommitUnmergedFile"] = { fg = theme.scheme.base08, bold = true }
+highlights["gitcommitDiscardedFile"] = { fg = theme.scheme.base08, bold = true }
+highlights["gitcommitSelectedFile"] = { fg = theme.scheme.base0B, bold = true }
 -- Telescope
 --highlights["TelescopeBorder"] = { fg = colors.white }
 --highlights["TelescopePromptBorder"] = { fg = "#373b43" }
@@ -329,50 +331,50 @@ highlights["gitcommitSelectedFile"] = { fg = THEME.base0B, bold = true }
 -- Telescope
 --
 -- borders
-highlights["TelescopeBorder"] = { fg = COLORS.one_bg3 }
-highlights["TelescopePromptBorder"] = { fg = COLORS.one_bg3 }
-highlights["TelescopePreviewBorder"] = { fg = COLORS.one_bg3 }
-highlights["TelescopeResultsBorder"] = { fg = COLORS.one_bg3 }
+highlights["TelescopeBorder"] = { fg = theme.colors.one_bg3 }
+highlights["TelescopePromptBorder"] = { fg = theme.colors.one_bg3 }
+highlights["TelescopePreviewBorder"] = { fg = theme.colors.one_bg3 }
+highlights["TelescopeResultsBorder"] = { fg = theme.colors.one_bg3 }
 
-highlights["TelescopePromptTitle"] = { fg = COLORS.black, bg = COLORS.red }
+highlights["TelescopePromptTitle"] = { fg = theme.colors.black, bg = theme.colors.red }
 
-highlights["TelescopeSelection"] = { bg = COLORS.grey, fg = "none" }
-highlights["TelescopeResultsDiffAdd"] = { fg = COLORS.green }
-highlights["TelescopeResultsDiffChange"] = { fg = COLORS.yellow }
-highlights["TelescopeResultsDiffDelete"] = { fg = COLORS.red }
+highlights["TelescopeSelection"] = { bg = theme.colors.grey, fg = "none" }
+highlights["TelescopeResultsDiffAdd"] = { fg = theme.colors.green }
+highlights["TelescopeResultsDiffChange"] = { fg = theme.colors.yellow }
+highlights["TelescopeResultsDiffDelete"] = { fg = theme.colors.red }
 
-highlights["TelescopeMatching"] = { bg = "none", fg = COLORS.matching_bg }
-highlights["TelescopeResultsTitle"] = { fg = COLORS.black, bg = COLORS.green }
-highlights["TelescopePreviewTitle"] = { fg = COLORS.black, bg = COLORS.blue }
-highlights["TelescopePromptPrefix"] = { fg = COLORS.red, bg = "none" }
+highlights["TelescopeMatching"] = { bg = "none", fg = theme.colors.matching_bg }
+highlights["TelescopeResultsTitle"] = { fg = theme.colors.black, bg = theme.colors.green }
+highlights["TelescopePreviewTitle"] = { fg = theme.colors.black, bg = theme.colors.blue }
+highlights["TelescopePromptPrefix"] = { fg = theme.colors.red, bg = "none" }
 highlights["TelescopeNormal"] = { bg = "none" }
 highlights["TelescopePromptNormal"] = { bg = "none" }
 
 -- LSP diagnostics virtual text
-highlights["DiagnosticVirtualTextInfo"] = { fg = COLORS.info_diagnostic_fg, bg = "none" }
-highlights["DiagnosticVirtualTextHint"] = { fg = COLORS.purple, bg = "none" }
-highlights["DiagnosticVirtualTextWarn"] = { fg = COLORS.yellow, bg = "none" }
-highlights["DiagnosticVirtualTextError"] = { fg = COLORS.red, bg = "none" }
+highlights["DiagnosticVirtualTextInfo"] = { fg = theme.colors.info_diagnostic_fg, bg = "none" }
+highlights["DiagnosticVirtualTextHint"] = { fg = theme.colors.purple, bg = "none" }
+highlights["DiagnosticVirtualTextWarn"] = { fg = theme.colors.yellow, bg = "none" }
+highlights["DiagnosticVirtualTextError"] = { fg = theme.colors.red, bg = "none" }
 
 -- LSP diagnostics icons(generally)
-highlights["DiagnosticInfo"] = { fg = COLORS.info_diagnostic_fg }
-highlights["DiagnosticHint"] = { fg = COLORS.purple }
-highlights["DiagnosticWarn"] = { fg = COLORS.yellow }
-highlights["DiagnosticError"] = { fg = COLORS.red }
+highlights["DiagnosticInfo"] = { fg = theme.colors.info_diagnostic_fg }
+highlights["DiagnosticHint"] = { fg = theme.colors.purple }
+highlights["DiagnosticWarn"] = { fg = theme.colors.yellow }
+highlights["DiagnosticError"] = { fg = theme.colors.red }
 
-highlights["LspSignatureActiveParameter"] = { fg = COLORS.black, bg = COLORS.green }
+highlights["LspSignatureActiveParameter"] = { fg = theme.colors.black, bg = theme.colors.green }
 
 -- dap
-highlights["DapBreakpoint"] = { fg = COLORS.bright_red }
-highlights["DapBreakpointCondition"] = { fg = COLORS.red }
-highlights["DapLogPoint"] = { fg = COLORS.yellow }
-highlights["DapStopped"] = { fg = COLORS.bright_red }
-highlights["DapBreakpointRejected"] = { fg = COLORS.bright_red }
+highlights["DapBreakpoint"] = { fg = theme.colors.bright_red }
+highlights["DapBreakpointCondition"] = { fg = theme.colors.red }
+highlights["DapLogPoint"] = { fg = theme.colors.yellow }
+highlights["DapStopped"] = { fg = theme.colors.bright_red }
+highlights["DapBreakpointRejected"] = { fg = theme.colors.bright_red }
 
 -- ibl indent blank line
-highlights["IblIndent"] = COLORS.indent_bar_hl
-highlights["IblWhitespace"] = COLORS.indent_whitespace_hl
-highlights["Whitespace"] = COLORS.whitespace_hl
+highlights["IblIndent"] = theme.colors.indent_bar_hl
+highlights["IblWhitespace"] = theme.colors.indent_whitespace_hl
+highlights["Whitespace"] = theme.colors.whitespace_hl
 highlights["IblScope"] = { fg = "grey", bg = "none" }
 -- vim.api.nvim_set_hl(0, "@ibl.scope.underline.1", { fg = "white", bg = "none" })
 
@@ -385,7 +387,7 @@ highlights["@tag.delimiter.xml"] = { link = "@tag.delimiter.tsx" }
 highlights["@tag.xml"] = { fg = "#ed4a57" }
 
 -- nvim default for \n chars
-highlights["NonText"] = COLORS.whitespace_hl
+highlights["NonText"] = theme.colors.whitespace_hl
 -- nvim lsp inlay hint
 highlights["LspInlayHint"] = { fg = "#5c6370" } --  by default links to NonText so hard code default color or NonText
 

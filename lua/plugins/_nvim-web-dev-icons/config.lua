@@ -1,10 +1,11 @@
 local devicons = require("nvim-web-devicons")
+local theme = require("highlight.theme")
 
 devicons.set_icon({
     i3conf = {
         icon = "",
         name = "i3conf",
-        color = COLORS.red
+        color = theme.colors.red
     },
 })
 
@@ -18,7 +19,7 @@ return {
         ts = {
             icon = "",
             name = "ts",
-            color = COLORS.ts_fg,
+            color = theme.colors.ts_fg,
         },
     }
 }
