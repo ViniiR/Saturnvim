@@ -1,8 +1,10 @@
+local telescope_icons = require("plugins._telescope-nvim.icons")
+
 return {
     defaults = {
         layout_strategy = "horizontal",
-        prompt_prefix = string.format(" %s  ", TELESCOPE_ICONS.prompt),
-        selection_caret = string.format("%s", TELESCOPE_ICONS.selection_caret),
+        prompt_prefix = string.format(" %s  ", telescope_icons.prompt),
+        selection_caret = string.format("%s", telescope_icons.selection_caret),
         -- space before all entries
         entry_prefix = " ",
         borderchars = ROUNDED_BORDER_CHARS,

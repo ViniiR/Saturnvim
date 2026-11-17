@@ -38,11 +38,6 @@ LISTCHARS = {
     TRAIL = "trail:-",
 }
 
-TELESCOPE_ICONS = {
-    prompt = "",
-    selection_caret = " ", -- "→"
-}
-
 -- WARNING:
 -- for simplicity all icons must be PascalCase
 CMP_ICONS = {
