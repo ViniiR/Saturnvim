@@ -1,6 +1,6 @@
 local telescope_actions = require("telescope.actions")
 
-local lib = require("mappings.lib")
+local lib = require("lib.mappings")
 local keys = lib.keys
 local modes = lib.modes
 local desc = lib.desc

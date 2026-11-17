@@ -1,4 +1,4 @@
-local lib = require("mappings.lib")
+local lib = require("lib.mappings")
 local keys = lib.keys
 local modes = lib.modes
 local desc = lib.desc
@@ -455,7 +455,8 @@ local mappings = {
         keys.leader("sfu"),
         function()
             -- defaults to ecmascript function statements
-            local block_start, block_end, finder_command = unpack_surround(surround_blocks.ecmascript.function_statement)
+            local block_start, block_end, finder_command =
+                unpack_surround(surround_blocks.ecmascript.function_statement)
 
             if vim.bo.filetype == "lua" then
                 block_start, block_end, finder_command = unpack_surround(surround_blocks.lua.function_statement)
@@ -537,12 +538,8 @@ local mappings = {
     -- map("c", ";", "<Nop>", { noremap = true, silent = true })
 }
 
-return function()
-    for _, mapping in ipairs(mappings) do
-        local mode = mapping[1]
-        local lhs = mapping[2]
-        local rhs = mapping[3]
-        local opts = mapping[4]
-        vim.keymap.set(mode, lhs, rhs, opts)
-    end
+function mappings:setup()
+    lib.setup(self)
 end
+
+return mappings

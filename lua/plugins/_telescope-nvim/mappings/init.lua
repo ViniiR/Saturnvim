@@ -1,7 +1,7 @@
 local telescope_builtin = require("telescope.builtin")
 local telescope_plugin_mappings = require("plugins._telescope-nvim.mappings.internal")
 
-local lib = require("mappings.lib")
+local lib = require("lib.mappings")
 local keys = lib.keys
 local modes = lib.modes
 local desc = lib.desc
