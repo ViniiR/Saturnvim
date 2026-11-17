@@ -1,10 +1,12 @@
+local hl_colors_icons = require("plugins._nvim-highlight-colors.icons")
+
 return {
     ---Render style
     ---@usage 'background'|'foreground'|'virtual'
     render = "virtual",
 
     ---Set virtual symbol (requires render to be set to 'virtual')
-    virtual_symbol = VIRTUAL_COLOR_ICON,
+    virtual_symbol = hl_colors_icons.virtual_color,
 
     ---Set virtual symbol suffix (defaults to '')
     virtual_symbol_prefix = "",

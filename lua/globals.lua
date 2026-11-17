@@ -4,8 +4,6 @@ BORDER_KIND = "rounded"
 
 ROUNDED_BORDER_CHARS = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
 
-VIRTUAL_COLOR_ICON = "■"
-
 INDENT_BLANK_LINE_PIPE = "│"
 INDENT_BLANK_LINE_SCOPE_PIPE = INDENT_BLANK_LINE_PIPE
 
