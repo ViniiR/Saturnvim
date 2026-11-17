@@ -43,15 +43,6 @@ TELESCOPE_ICONS = {
     selection_caret = " ", -- "→"
 }
 
-NEOVIM_ICONS = {
-    styled = "",
-    filled = "",
-}
-
-SATURNVIM = "[Saturvim]"
-
-V_ICON = ""
-
 GIT_ICONS = {
     branch = "󰘬",
     added = "󰐖",
