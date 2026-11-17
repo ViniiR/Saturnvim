@@ -4,7 +4,6 @@ BORDER_KIND = "rounded"
 
 ROUNDED_BORDER_CHARS = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
 
-VIRTUAL_TEXT_PREFIX = "" --■
 VIRTUAL_COLOR_ICON = "■"
 
 INDENT_BLANK_LINE_PIPE = "│"
@@ -13,8 +12,6 @@ INDENT_BLANK_LINE_SCOPE_PIPE = INDENT_BLANK_LINE_PIPE
 VIRT_COLUMN_PIPE = INDENT_BLANK_LINE_PIPE
 
 HARPOON_ICON = "󰛢"
-INFO_ICON = "󱁯"
-DIAGNOSTICS_ICON = "󰺄"
 
 TERMINAL_ICON = ""
 -- LOADING_ICON = ""
@@ -89,11 +86,4 @@ CMP_ICONS = {
     Codeium = "",
     TabNine = "",
     BladeNav = "",
-}
-
-LSP_SYMBOLS = {
-    ERROR = "", -- "",
-    WARN = "", -- "",
-    INFO = "", -- "",
-    HINT = "", -- "",
 }

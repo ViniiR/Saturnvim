@@ -1,6 +1,7 @@
 local lualine_theme = require("plugins._lualine-nvim.theme")
 local modes_map = require("plugins._lualine-nvim.modes_map")
 local lualine_icons = require("plugins._lualine-nvim.icons")
+local lsp_icons = require("lsp.icons")
 
 return {
     options = {
@@ -61,10 +62,10 @@ return {
             {
                 "diagnostics",
                 symbols = {
-                    error = LSP_SYMBOLS.ERROR .. " ",
-                    warn = LSP_SYMBOLS.WARN .. " ",
-                    info = LSP_SYMBOLS.INFO .. " ",
-                    hint = LSP_SYMBOLS.HINT .. " ",
+                    error = lsp_icons.severity.error .. " ",
+                    warn = lsp_icons.severity.warn .. " ",
+                    info = lsp_icons.severity.info .. " ",
+                    hint = lsp_icons.severity.hint .. " ",
                 },
             },
             function()
