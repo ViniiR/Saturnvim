@@ -1,4 +1,6 @@
 local cmp = require("cmp")
+local cmp_icons = require("plugins._nvim-cmp.icons")
+local hl_colors_icons = require("plugins._nvim-highlight-colors.icons")
 
 --- Moves CompletionItemKind to the bottom of priority
 --- @param kind any CompletionItemKind
@@ -81,7 +83,7 @@ local options_hlc = {
     enable_short_hex = true,
     enable_tailwind = true, -- TODO: was false before (untested)
     custom_colors = nil,
-    virtual_symbol = VIRTUAL_COLOR_ICON,
+    virtual_symbol = hl_colors_icons.virtual_color,
     virtual_symbol_prefix = "",
     virtual_symbol_suffix = " ",
     virtual_symbol_position = "inline",
@@ -148,9 +150,9 @@ return {
                 item.menu = string.sub(item.menu or "", 1, 60) .. "..."
             end
 
-            local icon = CMP_ICONS[item.kind]
+            local icon = cmp_icons[item.kind]
             if icon == nil then
-                item.kind = CMP_ICONS.Text .. " Text"
+                item.kind = cmp_icons.Text .. " Text"
             else
                 -- item.kind = " " .. item.kind
                 -- item.abbr = tostring(icon) .. " " .. item.abbr
@@ -160,11 +162,11 @@ return {
             if entry.source.name == "nvim_lsp" and entry.source.source then
                 local lsp_name = tostring(entry.source.source.client.name)
 
-                if item.kind == (CMP_ICONS.Text .. " Text") then
+                if item.kind == (cmp_icons.Text .. " Text") then
                     local is_html_snippet = lsp_name == "emmet_language_server"
                     if is_html_snippet then
                         item.kind_hl_group = "CmpItemKindHtml"
-                        item.kind = tostring(CMP_ICONS.Html) .. " Html"
+                        item.kind = tostring(cmp_icons.Html) .. " Html"
                     end
                 end
             end
