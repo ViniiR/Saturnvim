@@ -1,4 +1,5 @@
 local lualine_theme = require("plugins._lualine-nvim.theme")
+local modes_map = require("plugins._lualine-nvim.modes_map")
 
 return {
     options = {
@@ -24,7 +25,8 @@ return {
     sections = {
         lualine_a = {
             function()
-                return VIM_MODE_MAP[vim.api.nvim_get_mode().mode] or "_?"
+                local mode = vim.api.nvim_get_mode().mode
+                return modes_map[mode] or modes_map.unknown
             end,
         },
         lualine_b = {
