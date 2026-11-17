@@ -1,19 +1,21 @@
+local gitsigns_icons = require("plugins._gitsigns-nvim.icons")
+
 return {
     signs = {
-        add = { text = GIT_SIGNS.add },
-        change = { text = GIT_SIGNS.change },
-        delete = { text = GIT_SIGNS.delete },
-        topdelete = { text = GIT_SIGNS.topdelete },
-        changedelete = { text = GIT_SIGNS.changedelete },
-        untracked = { text = GIT_SIGNS.untracked },
+        add = { text = gitsigns_icons.signs.add },
+        change = { text = gitsigns_icons.signs.change },
+        delete = { text = gitsigns_icons.signs.delete },
+        topdelete = { text = gitsigns_icons.signs.topdelete },
+        changedelete = { text = gitsigns_icons.signs.changedelete },
+        untracked = { text = gitsigns_icons.signs.untracked },
     },
     signs_staged = {
-        add = { text = GIT_SIGNS_STAGED.add },
-        change = { text = GIT_SIGNS_STAGED.change },
-        delete = { text = GIT_SIGNS_STAGED.delete },
-        topdelete = { text = GIT_SIGNS_STAGED.topdelete },
-        changedelete = { text = GIT_SIGNS_STAGED.changedelete },
-        untracked = { text = GIT_SIGNS_STAGED.untracked },
+        add = { text = gitsigns_icons.signs_staged.add },
+        change = { text = gitsigns_icons.signs_staged.change },
+        delete = { text = gitsigns_icons.signs_staged.delete },
+        topdelete = { text = gitsigns_icons.signs_staged.topdelete },
+        changedelete = { text = gitsigns_icons.signs_staged.changedelete },
+        untracked = { text = gitsigns_icons.signs_staged.untracked },
     },
     signs_staged_enable = true,
     signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`

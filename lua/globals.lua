@@ -43,23 +43,6 @@ TELESCOPE_ICONS = {
     selection_caret = " ", -- "→"
 }
 
-GIT_SIGNS = {
-    add = "┃",
-    change = "┃",
-    delete = "󰍵",
-    topdelete = "‾",
-    changedelete = "󱕖",
-    untracked = "┆",
-}
-GIT_SIGNS_STAGED = {
-    add = GIT_SIGNS.add, -- "┃"
-    change = GIT_SIGNS.change, -- "┃"
-    delete = "_",
-    topdelete = GIT_SIGNS.topdelete, -- "‾"
-    changedelete = "~",
-    untracked = GIT_SIGNS.untracked, -- "┆"
-}
-
 -- WARNING:
 -- for simplicity all icons must be PascalCase
 CMP_ICONS = {
