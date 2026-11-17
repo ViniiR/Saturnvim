@@ -40,13 +40,13 @@ return {
                 local vim_diagnostic = vim.diagnostic.severity
                 local severity = diagnostic.severity
                 if severity == vim_diagnostic.ERROR then
-                    return " " .. lsp_icons.error
+                    return " " .. lsp_icons.severity.error
                 elseif severity == vim_diagnostic.WARN then
-                    return " " .. lsp_icons.warn
+                    return " " .. lsp_icons.severity.warn
                 elseif severity == vim_diagnostic.INFO then
-                    return " " .. lsp_icons.info
+                    return " " .. lsp_icons.severity.info
                 elseif severity == vim_diagnostic.HINT then
-                    return " " .. lsp_icons.hint
+                    return " " .. lsp_icons.severity.hint
                 else
                     return lsp_icons.virtual_text.prefix
                 end
@@ -55,10 +55,10 @@ return {
         virtual_lines = false, -- cool feature maybe add later
         signs = {
             text = {
-                [vim.diagnostic.severity.ERROR] = lsp_icons.error,
-                [vim.diagnostic.severity.WARN] = lsp_icons.warn,
-                [vim.diagnostic.severity.INFO] = lsp_icons.info,
-                [vim.diagnostic.severity.HINT] = lsp_icons.hint,
+                [vim.diagnostic.severity.ERROR] = lsp_icons.severity.error,
+                [vim.diagnostic.severity.WARN] = lsp_icons.severity.warn,
+                [vim.diagnostic.severity.INFO] = lsp_icons.severity.info,
+                [vim.diagnostic.severity.HINT] = lsp_icons.severity.hint,
             },
         },
         underline = true,
