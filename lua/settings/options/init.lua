@@ -1,16 +1,9 @@
-local opt_icons = require("lua.settings.options.icons")
+local opt_icons = require("settings.options.icons")
 local border_settings = require("settings.border")
 local opt = vim.opt
 
 -- INFO: rules
 -- prefer shorter name opts before longer ones
-
-vim.filetype.add({
-    extension = {
-        i3conf = "i3config",
-        v = "v",
-    },
-})
 
 -- char list
 opt.listchars:append(opt_icons.listchars.eol) -- end of line character
