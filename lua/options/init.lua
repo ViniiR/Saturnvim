@@ -1,3 +1,4 @@
+local opt_icons = require("options.icons")
 local opt = vim.opt
 
 -- INFO: rules
@@ -11,10 +12,10 @@ vim.filetype.add({
 })
 
 -- char list
-opt.listchars:append(LISTCHARS.EOL) -- end of line character
-opt.listchars:append(LISTCHARS.TAB) -- tab character
-opt.listchars:append(LISTCHARS.TRAIL) -- trailing spaces at end of line character
-opt.listchars:append(LISTCHARS.SPACE) -- space character
+opt.listchars:append(opt_icons.listchars.eol) -- end of line character
+opt.listchars:append(opt_icons.listchars.tab) -- tab character
+opt.listchars:append(opt_icons.listchars.trail) -- trailing spaces at end of line character
+opt.listchars:append(opt_icons.listchars.space) -- space character
 
 -- shortmess
 opt.shortmess:append("I") -- don't give the intro message when starting vim
@@ -24,11 +25,11 @@ local opts = {
     -- character list
     list = true, -- shows invisible characters from vim.opt.listchars
     fillchars = {
-        eob = FILLCHARS.EOB, -- end of buffer
-        fold = FILLCHARS.FOLD, -- fold (idk what it is)
-        foldsep = FILLCHARS.FOLDSEP, -- folded lines
-        foldopen = FILLCHARS.FOLDOPEN, -- fold open
-        foldclose = FILLCHARS.FOLDCLOSE, -- fold closed
+        eob = opt_icons.fillchars.eob, -- end of buffer
+        fold = opt_icons.fillchars.fold, -- fold (idk what it is)
+        foldsep = opt_icons.fillchars.foldsep, -- folded lines
+        foldopen = opt_icons.fillchars.foldopen, -- fold open
+        foldclose = opt_icons.fillchars.foldclose, -- fold closed
     },
 
     -- commandline-bar
