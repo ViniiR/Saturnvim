@@ -1,4 +1,4 @@
--- NOTE: file loaded by ./init.lua
+-- NOTE: file loaded by lsp/init.lua
 
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -37,13 +37,3 @@ autocmd("LspAttach", {
         end
     end,
 })
-
--- autocmd("BufEnter", {
---     callback = function(args)
---         local clients = vim.lsp.get_clients()
---         if #clients == 0 then
---             return
---         end
---         vim.g.current_attached_lsp = clients[1].name or "No LSP"
---     end,
--- })
