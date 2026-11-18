@@ -23,6 +23,7 @@ local theme = {
         illuminate_bg = "#31353f",
         matching_bg = "#61afee",
         title_fg = "#65b6c2",
+
         ts_fg = "#2d79c7",
 
         -- brightest

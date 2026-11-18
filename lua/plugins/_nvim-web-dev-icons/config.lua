@@ -5,7 +5,7 @@ devicons.set_icon({
     i3conf = {
         icon = "",
         name = "i3conf",
-        color = theme.colors.red
+        color = theme.colors.red,
     },
 })
 
@@ -21,5 +21,5 @@ return {
             name = "ts",
             color = theme.colors.ts_fg,
         },
-    }
+    },
 }
