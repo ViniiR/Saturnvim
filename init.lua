@@ -1,6 +1,6 @@
 require("settings")
 require("plugins._lazy-nvim")
-require("mappings._editor"):setup()
+require("mappings"):setup()
 require("commands")
 require("autocmds")
 require("highlight")

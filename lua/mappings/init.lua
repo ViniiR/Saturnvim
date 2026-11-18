@@ -1,6 +1,6 @@
 local border_settings = require("settings.border")
 
-local lib = require("lib.mappings")
+local lib = require("mappings.lib")
 local keys = lib.keys
 local modes = lib.modes
 local desc = lib.desc
