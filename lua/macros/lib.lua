@@ -1,12 +1,5 @@
 local api = vim.api
 
---- vim <Esc> key
-local esc = api.nvim_replace_termcodes("<Esc>", true, true, true)
--- --- vim <Enter> key
--- local enter = api.nvim_replace_termcodes("<Enter>", true, true, true)
--- --- vim <Tab> key
--- local tab = api.nvim_replace_termcodes("<Tab>", true, true, true)
-
 local m = {
     ---@param macro string[] macro string array stored at register
     ---@param register string register to hold the macro string
@@ -50,41 +43,4 @@ local m = {
     },
 }
 
--- log macros
-
-m.create_macro({
-    'yoconsole.log("',
-    esc,
-    'pa: ", ',
-    esc,
-    "pa);",
-    esc,
-}, m.keys.log, m.ecma_filetypes, "EcmaLogGroup")
-m.create_macro({
-    'yodbg!("',
-    esc,
-    'pa: ", &',
-    esc,
-    "pa);",
-    esc,
-    "",
-}, m.keys.log, m.rust_filetypes, "RustLogGroup")
-m.create_macro({
-    'yoprint("',
-    esc,
-    'pa: ", ',
-    esc,
-    "pa)",
-    esc,
-    "",
-}, m.keys.log, m.lua_filetypes, "LuaLogGroup")
-
--- semicolon macros
-
-m.create_macro({
-    "mzA;",
-    esc,
-    "`z",
-    esc,
-    "",
-}, m.keys.semicolon, nil, "SemicolonGroup")
+return m
