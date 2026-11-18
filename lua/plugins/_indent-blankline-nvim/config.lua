@@ -1,3 +1,5 @@
+local ibl_icons = require("plugins._indent-blankline-nvim.icons")
+
 -- local ibl = require("ibl")
 -- local hooks = require("ibl.hooks")
 
@@ -13,11 +15,11 @@
 
 return {
     -- used for all indents
-    indent = { char = INDENT_BLANK_LINE_PIPE },
+    indent = { char = ibl_icons.pipe },
     scope = {
         -- used for scopes e.g if statement
         -- overrides normal indent
-        char = INDENT_BLANK_LINE_SCOPE_PIPE,
+        char = ibl_icons.scope_pipe,
         enabled = true,
         show_start = false,
         show_end = false,
