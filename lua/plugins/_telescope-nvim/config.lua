@@ -1,4 +1,5 @@
 local telescope_icons = require("plugins._telescope-nvim.icons")
+local border_settings = require("settings.border")
 
 return {
     defaults = {
@@ -7,7 +8,7 @@ return {
         selection_caret = string.format("%s", telescope_icons.selection_caret),
         -- space before all entries
         entry_prefix = " ",
-        borderchars = ROUNDED_BORDER_CHARS,
+        borderchars = border_settings.chars,
         layout_config = {
             horizontal = {
                 prompt_position = "top",

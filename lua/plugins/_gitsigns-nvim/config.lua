@@ -1,4 +1,5 @@
 local gitsigns_icons = require("plugins._gitsigns-nvim.icons")
+local border_settings = require("settings.border")
 
 return {
     signs = {
@@ -44,7 +45,7 @@ return {
     -- Used by :Gitsigns preview_hunk
     preview_config = {
         -- Options passed to nvim_open_win
-        border = BORDER_KIND,
+        border = border_settings.kind,
         style = "minimal",
         relative = "cursor",
         row = 0,

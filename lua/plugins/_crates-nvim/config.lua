@@ -1,3 +1,5 @@
+local border_settings = require("settings.border")
+
 return {
     lsp = {
         enabled = true,
@@ -19,7 +21,7 @@ return {
         },
     },
     popup = {
-        border = BORDER_KIND,
+        border = border_settings.kind,
     },
 }
 

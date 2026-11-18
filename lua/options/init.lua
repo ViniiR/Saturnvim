@@ -1,4 +1,5 @@
 local opt_icons = require("options.icons")
+local border_settings = require("settings.border")
 local opt = vim.opt
 
 -- INFO: rules
@@ -96,7 +97,7 @@ local opts = {
     clipboard = "unnamedplus", -- sync vim clipboard with system clipboard
 
     -- windowing
-    winborder = BORDER_KIND, -- defines border to all(most) windows, many plugins are migrating to this format
+    winborder = border_settings.kind, -- defines border to all(most) windows, many plugins are migrating to this format
     splitbelow = true, -- splitting a window will put the new window below the current one
     splitright = true, -- splitting a window will put the new window right of the current one
 }

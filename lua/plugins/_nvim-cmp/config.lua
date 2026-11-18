@@ -1,6 +1,7 @@
 local cmp = require("cmp")
 local cmp_icons = require("plugins._nvim-cmp.icons")
 local hl_colors_icons = require("plugins._nvim-highlight-colors.icons")
+local border_settings = require("settings.border")
 
 --- Moves CompletionItemKind to the bottom of priority
 --- @param kind any CompletionItemKind
@@ -180,8 +181,7 @@ return {
     },
     window = {
         completion = {
-            -- { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-            border = BORDER_KIND,
+            border = border_settings.kind,
             winhighlight = "Normal:CmpNormal,FloatBorder:CmpFloatBorder,CursorLine:CmpVisual",
             side_padding = 1,
             scrollbar = false,
@@ -189,7 +189,7 @@ return {
             -- max_width = math.floor(vim.o.columns * 0.5),
         },
         documentation = {
-            border = BORDER_KIND,
+            border = border_settings.kind,
             winhighlight = "Normal:CmpNormal,FloatBorder:CmpFloatBorder,CursorLine:CmpVisual",
             side_padding = 1,
             scrollbar = false,

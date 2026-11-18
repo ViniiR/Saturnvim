@@ -1,4 +1,5 @@
 local lsp_icons = require("lsp.icons")
+local border_settings = require("settings.border")
 
 local enable_native_virtual_text = true
 
@@ -29,7 +30,7 @@ return {
     capabilities = capabilities,
     hover_window_config = {
         title = string.format(" %s Info ", lsp_icons.info),
-        border = BORDER_KIND,
+        border = border_settings.kind,
         max_width = nil, -- TODO:
         max_height = nil,
     },
@@ -64,7 +65,7 @@ return {
         underline = true,
         float = {
             title = string.format(" %s Diagnostics ", lsp_icons.diagnostics),
-            border = BORDER_KIND,
+            border = border_settings.kind,
             header = " ",
             prefix = function(_, i, _)
                 return " " .. i .. ": "

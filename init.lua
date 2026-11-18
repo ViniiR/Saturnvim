@@ -1,4 +1,3 @@
-require("globals")
 require("options")
 require("plugins._lazy-nvim")
 require("mappings._editor"):setup()

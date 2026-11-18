@@ -1,3 +1,5 @@
+local border_settings = require("settings.border")
+
 local lib = require("lib.mappings")
 local keys = lib.keys
 local modes = lib.modes
@@ -324,7 +326,7 @@ local mappings = {
                 relative = "editor",
                 title = string.format(" %s Crate-Info ", require("plugins._crates-nvim.icons").crate),
                 title_pos = "left",
-                border = BORDER_KIND,
+                border = border_settings.kind,
                 style = "minimal",
                 height = height,
                 width = width,

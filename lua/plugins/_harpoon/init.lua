@@ -10,7 +10,7 @@ return {
 
     init = function()
         vim.g.harpoon_opts = {
-            border = BORDER_KIND,
+            border = require("settings.border").kind,
             title_pos = "left",
             title = string.format(" %s Harpoon ", require("plugins._harpoon.icons").harpoon),
         }
