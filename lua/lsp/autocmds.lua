@@ -1,7 +1,9 @@
 -- NOTE: file loaded by lsp/init.lua
 
+local semantic_tokens = require("lsp.semantic_tokens")
 local autocmd = vim.api.nvim_create_autocmd
 
+-- Set display variable for lualine
 autocmd("LspAttach", {
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -9,20 +11,16 @@ autocmd("LspAttach", {
             return
         end
 
-        -- Used by lualine
         vim.g.current_attached_lsp = client.name or "No LSP"
+    end,
+})
 
-        -- map LSP specific bindings
-        require("plugins._nvim-lspconfig.mappings"):setup(args.buf)
-
-        -- Only enable inlay hints on LSPs that support it
-        if client:supports_method("textDocument/inlayHint") then
-            vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-        end
-
-        -- Disable semantic tokens
-        if not ENABLE_LSP_SEMANTIC_TOKENS[client.name] and client:supports_method("textDocument/semanticTokens") then
-            client.server_capabilities.semanticTokensProvider = nil
+-- Ensure rust-analyzer is started within a nix-shell
+autocmd("LspAttach", {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client == nil then
+            return
         end
 
         -- Rust analyzer custom config
@@ -34,6 +32,52 @@ autocmd("LspAttach", {
                 local msg = "Rust Analyzer requires a Nix Shell to work properly"
                 vim.notify(msg, vim.log.levels.ERROR)
             end
+        end
+    end,
+})
+
+-- Set up LSP specific bindings
+autocmd("LspAttach", {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client == nil then
+            return
+        end
+
+        require("plugins._nvim-lspconfig.mappings"):setup(args.buf)
+    end,
+})
+
+-- Enable inlay hints
+autocmd("LspAttach", {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client == nil then
+            return
+        end
+
+        local supports_hints = client:supports_method("textDocument/inlayHint")
+        if supports_hints then
+            vim.lsp.inlay_hint.enable(true, {
+                bufnr = args.buf,
+            })
+        end
+    end,
+})
+
+-- Filter semantic tokens LSPs
+autocmd("LspAttach", {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client == nil then
+            return
+        end
+
+        local is_allowed = semantic_tokens.allowed_lsps[client.name]
+        local supports_tokens = client:supports_method("textDocument/semanticTokens")
+        if not is_allowed and supports_tokens then
+            -- Disable capability
+            client.server_capabilities.semanticTokensProvider = nil
         end
     end,
 })
