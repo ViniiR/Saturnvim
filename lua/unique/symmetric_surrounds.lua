@@ -4,7 +4,7 @@ local cmd = vim.cmd
 -- WARNING: AI written code, i guess this directory is just gonna be all of this stuff now?
 --- NOTE: only works on single lines, not multi-line like (), [], and {}
 ---@param char string
----@param alias string
+---@param alias string?
 local function create_symmetric_surround(char, alias)
     for _, mode in ipairs({ "x", "o" }) do
         -- Base character text objects (e.g., di|, da|)

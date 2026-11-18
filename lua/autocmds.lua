@@ -39,7 +39,7 @@ autocmd("FileType", {
 })
 
 -- TODO: possibly doesn't work in rust
--- seems to use too much cpu
+-- seems to use too much cpu (probably not)
 -- autocmd("LspAttach", {
 --     pattern = "*",
 --     callback = function(_)
@@ -65,11 +65,3 @@ autocmd("FileType", {
 --         end, { desc = "LSP Organize imports", silent = true, noremap = true })
 --     end,
 -- })
-
-
--- TODO: improve ts
-local ns = vim.api.nvim_create_namespace("ZigFormatHighlights")
-autocmd({ "BufEnter", "BufWritePost", "TextChanged", "TextChangedI" }, {
-    pattern = "*.zig",
-    callback = require("unique.zig_format")
-})
