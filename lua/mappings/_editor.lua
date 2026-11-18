@@ -322,7 +322,7 @@ local mappings = {
 
             local win = vim.api.nvim_open_win(buf, true, {
                 relative = "editor",
-                title = string.format(" %s Crate-Info ", CRATE_ICON),
+                title = string.format(" %s Crate-Info ", require("plugins._crates-nvim.icons").crate),
                 title_pos = "left",
                 border = BORDER_KIND,
                 style = "minimal",

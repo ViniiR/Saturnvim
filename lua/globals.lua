@@ -11,11 +11,6 @@ VIRT_COLUMN_PIPE = INDENT_BLANK_LINE_PIPE
 
 HARPOON_ICON = "󰛢"
 
--- LOADING_ICON = ""
-CRATE_ICON = ""
--- LIB_ICON = ""
--- DOCS_ICON = ""
-
 FILLCHARS = {
     EOB = "b",
     FOLD = " ",
