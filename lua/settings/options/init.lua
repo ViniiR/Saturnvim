@@ -1,4 +1,4 @@
-local opt_icons = require("options.icons")
+local opt_icons = require("lua.settings.options.icons")
 local border_settings = require("settings.border")
 local opt = vim.opt
 

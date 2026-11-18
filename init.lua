@@ -1,4 +1,4 @@
-require("options")
+require("lua.settings.options.init")
 require("plugins._lazy-nvim")
 require("mappings._editor"):setup()
 require("commands")
