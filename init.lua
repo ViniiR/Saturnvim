@@ -5,7 +5,7 @@ require("commands")
 require("autocmds")
 require("highlight")
 require("macros")
-require("unique.symmetric_surrounds")
+require("unique")
 
 ENABLE_LSP_SEMANTIC_TOKENS = {
     ["rust-analyzer"] = true,
