@@ -329,27 +329,6 @@ local mappings = {
         end,
         desc.noremap_silent("Surround selection with a for statement"),
     },
-    -- -- INFO: disabled since rustup doc doesn't work on nixos
-    -- -- rusty-man doesn't work without rustup either
-    -- {
-    --     modes.visual,
-    --     keys.leader("rd"),
-    --     function()
-    --         vim.cmd('normal!"zy')
-    --         local text = vim.fn.getreg("z")
-    --         local input = vim.fn.input("Search for: ", text)
-    --         vim.system({ "rustup", "doc", input }, { text = true }, function(out)
-    --             vim.schedule(function()
-    --                 if out.code ~= 0 then
-    --                     vim.notify("Rustup doc " .. out.stderr, vim.log.levels.ERROR)
-    --                     return
-    --                 end
-    --                 print("Opening documentation with firefox...")
-    --             end)
-    --         end)
-    --     end,
-    --     desc.noremap("Rust stdlib documentation"),
-    -- },
 
     -- Command mode
     {
