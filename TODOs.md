@@ -18,7 +18,6 @@
 
 ## Fixes
 
-- vim-illuminate fix order
 - Use friendly snippets again
 - Zig icon color
 - C icon and color
