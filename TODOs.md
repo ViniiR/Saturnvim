@@ -18,7 +18,6 @@
 
 ## Fixes
 
-- Use friendly snippets again
 - Zig icon color
 - C icon and color
 

@@ -21,10 +21,6 @@ return {
     end,
 
     dependencies = {
-        -- TODO: use merged friendly-snippets
-        {
-            "ViniiR/friendly-snippets",
-            branch = "lua-functions-symbols",
-        },
+        { "rafamadriz/friendly-snippets" },
     },
 }
