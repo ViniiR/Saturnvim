@@ -6,7 +6,6 @@ local modes = lib.modes
 local desc = lib.desc
 
 local surround_lib = require("mappings.lib.surround")
-local surround_config = require("mappings.lib.surround.config")
 
 local mappings = {
     -- Normal mode
@@ -304,18 +303,7 @@ local mappings = {
         modes.visual,
         keys.leader("si"),
         function()
-            -- defaults to ecmascript if statements
-            local block_start, block_end, finder_command = surround_lib.unpack(surround_config.ecmascript.if_statement)
-
-            if vim.bo.filetype == "lua" then
-                block_start, block_end, finder_command = surround_lib.unpack(surround_config.lua.if_statement)
-            elseif vim.bo.filetype == "rust" then
-                block_start, block_end, finder_command = surround_lib.unpack(surround_config.rust.if_statement)
-            elseif vim.bo.filetype == "gdscript" then
-                block_start, block_end, finder_command = surround_lib.unpack(surround_config.gdscript.if_statement)
-            elseif vim.bo.filetype == "python" then
-                block_start, block_end, finder_command = surround_lib.unpack(surround_config.python.if_statement)
-            end
+            local block_start, block_end, finder_command = surround_lib.from_filetype("if_statement")
 
             surround_lib.create({ block_start, block_end }, finder_command)
         end,
@@ -325,20 +313,7 @@ local mappings = {
         modes.visual,
         keys.leader("sfu"),
         function()
-            -- defaults to ecmascript function statements
-            local block_start, block_end, finder_command =
-                surround_lib.unpack(surround_config.ecmascript.function_statement)
-
-            if vim.bo.filetype == "lua" then
-                block_start, block_end, finder_command = surround_lib.unpack(surround_config.lua.function_statement)
-            elseif vim.bo.filetype == "rust" then
-                block_start, block_end, finder_command = surround_lib.unpack(surround_config.rust.function_statement)
-            elseif vim.bo.filetype == "gdscript" then
-                block_start, block_end, finder_command =
-                    surround_lib.unpack(surround_config.gdscript.function_statement)
-            elseif vim.bo.filetype == "python" then
-                block_start, block_end, finder_command = surround_lib.unpack(surround_config.python.function_statement)
-            end
+            local block_start, block_end, finder_command = surround_lib.from_filetype("function_statement")
 
             surround_lib.create({ block_start, block_end }, finder_command)
         end,
@@ -348,18 +323,7 @@ local mappings = {
         modes.visual,
         keys.leader("sfo"),
         function()
-            -- defaults to ecmascript for statements
-            local block_start, block_end, finder_command = surround_lib.unpack(surround_config.ecmascript.for_statement)
-
-            if vim.bo.filetype == "lua" then
-                block_start, block_end, finder_command = surround_lib.unpack(surround_config.lua.for_statement)
-            elseif vim.bo.filetype == "rust" then
-                block_start, block_end, finder_command = surround_lib.unpack(surround_config.rust.for_statement)
-            elseif vim.bo.filetype == "gdscript" then
-                block_start, block_end, finder_command = surround_lib.unpack(surround_config.gdscript.for_statement)
-            elseif vim.bo.filetype == "python" then
-                block_start, block_end, finder_command = surround_lib.unpack(surround_config.python.for_statement)
-            end
+            local block_start, block_end, finder_command = surround_lib.from_filetype("for_statement")
 
             surround_lib.create({ block_start, block_end }, finder_command)
         end,

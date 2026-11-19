@@ -1,3 +1,5 @@
+local surround_config = require("mappings.lib.surround.config")
+
 local m = {}
 
 ---@param block string[] { block_start, block_end }
@@ -44,6 +46,15 @@ end
 ---@return string, string, string
 function m.unpack(surround)
     return surround.block_start, surround.block_end, surround.finder_command
+end
+
+---@param kind string
+---@return string, string, string
+function m.from_filetype(kind)
+    if surround_config[vim.bo.filetype] == nil then
+        return m.unpack(surround_config.ecmascript[kind])
+    end
+    return m.unpack(surround_config[vim.bo.filetype][kind])
 end
 
 return m
