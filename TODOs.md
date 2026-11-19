@@ -8,6 +8,13 @@
 - Document_color
 - Separate autocmds
 - Separate semantic tokens config
+- Add IMPORTANT: highlight
+- Make it so b, and e do not jump lines
+
+- Make so leader n, and p use quicklist cfir, cn etc when open
+- Lsp organize imports map
+- Goto definition on lazy plugins
+- Nvim cmp lsp capabilities
 
 ## Fixes
 
@@ -18,10 +25,8 @@
 
 - Remove #region #endregion snippets
 - Virt column fix
-- Goto on lazy plugins
 - Cmp "..." bug(only happens in "" and not [""] likely some special cmp flag to remove edge characters but works when it isn't a string too)
 - Hover doesnt ignore ```
-- Nvim cmp lsp capabilities
 - Lua_ls autocomplete slow if include all plugins
 - Fix filetypes issues from 0.12
 
