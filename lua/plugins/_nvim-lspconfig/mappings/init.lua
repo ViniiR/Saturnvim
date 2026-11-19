@@ -6,7 +6,7 @@ local desc = lib.desc
 local lsp_config = require("lsp.config")
 
 local mappings = {
-    --local function opts(desc) return { buffer = bufnr, desc = "LSP " .. desc } end
+    -- Go to
     {
         modes.normal,
         "gD",
@@ -21,10 +21,24 @@ local mappings = {
     },
     {
         modes.normal,
+        keys.leader("D"),
+        vim.lsp.buf.type_definition,
+        desc.desc("LSP Go to type definition"),
+    },
+    {
+        modes.normal,
         "gi",
         vim.lsp.buf.implementation,
         desc.desc("LSP Go to implementation"),
     },
+    {
+        modes.normal,
+        "gr",
+        vim.lsp.buf.references,
+        desc.desc("LSP Show references"),
+    },
+
+    -- Hover info
     {
         modes.normal,
         keys.leader("sh"),
@@ -33,42 +47,14 @@ local mappings = {
     },
     {
         modes.normal,
-        keys.leader("wa"),
-        vim.lsp.buf.add_workspace_folder,
-        desc.desc("LSP Add workspace folder"),
-    },
-    {
-        modes.normal,
-        keys.leader("wr"),
-        vim.lsp.buf.remove_workspace_folder,
-        desc.desc("LSP Remove workspace folder"),
-    },
-    {
-        modes.normal,
-        keys.leader("wl"),
+        "K",
         function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+            vim.lsp.buf.hover(lsp_config.hover_window_config)
         end,
-        desc.desc("LSP List workspace folder"),
+        desc.desc("LSP Open hover info"),
     },
-    {
-        modes.normal,
-        keys.leader("D"),
-        vim.lsp.buf.type_definition,
-        desc.desc("LSP Go to type definition"),
-    },
-    {
-        { modes.normal, modes.visual },
-        keys.leader("la"),
-        vim.lsp.buf.code_action,
-        desc.desc("LSP Code action"),
-    },
-    {
-        modes.normal,
-        "gr",
-        vim.lsp.buf.references,
-        desc.desc("LSP Show references"),
-    },
+
+    -- Diagnostics
     {
         modes.normal,
         "[d",
@@ -96,18 +82,77 @@ local mappings = {
     {
         modes.normal,
         keys.control("w", "d"),
-        function()
-            vim.diagnostic.open_float()
-        end,
+        vim.diagnostic.open_float,
         desc.desc("LSP Open current line diagnostics"),
+    },
+
+    -- Workspace
+    {
+        modes.normal,
+        keys.leader("wl"),
+        function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end,
+        desc.desc("LSP List workspace folder"),
     },
     {
         modes.normal,
-        "K",
+        keys.leader("wa"),
+        vim.lsp.buf.add_workspace_folder,
+        desc.desc("LSP Add workspace folder"),
+    },
+    {
+        modes.normal,
+        keys.leader("wr"),
+        vim.lsp.buf.remove_workspace_folder,
+        desc.desc("LSP Remove workspace folder"),
+    },
+
+    -- Code actions
+    {
+        { modes.normal, modes.visual },
+        keys.leader("la"),
+        vim.lsp.buf.code_action,
+        desc.desc("LSP Show code actions"),
+    },
+    {
+        modes.visual,
+        keys.leader("lr"),
+        vim.lsp.buf.rename,
+        desc.noremap_silent("LSP Rename"),
+    },
+    {
+        modes.normal,
+        keys.leader("lo"),
         function()
-            vim.lsp.buf.hover(lsp_config.hover_window_config)
+            vim.lsp.buf.code_action({
+                apply = true,
+                context = {
+                    only = {
+                        "source.organizeImports",
+                    },
+                    diagnostics = {},
+                },
+            })
         end,
-        desc.desc("LSP Open current line diagnostics"),
+        desc.noremap_silent("LSP Organize imports"),
+    },
+    {
+        modes.normal,
+        keys.leader("lq"),
+        function()
+            vim.lsp.buf.code_action({
+                apply = true,
+                context = {
+                    only = {
+                        -- NOTE: remove all unused imports is exposed as 'quickfix'
+                        "quickfix",
+                    },
+                    diagnostics = {},
+                },
+            })
+        end,
+        desc.noremap_silent("LSP Quickfix"),
     },
 }
 

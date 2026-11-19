@@ -6,13 +6,11 @@
 - Command mode autopairs (maybe)
 - Use native completion + snippets
 - Document_color
-- Separate autocmds
 - Separate semantic tokens config
 - Add IMPORTANT: highlight
 - Make it so b, and e do not jump lines
 
 - Make so leader n, and p use quicklist cfir, cn etc when open
-- Lsp organize imports map
 - Goto definition on lazy plugins
 - Nvim cmp lsp capabilities
 

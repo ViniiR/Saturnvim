@@ -289,14 +289,6 @@ local mappings = {
         ":m '<-2<CR>gv=gv",
         desc.noremap("Moves current line up"),
     },
-    {
-        modes.visual,
-        keys.leader("lr"),
-        function()
-            vim.lsp.buf.rename()
-        end,
-        desc.noremap_silent("LSP rename"),
-    },
     -- end of the Primeagen's mappings
     -- Surround mappings
     {
