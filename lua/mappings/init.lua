@@ -146,6 +146,14 @@ local mappings = {
     },
     {
         modes.normal,
+        keys.leader("ch"),
+        function()
+            vim.cmd.cclose()
+        end,
+        desc.noremap_silent("Hide quickfix window"),
+    },
+    {
+        modes.normal,
         keys.leader("cc"),
         function()
             vim.fn.setqflist({})
