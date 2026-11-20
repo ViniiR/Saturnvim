@@ -7,6 +7,8 @@ local desc = lib.desc
 
 local surround_lib = require("mappings.lib.surround")
 
+require("mappings.mouse"):setup()
+
 local mappings = {
     -- Normal mode
     {

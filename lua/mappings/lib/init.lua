@@ -31,6 +31,11 @@ local lib = {
             "<F11>",
             "<F12>",
         },
+        mouse = {
+            left = "<LeftMouse>",
+            middle = "<MiddleMouse>",
+            right = "<RightMouse>",
+        },
         ---@param keys string?
         ---@return string
         ---returns <leader>{keys}

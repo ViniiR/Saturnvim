@@ -1,6 +1,5 @@
 ## Features
 
-- Ctrl + rmb goto link or "gl"
 - Cmp gitcommit source
 - Command mode autopairs (maybe)
 - Use native completion + snippets
