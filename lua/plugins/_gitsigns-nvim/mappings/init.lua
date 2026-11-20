@@ -6,7 +6,7 @@ local desc = lib.desc
 local mappings = {
     {
         modes.normal,
-        keys.leader("gd"),
+        keys.leader("gb"),
         function()
             vim.cmd.Gitsigns("toggle_current_line_blame")
         end,
