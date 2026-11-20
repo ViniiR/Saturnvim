@@ -91,7 +91,10 @@ local mappings = {
         modes.normal,
         keys.leader("n"),
         function()
-            vim.cmd("bnext")
+            local ok = pcall(vim.cmd.bnext)
+            if not ok then
+                vim.notify("No next buffer to move into", vim.log.levels.WARN)
+            end
         end,
         desc.noremap_silent("Jump to next buffer"),
     },
@@ -99,7 +102,10 @@ local mappings = {
         modes.normal,
         keys.leader("p"),
         function()
-            vim.cmd("bprevious")
+            local ok = pcall(vim.cmd.bprevious)
+            if not ok then
+                vim.notify("No previous buffer to move into", vim.log.levels.WARN)
+            end
         end,
         desc.noremap_silent("Jump to previous buffer"),
     },
