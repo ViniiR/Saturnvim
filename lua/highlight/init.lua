@@ -166,6 +166,7 @@ highlights["@function"] = { link = "CustomVFunction" }
 
 -- func calls
 highlights["@function.call"] = { link = "CustomVFunction" }
+highlights["@function.method"] = { link = "CustomVFunction" }
 highlights["@function.method.call"] = { link = "CustomVFunction" }
 highlights["@function.call.tsx"] = { link = "CustomVFunction" }
 highlights["@function.call.rust"] = { link = "CustomVFunction" }
