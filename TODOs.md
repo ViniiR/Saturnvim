@@ -4,7 +4,6 @@
 - Cmp gitcommit source
 - Command mode autopairs (maybe)
 - Use native completion + snippets
-- Document_color
 - Add IMPORTANT: highlight
 - Make it so b, and e do not jump lines
 

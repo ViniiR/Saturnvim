@@ -65,6 +65,25 @@ autocmd("LspAttach", {
     end,
 })
 
+-- Enable document colors
+-- document colors are more limited than nvim-highlight-colors but produce better result
+-- they do not harm nvim-highlight-colors so both can be enabled
+autocmd("LspAttach", {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client == nil then
+            return
+        end
+
+        local supports_doc_colors = client:supports_method("textDocument/documentColor")
+        if supports_doc_colors then
+            vim.lsp.document_color.enable(true, {
+                bufnr = args.buf,
+            })
+        end
+    end,
+})
+
 -- Filter semantic tokens LSPs
 autocmd("LspAttach", {
     callback = function(args)
