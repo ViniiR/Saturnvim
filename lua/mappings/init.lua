@@ -111,6 +111,48 @@ local mappings = {
     },
     {
         modes.normal,
+        keys.leader("cf"),
+        function()
+            local ok = pcall(vim.cmd.cfirst)
+            if not ok then
+                vim.notify("No quickfix list active", vim.log.levels.WARN)
+            end
+        end,
+        desc.noremap_silent("Jump to the first quickfix item"),
+    },
+    {
+        modes.normal,
+        keys.leader("cn"),
+        function()
+            local ok = pcall(vim.cmd.cnext)
+            if not ok then
+                vim.notify("No next item to move into", vim.log.levels.WARN)
+            end
+        end,
+        desc.noremap_silent("Jump to next quickfix item"),
+    },
+    {
+        modes.normal,
+        keys.leader("cp"),
+        function()
+            local ok = pcall(vim.cmd.cprevious)
+            if not ok then
+                vim.notify("No previous item to move into", vim.log.levels.WARN)
+            end
+        end,
+        desc.noremap_silent("Jump to previous quickfix item"),
+    },
+    {
+        modes.normal,
+        keys.leader("cc"),
+        function()
+            vim.fn.setqflist({})
+            vim.cmd.cclose()
+        end,
+        desc.noremap_silent("Close quickfix"),
+    },
+    {
+        modes.normal,
         keys.tab,
         function()
             local prev_buf = vim.fn.bufnr("#")

@@ -1,20 +1,19 @@
 ## Features
 
 - Ctrl + rmb goto link or "gl"
-- Enable inlay hints on all LSP that support it
 - Cmp gitcommit source
 - Command mode autopairs (maybe)
 - Use native completion + snippets
 - Document_color
-- Separate semantic tokens config
 - Add IMPORTANT: highlight
 - Make it so b, and e do not jump lines
 
-- Make so leader n, and p use quicklist cfir, cn etc when open
 - Goto definition on lazy plugins
 - Nvim cmp lsp capabilities
 
 ## Fixes
+
+- Use vim.cmd. instead of vim.cmd()
 
 - Zig icon color
 - C icon and color
