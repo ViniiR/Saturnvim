@@ -8,7 +8,7 @@ local mappings = {
         modes.normal,
         keys.leader("tt"),
         function()
-            vim.cmd("UndotreeToggle")
+            vim.cmd.UndotreeToggle()
         end,
         desc.desc("Toggle undotree"),
     },

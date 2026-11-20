@@ -8,7 +8,7 @@ local mappings = {
         modes.normal,
         keys.leader("wK"),
         function()
-            vim.cmd("WhichKey")
+            vim.cmd.WhichKey()
         end,
         desc.noremap_silent("Which key show all mappings"),
     },

@@ -25,7 +25,7 @@ local mappings = {
         modes.normal,
         keys.escape,
         function()
-            vim.cmd("nohlsearch")
+            vim.cmd.nohlsearch()
         end,
         desc.noremap("Normal mode Escape key"),
     },
@@ -169,7 +169,7 @@ local mappings = {
                 return
             end
 
-            vim.cmd("b#")
+            vim.cmd.b("#")
 
             buf = vim.fn.bufname("%")
             local current_buf = vim.fs.basename(buf)

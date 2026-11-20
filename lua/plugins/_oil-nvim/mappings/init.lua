@@ -8,7 +8,7 @@ local mappings = {
         modes.normal,
         "-",
         function()
-            vim.cmd("Oil")
+            vim.cmd.Oil()
         end,
         desc.desc("Open parent directory"),
     },

@@ -13,8 +13,6 @@
 
 ## Fixes
 
-- Use vim.cmd. instead of vim.cmd()
-
 - Zig icon color
 - C icon and color
 

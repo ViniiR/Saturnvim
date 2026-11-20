@@ -56,7 +56,11 @@ local mappings = {
         modes.normal,
         keys.leader("fa"),
         function()
-            vim.cmd("Telescope find_files follow=true no_ignore=true hidden=true")
+            telescope_builtin.find_files({
+                follow = true,
+                no_ignore = true,
+                hidden = true,
+            })
         end,
         desc.desc("Telescope find all files"),
     },

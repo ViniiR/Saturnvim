@@ -8,7 +8,7 @@ local mappings = {
         modes.normal,
         keys.leader("gd"),
         function()
-            vim.cmd("Gitsigns toggle_current_line_blame")
+            vim.cmd.Gitsigns("toggle_current_line_blame")
         end,
         desc.noremap_silent("Gitsigns toggle blame"),
     },
