@@ -8,7 +8,7 @@ return {
     event = "VeryLazy",
     lazy = true,
 
-    main = "ibl", -- TODO: check if works without explicit main =
+    main = "ibl", -- main module to use for require
     opts = require("plugins._indent-blankline-nvim.config"),
     config = function(_, opts)
         require("ibl").setup(opts)
