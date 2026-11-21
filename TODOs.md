@@ -1,6 +1,5 @@
 ## Features
 
-- Cmp gitcommit source
 - Command mode autopairs (maybe)
 - Use native completion + snippets
 - Add IMPORTANT: highlight
@@ -26,5 +25,5 @@
 - vscode-diff-nvim
 - coerce.nvim
 - https://github.com/ThePrimeagen/refactoring.nvim?tab=readme-ov-file#refactoring-features
-- preview.nvim
+- markdown-preview.nvim
 - nvim-treesitter-textobjects
