@@ -30,6 +30,7 @@ end
 
 local kind_mapper = require("cmp.types").lsp.CompletionItemKind
 local kind_score = {
+    FunctionParameter = 1,
     Html = 1,
     Version = 1,
     Feature = 1,
@@ -151,6 +152,7 @@ return {
                 item.menu = string.sub(item.menu or "", 1, 60) .. "..."
             end
 
+            -- Set "KindName .. Icon" for all items
             local icon = cmp_icons[item.kind]
             if icon == nil then
                 item.kind = cmp_icons.Text .. " Text"
@@ -160,14 +162,22 @@ return {
                 item.kind = tostring(icon) .. " " .. item.kind
             end
 
-            if entry.source.name == "nvim_lsp" and entry.source.source then
-                local lsp_name = tostring(entry.source.source.client.name)
+            -- Handle custom item kinds
+            if entry.source.source then
+                if entry.source.name == "nvim_lsp" then
+                    local lsp_name = tostring(entry.source.source.client.name)
 
-                if item.kind == (cmp_icons.Text .. " Text") then
-                    local is_html_snippet = lsp_name == "emmet_language_server"
-                    if is_html_snippet then
-                        item.kind_hl_group = "CmpItemKindHtml"
-                        item.kind = tostring(cmp_icons.Html) .. " Html"
+                    if item.kind == (cmp_icons.Text .. " Text") then
+                        local is_html_snippet = lsp_name == "emmet_language_server"
+                        if is_html_snippet then
+                            item.kind_hl_group = "CmpItemKindHtml"
+                            item.kind = tostring(cmp_icons.Html) .. " Html"
+                        end
+                    end
+                elseif entry.source.name == "nvim_lsp_signature_help" then
+                    if item.kind == (cmp_icons.Text .. " Text") then
+                        item.kind_hl_group = "CmpItemKindFunctionParameter"
+                        item.kind = tostring(cmp_icons.FunctionParameter) .. " Parameter"
                     end
                 end
             end

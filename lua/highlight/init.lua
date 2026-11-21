@@ -64,6 +64,7 @@ highlights["CmpItemAbbrMatch"] = { fg = theme.colors.matching_bg, bold = true }
 highlights["CmpItemKindVariable"] = { link = "CustomVVariable" }
 highlights["CmpItemKindMethod"] = { link = "CustomVFunction" }
 highlights["CmpItemKindFunction"] = { link = "CustomVFunction" }
+highlights["CmpItemKindFunctionParameter"] = { link = "Special" }
 highlights["CmpItemKindConstructor"] = { link = "CustomVFunction" }
 highlights["CmpItemKindField"] = { link = "CustomVProperty" }
 highlights["CmpItemKindClass"] = { link = "CustomVType" }

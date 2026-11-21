@@ -6,6 +6,7 @@ return {
     Feature = "󰐱",
     Text = "󰉿",
     Function = "󰊕",
+    FunctionParameter = "󰡱",
     Method = "󰊕",
     Constructor = "",
     Field = "󰜢",
