@@ -1,151 +1,21 @@
-local cmp = require("cmp")
+local cmp_lib = require("plugins._nvim-cmp.lib")
 local cmp_icons = require("plugins._nvim-cmp.icons")
-local hl_colors_icons = require("plugins._nvim-highlight-colors.icons")
+local cmp_hlc_lib = require("plugins._nvim-cmp.lib.cmp_nvim_highlight_colors")
 local border_settings = require("settings.border")
 
---- Moves CompletionItemKind to the bottom of priority
---- @param kind any CompletionItemKind
---- @return nil
-local function set_bottom_priority(kind) -- unnecessary as long as the function below works
-    -- Magic function (unfortunately) for setting Text kind as lowest priority (unless its a emmet_language_server Html snippet)
-    -- emmet_language_server snippets are considered text before format function kick in
-
-    -- i do not know if e1 is current item entry and e2 is next one
-    return function(e1, e2)
-        if kind == cmp.lsp.CompletionItemKind.Text then
-            local is_html_snippet = vim.inspect(e1.source.name)
-            -- returning false means (i hope so): it will remain the same order?
-            if is_html_snippet then
-                return false
-            end
-        end
-        if e1:get_kind() == kind then
-            return false
-        end
-        if e2:get_kind() == kind then
-            return true
-        end
-    end
-end
-
-local kind_mapper = require("cmp.types").lsp.CompletionItemKind
-local kind_score = {
-    FunctionParameter = 1,
-    Html = 1,
-    Version = 1,
-    Feature = 1,
-    Variable = 1,
-    Color = 2,
-    Method = 3,
-    Function = 4,
-    Constructor = 5,
-    Field = 6,
-    Class = 7,
-    Interface = 8,
-    Module = 9,
-    Property = 10,
-    Unit = 11,
-    Value = 12,
-    Enum = 13,
-    Keyword = 14,
-    Snippet = 15,
-    EnumMember = 16,
-    Constant = 17,
-    Struct = 18,
-    Text = 19,
-    File = 20,
-    Reference = 21,
-    Folder = 22,
-    Event = 23,
-    Operator = 24,
-    TypeParameter = 25,
-}
-
-local function sort_by_completion_item_kind(entry1, entry2)
-    local kind1 = kind_score[kind_mapper[entry1:get_kind()]] or 100
-    local kind2 = kind_score[kind_mapper[entry2:get_kind()]] or 100
-
-    if kind1 < kind2 then
-        return true
-    elseif kind1 > kind2 then
-        return false
-    end
-end
-
-local format_cache = {}
-local colors = require("nvim-highlight-colors.color.utils")
-local utils = require("nvim-highlight-colors.utils")
-local options_hlc = {
-    render = utils.render_options.background,
-    enable_hex = true,
-    enable_rgb = true,
-    enable_hsl = true,
-    enable_var_usage = true,
-    enable_named_colors = true,
-    enable_short_hex = true,
-    enable_tailwind = true, -- TODO: was false before (untested)
-    custom_colors = nil,
-    virtual_symbol = hl_colors_icons.virtual_color,
-    virtual_symbol_prefix = "",
-    virtual_symbol_suffix = " ",
-    virtual_symbol_position = "inline",
-    exclude_filetypes = {},
-    exclude_buftypes = {},
-}
-local function format(entry, item)
-    local kind_text = string.sub(item.kind, item.kind:find("%s") + 1 or 1, #item.kind)
-    -- item.menu = item.kind
-    -- item.kind = item.abbr
-    -- item.kind_hl_group = ""
-    -- item.abbr = ""
-
-    if kind_text ~= "Color" then
-        -- item.abbr = "  " .. item.abbr
-        return item
-    end
-
-    local entryItem = entry:get_completion_item()
-    if entryItem == nil then
-        return item
-    end
-
-    local entryDoc = entryItem.documentation
-    if entryDoc == nil or type(entryDoc) ~= "string" then
-        return item
-    end
-
-    local cached = format_cache[entryDoc]
-    if cached == nil then
-        local color_hex = colors.get_color_value(entryDoc)
-        cached = color_hex and { hl_group = utils.create_highlight_name("fg-" .. color_hex), color_hex = color_hex }
-            or false
-        format_cache[entryDoc] = cached
-    end
-    if cached then
-        vim.api.nvim_set_hl(0, cached.hl_group, { fg = cached.color_hex, default = true })
-        -- IMPORTANT: for those who came here from the nvim-highlight-colors nvim-cmp integration issue, the commented lines are what i show on the issue
-        -- item.abbr_hl_group = cached.hl_group
-        -- item.abbr = options_hlc.virtual_symbol .. " " .. item.abbr
-        --
-        -- +(plus) these lines up above:
-        -- if kind_text ~= "Color" then
-        --     item.abbr = "  " .. item.abbr
-        --     return item
-        -- end
-        --
-        -- these two lines here -(minus) the if statement up above are what i settled on after some more testing (it's been like 10 mins since i closed the issue and i'm shy to comment on it again) (it's been 5 months, i have no idea what i've done)
-        item.kind_hl_group = cached.hl_group
-        local symbol = options_hlc.virtual_symbol
-        item.kind = item.kind .. " " .. symbol
-    end
-    return item
-end
-
 return {
-    completion = { completeopt = "menu,menuone" },
+    mapping = require("plugins._nvim-cmp.mappings.internal"),
+    snippet = {
+        expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+        end,
+    },
+    completion = {
+        completeopt = "menu,menuone",
+    },
     formatting = {
         fields = { "abbr", "kind", "menu" },
-        ---@param entry {}
+        ---@param entry { source: {} }
         ---@param item {abbr: string, word: string, dup: number, kind: string, menu: string, kind_hl_group: string }
         format = function(entry, item)
             if item.menu ~= nil and #item.menu >= 60 then
@@ -164,26 +34,11 @@ return {
 
             -- Handle custom item kinds
             if entry.source.source then
-                if entry.source.name == "nvim_lsp" then
-                    local lsp_name = tostring(entry.source.source.client.name)
-
-                    if item.kind == (cmp_icons.Text .. " Text") then
-                        local is_html_snippet = lsp_name == "emmet_language_server"
-                        if is_html_snippet then
-                            item.kind_hl_group = "CmpItemKindHtml"
-                            item.kind = tostring(cmp_icons.Html) .. " Html"
-                        end
-                    end
-                elseif entry.source.name == "nvim_lsp_signature_help" then
-                    if item.kind == (cmp_icons.Text .. " Text") then
-                        item.kind_hl_group = "CmpItemKindFunctionParameter"
-                        item.kind = tostring(cmp_icons.FunctionParameter) .. " Parameter"
-                    end
-                end
+                cmp_lib.populate_custom_kinds(entry, item)
             end
 
             -- Exclusively used for CompletionItemKind.Color items
-            item = format(entry, item)
+            item = cmp_hlc_lib.custom_hlc_format(entry, item)
 
             -- item = require("nvim-highlight-colors").format(entry, item)
             return item
@@ -206,16 +61,9 @@ return {
             scrolloff = 0,
         },
     },
-
-    snippet = {
-        expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-        end,
+    matching = {
+        disallow_symbol_nonprefix_matching = false,
     },
-
-    mapping = require("plugins._nvim-cmp.mappings.internal"),
-
-    matching = { disallow_symbol_nonprefix_matching = false },
     sorting = {
         -- comparators = {
         --     set_bottom_priority(require("cmp.types").lsp.CompletionItemKind.Text),
