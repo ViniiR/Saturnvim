@@ -14,8 +14,7 @@ local servers = {
     "bashls",
     "clangd",
     "cssls",
-    -- TODO: random tags arent working
-    "emmet_language_server",
+    "emmet_language_server", -- TODO: random tags arent working
     "eslint",
     "gdscript",
     "html",
@@ -37,7 +36,7 @@ local servers = {
     "v_analyzer",
 
     -- WARNING: do not include "rust_analyzer"
-    -- -- "rust_analyzer" -- working
+    -- "rust_analyzer",
 }
 
 -- Config for all LSPs

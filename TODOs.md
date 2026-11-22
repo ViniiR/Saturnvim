@@ -19,6 +19,7 @@
 - Hover doesnt ignore ```
 - Lua_ls autocomplete slow if include all plugins
 - Fix filetypes issues from 0.12
+- Fix lua_ls [] bug
 
 ## Plugins
 
