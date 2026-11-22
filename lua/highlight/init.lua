@@ -336,7 +336,9 @@ highlights["TelescopePromptBorder"] = { fg = theme.colors.one_bg3 }
 highlights["TelescopePreviewBorder"] = { fg = theme.colors.one_bg3 }
 highlights["TelescopeResultsBorder"] = { fg = theme.colors.one_bg3 }
 
-highlights["TelescopePromptTitle"] = { fg = theme.colors.black, bg = theme.colors.red }
+highlights["TelescopePromptTitle"] = { fg = theme.colors.telescope_prompt, bg = "none", bold = true }
+highlights["TelescopeResultsTitle"] = { fg = theme.colors.telescope_results, bg = "none", bold = true }
+highlights["TelescopePreviewTitle"] = { fg = theme.colors.telescope_preview, bg = "none", bold = true }
 
 highlights["TelescopeSelection"] = { bg = theme.colors.grey, fg = "none" }
 highlights["TelescopeResultsDiffAdd"] = { fg = theme.colors.green }
@@ -344,8 +346,6 @@ highlights["TelescopeResultsDiffChange"] = { fg = theme.colors.yellow }
 highlights["TelescopeResultsDiffDelete"] = { fg = theme.colors.red }
 
 highlights["TelescopeMatching"] = { bg = "none", fg = theme.colors.matching_bg }
-highlights["TelescopeResultsTitle"] = { fg = theme.colors.black, bg = theme.colors.green }
-highlights["TelescopePreviewTitle"] = { fg = theme.colors.black, bg = theme.colors.blue }
 highlights["TelescopePromptPrefix"] = { fg = theme.colors.red, bg = "none" }
 highlights["TelescopeNormal"] = { bg = "none" }
 highlights["TelescopePromptNormal"] = { bg = "none" }

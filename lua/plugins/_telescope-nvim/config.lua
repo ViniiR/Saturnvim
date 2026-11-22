@@ -31,6 +31,9 @@ return {
     pickers = {
         -- Ignore files on <leader>ff && <leader>fa (since fa is only flags of find_files)
         find_files = {
+            prompt_title = string.format("%s Find Files", telescope_icons.telescope),
+            preview_title = string.format("%s Grep Preview", telescope_icons.preview),
+            results_title = string.format("%s Results", telescope_icons.prompt),
             -- NOTE: Overrides defaults
             file_ignore_patterns = {
                 "node_modules",
@@ -40,6 +43,41 @@ return {
                 "%.gd%.uid$",
                 "%.cs%.uid$",
             },
+        },
+        buffers = {
+            prompt_title = string.format("%s Buffers", telescope_icons.telescope),
+            preview_title = string.format("%s Grep Preview", telescope_icons.preview),
+            results_title = string.format("%s Results", telescope_icons.prompt),
+        },
+        live_grep = {
+            prompt_title = string.format("%s Live Grep", telescope_icons.telescope),
+            preview_title = string.format("%s Grep Preview", telescope_icons.preview),
+            results_title = string.format("%s Results", telescope_icons.prompt),
+        },
+        current_buffer_fuzzy_find = {
+            prompt_title = string.format("%s Current Buffer Fuzzy", telescope_icons.telescope),
+            preview_title = string.format("%s Grep Preview", telescope_icons.preview),
+            results_title = string.format("%s Results", telescope_icons.prompt),
+        },
+        highlights = {
+            prompt_title = string.format("%s Highlights", telescope_icons.telescope),
+            preview_title = string.format("%s Grep Preview", telescope_icons.preview),
+            results_title = string.format("%s Results", telescope_icons.prompt),
+        },
+        marks = {
+            prompt_title = string.format("%s Marks", telescope_icons.telescope),
+            preview_title = string.format("%s Grep Preview", telescope_icons.preview),
+            results_title = string.format("%s Results", telescope_icons.prompt),
+        },
+        help_tags = {
+            prompt_title = string.format("%s Help", telescope_icons.help),
+            preview_title = string.format("%s Grep Preview", telescope_icons.preview),
+            results_title = string.format("%s Results", telescope_icons.prompt),
+        },
+        git_status = {
+            prompt_title = string.format("%s Git Status", telescope_icons.telescope),
+            preview_title = string.format("%s Git File Diff Preview", telescope_icons.preview),
+            results_title = string.format("%s Results", telescope_icons.prompt),
         },
     },
 }
