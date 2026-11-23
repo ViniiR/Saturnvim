@@ -9,6 +9,6 @@ return {
     lazy = false,
 
     opts = function()
-        return require("plugins._nvim-web-dev-icons.config")
+        return require("plugins._nvim-web-devicons.config")
     end,
 }

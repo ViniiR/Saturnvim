@@ -10,7 +10,6 @@
 
 ## Fixes
 
-- Zig icon color
 - C icon and color
 
 - Remove #region #endregion snippets
@@ -28,3 +27,4 @@
 - https://github.com/ThePrimeagen/refactoring.nvim?tab=readme-ov-file#refactoring-features
 - markdown-preview.nvim
 - nvim-treesitter-textobjects
+- real-icons (is laggy and icons are too big, still leaving it here tho)

@@ -24,8 +24,6 @@ local theme = {
         matching_bg = "#61afee",
         title_fg = "#65b6c2",
 
-        ts_fg = "#2d79c7",
-
         telescope_prompt = "#E66B00",
         telescope_results = "#31546d",
         telescope_preview = "#00817e",
