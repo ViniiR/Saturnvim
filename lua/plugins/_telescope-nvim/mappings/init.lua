@@ -41,6 +41,12 @@ local mappings = {
         desc.desc("Telescope find open buffers"),
     },
     {
+        modes.visual,
+        keys.leader("*"),
+        telescope_builtin.grep_string,
+        desc.desc("Telescope find string"),
+    },
+    {
         modes.normal,
         keys.leader("ft"),
         telescope_builtin.help_tags,

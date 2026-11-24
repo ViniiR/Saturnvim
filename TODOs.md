@@ -8,6 +8,8 @@
 - Goto definition on lazy plugins
 - Nvim cmp lsp capabilities
 
+- Shorten nix paths on dashboard
+
 ## Fixes
 
 - C icon and color
