@@ -53,6 +53,13 @@ local opts = {
     cursorlineopt = "number", -- highlight the line number of the cursor with CursorLineNr "hl-CursorLineNr"
     -- scrolloff = 999, -- centers the cursor whenever possible
     scrolloff = 8, -- minimal number of screen lines to keep above and below the cursor. this will make some context visible around where you are working
+    guicursor = {
+        "n:block-blinkon0", -- normal block
+        "i:ver25-blinkon0", -- insert pipe
+        "v:block-blinkon0", -- visual block
+        "c:block-blinkon0", -- command block
+        "a:blinkon0", -- rest block
+    }, -- disable cursor blinking independently of terminal config
 
     -- text
     wrap = true, -- wraps text to the bottom line when text is too long
