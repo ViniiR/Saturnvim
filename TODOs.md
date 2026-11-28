@@ -2,7 +2,6 @@
 
 - Command mode autopairs (maybe)
 - Use native completion + snippets
-- Add IMPORTANT: highlight
 - Make it so b, and e do not jump lines
 
 - Goto definition on lazy plugins
